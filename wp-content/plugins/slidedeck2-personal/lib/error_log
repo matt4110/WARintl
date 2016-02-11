@@ -1,0 +1,35 @@
+[14-Sep-2014 10:01:18 America/Denver] PHP Fatal error:  Class 'WP_Widget' not found in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/widget.php on line 35
+[14-Sep-2014 10:02:13 America/Denver] PHP Fatal error:  Call to undefined function add_action() in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/flash.php on line 66
+[14-Sep-2014 10:03:35 America/Denver] PHP Fatal error:  Cannot access self:: when no class scope is active in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/constants.php on line 29
+[14-Sep-2014 10:04:57 America/Denver] PHP Fatal error:  Call to undefined function add_action() in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/slidedeck-auto-upgrade.php on line 17
+[14-Sep-2014 10:05:44 America/Denver] PHP Fatal error:  Class 'SlideDeckPlugin' not found in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/slidedeck-plugin-install.php on line 2
+[14-Sep-2014 16:47:29 America/Denver] PHP Fatal error:  Class 'SlideDeckPlugin' not found in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/slidedeck-plugin-install.php on line 2
+[14-Sep-2014 16:47:43 America/Denver] PHP Fatal error:  Cannot access self:: when no class scope is active in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/constants.php on line 29
+[14-Sep-2014 16:47:54 America/Denver] PHP Fatal error:  Class 'WP_Widget' not found in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/widget.php on line 35
+[14-Sep-2014 16:48:04 America/Denver] PHP Fatal error:  Call to undefined function add_action() in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/slidedeck-auto-upgrade.php on line 17
+[14-Sep-2014 16:48:14 America/Denver] PHP Fatal error:  Call to undefined function add_action() in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/flash.php on line 66
+[14-Sep-2014 22:39:23 America/Denver] PHP Fatal error:  Cannot access self:: when no class scope is active in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/constants.php on line 29
+[14-Sep-2014 22:39:33 America/Denver] PHP Fatal error:  Call to undefined function add_action() in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/flash.php on line 66
+[14-Sep-2014 22:39:44 America/Denver] PHP Fatal error:  Class 'WP_Widget' not found in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/widget.php on line 35
+[14-Sep-2014 22:39:54 America/Denver] PHP Fatal error:  Class 'SlideDeckPlugin' not found in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/slidedeck-plugin-install.php on line 2
+[14-Sep-2014 22:40:04 America/Denver] PHP Fatal error:  Call to undefined function add_action() in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/slidedeck-auto-upgrade.php on line 17
+[15-Sep-2014 04:39:53 America/Denver] PHP Fatal error:  Call to undefined function add_action() in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/flash.php on line 66
+[15-Sep-2014 04:40:04 America/Denver] PHP Fatal error:  Class 'SlideDeckPlugin' not found in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/slidedeck-plugin-install.php on line 2
+[15-Sep-2014 04:40:14 America/Denver] PHP Fatal error:  Call to undefined function add_action() in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/slidedeck-auto-upgrade.php on line 17
+[15-Sep-2014 04:40:25 America/Denver] PHP Fatal error:  Cannot access self:: when no class scope is active in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/constants.php on line 29
+[15-Sep-2014 04:40:35 America/Denver] PHP Fatal error:  Class 'WP_Widget' not found in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/widget.php on line 35
+[15-Sep-2014 10:31:14 America/Denver] PHP Fatal error:  Cannot access self:: when no class scope is active in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/constants.php on line 29
+[15-Sep-2014 10:31:29 America/Denver] PHP Fatal error:  Class 'WP_Widget' not found in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/widget.php on line 35
+[15-Sep-2014 10:31:40 America/Denver] PHP Fatal error:  Call to undefined function add_action() in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/flash.php on line 66
+[15-Sep-2014 10:31:50 America/Denver] PHP Fatal error:  Class 'SlideDeckPlugin' not found in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/slidedeck-plugin-install.php on line 2
+[15-Sep-2014 10:32:01 America/Denver] PHP Fatal error:  Call to undefined function add_action() in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/slidedeck-auto-upgrade.php on line 17
+[25-Oct-2014 19:31:34 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/flash.php on line 66
+[25-Oct-2014 19:32:03 UTC] PHP Fatal error:  Class 'WP_Widget' not found in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/widget.php on line 35
+[25-Oct-2014 19:32:34 UTC] PHP Fatal error:  Cannot access self:: when no class scope is active in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/constants.php on line 29
+[25-Oct-2014 19:33:03 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/slidedeck-auto-upgrade.php on line 17
+[25-Oct-2014 19:33:19 UTC] PHP Fatal error:  Class 'SlideDeckPlugin' not found in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/slidedeck-plugin-install.php on line 2
+[03-Nov-2014 08:15:28 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/flash.php on line 66
+[03-Nov-2014 08:55:55 UTC] PHP Fatal error:  Class 'WP_Widget' not found in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/widget.php on line 35
+[03-Nov-2014 12:23:26 UTC] PHP Fatal error:  Cannot access self:: when no class scope is active in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/constants.php on line 29
+[04-Nov-2014 00:04:30 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/slidedeck-auto-upgrade.php on line 17
+[04-Nov-2014 01:20:27 UTC] PHP Fatal error:  Class 'SlideDeckPlugin' not found in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/lib/slidedeck-plugin-install.php on line 2

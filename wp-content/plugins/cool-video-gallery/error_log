@@ -1,0 +1,1 @@
+[09-Oct-2014 23:30:13 UTC] PHP Fatal error:  Call to undefined function wp_die() in /home/warinter/public_html/wp-content/plugins/cool-video-gallery/cool-video-gallery.php on line 27

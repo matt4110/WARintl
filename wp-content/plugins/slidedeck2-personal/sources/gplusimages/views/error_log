@@ -1,0 +1,2 @@
+[25-Oct-2014 19:42:55 UTC] PHP Fatal error:  Using $this when not in object context in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/gplusimages/views/show.php on line 36
+[12-Nov-2014 23:03:11 UTC] PHP Fatal error:  Using $this when not in object context in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/gplusimages/views/show.php on line 36

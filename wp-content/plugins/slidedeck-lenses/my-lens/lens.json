@@ -1,0 +1,65 @@
+{
+    "name": "My Lens",
+    "uri": "http://www.slidedeck.com/",
+    "sources": [
+        "posts",
+        "gplus",
+        "rss",
+        "instagram",
+        "dribbble",
+        "gplusimages",
+        "flickr",
+        "youtube",
+        "dailymotion",
+        "vimeo",
+        "fivehundredpixels",
+        "pinterest",
+        "facebook",
+        "twitter",
+        "nextgengallery",
+        "custom"
+    ],
+    "description": "The Prototype Lens",
+    "default_nav_styles":true,
+    "version": "1.0",
+    "variations": {
+        "dark": "Dark",
+        "light": "Light"
+    },
+    "author": "dtelepathy",
+    "autor_uri": "",
+    "contributors": [
+        "dtrenkner",
+        "oriontimbers",
+        "kynatro"
+    ],
+    "tags": [
+        
+    ],
+    "author_uri": "http://www.dtelepathy.com/",
+    "sizes": {
+        "small": {
+            "label": "Small",
+            "width": 300,
+            "height": 200
+        },
+        "medium": {
+            "label": "Medium",
+            "width": 500,
+            "height": 300
+        },
+        "large": {
+            "label": "Large",
+            "width": 850,
+            "height": 500
+        }
+    },
+    "fonts": {
+        "bitter": {
+            "label": "Bitter",
+            "stack": "Bitter, serif",
+            "import": "//fonts.googleapis.com/css?family=Bitter:400,400italic",
+            "weight": "400"
+        }
+    }
+}

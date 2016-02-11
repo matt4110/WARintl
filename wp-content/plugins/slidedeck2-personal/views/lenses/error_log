@@ -1,0 +1,4 @@
+[05-Nov-2014 13:27:18 UTC] PHP Fatal error:  Using $this when not in object context in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/views/lenses/manage.php on line 36
+[10-Nov-2014 23:13:37 UTC] PHP Fatal error:  Call to undefined function admin_url() in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/views/lenses/add.php on line 40
+[18-Nov-2014 06:51:16 UTC] PHP Fatal error:  Call to undefined function admin_url() in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/views/lenses/add.php on line 40
+[18-Nov-2014 06:52:24 UTC] PHP Fatal error:  Using $this when not in object context in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/views/lenses/manage.php on line 36

@@ -1,0 +1,2 @@
+[04-Nov-2014 02:36:05 UTC] PHP Fatal error:  Class 'WP_Upgrader' not found in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/classes/slidedeck-lens-upload.php on line 26
+[18-Nov-2014 06:46:15 UTC] PHP Fatal error:  Class 'WP_Upgrader' not found in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/classes/slidedeck-lens-upload.php on line 26

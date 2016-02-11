@@ -1,0 +1,1130 @@
+/*
+Theme Name:     War-Theme (Twenty Ten Child) 
+Theme URI:      http://example.com
+Description:    War Custom Child theme, based off of the Twenty Ten theme.
+Author:         Aaron
+Author URI:     http://example.com/about/
+Template:       twentyten
+Version:        0.1.0
+*/
+
+
+@import url("../twentyten/style.css");
+
+body {
+	background: url('https://warinternational.org/wp-content/themes/war-theme/images/war_bkgd_top.jpg'), url('https://warinternational.org/wp-content/themes/war-theme/images/war_bkgd_repeat.jpg');
+	background-repeat: no-repeat, repeat-y;
+	background-position: center top, center 848px;
+}
+
+#container_news {
+	float: left;
+	margin: 0 -240px 0 0;
+	width: 75%;
+}
+
+#content .entry-title {
+	color:#c19563;
+}
+
+#content H1, #content H2, #content H3, #content H4, #content H5 #content H6 {
+	font-weight: bold;
+	color:#c19563; 
+	font-family: Garamond, Georgia, "Bitstream Charter", serif;
+	clear: none;
+	margin-top: 20px !important;
+	margin-bottom: 10px !important;
+}
+#content H1.entry-title {
+	font-size: 24pt; 
+	text-align: center; 
+	text-transform: uppercase;
+}
+
+#content H1.entry-title:first-letter {
+	font-size: 150%;
+}
+
+#content .subtitle, #content .sub-title {
+	text-align: center;
+	color:#C19563; 
+	margin-top:-40px !important;
+	margin-bottom:25px !important;
+	text-transform:uppercase;
+}
+
+#content h1 {
+	font-size: 24pt;
+}
+
+#content h2 {
+	font-size: 21pt; 
+}
+
+#content h3 {
+	font-size: 18pt; 
+	letter-spacing: -.5px;
+}
+
+#content h4 {
+	font-size: 16pt; 
+	letter-spacing: -.5px;
+}
+
+#content h1, #content h2, #content h3 {
+	line-height:1em;
+}
+#content p {
+	line-height: 1.2em;
+}
+
+#content table {
+	border: 0;
+}
+
+#content tr td {
+	border-top: 0;
+	padding: 5px 10px;
+}
+
+#content img {
+	border: 2px solid #E3C9A4;
+	margin-top:12px;
+	margin-bottom:12px;
+}
+
+#thumbs img {
+	border: none !important
+}
+
+#content img.alignleft {
+	margin-left: 0px;
+}
+#content img.alignright {
+	margin-right: 0px;
+}
+
+a:link {
+	color: #e1bd89;  /*rgb(208,166,108);*/
+	text-decoration: underline;
+}
+
+a:hover, a:visited {
+	color: #c19563;
+}
+
+.aligncenter, .textAlignCenter {
+	text-align: center;
+}
+
+.verticalAlignMiddle {
+	vertical-align: middle;
+}
+
+.oneHalfSpaced {
+	line-height: 1.5em;
+}
+
+.doubleSpaced {
+	line-height: 2em;
+}
+
+.lightColor {
+	color: #F5EDE0 !important;
+}
+#content img.location-page-facebook-img {
+	margin: 0 10px 0 0;
+}
+
+@font-face {
+	font-family: Vivaldi-Italic;
+	src: url(/fonts/VIVALDII.TTF);
+}
+.vivaldi {
+	font-family: "Vivaldi-Italic";
+}
+
+.first-letter {
+	float: left;
+	font-family: "Times New Roman";
+	margin: 0px;
+	font-size: 72px;
+	line-height: 58px;
+}
+
+#content p, #content ul, #content ol, #content dd, #content pre, #content hr {
+	margin-bottom: 10px;
+}
+#content {
+	line-height: normal;
+	color: #F5EDE0; /*#EFE1CD;/*#E9D5B9; /*rgb(227,201,164);*/
+	font-size: 16px;
+}
+
+.entry-content label{
+	line-height: 20px;
+	color: rgb(227,201,164);
+	font-size: 16px;
+}
+
+.arial {
+	font-family: arial, verdana, sans-serif;
+}
+
+.smalltxt {
+	line-height: 16px;
+	font-size: 14px;
+}
+
+div.entry-content {
+	margin-top: 25px;
+}
+
+.entry-content fieldset legend {
+	background: rgb(0,0,0);
+	color: rgb(255,255,255);
+	font-weight: bold;
+	padding: 0 24px;
+}
+
+.wp-caption {
+	margin-bottom:0px;
+	background: none;
+}
+
+.wp-caption p.wp-caption-text {
+	color: white;
+	font-family: Georgia, 'Bitstream Charter', serif;
+}
+
+.display-none { display: none; }
+
+div#preload { display: none; }
+
+.uppercase {
+	text-transform:uppercase;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.displayTable {
+	display: table
+}
+
+.displayTableCell {
+	display: table-cell;
+}
+
+/***  FRONTSLIDER  ****/
+
+#slide-wrapper img {
+	border: none !important;
+	margin:0px;
+}
+
+#slide-wrapper #text p {
+	line-height: 16px;
+}
+
+#slide-wrapper #text h3 {
+	font-size: 10pt !important;
+	line-height: 1.5em !important;
+}
+
+/***  END FRONTSLIDER  ****/
+
+
+/***  NEXT GEN GALLERY  ****/
+
+#content .ngg-album-compactbox img.Thumb {
+	border: 0;
+}
+
+.ngg-album-compact p {
+    display: none;
+}
+
+.ngg-imagebrowser-nav .back {
+    border: 0px !important;
+}
+
+.ngg-imagebrowser-nav .next {
+    border: 0px !important;
+}
+
+.ngg-imagebrowser .pic {
+    border: 0px !important;
+}
+
+.ngg-imagebrowser-desc p {
+    text-align: center;
+}
+
+/* #nav-below.navigation a:link {
+	color: #F5EDE0;
+	font-size: 16px;
+}
+
+#nav-below.navigation a:hover {
+	color: red;
+	font-size: 16px;
+} */
+
+/* END NEXT GEN GALLERY */
+
+
+/* BEGIN ---- Styling for Blue Candle Prayer Walk Template 
+div#rootDiv {
+	margin-left:-33px;
+}
+
+div#rootDiv  img {
+	border-style: none;
+}
+div#rootDiv p {
+	margin-bottom: 30px;
+}
+
+div#rootDiv a {
+	color: #0067ce;
+}
+END ---- Styling for Blue Candle Prayer Walk Template */
+
+/*SENT TO SERVE ---2016 only---delete after 2016 */
+div #senttoserve{
+	background-color: #f0f0f0;
+	width: 100%;
+	height: 425px;
+	margin-top: 20px;
+	padding-top: 15px;
+	
+}
+
+img#senttoserveimg{
+	width: 97%;
+	height: auto;
+	margin-left: 10px;
+	margin-bottom: 0;
+	border: 0px none;
+}
+
+#stscopy1 {
+	padding: 0 30px 0 30px;
+	font: Garamond, serif;
+	color: #777777;
+	line-height: 1.35em !important;
+}
+#stscopy2 {
+	padding: 0 30px 20px 30px;
+	font: Garamond, serif;
+	color: #777777;
+	line-height: 1.35em !important;
+}
+
+/*END SENT TO SERVE*/
+
+/* BEGIN ---- Styling for Sweetie Templates */
+.sweetie-excerpt {
+	height: 165px;
+	margin-bottom: 30px;
+}
+
+.sweetie-excerpt img {
+	float: left;
+	margin-right: 15px;
+	background-color: #F5EDE0;
+}
+
+.sweetie-excerpt .sweetie-title{
+	font-size:20px;
+	margin-bottom: 20px !important;
+}
+
+.sweetie-excerpt p {
+	font-size: 15px;
+	line-height: 22px;
+	margin-top: 10px;
+}
+
+#content .entry-title {
+	margin-bottom: 10px;
+}
+#content li {
+	margin-bottom: 10px;
+}
+
+.sweetie-blog-title {
+	text-align:center; 
+	font-weight:bold; 
+	font-style:italic; 
+	margin-bottom:35px !important;
+}
+
+.myTitle {
+	font-family: "Vivaldi-Italic";
+	font-size: 45px;
+	color: black;
+	text-align: center;
+}
+
+.myDate {
+	color: black;
+	font-weight: bold;
+	font-variant: small-caps;
+	text-align: center;
+	margin-bottom:25px !important;
+}
+
+.learn-more {
+	width: 235px;
+	height: 165px;
+	padding: 10px;
+	float: left;
+	font-size: 10pt;
+}
+
+.img-left-floater img {
+	float: left;
+	margin: 10px 10px 10px 10px;
+}
+/* END ---- Styling for Sweetie Templates */
+/***************PROGRAMS AND STORIES - PJ ***********************/
+
+ul.ProgramCategories2 {
+	width: 200px;
+	float: left;
+	display:block;
+}
+
+ul.ProgramCategories2 li {
+	margin-bottom: 0;
+}
+
+ul.ProgramCategories2 li {
+	margin: 0px 0px 0px 0px !important;
+	line-height: 1em !important;
+}
+
+div#ProgramSharingDisplay {
+	margin-left: 300px;
+}
+
+div#ProgramsRedux {
+	margin-left:50px;
+	width:1000px;
+}
+
+ul.ProgramCategories2 a {
+	color: #F5EDE0 !important;
+	text-decoration: none;
+}
+
+div#ProgramCategoriesInfo {
+	margin-left: 50px;
+	margin-top: 20px;
+	width: 500px;
+	height: 400px;
+	float: left;
+	display: block;
+}
+
+div#ProgramCategoriesInfo h1{
+	font-size: 20pt; 
+	text-align: center; 
+	font-family: Garamond, Georgia, "Bitstream Charter", serif;
+	//font-style: italic; 
+	font-weight: bold;
+	color:#c19563;
+	text-transform: uppercase;
+}
+
+div#ProgramCategoriesInfo p:first-letter, div#ProgramCategoriesInfo h1:first-letter {
+	font-size: 150%;
+}
+
+a:active, a:hover {
+	color: rgb(227,201,164);
+}
+
+li.ProgramCatb, li.ProgramCatbTop, li.ProgramCatbBottom, li.ProgramBack, li.ProgramCatInternational, li.ProgramCatDomestic, li.ProgramCatVocational, li.ProgramCatMicro, li.ProgramCatEducation, li.ProgramCatOutreach, li.ProgramCatOrphanage, li.ProgramCatHealth, li.ProgramCatEmergency {
+	width: 190px;
+	height: 70px;
+	display:table;
+	vertical-align:middle;
+	text-align:center;
+	font-size:14px;
+	text-shadow: 1px 1px #000000;
+}
+
+ul.ProgramCategories2 li p {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+li.ProgramCatbTop {
+	background: url('http://warinternational.org/wp-content/uploads/2014/07/programs-top.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% auto;
+}
+
+li.ProgramCatbBottom {
+	background: url('http://warinternational.org/wp-content/uploads/2014/07/programs-international-middle.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% auto;
+}
+
+li.ProgramBack {
+	background: url('http://warinternational.org/wp-content/uploads/2014/07/programs-back-button.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% auto;
+}
+
+li.ProgramCatb {
+	background: url('http://warinternational.org/wp-content/uploads/2014/07/programs-top.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% auto;
+}
+
+li.ProgramCatb:hover {
+	background: url('http://warinternational.org/wp-content/uploads/2014/07/programs-international-middle-selected.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% auto;
+}
+
+li.ProgramCatInternational {
+	background: url('http://warinternational.org/wp-content/uploads/2014/07/programs-international-middle.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% auto;
+}
+
+li.ProgramCatDomestic {
+	background: url('http://warinternational.org/wp-content/uploads/2014/07/programs-domestic-middle.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% auto;
+}
+
+li.ProgramCatVocational {
+	background: url('http://warinternational.org/wp-content/uploads/2014/07/programs-vocational-middle.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% auto;
+}
+
+li.ProgramCatMicro {
+	background: url('http://warinternational.org/wp-content/uploads/2014/07/programs-micro-middle.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% auto;
+}
+
+li.ProgramCatEducation {
+	background: url('http://warinternational.org/wp-content/uploads/2014/08/programs-education-middle.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% auto;
+}
+
+li.ProgramCatOrphanage {
+	background: url('http://warinternational.org/wp-content/uploads/2014/07/programs-orphan-middle.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% auto;
+}
+
+li.ProgramCatOutreach {
+	background: url('http://warinternational.org/wp-content/uploads/2014/08/programs-outreach-middle.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% auto;
+}
+
+li.ProgramCatHealth {
+	background: url('http://warinternational.org/wp-content/uploads/2014/07/programs-health-middle.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% auto;
+}
+
+li.ProgramCatEmergency {
+	background: url('http://warinternational.org/wp-content/uploads/2014/07/programs-emergency-middle.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% auto;
+}
+
+li.ProgramCatInternational.ProgramCatSelected {
+	background: url('http://warinternational.org/wp-content/uploads/2014/07/programs-international-middle-selected.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% auto;
+}
+
+li.ProgramCatDomestic.ProgramCatSelected, .ProgramCatb.DomesticButton:hover {
+	background: url('http://warinternational.org/wp-content/uploads/2014/07/programs-domestic-middle-selected.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% auto;
+}
+
+li.ProgramCatVocational.ProgramCatSelected, .ProgramCatb.VocationalButton:hover {
+	background: url('http://warinternational.org/wp-content/uploads/2014/07/programs-vocational-middle-selected.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% auto;
+}
+
+li.ProgramCatMicro.ProgramCatSelected, .ProgramCatb.MicroButton:hover {
+	background: url('http://warinternational.org/wp-content/uploads/2014/07/programs-micro-middle-selected.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% auto;
+}
+
+li.ProgramCatEducation.ProgramCatSelected, .ProgramCatb.EducationButton:hover {
+	background: url('http://warinternational.org/wp-content/uploads/2014/08/programs-education-middle-selected.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% auto;
+}
+
+li.ProgramCatOrphanage.ProgramCatSelected, .ProgramCatb.OrphanButton:hover {
+	background: url('http://warinternational.org/wp-content/uploads/2014/07/programs-orphan-middle-selected.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% auto;
+}
+
+li.ProgramCatOutreach.ProgramCatSelected, .ProgramCatb.OutreachButton:hover {
+	background: url('http://warinternational.org/wp-content/uploads/2014/08/programs-outreach-middle-selected.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% auto;
+}
+
+li.ProgramCatHealth.ProgramCatSelected, .ProgramCatb.HealthButton:hover {
+	background: url('http://warinternational.org/wp-content/uploads/2014/07/programs-health-middle-selected.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% auto;
+}
+
+li.ProgramCatEmergency.ProgramCatSelected, .ProgramCatb.EmergencyButton:hover {
+	background: url('http://warinternational.org/wp-content/uploads/2014/07/programs-emergency-middle-selected.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% auto;
+}
+
+.ProgramCategories2 p {
+	text-transform:uppercase;
+	margin-bottom: 0px !important;
+	margin-top: 0px !important;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.ProgramCategories2 a {
+	text-decoration:none;
+}
+
+div#rsgLeft {
+	float:left;
+	text-align:left;
+	width: 45%;
+	border: 2px solid #B5985A;
+	border-radius: 12px;
+	margin-left: -31px;
+	padding-left: 19px;
+}
+
+div#rsgRight {
+	float:right;
+	text-align:left;
+	width: 60%;
+	border: 2px solid #B5985A;
+	border-radius: 12px;
+	padding: 5px;
+	margin-right: -50px;
+}
+
+.story-gallery-redux li{
+	background: url('http://warinternational.org/wp-content/uploads/2014/07/programs-international-middle.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% 100%;
+	width: 90px;
+	height: 45px;
+	display:inline-block;
+	vertical-align:middle;
+	text-align:center;
+	font-size:14px;
+	position: relative;
+	line-height: 14px;
+}
+
+.story-gallery-redux li:hover {
+	background: url('http://warinternational.org/wp-content/uploads/2014/07/programs-international-middle-selected.png') no-repeat scroll 0px 0px transparent;
+	background-size: 100% 100%;
+}
+
+.story-gallery-redux span {
+	vertical-align: middle;
+	width: 90px;
+	height: 45px;
+	display: table-cell;
+}
+.story-gallery-redux li { margin: 0 !important; }
+
+ul.list-country {
+	margin-left:0px;
+}
+
+ul.list-program, ul.list-story {
+	margin-left:90px;
+	margin-top:-45px;
+}
+
+ul.list-country, ul.list-program, ul.list-story {
+	list-style: none;
+	display: none;
+	position: relative;
+}
+
+.item-country, .item-program, .item-story {
+	display: none;
+}
+
+li.item-region:hover ul.list-country, li.item-country:hover ul.list-program, li.item-program:hover ul.list-story {
+	display: block;
+}
+
+#content img#story-flag {
+	margin: 0px;
+}
+
+#content img#story-picture {
+	margin: 0px;
+}
+
+#branding {
+	visibility:hidden !important;
+}
+
+body.single-story #container #content {
+	width: 500px;
+	margin-top: 30px;
+	margin-left: 60px;
+}
+body.single-story #container #content p:first-letter {
+	margin-top: 20px;
+	font-size:200%;
+	//color:#8A2BE2;
+}
+
+#first-letter p:first-letter {
+	font-size:200%;
+}
+
+.single-program #content img, .single-country #content img {
+	border-color:rgb(208,166,108);
+    transition: all 1s ease;
+}
+
+body.single-program p:first-letter, body.single-country p:first-letter {
+	//font-size:200%;
+}
+
+.single-program #content div.test_div img:hover, .single-country #content div.test_div img:hover {
+	border-color:black;
+}
+
+.DisplayDiv1 a {
+	text-decoration: none;
+}
+
+#wrapper {
+	background: none repeat scroll 0 0 transparent;
+}
+
+#access {
+	background: none repeat scroll 0 0 transparent;
+	margin-top: 77px;
+}
+
+#main {
+	padding: 50px 0 0;
+	overflow: visible;
+}
+
+#primary,#secondary {
+	float: left;
+	overflow: hidden;
+	width: 220px;
+	margin-top: 10px;
+}
+
+#content .home1 h3 {
+	color: rgb(0,0,0);
+	font-weight: bold;
+	margin: 10px 0;
+}
+
+.home1 {
+	margin-top: 150px;
+}
+
+.donationform input, .donationform select, .donationform textarea {
+	margin: 5px 0 14px;
+	background: rgb(227,201,164);
+}
+/**************************END PROGRAMS AND STORIES********************************/
+
+/***************RE CAPTCHA***********************/
+#recaptcha_table {
+	line-height: 0em;
+}
+#recaptcha_response_field{
+	height: 24px;
+}
+/************About Us Page************************/
+.about-us-location {
+	margin-top: 20px;
+	display: table;
+	width:700px;
+}
+.about-us-location-cell {
+	display: table-cell;
+	vertical-align: middle;
+	padding: 0 10px;
+}
+.about-us-location-row {
+	display: table-row;
+}
+
+/***************** NEWS AND MEDIA ************************/
+.newsbox1 {
+	background: black;
+	color: #e3c9a4;
+	background-color: black;
+	padding: 3px 20px;
+}
+
+.newsbox1 span {
+/*position: relative;
+	top: 5px;*/
+}
+
+.newsitem {
+	line-height: 16px;
+}
+
+.newsheadline {
+	margin: 20px 0;
+}
+
+.newsheadline img {
+	margin-right: -172px !important;
+	margin-top: 0px !important;
+	float: right;
+}
+
+.newsrecent {
+	float: right;
+	margin-top: 20px;
+}
+
+.newsrecent .lcp_catlist li {
+	width: 180px;
+	margin-top: 15px;
+}
+
+.newsitem .lcp_catlist .posttext {
+/*margin-top: -118px;*/
+}
+
+.newsheadline .lcp_catlist li {
+	width: 220px;
+}
+
+.lcp_catlist .posttext {
+/*margin-top: -135px;
+	margin-bottom: auto;
+	height: 160px;*/
+}
+
+.featured-story-box {
+/*border-width: 5px;
+	border-color: #e3c9a4;
+	left: 220px;
+	top: -250px;*/
+}
+.story {
+	border: 10px;
+}
+
+/**************All In One Event Calendar***************/
+
+.entry-content .timely .ai1ec-month-view .ai1ec-event {
+	color: white;
+}
+
+.ai1ec-field-value{
+	font-size:.7em !important;
+}
+
+
+div.timely {
+	color: inherit;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+
+.entry-content input {
+	margin: 0;
+}
+/*I did this to make all events have rounded edges in month view (not just all day ones) */
+#content .ai1ec-month-view .ai1ec-event{
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.ai1ec-agenda-view .ai1ec-event-time {
+	color: gray;
+}
+
+.ai1ec-agenda-view .ai1ec-event-description {
+	color: darkgray;
+}
+
+.sharedaddy{
+	margin-top: 35px;
+}
+
+.ai1ec-agenda-view .ai1ec-event-description p {
+	color: #747474;
+}
+
+/***************GRAVITY FORMS*******************/
+
+.gform_confirmation_wrapper table table table {
+    background-color: white;
+    color: gray;
+}
+
+.gravityforms_squishdesc div.gfield_description {
+	margin-top: -15px;
+	margin-bottom: 15px;
+}
+
+#gform_fields_4 label {
+	color: rgb(227,201,164);
+	font-size: 16px;
+	margin-bottom: 20px;
+}
+
+#gform_fields_4 .gfield_label {
+	margin-bottom: 10px;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#gform_fields_4 .ginput_total {
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#gform_fields_4 .ginput_container {
+	margin-bottom: 20px;
+}
+
+#gform_fields_4 input {
+	margin: 0;
+	font-size: 1.2em;
+}
+
+.gform_body .ginput_container select {
+	height: 37px;
+	padding: 0;
+	margin: 0;
+    	border-color:#999; /* without this, it won't work */
+	font-size:1.2em;
+}
+
+.gform_wrapper .percentbar_blue {
+  background-image: url(https://warinternational.org/images/gf-percentbar-custom.png) !important;
+  background-color: #c19563 !important;
+}
+
+.gform_page_fields table{line-height:normal !important;}
+.ginput_container select{margin-bottom: 0px !important;}
+.gf-all-fields>table table table{background-color:white; color:gray;line-height:normal}
+/*.ginput_full label {margin-top:2px !important; margin-bottom:20px!important;}*/
+.gform_title {
+	display: none;
+}
+img.gform_ajax_spinner {
+	border:none !important;
+}
+input[type=submit].gform_button {
+	padding: 12px 50px; 
+	border-radius: 20px;
+	font-family: Georgia, 'Bitstream Charter', serif;
+    font-size: 17pt;
+}
+
+.gform_wrapper .gfield_radio li {
+	margin: 0px !important;
+	padding: 0px !important;
+
+}
+
+.ginput_total  {font-size:25px !important; color:white !important;}
+
+.ginput_product_price {color: #f5ede0 !important;}
+
+#input_13_21+div.instruction{display:none !important;}
+
+.gform_page_footer img{border:none;}
+.gform_body img{	border:none !important;}
+
+
+.gform-space {margin-bottom: 25px;}
+
+.gfield_error {
+	background-color: gray !important;
+	border: 1px solid white !important;
+}
+
+.gform_heading {display:none;}
+
+#cboxLoadedContent .gform_wrapper .ginput_container input,
+#cboxLoadedContent .gform_wrapper .ginput_container textarea
+{
+	font-size:1.1em;
+}
+#cboxLoadedContent > div {
+	padding: 20px; 
+	font-size:12pt;
+}
+#cboxLoadedContent H1 {
+	margin-bottom:30px;
+	margin-left:120px;
+}
+
+#cboxLoadedContent H3 {
+	margin-bottom:15px;
+}
+
+#cboxLoadedContent a {
+	color: blue;
+}
+
+#cboxLoadedContent a:visited {
+	color: purple;
+}
+
+#cboxLoadedContent li {
+	margin-bottom: 5px;
+}
+/******************Host A Party Page**********************/
+#headermenu {
+	position: absolute;
+	margin-top: 263px;
+	width: 660px;
+	margin-left: 3px;
+	text-align: center;
+}
+
+#headermenu.host-a-party {
+	margin-top: 260px;
+}
+
+#headermenu.host-a-party .headerbuttons{
+	margin:0px 10px;
+}
+/*#headermenu:after {
+	content: '';
+	width: 100%;
+/* Ensures there are at least 2 lines of text, so justification works 
+	display: inline-block;
+}
+*/
+
+a.headerbuttons {
+	color: black;
+}
+
+a.headerbuttons:hover {
+	color: white;
+	background-color:#BA271D;/*#B0975C;*/
+	/*border: 2px solid #BA271D;*/
+	text-decoration: none;
+}
+
+.headerbuttons {
+	display: inline-block;
+	background: #C5BB86;
+	border: 2px solid black;
+	padding: 10px 15px;
+	text-decoration:none;
+	font-size:11pt;
+	border-radius:3px;
+}
+
+#artprize-header {
+    line-height: 1.3em;
+	/*width: 85%;
+    margin-left: auto;
+    margin-right: auto;*/
+}
+
+#artprize-header h2{
+	text-align:center
+}
+
+#artprize-header>ul>li{
+	margin-bottom:20px
+}
+
+#teamwarheadermenu {
+	position: absolute;
+	margin-top: 263px;
+	width: 623px;
+	margin-left: 37px;
+	margin-right: 10px;
+}
+
+a.teamwarheaderbuttons {
+	color: white;
+	background: black;
+	border: 1px solid white;
+	padding: 8px 18px;
+	margin: 3px;
+}
+
+a.teamwarheaderbuttons:hover {
+	color: #BA271D;
+	background-color: white;
+}
+
+.learn-more {
+    width: 235px;
+    height: 165px;
+    padding: 10px;
+    float: left;
+    font-size: 10pt;
+}
+
+.larger {
+	font-size: 18px;
+}
+
+#wpch_header_txt {
+	border: 2px solid #DDD;
+	box-shadow: none !important;
+	border-radius: 5px;
+	-moz-border-radius:  none !important;
+	-webkit-border-radius:  none !important;	
+	background: #000000;
+	color: #FFFFFF;
+	border-color: #9D844D
+}
+
+#wpch_target_value{
+	font-weight: normal !important;
+	font-size: 18px !important;
+	position:absolute;
+	padding-top: 10px;
+	margin-left:80px;
+}
+
+#wpch_image_indicator_fend {
+	background: none !important;
+	box-shadow: none !important;
+	border: none !important;
+}
+
+#wpch_image_indicator_fend h3{
+	margin: 5px 1px 5px 1px !important;
+	padding: 10px !important;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.no-border, .noborder {
+	border: none !important;
+}
+.align-center {
+	text-align:center;
+}
+
+.no-top-margin {margin-top: 4px !important;}
+
+.left-margin-150 { margin-left:150px }
+
+.left-margin-250 { margin-left:250px }
+

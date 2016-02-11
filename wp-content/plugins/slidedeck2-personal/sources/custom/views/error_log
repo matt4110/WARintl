@@ -1,0 +1,6 @@
+[26-Oct-2014 01:52:02 UTC] PHP Fatal error:  Call to undefined function get_the_title() in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/custom/views/slide-editor.php on line 1
+[26-Oct-2014 01:54:17 UTC] PHP Fatal error:  Call to undefined function _e() in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/custom/views/choose-type.php on line 3
+[26-Oct-2014 01:54:55 UTC] PHP Fatal error:  Call to undefined function wp_nonce_url() in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/custom/views/slides.php on line 24
+[12-Nov-2014 04:06:21 UTC] PHP Fatal error:  Call to undefined function get_the_title() in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/custom/views/slide-editor.php on line 1
+[13-Nov-2014 01:25:04 UTC] PHP Fatal error:  Call to undefined function wp_nonce_url() in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/custom/views/slides.php on line 24
+[13-Nov-2014 01:40:25 UTC] PHP Fatal error:  Call to undefined function _e() in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/custom/views/choose-type.php on line 3

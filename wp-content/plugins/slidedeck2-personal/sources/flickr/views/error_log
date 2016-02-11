@@ -1,0 +1,12 @@
+[21-Aug-2014 03:58:31 America/Denver] PHP Notice:  Undefined variable: slidedeck in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/flickr/views/show.php on line 34
+[21-Aug-2014 03:58:31 America/Denver] PHP Fatal error:  Using $this when not in object context in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/flickr/views/show.php on line 39
+[21-Aug-2014 10:42:10 America/Denver] PHP Notice:  Undefined variable: slidedeck in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/flickr/views/show.php on line 34
+[21-Aug-2014 10:42:10 America/Denver] PHP Fatal error:  Using $this when not in object context in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/flickr/views/show.php on line 39
+[21-Aug-2014 16:43:59 America/Denver] PHP Notice:  Undefined variable: slidedeck in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/flickr/views/show.php on line 34
+[21-Aug-2014 16:43:59 America/Denver] PHP Fatal error:  Using $this when not in object context in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/flickr/views/show.php on line 39
+[21-Aug-2014 22:52:31 America/Denver] PHP Notice:  Undefined variable: slidedeck in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/flickr/views/show.php on line 34
+[21-Aug-2014 22:52:31 America/Denver] PHP Fatal error:  Using $this when not in object context in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/flickr/views/show.php on line 39
+[22-Aug-2014 05:01:07 America/Denver] PHP Notice:  Undefined variable: slidedeck in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/flickr/views/show.php on line 34
+[22-Aug-2014 05:01:07 America/Denver] PHP Fatal error:  Using $this when not in object context in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/flickr/views/show.php on line 39
+[25-Oct-2014 19:43:43 UTC] PHP Fatal error:  Using $this when not in object context in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/flickr/views/show.php on line 39
+[12-Nov-2014 19:15:49 UTC] PHP Fatal error:  Using $this when not in object context in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/flickr/views/show.php on line 39

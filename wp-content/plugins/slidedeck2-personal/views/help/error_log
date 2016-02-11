@@ -1,0 +1,2 @@
+[11-Nov-2014 06:18:58 UTC] PHP Fatal error:  Call to undefined function admin_url() in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/views/help/faqs.php on line 46
+[18-Nov-2014 06:55:16 UTC] PHP Fatal error:  Call to undefined function admin_url() in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/views/help/faqs.php on line 46

@@ -1,0 +1,1 @@
+[25-Oct-2014 19:44:46 UTC] PHP Fatal error:  Using $this when not in object context in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/vimeo/views/show.php on line 35

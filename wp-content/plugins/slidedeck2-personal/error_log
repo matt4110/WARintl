@@ -1,0 +1,7 @@
+[22-Aug-2014 01:46:34 America/Denver] PHP Fatal error:  Call to undefined function register_activation_hook() in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/slidedeck2.php on line 4376
+[22-Aug-2014 08:15:47 America/Denver] PHP Fatal error:  Call to undefined function register_activation_hook() in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/slidedeck2.php on line 4376
+[22-Aug-2014 14:00:15 America/Denver] PHP Fatal error:  Call to undefined function register_activation_hook() in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/slidedeck2.php on line 4376
+[22-Aug-2014 20:14:20 America/Denver] PHP Fatal error:  Call to undefined function register_activation_hook() in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/slidedeck2.php on line 4376
+[23-Aug-2014 01:55:26 America/Denver] PHP Fatal error:  Call to undefined function register_activation_hook() in /home5/warinter/public_html/wp-content/plugins/slidedeck2-personal/slidedeck2.php on line 4376
+[27-Sep-2014 07:07:20 UTC] PHP Fatal error:  Call to undefined function register_activation_hook() in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/slidedeck2.php on line 4376
+[25-Oct-2014 19:28:24 UTC] PHP Fatal error:  Call to undefined function register_activation_hook() in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/slidedeck2.php on line 4376

@@ -1,0 +1,4 @@
+[25-Oct-2014 19:44:05 UTC] PHP Fatal error:  Call to undefined function is_taxonomy_hierarchical() in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/posts/views/_available_terms.php on line 34
+[25-Oct-2014 19:45:28 UTC] PHP Fatal error:  Using $this when not in object context in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/posts/views/show.php on line 36
+[11-Nov-2014 19:15:49 UTC] PHP Fatal error:  Using $this when not in object context in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/posts/views/show.php on line 36
+[12-Nov-2014 16:44:14 UTC] PHP Fatal error:  Call to undefined function is_taxonomy_hierarchical() in /home/warinter/public_html/wp-content/plugins/slidedeck2-personal/sources/posts/views/_available_terms.php on line 34
