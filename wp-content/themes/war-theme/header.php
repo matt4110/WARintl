@@ -102,6 +102,11 @@
 					<?php endif; ?>
 			</div><!-- #branding -->
 
+			<!-- THIS IS FOR 10 YEAR ANNIVERSAY DELETE AFTER 2016 -->
+			<div id="TENyear">
+				<img src="<?php get_bloginfo('url'); ?>/wp-content/themes/war-theme/images/10yr-icon.png">
+			</div>
+			
 			<div id="access" role="navigation">
 			  <?php /* Allow screen readers / text browsers to skip the navigation menu and get right to the good stuff */ ?>
 				<div class="skip-link screen-reader-text"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'twentyten' ); ?>"><?php _e( 'Skip to content', 'twentyten' ); ?></a></div>
