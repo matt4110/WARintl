@@ -1128,3 +1128,13 @@ a.teamwarheaderbuttons:hover {
 
 .left-margin-250 { margin-left:250px }
 
+
+/*        TEN YEAR ANNIV              */
+
+
+#TENyear img{
+	position: absolute;
+	top: 75px;
+	margin-right: 20%;
+	float: right;
+}
