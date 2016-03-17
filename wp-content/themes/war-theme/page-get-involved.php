@@ -1,6 +1,6 @@
 <?php
 
-get_header('get-involved'); ?>
+get_header(''); ?>
 
 <div class="container" id="get-involved-container">
 	<div class="row">

@@ -3,7 +3,7 @@
  Template Name: Program Redux 3 Page
 */
 
-get_header('programs'); ?>
+get_header(''); ?>
 <?php //get_sidebar(); ?>
 		<div id="container">
 			<div id="content" role="main">
