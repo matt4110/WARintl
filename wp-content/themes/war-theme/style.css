@@ -1138,3 +1138,25 @@ a.teamwarheaderbuttons:hover {
 	margin-right: 20%;
 	float: right;
 }
+
+
+
+
+
+
+button{
+	border-radius: 3px;
+	background-color: #C19563;
+	font-family: Garamond;
+	color: white;
+	border: none;
+}
+
+button.large{
+	padding: 15px;
+	font-size: 1.5em;
+}
+
+button#small{
+	padding: 5px;
+}
