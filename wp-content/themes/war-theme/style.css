@@ -1165,18 +1165,18 @@ button#small{
 /*/////////////*/
 /*GRAVITY FORMS*/
 
-.gform_wrapper .field_sublabel_above .ginput_complex label, .gform_wrapper .field_sublabel_above .gfield_time_hour label, .gform_wrapper .field_sublabel_above .gfield_time_minute label, .gform_wrapper .field_sublabel_above .gfield_time_ampm label, .gform_wrapper .field_sublabel_above .gfield_date_month label, .gform_wrapper .field_sublabel_above .gfield_date_day label, .gform_wrapper .field_sublabel_above .gfield_date_year label, .gform_wrapper .field_sublabel_above .instruction { margin: 0;}
+.gform_wrapper .field_sublabel_above .ginput_complex label, .gform_wrapper .field_sublabel_above .gfield_time_hour label, .gform_wrapper .field_sublabel_above .gfield_time_minute label, .gform_wrapper .field_sublabel_above .gfield_time_ampm label, .gform_wrapper .field_sublabel_above .gfield_date_month label, .gform_wrapper .field_sublabel_above .gfield_date_day label, .gform_wrapper .field_sublabel_above .gfield_date_year label, .gform_wrapper .field_sublabel_above .instruction { margin: 0 !important;}
 
 .gform_wrapper .top_label .gfield_label {
-    margin: 2em 0 0 0;
-    font-weight: 700;
-    display: -moz-inline-stack;
-    display: inline-block;
-    line-height: 1.3;
+    margin: 2em 0 0 0 !important;
+    font-weight: 700 !important;
+    display: -moz-inline-stack !important;
+    display: inline-block !important;
+    line-height: 1.3 !important;
     clear: both;
-    font-size: 1.25em;
+    font-size: 1.25em !important;
 }
 
 .gform_wrapper ul.gfield_radio li input[type="radio"]:checked+label, .gform_wrapper ul.gfield_checkbox li input[type="checkbox"]:checked+label { 
-	font-weight: 500;
-	font-size: 1em; }
+	font-weight: 500 !important;
+	font-size: 1em !important; }
