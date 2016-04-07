@@ -3,19 +3,19 @@
  * Section to display gallery details.
  * @author Praveen Rajan
  */
-?>
-<?php
 
 if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) 
-	die('You are not allowed to call this page directly.'); 
+	die(__('You are not allowed to call this page directly.', 'cool-video-gallery')); 
 
-wp_enqueue_script('jquery.multifile', trailingslashit(WP_PLUGIN_URL . '/' . dirname(dirname(plugin_basename(__FILE__)))) . 'js/jquery.multifile.js', 'jquery');
+wp_enqueue_script('jquery.multifile', trailingslashit(WP_PLUGIN_URL . '/' . dirname(dirname(plugin_basename(__FILE__)))) . 'third_party_lib/jquery.utils/jquery.multifile.js', 'jquery');
 
 //Loads WP default thickbox scripts
 wp_enqueue_script('thickbox');
 wp_enqueue_style('thickbox'); 
 
-CvgCore::upgrade_plugin();
+$cvg_core = new CvgCore();
+$cvg_videodb = new CvgVideoDB();
+
 ?>
 <script type="text/javascript">
 	/*
@@ -24,10 +24,10 @@ CvgCore::upgrade_plugin();
 	jQuery(document).ready(function(){
 		jQuery('#preview_image').MultiFile({
 			STRING: {
-		    	remove:'[<?php _e('remove') ;?>]',
-		    	denied:'File type not permitted.'
+		    	remove:'[<?php _e('remove', 'cool-video-gallery') ;?>]',
+		    	denied:'<?php _e('File type not permitted.', 'cool-video-gallery');?>'
   			},
-  			accept : 'png,PNG',
+  			accept : 'png,PNG,jpg,JPG,jpeg,JPEG,bmp,BMP,ico,ICO', //png, jpg, bmp, ico
   			max: 1
 	 	});
 	});
@@ -39,9 +39,9 @@ if (isset ($_POST['updatevideogallery'])) {
 	
 	// wp_nonce_field('cvg_details_update_gallery_nonce','cvg_details_update_gallery_nonce_csrf');
 	if ( check_admin_referer( 'cvg_details_update_gallery_nonce', 'cvg_details_update_gallery_nonce_csrf' ) ) {
-		if(videoDB::update_gallery()) {
-			CvgCore::xml_playlist($_GET['gid']);
-			CvgCore::show_video_message(__('Gallery details successfully updated.'));
+		if($cvg_videodb->update_gallery()) {
+			$cvg_core->xml_playlist($_GET['gid']);
+			$cvg_core->show_video_message(__('Gallery details successfully updated.', 'cool-video-gallery'));
 		}	
 	}
 }
@@ -51,9 +51,9 @@ if(isset($_POST['updatevideos'])) {
 	
 	// wp_nonce_field('cvg_details_update_video_nonce','cvg_details_update_video_nonce_csrf');
 	if ( check_admin_referer( 'cvg_details_update_video_nonce', 'cvg_details_update_video_nonce_csrf' ) ) {
-		if(CvgCore::update_videos()) {
-			CvgCore::xml_playlist($_GET['gid']);
-			_e('<div class="clear"><div class="wrap"><div id="message" class="updated fade below-h2"><p>Details of Video(s) updated successfully.</p></div></div></div>');
+		if($cvg_core->update_videos()) {
+			$cvg_core->xml_playlist($_GET['gid']);
+			$cvg_core->show_video_message(__('Details of Video(s) updated successfully.', 'cool-video-gallery'));
 		}
 	}		 
 }
@@ -64,14 +64,14 @@ if(isset($_POST['TB_gallerylist']) && !empty($_POST['TB_gallerylist'])) {
 	if ( check_admin_referer( 'cvg_details_delete_video_nonce', 'cvg_details_delete_video_nonce_csrf' ) ) {
 		$pids = explode(',', $_POST['TB_gallerylist']);
 		foreach($pids as $pid) {
-			CvgCore::delete_video_files($pid);
-			videoDB::delete_video($pid);
+			$cvg_core->delete_video_files($pid);
+			$cvg_videodb->delete_video($pid);
 		}
-		CvgCore::xml_playlist($_GET['gid']);
-		_e('<div class="clear"><div class="wrap"><div id="message" class="updated fade below-h2"><p>Video(s) deleted successfully.</p></div></div></div>');
+		$cvg_core->xml_playlist($_GET['gid']);
+		$cvg_core->show_video_message(__('Video(s) deleted successfully.', 'cool-video-gallery'));
 	}
 }
-
+//Section to move videos.
 if(isset($_POST['move_video_list']) && !empty($_POST['move_video_list'])) {
 	
 	// wp_nonce_field('cvg_details_move_video_nonce','cvg_details_move_video_nonce_csrf');
@@ -80,12 +80,12 @@ if(isset($_POST['move_video_list']) && !empty($_POST['move_video_list'])) {
 		
 		foreach($pids as $pid) {
 			
-			CvgCore::move_video($pid, $_POST['galleryselect']);
-			videoDB::move_video($pid, $_POST['galleryselect']);
+			$cvg_core->move_video($pid, $_POST['galleryselect']);
+			$cvg_videodb->move_video($pid, $_POST['galleryselect']);
 		}
 		
-		CvgCore::xml_playlist($_GET['gid']);
-		_e('<div class="clear"><div class="wrap"><div id="message" class="updated fade below-h2"><p>Video(s) moved successfully.</p></div></div></div>');
+		$cvg_core->xml_playlist($_GET['gid']);
+		$cvg_core->show_video_message(__('Video(s) moved successfully.', 'cool-video-gallery'));
 	}
 }
 //Section to delete a single video.
@@ -95,10 +95,10 @@ if(isset($_POST['TB_videosingle']) && !empty($_POST['TB_videosingle'])) {
 	if ( check_admin_referer( 'cvg_details_delete_single_video_nonce', 'cvg_details_delete_single_video_nonce_csrf' ) ) {
 			
 		$pid = $_POST['TB_videosingle'];
-		CvgCore::delete_video_files($pid);
-		videoDB::delete_video($pid);
-		CvgCore::xml_playlist($_GET['gid']);
-		_e('<div class="clear"><div class="wrap"><div id="message" class="updated fade below-h2"><p>Video deleted successfully.</p></div></div></div>');
+		$cvg_core->delete_video_files($pid);
+		$cvg_videodb->delete_video($pid);
+		$cvg_core->xml_playlist($_GET['gid']);
+		$cvg_core->show_video_message(__('Video deleted successfully.', 'cool-video-gallery'));
 	}
 }
 
@@ -109,11 +109,11 @@ if(isset($_POST['TB_previewimage_single']) && !empty($_POST['TB_previewimage_sin
 	if ( check_admin_referer( 'cvg_details_upload_preview_video_nonce', 'cvg_details_upload_preview_video_nonce_csrf' ) ) {
 		
 		if(trim($_FILES['preview_image']['error'][0]) == 4)
-			CvgCore::show_video_error(__('No preview images uploaded'));
+			$cvg_core->show_video_error(__('No preview images uploaded.', 'cool-video-gallery'));
 		else 	
-			CvgCore::upload_preview();
+			$cvg_core->upload_preview();
 			
-		CvgCore::xml_playlist($_GET['gid']);	
+		$cvg_core->xml_playlist($_GET['gid']);	
 	}
 }
 
@@ -122,7 +122,7 @@ if(isset($_POST['videosingle_publish'])) {
 
 	// wp_nonce_field('cvg_details_publish_post_nonce','cvg_details_publish_post_nonce_csrf');
 	if ( check_admin_referer( 'cvg_details_publish_post_nonce', 'cvg_details_publish_post_nonce_csrf' ) ) {
-		CvgCore::publish_video_post();	
+		$cvg_core->publish_video_post();	
 	}
 }
 
@@ -132,35 +132,34 @@ if(isset($_POST['scanVideos'])) {
 	// wp_nonce_field('cvg_details_scan_gallery_nonce','cvg_details_scan_gallery_nonce_csrf');
 	if ( check_admin_referer( 'cvg_details_scan_gallery_nonce', 'cvg_details_scan_gallery_nonce_csrf' ) ) {
 		if(empty($_POST['galleryId']))
-			CvgCore::show_video_error(__('No Gallery selected'));
+			$cvg_core->show_video_error(__('No Gallery selected.', 'cool-video-gallery'));
 		else
-			CvgCore::scan_upload_videos($_POST['galleryId']);
+			$cvg_core->scan_upload_videos($_POST['galleryId']);
 			
-		CvgCore::xml_playlist($_GET['gid']);	
+		$cvg_core->xml_playlist($_GET['gid']);	
 	}
 }
 
 $gid = $_GET['gid'];
 
 //Section if no gallery is selected.
-if(!isset($gid)) { 
+if(!isset($gid) || $gid == "") { 
 	?>
 	<div class="wrap">
-		<div class="icon32" id="icon-video"><br></div>
-		<h2>Gallery Details</h2>
-		<div class="clear"></div>
+		<h2><?php _e('Gallery Details', 'cool-video-gallery')?></h2>
+		<div class="cvg-clear"></div>
 		<div class="versions">
 	    	<p>
-				Choose your gallery at <a class="button rbutton" href="<?php echo admin_url('admin.php?page=cvg-gallery-manage');?>"><?php _e('Manage Gallery') ?></a>
+				<?php _e('Choose your gallery at', 'cool-video-gallery');?> <a class="button rbutton" href="<?php echo admin_url('admin.php?page=cvg-gallery-manage');?>"><?php _e('Manage Gallery', 'cool-video-gallery') ?></a>
 			</p>
-			<br class="clear" />
+			<br class="cvg-clear" />
 		</div> 
-		<?php 	CvgCore::show_video_error( __('Please select a gallery to view details') ); ?>
+		<?php 	$cvg_core->show_video_error( __('Please select a gallery to view details.', 'cool-video-gallery') ); ?>
 	</div> 
 <?php 	
 }else {
 	
-	$cool_video_gallery = new CoolVideoGallery();
+	$cool_video_gallery = CoolVideoGallery::get_instance();
 	$options = get_option('cvg_settings');
 	$per_page = $options['max_vid_gallery'];
 
@@ -173,7 +172,7 @@ if(!isset($gid)) {
 	$end_page = $start_page + $per_page;
 	
 
-	$total_num_pages = count(videoDB::get_gallery($gid));
+	$total_num_pages = count($cvg_videodb->get_gallery($gid));
 
 	$total_value = ceil($total_num_pages / $per_page);
 	$defaults = array(
@@ -192,33 +191,21 @@ if(!isset($gid)) {
 				);
 	$page_links = paginate_links( $defaults );			
 
-	$gallery = videoDB::find_gallery($gid);
-	$title = __('Gallery: '. $gallery->name);
-	
+	$gallery = $cvg_videodb->find_gallery($gid);
+
 	if (!$gallery)  
-		CvgCore::show_video_error(__('Gallery not found.', 'nggallery'));
+		$cvg_core->show_video_error(__('Gallery not found.', 'cvggallery'));
 	
 	if ($gallery) { 
 			// look for pagination	
 			if ( ! isset( $_GET['paged'] ) || $_GET['paged'] < 1 )
 				$_GET['paged'] = 1;
 			
-			$videolist = videoDB::get_gallery($gid, true, 'sortorder', 'asc', $per_page, $start_page);
+			$videolist = $cvg_videodb->get_gallery($gid, true, 'sortorder', 'asc', $per_page, $start_page);
 			$act_author_user = get_userdata( (int) $gallery->author );
 			
 			?>
 			<script type="text/javascript"> 
-
-				jQuery(document).ready(function(){
-					jQuery('#gallerydiv').addClass('closed');
-					jQuery('#gallery_open').click(function(){
-						if(jQuery('#gallerydiv').attr('class') == 'postbox closed') 
-							jQuery('#gallerydiv').removeClass('closed');
-						else	
-							jQuery('#gallerydiv').addClass('closed');
-					} );
-				});	
-	
 				// Function is to check all
 				function checkAll(form){
 					for (i = 0, n = form.elements.length; i < n; i++) {
@@ -252,7 +239,7 @@ if(!isset($gid)) {
 					var numchecked = getNumChecked(document.getElementById('updatevideos'));
 					 
 					if(numchecked < 1) { 
-						alert('<?php echo esc_js(__('No videos selected')); ?>');
+						alert('<?php echo esc_js(__('No videos selected', 'cool-video-gallery')); ?>');
 						return false; 
 					} 
 					
@@ -302,14 +289,14 @@ if(!isset($gid)) {
 				function showDialogPublish(id, video_title) {
 					jQuery("#publish_video_single_value").val(id);
 					jQuery('#post_title_name').val(video_title);
-					tb_show("Publish this video", "#TB_inline?width=400&height=190&inlineId=publish_video_single&modal=false", false);
+					tb_show("<?php _e('Publish this video', 'cool-video-gallery'); ?>", "#TB_inline?width=400&height=190&inlineId=publish_video_single&modal=false", false);
 				}
 				
 				//	Function to generate shortcode window
 				function showDialogShortCode(id, video_title) {
 					jQuery("#shortcode_video_single_value").val(id);
 					jQuery('#generated_shortcode_video').val("Copy and use Shortcode");
-					tb_show("Generate Shortcode for Video - " + video_title, "#TB_inline?width=400&height=160&inlineId=shortcode_video_single&modal=false", false);
+					tb_show("<?php _e('Generate Shortcode for Video', 'cool-video-gallery'); ?> - " + video_title, "#TB_inline?width=400&height=180&inlineId=shortcode_video_single&modal=false", false);
 				}
 				
 				//	Function to show popup for uploading preview image
@@ -317,72 +304,81 @@ if(!isset($gid)) {
 					jQuery('#preview_video_single').val(id);
 					tb_show("", "#TB_inline?width=450&height=180&inlineId=upload_video_image&modal=true", false);
 				}
-				
+
+				function showHelpDialogForScanVideos() {
+					tb_show("", "#TB_inline?width=650&height=150&inlineId=scan_video_help&modal=false", false);
+				}
 			</script>
-			
+
 			<div class="wrap">
-				<div class="icon32" id="icon-video"><br></div>
-				<h2><?php echo esc_html( __($title) ); ?></h2>
-				<div class="clear" style="min-height:10px;"></div>
+				<h2><?php printf(__( 'Gallery: %s', 'cool-video-gallery' ), $gallery->name); ?></h2>
+				<div class="cvg-clear"></div>
 				<form id="updategallery" method="POST" action="" accept-charset="utf-8">
 					<?php wp_nonce_field('cvg_details_update_gallery_nonce','cvg_details_update_gallery_nonce_csrf'); ?>
 					<input type="hidden" name="gid" value="<?php echo $_GET['gid'];?>" />
-					<div id="poststuff">
-						<div id="gallerydiv" class="postbox" >
-							<h3 id="gallery_open"><?php _e('Gallery Details') ?><span style="float:right;font-size:10px;font-weight:normal;"><i>Click here to view details</i></span></h3>
-							<div class="inside">
-								<table class="form-table" >
-									<tr>
-										<td align="left"><?php _e('Title') ?>:</td>
-										<td align="left"><input type="text" size="50" name="title" value="<?php echo $gallery->title; ?>" style="width:381px;" /></td>
-									</tr>
-									<tr>
-										<td align="left"><?php _e('Description') ?>:</td> 
-										<td align="left"><textarea  name="gallerydesc" cols="30" rows="3" style="width: 60%" ><?php echo $gallery->galdesc; ?></textarea></td>
-									</tr>
-								</table>
-								<div class="submit" style="padding-left:5px;">
-									<input type="submit" class="button-primary action" name="updatevideogallery" value="<?php _e("Save Changes"); ?>" />
-								</div>
-							</div>
+						<div class="postbox">
+							<table style="padding-left:15px;width:100%;">
+								<thead>
+									<th style="float:left;"><h3><?php _e('Gallery Details') ?></h3></th>
+									<th></th>
+								</thead>
+								<tr>
+									<td><?php _e('Title', 'cool-video-gallery') ?>:</td>
+									<td><input type="text" size="50" name="title" value="<?php echo $gallery->title; ?>" style="width:80%;"/></td>
+								</tr>
+								<tr>
+									<td><?php _e('Description', 'cool-video-gallery') ?>:</td> 
+									<td><textarea  name="gallerydesc" cols="30" rows="3" style="width:80%;"><?php echo $gallery->galdesc; ?></textarea></td>
+								</tr>
+								<tr>
+									<td><?php _e('Gallery Path', 'cool-video-gallery') ?>:</td>
+									<td><input type="text" size="50" value="<?php echo $gallery->abspath; ?>" style="width:80%;" disabled/></td>
+								</tr>
+								<tr>
+									<td />
+									<td>
+										<input type="submit" class="button-primary action" name="updatevideogallery" value="<?php _e("Save Changes", 'cool-video-gallery'); ?>" />
+									</td>
+								</tr>
+							</table>
+							<br clear="all" />
 						</div>
-					</div> <!-- poststuff -->
 				</form>	
 				<form id="scanFolders" method="POST" action="<?php echo admin_url('admin.php?page=cvg-gallery-manage&gid=' . $_GET['gid']); ?>" accept-charset="utf-8">
 					<?php wp_nonce_field('cvg_details_scan_gallery_nonce','cvg_details_scan_gallery_nonce_csrf'); ?>
 					<input type="hidden" name="galleryId" value="<?php echo $_GET['gid'] ?>" />
-					<input type="hidden" name="scanVideos" value="<?php _e('Scan Videos'); ?>"  />
+					<input type="hidden" name="scanVideos" value="Scan Videos"  />
 				</form>
 				<form id="updatevideos" method="POST" action="<?php echo admin_url('admin.php?page=cvg-gallery-manage&gid=' . $_GET['gid']); ?>" accept-charset="utf-8">
 					<?php wp_nonce_field('cvg_details_update_video_nonce','cvg_details_update_video_nonce_csrf'); ?>
 					<input type="hidden" name="galleryId" value="<?php echo $_GET['gid'] ?>" />
 					<div class="tablenav">
 						<div class="alignleft actions">
-						<?php  if($videolist) { ?>
-						<select id="bulkaction" name="bulkaction">
-							<option value="no_action" ><?php _e("No action"); ?></option>
-							<option value="delete_videos" ><?php _e("Delete Videos"); ?></option>
-							<?php 
-								$gallerylist = videoDB::find_all_galleries('gid', 'ASC');
-								if(count($gallerylist) > 1) {
-									echo '<option value="move_videos" >Move To...</option>';
-								} 
-							?>
-						</select>
-						<input class="button-secondary" type="submit" name="showThickbox" value="<?php _e('Apply'); ?>" onclick="if ( !checkSelected() ) return false;" />
-						<?php }?>
-						<input class="button-secondary" id="scanVideos" type="button" name="scanVideos" value="<?php _e('Scan Gallery Folder'); ?>"  />
-						<?php  if($videolist) { ?>
-						<?php if($total_num_pages > 1) { ?>
-							<a class="button" href="<?php echo admin_url('admin.php?page=cvg-gallery-manage&order=sortorder&gid=' . $_GET['gid']); ?>"><?php _e('Sort Gallery Videos'); ?></a>
-						<?php } ?>
-						<input type="submit" name="updatevideos" class="button-primary action"  value="<?php _e('Save Changes');?>" />
-						<?php }?>
+							<?php  if($videolist) { ?>
+							<select id="bulkaction" name="bulkaction">
+								<option value="no_action" ><?php _e("No action", 'cool-video-gallery'); ?></option>
+								<option value="delete_videos" ><?php _e("Delete Videos", 'cool-video-gallery'); ?></option>
+								<?php 
+									$gallerylist = $cvg_videodb->find_all_galleries('gid', 'ASC');
+									if(count($gallerylist) > 1) {
+										echo '<option value="move_videos" >' . __('Move To...', 'cool-video-gallery') .'</option>';
+									} 
+								?>
+							</select>
+							<input class="button-secondary" type="submit" name="showThickbox" value="<?php _e('Apply', 'cool-video-gallery'); ?>" onclick="if ( !checkSelected() ) return false;" />
+							<?php }?>
+							<input class="button-secondary" id="scanVideos" type="button" name="scanVideos" value="<?php _e('Scan Gallery Folder', 'cool-video-gallery'); ?>"  />
+							<?php  if($videolist) { ?>
+							<?php if($total_num_pages > 1) { ?>
+								<a class="button" href="<?php echo admin_url('admin.php?page=cvg-gallery-manage&order=sortorder&gid=' . $_GET['gid']); ?>"><?php _e('Sort Gallery Videos', 'cool-video-gallery'); ?></a>
+							<?php } ?>
+							<input type="submit" name="updatevideos" class="button-primary action"  value="<?php _e('Save Changes', 'cool-video-gallery');?>" />
+							<?php }?>
 						</div>
 						<?php if ( $page_links ) { ?>
 							<div class="tablenav-pages">
 								<?php
-									$page_links_text = sprintf( '<span class="displaying-num">' . __( 'Displaying %s&#8211;%s of %s' ) . '</span>%s',
+									$page_links_text = sprintf( '<span class="displaying-num">' . __( 'Displaying %s&#8211;%s of %s' , 'cool-video-gallery') . '</span>%s',
 														number_format_i18n( ( $pagenum - 1 ) * $per_page + 1 ),
 														number_format_i18n( min( $pagenum * $per_page, $total_num_pages ) ),
 														number_format_i18n( $total_num_pages ),
@@ -400,11 +396,11 @@ if(!isset($gid)) {
 							<th scope="col" class="column-cb" style="width:3%;" >
 								<input type="checkbox" onclick="checkAll(document.getElementById('updatevideos'));" name="checkall"/>
 							</th>
-							<th scope="col" style="width:3%;" ><?php _e('ID'); ?></th>
-							<th scope="col" ><?php _e('Video Preview Image'); ?></th>
-							<th scope="col" ><?php _e('Video Details'); ?></th>
-							<th scope="col" ><?php _e('Video Title / Video Description'); ?></th>
-							<th scope="col" style="width:10%;"><?php _e('Exclude'); ?></th>
+							<th scope="col" style="width:5%;" ><?php _e('ID', 'cool-video-gallery'); ?></th>
+							<th scope="col" ><?php _e('Video Preview Image', 'cool-video-gallery'); ?></th>
+							<th scope="col" ><?php _e('Video Details', 'cool-video-gallery'); ?></th>
+							<th scope="col" ><?php _e('Video Title / Video Description', 'cool-video-gallery'); ?></th>
+							<th scope="col" style="width:10%;"><?php _e('Exclude', 'cool-video-gallery'); ?></th>
 						</tr>
 					</thead>
 					<tfoot>
@@ -412,11 +408,11 @@ if(!isset($gid)) {
 							<th scope="col" class="column-cb" style="width:3%;" >
 								<input type="checkbox" onclick="checkAll(document.getElementById('updatevideos'));" name="checkall"/>
 							</th>
-							<th scope="col" style="width:3%;" ><?php _e('ID'); ?></th>
-							<th scope="col" style="width:10%;"><?php _e('Video Preview Image'); ?></th>
-							<th scope="col" style="width:20%;"><?php _e('Video Details'); ?></th>
-							<th scope="col" style="width:20%;"><?php _e('Video Title / Video Description'); ?></th>
-							<th scope="col" style="width:10%;"><?php _e('Exclude'); ?></th>
+							<th scope="col" style="width:5%;" ><?php _e('ID', 'cool-video-gallery'); ?></th>
+							<th scope="col" style="width:10%;"><?php _e('Video Preview Image', 'cool-video-gallery'); ?></th>
+							<th scope="col" style="width:20%;"><?php _e('Video Details', 'cool-video-gallery'); ?></th>
+							<th scope="col" style="width:20%;"><?php _e('Video Title / Video Description', 'cool-video-gallery'); ?></th>
+							<th scope="col" style="width:10%;"><?php _e('Exclude', 'cool-video-gallery'); ?></th>
 						</tr>
 					</tfoot>
 					<tbody style="width:100%;">
@@ -447,21 +443,27 @@ if(!isset($gid)) {
 											<input name="doaction[]" type="checkbox" value="<?php echo $pid ?>" />
 										</th>
 										
-										<th scope="row" style="width:3%;">
+										<th scope="row" style="width:5%;">
 											<span><?php echo $pid; ?></span>
 											<input type="hidden" name="pid[]" value="<?php echo $pid ?>" />
 										</th>
 										
 										<td style="width:10%;">
 											<?php
-											echo CoolVideoGallery::CVGVideo_Parse('[cvg-video videoId='. $pid . ' /]');
+											echo do_shortcode('[cvg-video videoid='. $pid . ']');
 											?>
 										</td>
 										<td style="width:20%;">
-											<?php _e('<b>Upload Date:</b> '. $date); ?>
+											<?php
+											printf(__( '<b>Upload Date:</b> %s', 'cool-video-gallery' ),
+													$date
+													);
+											?>
 											<br />
-											<?php if($video_meta_data != '') {
-													 _e('<b>Duration:</b> ');  echo $video_meta_data['videoDuration']; 
+											<?php if(isset($video_meta_data['videoDuration'])) {
+													printf(__( '<b>Duration:</b> %s', 'cool-video-gallery' ),
+														$video_meta_data['videoDuration']
+														);
 												   } 
 										   ?>
 											<p>
@@ -470,13 +472,13 @@ if(!isset($gid)) {
 												if($video->video_type == $cool_video_gallery->video_type_youtube) {
 													
 												}else {
-													$actions['edit']  = '<a class="uploadeImage" onclick="showUploadImage(' . $pid . ');" href="#" >' . __('Upload Preview Image') . '</a>';	
+													$actions['edit']  = '<a class="uploadeImage" onclick="showUploadImage(' . $pid . ');" href="#" >' . __('Upload Preview Image', 'cool-video-gallery') . '</a>';	
 												}
 																	
 												$video_title = isset($video->video_title) ? $video->video_title : "";					
-												$actions['publish'] = '<a onclick="showDialogPublish(' . $pid . ', '.  "'$video_title'" . ');" href="#" >' . __('Publish') . '</a>'; 
-												$actions['shortcode'] = '<a onclick="showDialogShortCode(' . $pid . ', '.  "'$video_title'" . ');" href="#" >' . __('Shortcode') . '</a>';
-												$actions['delete'] = '<a class="submitdelete" onclick="showDialogDelete(' . $pid . ');" href="#" >' . __('Delete') . '</a>'; 
+												$actions['publish'] = '<a onclick="showDialogPublish(' . $pid . ', '.  "'$video_title'" . ');" href="#" >' . __('Publish', 'cool-video-gallery') . '</a>'; 
+												$actions['shortcode'] = '<a onclick="showDialogShortCode(' . $pid . ', '.  "'$video_title'" . ');" href="#" >' . __('Shortcode', 'cool-video-gallery') . '</a>';
+												$actions['delete'] = '<a class="submitdelete" onclick="showDialogDelete(' . $pid . ');" href="#" >' . __('Delete', 'cool-video-gallery') . '</a>'; 
 												$action_count = count($actions);
 												$i = 0;
 												echo '<div class="row-actions">';
@@ -507,12 +509,15 @@ if(!isset($gid)) {
 									<?php
 								}
 							} else {
-								echo '<tr><td colspan="5" align="center"><strong>' . __('No entries found') . '</strong></td></tr>';
+								echo '<tr><td colspan="5" align="center"><strong>' . __('No entries found', 'cool-video-gallery') . '</strong></td></tr>';
 							}
 							?>	
 					</tbody>
 				</table>	
 			</form>
+			</div>
+			
+			<br clear="all" />
 				
 			<!-- #video_delete -->
 			<div id="delete_gallery" style="display: none;" >
@@ -524,14 +529,14 @@ if(!isset($gid)) {
 				<table width="100%" border="0" cellspacing="3" cellpadding="3" >
 					<tr valign="top">
 						<td>
-							<strong><?php _e('Delete Video(s)'); ?>:</strong> 
+							<strong><?php _e('Delete Video(s)', 'cool-video-gallery'); ?>:</strong> 
 						</td>
 					</tr>
 				  	<tr align="center">
 				    	<td colspan="2" class="submit">
-				    		<input class="button-primary" type="submit" name="TB_DeleteVideo" value="<?php _e('OK'); ?>" />
+				    		<input class="button-primary" type="submit" name="TB_DeleteVideo" value="<?php _e('OK', 'cool-video-gallery'); ?>" />
 				    		&nbsp;
-				    		<input class="button-secondary" type="reset" value="&nbsp;<?php _e('Cancel'); ?>&nbsp;" onclick="tb_remove()"/>
+				    		<input class="button-secondary" type="reset" value="&nbsp;<?php _e('Cancel', 'cool-video-gallery'); ?>&nbsp;" onclick="tb_remove()"/>
 				    	</td>
 					</tr>
 				</table>
@@ -551,12 +556,12 @@ if(!isset($gid)) {
 				<table width="100%" border="0" cellspacing="3" cellpadding="3" >
 					<tr valign="top">
 						<td>
-							<strong><?php _e('Move video(s) to Gallery'); ?>:</strong> 
+							<strong><?php _e('Move video(s) to Gallery', 'cool-video-gallery'); ?>:</strong> 
 						</td>
 						<td>
 							<select name="galleryselect" id="galleryselect">
 							<?php
-								$gallerylist = videoDB::find_all_galleries('gid', 'ASC');
+								$gallerylist = $cvg_videodb->find_all_galleries('gid', 'ASC');
 								foreach($gallerylist as $gallery) {
 									if($gallery->gid != $_GET['gid']) {
 										$name = ( empty($gallery->title) ) ? $gallery->name : $gallery->title;
@@ -569,9 +574,9 @@ if(!isset($gid)) {
 					</tr>
 				  	<tr align="center">
 				    	<td colspan="2" class="submit">
-				    		<input class="button-primary" type="submit" name="TB_MoveVideo" value="<?php _e('OK'); ?>" />
+				    		<input class="button-primary" type="submit" name="TB_MoveVideo" value="<?php _e('OK', 'cool-video-gallery'); ?>" />
 				    		&nbsp;
-				    		<input class="button-secondary" type="reset" value="&nbsp;<?php _e('Cancel'); ?>&nbsp;" onclick="tb_remove()"/>
+				    		<input class="button-secondary" type="reset" value="&nbsp;<?php _e('Cancel', 'cool-video-gallery'); ?>&nbsp;" onclick="tb_remove()"/>
 				    	</td>
 					</tr>
 				</table>
@@ -588,13 +593,13 @@ if(!isset($gid)) {
 					<input type="hidden" id="delete_video_single_value" name="TB_videosingle" value="" />
 					<table width="100%" border="0" cellspacing="3" cellpadding="3" >
 						<tr valign="top">
-							<td><strong><?php _e('Delete Video?'); ?></strong></td>
+							<td><strong><?php _e('Delete Video?', 'cool-video-gallery'); ?></strong></td>
 						</tr>
 					  	<tr align="center">
 					    	<td colspan="2" class="submit">
-					    		<input class="button-primary" type="submit" name="TB_DeleteSingleVideo" value="<?php _e('OK'); ?>" />
+					    		<input class="button-primary" type="submit" name="TB_DeleteSingleVideo" value="<?php _e('OK', 'cool-video-gallery'); ?>" />
 					    		&nbsp;
-					    		<input class="button-secondary" type="reset" value="&nbsp;<?php _e('Cancel'); ?>&nbsp;" onclick="tb_remove()"/>
+					    		<input class="button-secondary" type="reset" value="&nbsp;<?php _e('Cancel', 'cool-video-gallery'); ?>&nbsp;" onclick="tb_remove()"/>
 					    	</td>
 						</tr>
 					</table>
@@ -610,16 +615,16 @@ if(!isset($gid)) {
 					<input type="hidden" id="preview_video_single" name="TB_previewimage_single" value="" />
 					<table width="100%" border="0" cellspacing="3" cellpadding="3" >
 						<tr valign="top">
-							<td><strong><?php _e('Upload Preview Image'); ?></strong></td>
+							<td><strong><?php _e('Upload Preview Image', 'cool-video-gallery'); ?></strong></td>
 							<td><span id='spanButtonPlaceholder'></span><input type="file" name="preview_image[]" id="preview_image" size="35" class="preview_image"/>
 							<br/>
-							<i>( <?php _e('Allowed format: png') ;?> )</i></td>
+							<i>( <?php _e('Allowed format: png, jpg, bmp, ico', 'cool-video-gallery') ;?> )</i></td>
 						</tr>
 					  	<tr align="right">
 					    	<td colspan="2" class="submit">
-					    		<input class="button-primary" type="submit" name="TB_UploadPreviewImage" id="TB_UploadPreviewImage" value="<?php _e('Upload Image'); ?>" />
+					    		<input class="button-primary" type="submit" name="TB_UploadPreviewImage" id="TB_UploadPreviewImage" value="<?php _e('Upload Image', 'cool-video-gallery'); ?>" />
 					    		&nbsp;
-					    		<input class="button-secondary" type="reset" value="&nbsp;<?php _e('Cancel'); ?>&nbsp;" onclick="previewUploadCancel();"/>
+					    		<input class="button-secondary" type="reset" value="&nbsp;<?php _e('Cancel', 'cool-video-gallery'); ?>&nbsp;" onclick="previewUploadCancel();"/>
 					    	</td>
 						</tr>
 					</table>
@@ -635,7 +640,7 @@ if(!isset($gid)) {
 					<input type="hidden" id="publish_video_single_value" name="videosingle_publish" value="" />
 					<table width="100%" border="0" cellspacing="2" cellpadding="2" >
 						<tr valign="top">
-							<td><strong><?php _e('Post Title: '); ?></strong></td>
+							<td><strong><?php _e('Post Title: ', 'cool-video-gallery'); ?></strong></td>
 							<td><span id='spanButtonPlaceholder'><input type="text" id="post_title_name" name="post_title" style="width:100%;"/></span>
 							</td>
 						</tr>
@@ -645,22 +650,22 @@ if(!isset($gid)) {
 								$player_width = $options_player['cvgplayer_width'];
 								$player_height = $options_player['cvgplayer_height'];
 							?>
-							<td><strong><?php _e('Width x height (in pixel): '); ?></strong></td>
+							<td><strong><?php _e('Width x height (in pixel): ', 'cool-video-gallery'); ?></strong></td>
 							<td><input type="text" size="5" maxlength="5" name="width" value="<?php echo $player_width; ?>" /> x <input type="text" size="5" maxlength="5" name="height" value="<?php echo $player_height; ?>" />
-							<br /><small><?php _e('Size of the video') ?></small></td>
+							<br /><small><?php _e('Size of the video', 'cool-video-gallery') ?></small></td>
 						</tr>
 						<tr valign="top">
-						<th align="left"><?php _e('Show as') ?></th>
+						<th align="left"><?php _e('Show as', 'cool-video-gallery') ?></th>
 						<td>
-							<label><input name="showtypevideo" type="radio" value="embed" id="embed" checked="checked" /> <?php _e('Embed') ;?></label><br />
-		            		<label><input name="showtypevideo" type="radio" value="popup" id="popup" /> <?php _e('Popup') ;?></label><br />
+							<label><input name="showtypevideo" type="radio" value="embed" id="embed" checked="checked" /> <?php _e('Embed', 'cool-video-gallery') ;?></label><br />
+		            		<label><input name="showtypevideo" type="radio" value="popup" id="popup" /> <?php _e('Popup', 'cool-video-gallery') ;?></label><br />
          				</td>
         			    </tr>
 					  	<tr align="right">
 					    	<td colspan="2" class="submit">
-					    		<input class="button-primary" type="submit" name="publish" id="publish_video_post" value="<?php _e('Publish'); ?>" />
+					    		<input class="button-primary" type="submit" name="publish" id="publish_video_post" value="<?php _e('Publish', 'cool-video-gallery'); ?>" />
 					    		&nbsp;
-					    		<input class="button-secondary"  type="submit" name="draft" value="<?php _e('Draft'); ?>"/>
+					    		<input class="button-secondary"  type="submit" name="draft" value="<?php _e('Draft', 'cool-video-gallery'); ?>"/>
 					    	</td>
 						</tr>
 					</table>
@@ -681,12 +686,35 @@ if(!isset($gid)) {
 							var mode_temp = "";
 							
 							if(selection == "embed"){
-								mode_temp = "mode='playlist'";
+								mode_temp = "mode=playlist";
 							}
 							
-							var shortcode_text = "[cvg-video videoId='" + videoId + "' width='" + width + "' height='" + height + "' " + mode_temp + " /]";
+							var shortcode_text = "[cvg-video videoid=" + videoId + " width=" + width + " height=" + height + " " + mode_temp + "]";
 							
 							jQuery('#generated_shortcode_video').val(shortcode_text);
+						}
+
+						function copyShortCodeClipBoard() {
+							// Select all text
+							var shortcode_field = document.getElementById("generated_shortcode_video");
+							shortcode_field.focus();
+							shortcode_field.setSelectionRange(0, shortcode_field.value.length) ;
+						    var copysuccess = copySelectionText();
+						    if (copysuccess){
+							    alert('<?php _e( 'Shortcode copied to Clipboard!', 'cool-video-gallery');?>');
+						    }else {
+						    	alert('<?php _e( 'Web Browser compatibility issue. Please copy manually.', 'cool-video-gallery');?>');
+						    }
+						}
+
+						function copySelectionText() {
+							var copysuccess;
+						    try{
+								copysuccess = document.execCommand("copy");
+						    } catch(e){
+						        copysuccess = false;
+						    }
+						    return copysuccess;
 						}
 						
 					</script>
@@ -699,30 +727,56 @@ if(!isset($gid)) {
 								$player_width = $options_player['cvgplayer_width'];
 								$player_height = $options_player['cvgplayer_height'];
 							?>
-							<td><strong><?php _e('Width x height (in pixel): '); ?></strong></td>
+							<td><strong><?php _e('Width x height (in pixel): ', 'cool-video-gallery'); ?></strong></td>
 							<td><input type="text" size="5" maxlength="5" name="width" id="shortcode_generate_width" value="<?php echo $player_width; ?>" /> x <input type="text" size="5" maxlength="5" name="height" id="shortcode_generate_height" value="<?php echo $player_height; ?>" />
-							<br /><small><?php _e('Size of the video') ?></small></td>
+							<br /><small><?php _e('Size of the video', 'cool-video-gallery') ?></small></td>
 						</tr>
 						<tr valign="top">
 						<th align="left"><?php _e('Show as') ?></th>
 						<td>
-							<label><input name="showtypevideo_generate" type="radio" value="embed" checked="checked" /> <?php _e('Embed') ;?></label><br />
-		            		<label><input name="showtypevideo_generate" type="radio" value="popup" /> <?php _e('Popup') ;?></label><br />
+							<label><input name="showtypevideo_generate" type="radio" value="embed" checked="checked" /> <?php _e('Embed', 'cool-video-gallery') ;?></label><br />
+		            		<label><input name="showtypevideo_generate" type="radio" value="popup" /> <?php _e('Popup', 'cool-video-gallery') ;?></label><br />
          				</td>
         			    </tr>
 					  	<tr align="right">
 					  		<td colspan="2">
 					  			<input type="text" style="width:100%;" id="generated_shortcode_video" readonly />
 					  		</td>
+					  	</tr>
+					  	<tr>	
 					    	<td colspan="2" class="submit">
-					    		<input class="button-primary" onclick="generateShortCode();" type="button" id="generate_shortcode_video" value="<?php _e('Generate'); ?>" />
+					    		<input class="button-primary" onclick="generateShortCode();" type="button" id="generate_shortcode_video" value="<?php _e('Generate', 'cool-video-gallery'); ?>" />
+					    		<input class="button-primary" onclick="copyShortCodeClipBoard();" type="button" id="copy_shortcode_video" value="<?php _e('Copy to Clipboard', 'cool-video-gallery'); ?>" />
 					    	</td>
 						</tr>
 					</table>
 				</form>
 			</div>
 			<!-- #Shortcode generator -->
-		</div>
+			
+			
+			<div style="display:none;">
+				<div id="scan_video_help">
+					<div>
+					<?php _e('Learn how to upload videos to gallery using FTP and then automatically add them to gallery', 'cool-video-gallery');?>
+					<br/>
+					<ul>
+						<ol>
+							<?php _e('1. Identify the gallery path from \'Gallery Path\' listed in Gallery Details page.', 'cool-video-gallery');?>
+						</ol>
+						<ol>
+							<?php _e('2. Upload video files to this path using FTP client. Make sure the video names are unique and is not replacing existing videos present in gallery.', 'cool-video-gallery');?>
+						</ol>
+						<ol>
+							<?php _e('3. Now click on "Scan Gallery Folder" button available on this page.', 'cool-video-gallery');?>
+						</ol>
+						<ol>
+							<?php _e('4. Successfully uploaded videos are not available in selected gallery.', 'cool-video-gallery');?>
+						</ol>
+					</ul>
+					</div>
+				</div>
+			</div>
 		
 	<?php } ?>	
 <?php } ?>

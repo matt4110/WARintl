@@ -3,40 +3,38 @@
  * Section to add gallery and upload videos
  * @author Praveen Rajan
  */
-?>
-<?php
+
 if (preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
-	die('You are not allowed to call this page directly.');
+	die(__('You are not allowed to call this page directly.', 'cool-video-gallery'));
 
-wp_enqueue_script('jquery.ui.tabs', trailingslashit(WP_PLUGIN_URL . '/' . dirname(dirname(plugin_basename(__FILE__)))) . 'js/jquery.ui.tabs.js', 'jquery');
-wp_enqueue_script('jquery.multifile', trailingslashit(WP_PLUGIN_URL . '/' . dirname(dirname(plugin_basename(__FILE__)))) . 'js/jquery.multifile.js', 'jquery');
-wp_enqueue_style('jquery.ui.tabs', trailingslashit(WP_PLUGIN_URL . '/' . dirname(dirname(plugin_basename(__FILE__)))) . 'css/jquery.ui.tabs.css', 'jquery');
+wp_enqueue_script('jquery.ui.tabs', trailingslashit(WP_PLUGIN_URL . '/' . dirname(dirname(plugin_basename(__FILE__)))) . 'third_party_lib/jquery.utils/jquery.ui.tabs.js', 'jquery');
+wp_enqueue_script('jquery.multifile', trailingslashit(WP_PLUGIN_URL . '/' . dirname(dirname(plugin_basename(__FILE__)))) . 'third_party_lib/jquery.utils/jquery.multifile.js', 'jquery');
+wp_enqueue_style('jquery.ui.tabs', trailingslashit(WP_PLUGIN_URL . '/' . dirname(dirname(plugin_basename(__FILE__)))) . 'third_party_lib/jquery.utils/jquery.ui.tabs.css', 'jquery');
 
-CvgCore::upgrade_plugin();
-
-$title = __('Add Gallery / Videos');
+$cvg_core = new CvgCore();
 
 //Section on submitting data.
 if (!empty($_POST)) {
-	CvgCore::processor();
+	$cvg_core->processor();
 }
 ?>
 <script type="text/javascript">
-		/*
+	/*
 	* Section to initialize multiple file upload
 	*/
 	jQuery(document).ready(function(){
 		jQuery('#videofiles').MultiFile({
 			STRING: {
-				remove:'[<?php  _e('remove');?>]',
-				denied:'File type not permitted.'
+				remove:'[<?php  _e('remove', 'cool-video-gallery');?>]',
+				denied:'<?php _e('File type not permitted.', 'cool-video-gallery');?>',
+				duplicate:'<?php _e('This file has already been selected: ', 'cool-video-gallery');?>$file'
 			},
 			accept : 'mp4,flv,MP4,FLV,mov,MOV,MP3,mp3,m4v,M4V'
 		});
 	
 		jQuery('#uploadvideo_btn').click(function(){
 			if(jQuery.trim(jQuery('#galleryselect').val()) == 0) {
-				alert('Please choose a gallery.');
+				alert('<?php _e('Please choose a gallery.', 'cool-video-gallery');?>');
 			}else {
 				jQuery('#uploadvideo_form').submit();
 			}
@@ -44,7 +42,7 @@ if (!empty($_POST)) {
 	
 		jQuery('#addvideo_btn').click(function(){
 			if(jQuery.trim(jQuery('#galleryselect_add').val()) == 0) {
-				alert('Please choose a gallery.');
+				alert('<?php _e('Please choose a gallery.', 'cool-video-gallery');?>');
 			}else {
 				jQuery('#addvideo_form').submit();
 			}
@@ -52,9 +50,9 @@ if (!empty($_POST)) {
 	
 		jQuery('#addmedia_btn').click(function(){
 			if(jQuery.trim(jQuery('#galleryselect_media').val()) == 0) {
-				alert('Please choose a gallery.');
+				alert('<?php _e('Please choose a gallery.', 'cool-video-gallery');?>');
 			}else if(jQuery.trim(jQuery('#mediaselect_add').val()) == 0) {
-				alert('Please choose a media file.');
+				alert('<?php _e('Please choose a media file.', 'cool-video-gallery');?>');
 			}else {
 				jQuery('#addmedia_form').submit();
 			}
@@ -62,15 +60,10 @@ if (!empty($_POST)) {
 	});
 </script>
 <div class="wrap">
-	<div class="icon32" id="icon-video">
-		<br>
-	</div>
-	<h2><?php   echo esc_html(__($title));?></h2>
-	<div class="clear"></div>
-	<?php   $tabs = CvgCore::tabs_order();?>
-
+	<h2><?php _e('Add Gallery / Videos', 'cool-video-gallery');?></h2>
+	<?php $tabs = $cvg_core->tabs_order();?>
 	<!-- Section to display tabs -->
-	<div id="slider" class="wrap">
+	<div id="cvg_add_tab">
 		<ul id="tabs">
 			<?php
 			foreach ($tabs as $tab_key => $tab_name) {
@@ -82,7 +75,7 @@ if (!empty($_POST)) {
 		foreach ($tabs as $tab_key => $tab_name) {
 			echo "\n\t<div id='$tab_key'>\n";
 			$function_name = 'tab_' . $tab_key;
-			CvgCore::$function_name();
+			$cvg_core->$function_name();
 			echo "\n\t</div>";
 		}
 		?>
@@ -93,10 +86,9 @@ if (!empty($_POST)) {
 	 * Section to initialize tab
 	 */
 	jQuery(document).ready(function() {
-		jQuery('#slider').tabs({
+		jQuery('#cvg_add_tab').tabs({
 			fxFade : true,
 			fxSpeed : 'fast'
 		});
 	});
-
 </script>

@@ -2,12 +2,7 @@
 /**
  * Class for options of video player
  * @author Praveen Rajan
- *
  */
-
- if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) 
-	die('You are not allowed to call this page directly.'); 
- 
 class CVGPlayer extends CoolVideoGallery {
 	
 	/**
@@ -17,7 +12,6 @@ class CVGPlayer extends CoolVideoGallery {
 	 * @param $prematch 
 	 * @param $revsort - order of sort
 	 * @return array of skins
-	 * @author Praveen Rajan
 	 */
 	function get_dir_skin($path, $match = "", $prematch = "", $revsort = true){
 		

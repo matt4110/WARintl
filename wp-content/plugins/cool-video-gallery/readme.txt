@@ -2,8 +2,8 @@
 Contributors: Praveen Rajan
 Tags: video gallery,playlist,tinymce,videos,gallery,media,player,flash player,flash-player,skins,flash player skins,admin,post,pages,pictures,widgets,picture,video,cool-video-gallery,cool video gallery,ffmpeg,showcase,fancybox,preview image,upload,flv,mp4,mov,m4v,mp3,H.264,shortcode
 Requires at least: 3.0.1
-Tested up to: 3.9.1
-Stable tag: 1.9
+Tested up to: 4.4.2
+Stable tag: 2.1
 License: GPLv2
 
 Cool Video Gallery is a Video Gallery plugin for WordPress with option to upload videos, add Youtube videos and manage them in multiple galleries. 
@@ -12,6 +12,11 @@ Cool Video Gallery is a Video Gallery plugin for WordPress with option to upload
 
 Cool Video Gallery is a Video Gallery plugin for WordPress with option to upload videos, attach media files, add Youtube videos and manage them in multiple galleries. Automatic preview image generation for uploaded videos using FFMPEG library available.
 Option provided to upload images for video previews. Supports '.flv', '.mp4', '.mov', '.m4v' and '.mp3' video files presently. 
+
+= Note =
+* Video Player used by this plugin is <a href="https://www.jwplayer.com/" target="_blank">JW Player</a>. Please agree to the Terms and Conditions of JW Player.
+* JWPlayer used is not latest. Future upgrade of this plugin will use latest JWPlayer version. 
+
 
 = Features =
 * Supports H.264 (.mp4, .mov, .m4v), FLV (.flv) and MP3 (.mp3) files.
@@ -49,13 +54,9 @@ Option provided to upload images for video previews. Supports '.flv', '.mp4', '.
 * Sort videos by Added Date integrated.
 * Move video(s) from one gallery to another implemented.
 * Randomize videos in a gallery through admin panel.
-
+* I18n enabled.
 
 If you find this plugin useful please provide your valuable ratings.
-
-= Note =
-* Video Player used by this plugin is <a href="http://www.longtailvideo.com/players" target="_blank">JW Player</a>. Addons that enhance the features of video player can be found at their repository. Please agree to the Terms and Conditions of JW Player.
-* Video Player file support information can be found at <a href="http://www.longtailvideo.com/players/jw-player/tech-specs/" target="_blank">JW Player Tech Specs</a>
 
 = Check out my other plugin =
 * <a href="http://wordpress.org/extend/plugins/attachment-file-icons">Attachment File Icons (AF Icons)</a> - A plugin to display file type icons adjacent to files added to pages/posts/widgets. Feature to upload icons for different file types provided.
@@ -72,16 +73,32 @@ If you find this plugin useful please provide your valuable ratings.
 
 == Screenshots ==
 
-1. Screenshot Admin Section - CVG Overview
-2. Screenshot Admin Section - Add Gallery / Upload Videos / Attach Media / Add Youtube Videos
-3. Screenshot Admin Section - Gallery Details 
-4. Screenshot Admin Section - Sort Videos in Gallery
-5. Screenshot - CVG Showcase feature
-6. Screenshot - CVG Slideshow feature
-7. Screenshot - CVG Playlist feature
-8. Screenshot - CVG Fancybox playback feature
+1. Screenshot - Video Gallery as Showcase in Page and Slideshow in Sidebar Widget
+2. Screenshot Admin Section - CVG Overview
+3. Screenshot Admin Section - Add Gallery / Upload Videos / Attach Media / Add Youtube Videos
+4. Screenshot Admin Section - Gallery Details 
+5. Screenshot Admin Section - Google XML Video Sitemap Generation
+6. Screenshot Admin Section - Insert Gallery/Video into Posts/Pages
+7. Screenshot Admin Section - Generate Shortcode for Gallery
+8. Screenshot Admin Section - Generate Shortcode for Video
 
 == Changelog ==
+
+= 2.1 =
+* Design issues fixed.
+* More image format supported in preview image of videos. Few image format will not be displayed as player preview image as they are not supported by JWPlayer.
+* WP deprecated function issues fixed.
+* Gallery/Video Shortcode modified.
+* Google XML Sitemap generation updated.
+* Publish gallery as post added.
+* I18n enabled.
+* Playback support for Youtube Videos using Youtube IFrame support if Web Browser does not support Flash playback. This will not work if playlist feature of JWPlayer is used. 
+
+= 2.0 =
+* Command Injection Fix.
+* Design issue fixes.
+* TinyMCE editor issue fix
+* Shortcode parsing issue fix.
 
 = 1.9 =
 * CSRF Vulnerability Fix.
@@ -153,4 +170,4 @@ If you find this plugin useful please provide your valuable ratings.
 * Shortcode feature added to support video gallery in post/page content.
 
 = 1.0 =
-* Initial version
+* Initial version  

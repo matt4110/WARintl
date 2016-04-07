@@ -97,7 +97,7 @@ class Ai1ec_View_Event_Single extends Ai1ec_Base {
 			'exclude'                 => $time->get_exclude_html( $event, $rrule ),
 			'categories'              => $taxonomy->get_categories_html( $event ),
 			'tags'                    => $taxonomy->get_tags_html( $event ),
-			'location'                => $venues_html,
+			'location'                => html_entity_decode( $venues_html ),
 			'filter_groups'           => $filter_groups_html,
 			'map'                     => $location->get_map_view( $event ),
 			'contact'                 => $ticket->get_contact_html( $event ),
@@ -120,9 +120,11 @@ class Ai1ec_View_Event_Single extends Ai1ec_Base {
 			'text_where'              => __( 'Where:', AI1EC_PLUGIN_NAME ),
 			'text_cost'               => __( 'Cost:', AI1EC_PLUGIN_NAME ),
 			'text_contact'            => __( 'Contact:', AI1EC_PLUGIN_NAME ),
+			'text_tickets'            => __( 'Tickets:', AI1EC_PLUGIN_NAME ),
 			'text_free'               => __( 'Free', AI1EC_PLUGIN_NAME ),
 			'text_categories'         => __( 'Categories', AI1EC_PLUGIN_NAME ),
 			'text_tags'               => __( 'Tags', AI1EC_PLUGIN_NAME ),
+			'buy_tickets_text'        => __( 'Buy Tickets', AI1EC_PLUGIN_NAME ),
 			'timezone_info'           => $timezone_info,
 			'banner_image'            => $banner_image,
 			'content_img_url'         => $event->get_runtime( 'content_img_url' ),
@@ -150,8 +152,80 @@ class Ai1ec_View_Event_Single extends Ai1ec_Base {
 			);
 		}
 		$loader = $this->_registry->get( 'theme.loader' );
+
+		if ( $this->_registry->get( 'helper.api-settings' )->ai1ec_api_enabled() ) {
+			$api_event_id = get_post_meta(
+				$event->get( 'post_id' ),
+				Ai1ec_Api_Ticketing::EVENT_ID_METADATA,
+				true
+			);
+			if ( $api_event_id ) {
+				$api                  = $this->_registry->get( 'model.api.api-ticketing' );
+				$checkout_url         = null;
+				if ( false === ai1ec_is_blank( $event->get( 'ical_feed_url' ) ) ) {
+					//if this ticket event is imported, uses the api and checkout url from the imported information
+					$checkout_url = get_post_meta(
+						$event->get( 'post_id' ),
+						Ai1ec_Api_Ticketing::ICS_CHECKOUT_URL_METADATA,
+						true
+					);
+				}
+				if ( ai1ec_is_blank( $checkout_url )) {
+					$checkout_url = AI1EC_TICKETS_CHECKOUT_URL;
+				}
+
+				$ticket_types                 = json_decode( $api->get_ticket_types( $event->get( 'post_id' ) ) );
+				$args['has_tickets']          = true;
+				$args['API_URL']              = AI1EC_API_URL;
+				$args['tickets_block']        = $loader->get_file(
+					'tickets.twig',
+					array(
+						'tickets_checkout_url' => $api->create_checkout_url( $api_event_id, $checkout_url ),
+						'tickets'              => $ticket_types->data,
+						'text_tickets'         => $args['text_tickets'],
+						'buy_tickets_text'     => $args['buy_tickets_text'],
+						'api_event_id'         => $api_event_id
+					), false
+				)->get_content();
+			}
+		}
+
+		
 		return $loader->get_file( 'event-single.twig', $args, false )
 			->get_content();
+	}
+
+	/**
+	 * Add meta OG tags to the event details page
+	 */
+	public function add_meta_tags() {
+		// Add tags only on Event Details page
+		$aco = $this->_registry->get( 'acl.aco' );
+		if ( ! $aco->is_our_post_type() ) return;
+
+		// Get Event and process desciption
+		$event   = $this->_registry->get( 'model.event', get_the_ID() );
+		$content = $this->_registry->get( 'view.event.content' );
+		$desc    = $event->get( 'post' )->post_content;
+		$desc    = apply_filters( 'the_excerpt', $desc );
+		$desc    = strip_shortcodes( $desc );
+		$desc    = str_replace( ']]>', ']]&gt;', $desc );
+		$desc    = strip_tags( $desc );
+		$desc    = preg_replace( '/\n+/', ' ', $desc);
+		$desc    = substr( $desc, 0, 300 );
+		$og      = array(
+			'url'         => get_permalink( $event->get( 'post_id' ) ),
+			'title'       => htmlspecialchars(
+				$event->get( 'post' )->post_title .
+				' (' . substr( $event->get( 'start' ) , 0, 10 ) . ')'
+			),
+			'type'        => 'article',
+			'description' => htmlspecialchars( $desc ),
+			'image'       => $content->get_content_img_url( $event )
+		);
+		foreach ( $og as $key => $val ) {
+			echo "<meta property=\"og:$key\" content=\"$val\" />\n";
+		}
 	}
 
 	/**

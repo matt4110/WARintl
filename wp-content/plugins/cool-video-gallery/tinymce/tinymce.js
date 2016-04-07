@@ -8,8 +8,8 @@
 	    	ed.addCommand('cvg', function() {
 				ed.windowManager.open({
 					file : ajaxurl + '?action=cvg_tinymce',
-					width : 360 ,
-					height : 200 ,
+					width : 380 ,
+					height : 220 ,
 					inline : 1
 				}, {
 					plugin_url : url 
@@ -18,7 +18,7 @@
 			ed.addButton('cvglink', {
 				title : 'Cool Video Gallery Toolbar',
 				cmd : 'cvg',
-				image : url+'/video-mce.png',
+				image :  url.replace("tinymce", "images") +'/video_small.png',
 			});
         },
         createControl : function(n, cm) {

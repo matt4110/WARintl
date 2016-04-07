@@ -38,24 +38,39 @@
     'linkColorHover' => '#335980',
     'monthViewDateBackground' => '#eaf4ff',
     'placeholderText' => '#999999',
+    'posterboardDateTitleText' => '#ffffff',
+    'posterboardFooterBg' => '#f6f1ea',
+    'posterboardImageBorder' => 'rgba(0,0,0,0)',
+    'posterboardImagePadding' => '#fff',
+    'posterboardImagePaddingWidth' => '8px',
+    'posterboardMainBg' => 'rgba(255, 255, 255, 0)',
+    'posterboardTileBg' => '#fff9f0',
+    'posterboardTileBorder' => '#fff9f0',
+    'posterboardTileShadow' => 'rgba(0,0,0,0.4)',
+    'streamDateTitleBackground' => '#c4c4c4',
+    'streamDateTitleText' => '#ffffff',
+    'streamEventBackground' => '#ffffff',
+    'streamEventBorder' => '#cccccc',
     'tableBackground' => '#ffffff',
     'tableLabelBackground' => '#f5f5f5',
     'tableLabelText' => '#9e9e9e',
     'textColor' => '#333333',
     'textEmboss' => '#ffffff',
+    'titleFontFamily' => '"League Gothic", Impact, "Arial Black", Arial, sans-serif',
+    'titleFontSize' => '30px',
     'todayColor' => '#ffffdd',
   ),
   'files' => 
   array (
     'less\\ai1ec-icons.less' => 
     array (
-      'size' => 14631,
-      'sha1' => '392648457a8e5ed25edb7f1509683611afc18b4d',
+      'size' => 3045,
+      'sha1' => '576590aa4a54f3a8528825b50ab2b9c503edc0c8',
     ),
     'less\\bootstrap\\alerts.less' => 
     array (
-      'size' => 1502,
-      'sha1' => '6ac6fc0607423976830fec799dccebc50de687e7',
+      'size' => 1643,
+      'sha1' => '3430045a53a78ef713234721153a866c04a321e3',
     ),
     'less\\bootstrap\\badges.less' => 
     array (
@@ -79,8 +94,8 @@
     ),
     'less\\bootstrap\\buttons.less' => 
     array (
-      'size' => 3715,
-      'sha1' => 'ec6534a64e86c00bcaeb9fbf6720070e956c5a77',
+      'size' => 3859,
+      'sha1' => 'da01aebf9d5a8cfb60834d267899a3b6e4e82cf4',
     ),
     'less\\bootstrap\\carousel.less' => 
     array (
@@ -257,15 +272,30 @@
       'size' => 17309,
       'sha1' => '830fc0d021de8720f122954a5cdfd801a1c427a1',
     ),
+    'less\\cfg-icons.less' => 
+    array (
+      'size' => 17827,
+      'sha1' => '21e782aa46e84088e7d09c1f0c252e40d8fc0d76',
+    ),
     'less\\common-widgets.less' => 
     array (
       'size' => 725,
       'sha1' => '0b39b1d4e35bffe2157468344e1b7f4d06533606',
     ),
+    'less\\custom-filter-groups.less' => 
+    array (
+      'size' => 671,
+      'sha1' => '768aa7f0cfcc8375d8b5597fb3062c098adc3cf8',
+    ),
     'less\\event.less' => 
     array (
-      'size' => 3129,
-      'sha1' => '7214dc06fb042082580bc33367a7a1aa207823ba',
+      'size' => 3632,
+      'sha1' => '5d5f2096acde8b2a455322734ae1d62ec6b396c4',
+    ),
+    'less\\extended_views.less' => 
+    array (
+      'size' => 595,
+      'sha1' => '8e72d1c81c2781dff3e5d977bdedd7a343244e8f',
     ),
     'less\\font-awesome\\bordered-pulled.less' => 
     array (
@@ -332,6 +362,16 @@
       'size' => 10665,
       'sha1' => '8d7d0d81e445093ecc58577605c36320d2741ba7',
     ),
+    'less\\fonts\\font-league-gothic.less' => 
+    array (
+      'size' => 483,
+      'sha1' => 'ade2834177d0a2a466c2dbd08a5d4a0c348b059b',
+    ),
+    'less\\interactive_frontend.less' => 
+    array (
+      'size' => 2689,
+      'sha1' => '1757229df9f45c4c559d054d5d1ab130df707db1',
+    ),
     'less\\override.less' => 
     array (
       'size' => 2253,
@@ -364,8 +404,8 @@
     ),
     'less\\timely-font-awesome.less' => 
     array (
-      'size' => 1606,
-      'sha1' => 'a618e8312f0a6ef9c6efab75e506133c9c1ef947',
+      'size' => 1395,
+      'sha1' => 'dfbfe1d8ebb54b57bc6a60bbff55277d520fa2f3',
     ),
     'less\\timely-mixins.less' => 
     array (
@@ -382,10 +422,20 @@
       'size' => 7322,
       'sha1' => '8a2e190b67e93b8ca39382552fbda0deb19baf72',
     ),
+    'less\\user_variables_ev.php' => 
+    array (
+      'size' => 2875,
+      'sha1' => 'edf0e9b240b3cda3b30b6b835bf6dfedb1047edf',
+    ),
     'less\\variables.less' => 
     array (
       'size' => 1248,
       'sha1' => '1d7fcb0178ffdf8a57e8e9c4f2fb2c0dc70e3c7f',
+    ),
+    'less\\venue-details.less' => 
+    array (
+      'size' => 932,
+      'sha1' => 'ddfc94e59e47329dcbb93c36edf5dc07587e5bf3',
     ),
     'style.css' => 
     array (

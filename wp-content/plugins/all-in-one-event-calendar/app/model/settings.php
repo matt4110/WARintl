@@ -50,6 +50,10 @@ class Ai1ec_Settings extends Ai1ec_App {
 
 		if ( 'deprecated' === $type ) {
 			unset( $this->_options[$option] );
+		} else if ( 'hidden' === $type ) {
+			if ( isset( $this->_options[$option] ) && isset( $this->_options[$option]['renderer'] )  ) {
+				$this->_options[$option]['renderer'] = null;
+			}
 		} else if (
 			! isset( $this->_options[$option] ) ||
 			! isset( $this->_options[$option]['version'] ) ||
@@ -310,7 +314,7 @@ class Ai1ec_Settings extends Ai1ec_App {
 			->get( self::WP_OPTION_KEY, array() );
 		$this->_change_update_status( false );
 		$test_version = false;
-		if ( is_array( $values ) ) { // always assign existing values, if any
+		if ( is_array( $values ) ) { // always assign existing values, if any			
 			$this->_options = $values;
 			if ( isset( $values['calendar_page_id'] ) ) {
 				$test_version = $values['calendar_page_id']['version'];
@@ -347,7 +351,15 @@ class Ai1ec_Settings extends Ai1ec_App {
 	 *
 	 */
 	protected function _set_standard_values() {
-		$this->_standard_options = array(
+       $this->_standard_options = array(
+            'enabling_ticket_invitation_page' => array(
+                   'type'                     => 'string',
+                   'default'                  => false,
+            ),
+            'ai1ec_api'       => array(
+                    'type'    => 'boolean',
+                    'default' => false,
+            ),
 			'ai1ec_db_version' => array(
 				'type' => 'int',
 				'default'  => false,
@@ -375,6 +387,22 @@ class Ai1ec_Settings extends Ai1ec_App {
 			'show_tracking_popup' => array(
 				'type'    => 'deprecated',
 				'default' => true,
+			),
+			'ticketing_message' => array(
+				'type'    => 'string',
+				'default' => false,
+			),
+			'ticketing_token' => array(
+				'type'    => 'string',
+				'default' => '',
+			),			
+			'ticketing_enabled' => array(
+				'type'    => 'boolean',
+				'default' => false,
+			),
+			'ticketing_calendar_id' => array(
+				'type'    => 'int',
+				'default' => 0,
 			),
 			'calendar_page_id' => array(
 				'type' => 'mixed',
@@ -884,7 +912,7 @@ class Ai1ec_Settings extends Ai1ec_App {
 						'Disable <strong>gzip</strong> compression.'
 					),
 					'help'  => Ai1ec_I18n::__(
-						'Use this option if calendar is unresponsive. <a href="http://support.time.ly/disable-gzip-compression/">Read more</a> about the issue. (From version 2.1 onwards, gzip is disabled by default for maximum compatibility.)'
+						'Use this option if calendar is unresponsive. <a target="_blank" href="http://time.ly/document/user-guide/troubleshooting/disable-gzip-compression/">Read more</a> about the issue. (From version 2.1 onwards, gzip is disabled by default for maximum compatibility.)'
 					),
 				),
 				'default'  => true,
@@ -902,7 +930,22 @@ class Ai1ec_Settings extends Ai1ec_App {
 						'Renders calendar views on the client rather than the server; can improve performance.'
 					),
 				),
-				'default'  => false,
+				'default'  => true,
+			),
+			'cache_dynamic_js' => array(
+				'type' => 'bool',
+				'renderer' => array(
+					'class' => 'checkbox',
+					'tab'   => 'advanced',
+					'item'  => 'advanced',
+					'label' => Ai1ec_I18n::__(
+						'Use advanced JS cache.'
+					),
+					'help'  => Ai1ec_I18n::__(
+						'Cache dynamically generated JS files. Improves performance.'
+					),
+				),
+				'default'  => true,
 			),
 			'render_css_as_link' => array(
 				'type' => 'bool',

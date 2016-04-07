@@ -2,23 +2,30 @@
 /*
 Plugin Name: Cool Video Gallery
 Description: Cool Video Gallery, a video gallery plugin to manage video galleries. Feature to upload videos, attach Youtube videos, media files from library and group them into galleries is available. Option to play videos using Fancybox. Supports '.flv', '.mp4', '.m4v', '.mov' and '.mp3' files playback. 
-Version: 1.9
+Version: 2.1
 Author: Praveen Rajan
-License: GPLv2
-	Copyright 2013  Praveen Rajan
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License, version 2, as 
-    published by the Free Software Foundation.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+Text Domain: cool-video-gallery
+Domain Path: /languages
+License: GPL2
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+	
+	Copyright 2016  Praveen Rajan
+	
+	Cool Video Gallery is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 2 of the License, or
+	any later version.
+	 
+	Cool Video Gallery is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+	GNU General Public License for more details.
+	 
+	You should have received a copy of the GNU General Public License
+	along with Cool Video Gallery. If not, write to the Free Software Foundation, Inc.,
+ 	51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ 	
+ 	Please see license.txt for the full license.
 */
 ?>
 <?php
@@ -31,7 +38,6 @@ if ( !class_exists('CoolVideoGallery') ) {
 	/**
 	 * Class declaration for cool video gallery
 	 * @author Praveen Rajan
-	 *
 	 */
 	class CoolVideoGallery{
 		
@@ -43,14 +49,18 @@ if ( !class_exists('CoolVideoGallery') ) {
 		var $video_player_path;
 		var $video_player_url;
 		var $video_id;
-		var $cvg_version = '1.8';
+		var $cvg_version = '2.1';
 		
 		var $video_type_upload;
 		var $video_type_youtube;
 		
 		var $allowed_extension;
 		
-		// Initialize the plugin
+		protected static $instance = NULL;
+		
+		/**
+		 * Constructor class for CoolVideoGallery
+		 */
 		function CoolVideoGallery(){
 			
 			$this->plugin_url = trailingslashit( WP_PLUGIN_URL . '/' .	dirname( plugin_basename(__FILE__)));
@@ -68,7 +78,7 @@ if ( !class_exists('CoolVideoGallery') ) {
 			/**
 			 * Video file types supported.
 			 * 
-			 * Warning: Editing/Adding can cause the plugin to malfunction. Do it at your own risk :)
+			 * @Warning: Editing/Adding can cause the plugin to malfunction. Do it at your own risk :)
 			 */
 			$this->allowed_extension = array('mp4', 'flv', 'MP4', 'FLV', 'mov', 'MOV', 'mp3', 'MP3', 'm4v', 'M4V');
 			
@@ -99,22 +109,34 @@ if ( !class_exists('CoolVideoGallery') ) {
 			add_action('wp_head', array(&$this, 'addPlayerHeader'));
 	 		add_action('admin_head', array(&$this, 'addPlayerHeader'));
 	 		
-	 		//adds filter for post/page content
-	 		add_filter('the_content',  array(&$this, 'CVGVideo_Parse'));
-	 		
-	 		add_filter('the_content',  array(&$this, 'CVGGallery_Parse'));
-			
-			//adds option to widget content
-			add_filter('widget_text', array(&$this, 'CVGVideo_Parse'));
-			
-			add_filter('widget_text', array(&$this, 'CVGGallery_Parse'));
-	 		
+	 		// dashboard widget
 	 		add_action('wp_dashboard_setup', array(&$this,'cvg_custom_dashboard_widgets'));
+	 		
+	 		// add shortcodes
+	 		add_shortcode('cvg-gallery', array(&$this,'cvg_gallery_shortcode') );
+	 		add_shortcode('cvg-video', array(&$this,'cvg_video_shortcode') );
+	 		
+	 		// check plugin upgrades
+	 		add_action( 'plugins_loaded', array(&$this,'cvg_plugin_loaded'));
+	 		
+	 		// Additional links on the plugin page
+	 		add_filter('plugin_row_meta', array(&$this, 'add_plugin_page_links'), 10, 2);
+	 		
+		}
+		
+		/**
+		 * Returns an instance of CoolVideoGallery plugin class
+		 */
+		public static function get_instance() {
+		
+			// create an object
+			NULL === self::$instance and self::$instance = new self;
+		
+			return self::$instance; // return the object
 		}
 		
 		/**
 		 * Function to install cool video gallery plugin
-		 * @author Praveen Rajan
 		 */
 		function cvg_install(){
 			global $wpdb;
@@ -140,7 +162,6 @@ if ( !class_exists('CoolVideoGallery') ) {
 		
 		/**
 		 * Function to create database for plugin.
-		 * @author Praveen Rajan
 		 */
 		function _cvg_activate() {
 			
@@ -207,9 +228,10 @@ if ( !class_exists('CoolVideoGallery') ) {
 			$options['cvg_zc'] = 0;
 			$options['cvg_slideshow'] = 7000;
 			$options['cvg_description'] = 1;
+			$options['cvg_gallery_description'] = 1;
 			$options['cvg_ffmpegpath']= '/Applications/ffmpegX.app/Contents/Resources/ffmpeg';
-			$options['cvg_navigation_controls'] = 0;
 			$options['cvg_random_video'] = 0;
+			$options['cvg_youtubeapikey'] = '';
 			
 			update_option('cvg_settings', $options);
 			
@@ -236,15 +258,13 @@ if ( !class_exists('CoolVideoGallery') ) {
 		
 		/**
 		 * Function to deactivate plugin
-		 * @author Praveen Rajan
 		 */
 		function cvg_deactivate_empty() {
-			
+		
 		}
 		
 		/**
 		 * Function to uninstall plugin
-		 * @author Praveen Rajan
 		 */
 		function cvg_uninstall(){
 			
@@ -268,7 +288,6 @@ if ( !class_exists('CoolVideoGallery') ) {
 		
 		/**
 		 * Function to delete tables of plugins
-		 * @author Praveen Rajan
 		 */
 		function _cvg_deactivate() {
 			
@@ -287,45 +306,127 @@ if ( !class_exists('CoolVideoGallery') ) {
 			}else{
 				$gallery_path =  'wp-content/uploads/video-gallery/';
 			}
-			CvgCore::deleteDir( ABSPATH . $gallery_path ); 
+			
+			$cvg_core = new CvgCore();
+			$cvg_core->deleteDir( ABSPATH . $gallery_path ); 
 			
 		}
 		
 		/**
+		 * Function to update databse during function upgrade
+		 */
+		function cvg_plugin_loaded() {
+		
+			global $wpdb;
+				
+			$sub_name_gallery = 'cvg_gallery';
+			$sub_name_videos = 'cvg_videos';
+			 
+			$this->table_gallery  = $wpdb->prefix . $sub_name_gallery;
+			$this->table_videos = $wpdb->prefix . $sub_name_videos;
+			 
+			$installed_ver = get_option( "cvg_version" );
+			
+			if (version_compare($installed_ver, '1.5', '<')) {
+					
+				$sql_update = "ALTER TABLE " .  $this->table_videos . " ADD `video_type` varchar( 20 ) NOT NULL DEFAULT '". $this->video_type_upload . "' AFTER `meta_data`" ;
+				require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+				$wpdb->query($wpdb->prepare($sql_update, null));
+			}
+				
+			if (version_compare($installed_ver, '1.7', '<')) {
+					
+				$sql_update = "ALTER TABLE " .  $this->table_videos . " ADD `video_title` varchar( 20 ) NULL AFTER `thumb_filename`" ;
+				require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+				$wpdb->query($wpdb->prepare($sql_update, null));
+			}
+				
+			if (version_compare($installed_ver, '1.8', '<')) {
+					
+				$sql_update = "ALTER TABLE " .  $this->table_videos . " ADD `exclude` tinyint(5) NOT NULL DEFAULT '0' AFTER `video_type`" ;
+				require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+				$wpdb->query($wpdb->prepare($sql_update, null));
+					
+				$sql_update_video_text = "ALTER TABLE " .  $this->table_videos . " MODIFY `video_title` mediumtext" ;
+				$wpdb->query($wpdb->prepare($sql_update_video_text, null));
+			}
+				
+			$sql_collation_update_videos = "ALTER TABLE " . $this->table_videos . " CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;";
+			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+			$wpdb->query($sql_collation_update_videos);
+			
+			$sql_collation_update_gallery = "ALTER TABLE " .  $this->table_gallery . " CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;";
+			$wpdb->query($sql_collation_update_gallery);
+			
+			if($installed_ver != $this->cvg_version) {
+					
+				update_option('cvg_version', $this->cvg_version);
+			}
+
+			// Change introduced in 2.1 version
+			$options = get_option('cvg_settings');
+			// Gallery Settings not available
+			if(!isset($options['cvg_gallery_description'])) {
+				
+				$options['cvg_gallery_description'] = 1;
+				update_option('cvg_settings', $options);
+			}
+			
+			// Load text domain
+			load_plugin_textdomain('cool-video-gallery', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+		}
+		
+		/**
 		 * Function to add main menu and submenus to admin panel
-		 * @return adds menu
-		 * @author Praveen Rajan
 		 */
 		function admin_menu() {
 			
 			$parent_slug = "cvg-gallery-overview";
 			
-			add_menu_page('Video Gallery Overview', __('Video Gallery'), 'manage_options', $parent_slug , array( $this, 'gallery_overview'), $this->plugin_url .'/images/video_small.png');
+			add_menu_page(__('Video Gallery Overview', 'cool-video-gallery'), __('Video Gallery', 'cool-video-gallery'), 'manage_options', $parent_slug , array( $this, 'gallery_overview'), $this->plugin_url .'/images/video_small.png');
 			
-			add_submenu_page( $parent_slug, __('Video Gallery Overview'), 'Overview', 'manage_options', 'cvg-gallery-overview',array($this, 'gallery_overview'));
-			add_submenu_page( $parent_slug, __('Add Gallery / Upload Videos'), 'Add Gallery / Videos', 'manage_options', 'cvg-gallery-add',array($this, 'gallery_add'));
-			add_submenu_page( $parent_slug, __('Manage Video Gallery'), 'Manage Gallery', 'manage_options', 'cvg-gallery-manage',array($this, 'gallery_manage'));
-			add_submenu_page( $parent_slug, __('Gallery Settings'), 'Gallery Settings', 'manage_options', 'cvg-gallery-settings',array($this, 'gallery_settings'));
-			add_submenu_page( $parent_slug, __('Video Player Settings'), 'Video Player Settings', 'manage_options', 'cvg-player-settings',array($this, 'player_settings'));
-			add_submenu_page( $parent_slug, __('CVG Google XML Video Sitemap'), 'Google XML Video Sitemap', 'manage_options', 'cvg-video-sitemap',array($this, 'video_sitemap'));
-			add_submenu_page( $parent_slug, __('CVG Uninstall'), 'Uninstall CVG', 'manage_options', 'cvg-plugin-uninstall',array($this, 'uninstall_plugin'));
-			add_submenu_page( $parent_slug, __('About the Author'), 'About Author', 'manage_options', 'cvg-plugin-about',array($this, 'about_plugin_author'));
+			add_submenu_page( $parent_slug, __('Video Gallery Overview', 'cool-video-gallery'), __('Overview', 'cool-video-gallery'), 'manage_options', 'cvg-gallery-overview',array($this, 'gallery_overview'));
+			add_submenu_page( $parent_slug, __('Add Gallery / Upload Videos', 'cool-video-gallery'), __('Add Gallery / Videos', 'cool-video-gallery'), 'manage_options', 'cvg-gallery-add',array($this, 'gallery_add'));
+			add_submenu_page( $parent_slug, __('Manage Video Gallery', 'cool-video-gallery'), __('Manage Gallery', 'cool-video-gallery'), 'manage_options', 'cvg-gallery-manage',array($this, 'gallery_manage'));
+			add_submenu_page( $parent_slug, __('Gallery Settings', 'cool-video-gallery'), __('Gallery Settings', 'cool-video-gallery'), 'manage_options', 'cvg-gallery-settings',array($this, 'gallery_settings'));
+			add_submenu_page( $parent_slug, __('Video Player Settings', 'cool-video-gallery'), __('Video Player Settings', 'cool-video-gallery'), 'manage_options', 'cvg-player-settings',array($this, 'player_settings'));
+			add_submenu_page( $parent_slug, __('CVG Video Sitemap', 'cool-video-gallery'), __('Google Video Sitemap', 'cool-video-gallery'), 'manage_options', 'cvg-video-sitemap',array($this, 'video_sitemap'));
+			add_submenu_page( $parent_slug, __('CVG Uninstall', 'cool-video-gallery'), __('Uninstall CVG', 'cool-video-gallery'), 'manage_options', 'cvg-plugin-uninstall',array($this, 'uninstall_plugin'));
+		}
+		
+		/**
+		 * Function to add admin_bar_menu at top.
+		 */
+		function admin_bar_menu_cvg() {
+		
+			global $wp_admin_bar;
+		
+			$wp_admin_bar->add_menu( array( 'id' => 'cvg-menu', 'title' => __( 'CVG', 'cool-video-gallery'), 'href' => admin_url('admin.php?page=cvg-gallery-overview') ) );
+			$wp_admin_bar->add_menu( array( 'parent' => 'cvg-menu', 'id' => 'cvg-menu-add-gallery-video', 'title' => __('Add Gallery / Videos', 'cool-video-gallery'), 'href' => admin_url('admin.php?page=cvg-gallery-add') ) );
+			$wp_admin_bar->add_menu( array( 'parent' => 'cvg-menu', 'id' => 'cvg-menu-manage-gallery', 'title' => __('Manage Gallery', 'cool-video-gallery'), 'href' => admin_url('admin.php?page=cvg-gallery-manage') ) );
+			$wp_admin_bar->add_menu( array( 'parent' => 'cvg-menu', 'id' => 'cvg-menu-gallery-settings', 'title' => __('Gallery Settings', 'cool-video-gallery'), 'href' => admin_url('admin.php?page=cvg-gallery-settings') ) );
+			$wp_admin_bar->add_menu( array( 'parent' => 'cvg-menu', 'id' => 'cvg-menu-player-settings', 'title' => __('Video Player Settings', 'cool-video-gallery'), 'href' => admin_url('admin.php?page=cvg-player-settings') ) );
+			$wp_admin_bar->add_menu( array( 'parent' => 'cvg-menu', 'id' => 'cvg-menu-google-sitemap', 'title' => __('Google Video Sitemap', 'cool-video-gallery'), 'href' => admin_url('admin.php?page=cvg-video-sitemap') ) );
+			$wp_admin_bar->add_menu( array( 'parent' => 'cvg-menu', 'id' => 'cvg-menu-uninstall', 'title' => __('Uninstall', 'cool-video-gallery'), 'href' => admin_url('admin.php?page=cvg-plugin-uninstall') ) );
+		}
+		
+		function add_plugin_page_links($links, $file) {
+			
+			if($file == plugin_basename( basename(dirname(__FILE__)).'/'.basename(__FILE__))) {
+				$links[] = '<a href="https://wordpress.org/support/plugin/cool-video-gallery/">' . __('Support', 'sitemap') . '</a>';
+			}
+			return $links;
 		}
 		
 		/**
 		 * Function to add contextual help for each menu of plugin page.
-		 * @return contextual help content
-		 * @author Praveen Rajan
 		 */
 		function add_gallery_contextual_help(){
 			
-			$help_array = array('toplevel_page_cvg-gallery-overview', 'video-gallery_page_cvg-gallery-add', 'video-gallery_page_cvg-gallery-manage', 'video-gallery_page_cvg-gallery-details', 'video-gallery_page_cvg-gallery-sort', 'video-gallery_page_cvg-gallery-settings', 'video-gallery_page_cvg-player-settings', 'video-gallery_page_cvg-plugin-uninstall', 'video-gallery_page_cvg-video-sitemap', 'video-gallery_page_cvg-plugin-about' );
+			$help_array = array('toplevel_page_cvg-gallery-overview', 'video-gallery_page_cvg-gallery-add', 'video-gallery_page_cvg-gallery-manage', 'video-gallery_page_cvg-gallery-details', 'video-gallery_page_cvg-gallery-sort', 'video-gallery_page_cvg-gallery-settings', 'video-gallery_page_cvg-player-settings', 'video-gallery_page_cvg-plugin-uninstall', 'video-gallery_page_cvg-video-sitemap' );
 			foreach($help_array as $help) {
 				
 				add_filter( 'contextual_help', array(&$this, 'cvg_contextual_help') , $help, 2);
-				
-				//Deprecated from 3.3
-				// add_contextual_help( $help, $help_content );
 			}	
 		}
 		
@@ -334,96 +435,87 @@ if ( !class_exists('CoolVideoGallery') ) {
 		 * 
 		 * @param $contextual_help - Contextual Help
 		 * @param $screen_id - Screen Id
-		 * @author Praveen Rajan
 		 */
 		function cvg_contextual_help( $contextual_help, $screen_id) {
 			
 			$help_content = "";
+			$screen_title = "";
 			
 			switch($screen_id) {
 					case 'toplevel_page_cvg-gallery-overview':
-										$help_content = '<p><strong>Cool Video Gallery - Overview</strong></p>';
-										$help_content .= '<p>This page shows a brief about the total number of gallery and videos added using this plugin. Server information is also provided to denote the maximum file upload limit of PHP. Inaddition to this it shows whether <b>FFMPEG</b> is installed in the webserver. Preview images are automatically generated for videos added if FFMPEG is installed. Otherwise images should be manually uploaded for videos added.</p>';
+										$help_content = '<p>An overview about the total number of galleries and videos added using this plugin is shown here. Server information is also provided to show the maximum file upload limit of PHP. Inaddition to this it shows whether <b>FFMPEG</b> is installed in the webserver. Preview images are automatically generated for videos added if FFMPEG is installed. Otherwise images should be manually uploaded for videos added.</p>';
 										$help_content .= '<p><b>Instructions to use <i>Cool Video Gallery</i>:</b></p>';
 										$help_content .= '<p><ol><li> Add a gallery and upload some videos from the admin panel to that gallery.</li>'.
 														 '<li>Use either `<b>CVG Slideshow</b>` or `<b>CVG Showcase</b>` widget to play slideshow of uploaded videos in a gallery.</li>'.	
-														 '<li>Go to your post/page and enter the tag `<b>[cvg-video videoId=\'</b>vid<b>\' /]</b>` (where vid is video id) to add video '.
-														 'or enter the tag `<b>[cvg-gallery galleryId=\'</b>gid<b>\' /]</b>` (where gid is gallery id) to add a complete gallery.</li>'.			
+														 '<li>Go to your post/page and enter the tag `<b>[cvg-video videoid=</b>vid<b>]</b>` (where vid is video id) to add video '.
+														 'or enter the tag `<b>[cvg-gallery galleryid=</b>gid<b>]</b>` (where gid is gallery id) to add a complete gallery.</li>'.			
 														 '<li>Inorder to use slideshow and showcase in custom templates created use the function `<b>cvgShowCaseWidget(</b>gid<b>)</b>` and `<b>cvgSlideShowWidget(</b>gid<b>)</b>` (where gid is gallery id).</li></ol></p>';
+										$screen_title = 'Overview';
 										
-										$help_content = __($help_content);
 										break;
-										
 					case 'video-gallery_page_cvg-gallery-add':
-										$help_content = '<p><strong>Cool Video Gallery -  Add Gallery / Videos</strong></p>';
-										$help_content .= '<p>This page provides three tabs to add gallery, upload videos and add Youtube videos. <ul><li>`Add new gallery` tab provides option to add new video galleries.</li><li>`Upload videos` tab provides option to upload mulitple videos to a selected gallery.</li><li>`Attach Media` tab provides option to attach media from library to video galleries.</li><li>`Youtube Videos` tab lets you add Youtube videos to a gallery.</li></p>';
+										$help_content = '<p>This page provides three tabs to add gallery, upload videos and add Youtube videos. <ul><li>`Add new gallery` tab provides option to add new video galleries.</li><li>`Upload videos` tab provides option to upload mulitple videos to a selected gallery.</li><li>`Attach Media` tab provides option to attach media from library to video galleries.</li><li>`Youtube Videos` tab lets you add Youtube videos to a gallery.</li></p>';
+										$screen_title = 'Add Gallery / Videos';
 										
-										$help_content = __($help_content);
 										break;	
 					case 'video-gallery_page_cvg-gallery-manage':
 					
 										if(isset($_GET['gid']) && !isset($_GET['order'])) {
-											$help_content = '<p><strong>Cool Video Gallery - Gallery Details</strong></p>';
-											$help_content .= '<p>Displays the details of a particular gallery. Top section shows the name and description of the gallery which can be updated. Details of all the videos uploaded to a certain gallery is listed below this. Bulk deletion and sorting of videos is provided as other options.</p>';
-											$help_content = __($help_content);
+											$help_content = '<p>Displays the details of a particular gallery. <ul><li>Name and description of the gallery can be updated</li><li>Lists all video(s) in a gallery</li><li>Bulk deletion and sorting of videos available</li>';
+											$help_content .= '<li>Scan gallery folder for manually uploaded video(s) <i><a onclick="showHelpDialogForScanVideos();">Learn More</a></i></li><li>Upload preview thumbnail for video(s)</li><li>Option to exclude video(s) from gallery</li><li>Publish individual video(s) as post</li><li>Generate shortcode for video(s)</li><li>Move video(s) from one gallery to another</li></ul></p>';
+											$screen_title = 'Gallery Details';
+											
 										}else if(isset($_GET['order'])){
-											$help_content = '<p><strong>Cool Video Gallery - Gallery Sorting</strong></p>';
-											$help_content .= '<p>Options to sort videos in a gallery. Sort by Video ID, Video Name or drag-drop to change video order.</p>';
-											$help_content = __($help_content);
+											$help_content = '<p>Options to sort videos in a gallery. <ul><li>Sort by Video ID, Name or Date</li><li>Drag-drop to change video order</li></ul></p>';
+											$screen_title = 'Sort Gallery';
+											
 										}else {
-											$help_content = '<p><strong>Cool Video Gallery - Manage Video Gallery</strong></p>';
-											$help_content .= '<p>Lists the different galleries created and shows a brief about each gallery denoting the no. of videos, author of gallery, description of gallery and option to delete a gallery. Option provided to perform bulk deletion of galleries. Pagination feature added for gallery listing.</p>';
-											$help_content = __($help_content);
+											$help_content = '<p>Lists the different galleries created and provide details like <ul><li>Total number of videos</li><li>Author of gallery</li><li>Description of gallery</li><li>Option to publish a gallery</li><li>Option to delete a gallery</li><li>Generate shortcode for gallery</li></ul>Option provided to perform bulk deletion of galleries.</p>';
+											$screen_title = 'Manage Gallery';
+											
 										}
 										
 										break;
 					case 'video-gallery_page_cvg-gallery-settings':
-										$help_content = '<p><strong>Cool Video Gallery - Video Gallery Settings</strong></p>';
-										$help_content .= '<p>Shows the different options available for listing and managing a gallery.</p>';
-										$help_content = __($help_content);
+										$help_content = '<p>Shows the different options available for listing and managing a gallery.</p>';
+										$screen_title = 'Gallery Settings';
+										
 										break;	
 					case 'video-gallery_page_cvg-player-settings':
-										$help_content = '<p><strong>Cool Video Gallery - Video Player Settings</strong></p>';
-										$help_content .= '<p>Options to manage different options of video player is provided here.</p>';
-										$help_content = __($help_content);
+										$help_content = '<p>Options to manage different options of video player is provided here.</p>';
+										$screen_title = 'Player Settings';
+										
 										break;
 					case 'video-gallery_page_cvg-video-sitemap':
-										$help_content = '<p><strong>Cool Video Gallery - Generate Google XML Video Sitemap</strong></p>';
-										$help_content .= '<p>Option to generate XML Sitemap for videos.</p>';
-										$help_content = __($help_content);
+										$help_content = '<p>Option to generate XML Sitemap for videos.</p>';
+										$screen_title = 'Video Sitemap';
+										
 										break;						
 					case 'video-gallery_page_cvg-plugin-uninstall':
-										$help_content = '<p><strong>Cool Video Gallery - Uninstall plugin</strong></p>';
-										$help_content .= '<p>Option to uninstall plugin.</p>';
-										$help_content = __($help_content);
+										$help_content = '<p>Option to uninstall plugin.</p>';
+										$screen_title = 'Plugin Uninstall';
+										
 										break;	
-					case 'video-gallery_page_cvg-plugin-about':
-					 					$help_content = '<p><strong>Cool Video Gallery - About the Author</strong></p>';
-										$help_content .= '<p>It\'s all about the author.</p>';
-										$help_content = __($help_content);
-										break;
 															
 				}
 
 			$screen = get_current_screen();
 
-			$help_array = array('toplevel_page_cvg-gallery-overview', 'video-gallery_page_cvg-gallery-add', 'video-gallery_page_cvg-gallery-manage', 'video-gallery_page_cvg-gallery-details', 'video-gallery_page_cvg-gallery-sort', 'video-gallery_page_cvg-gallery-settings', 'video-gallery_page_cvg-player-settings', 'video-gallery_page_cvg-plugin-uninstall', 'video-gallery_page_cvg-video-sitemap', 'video-gallery_page_cvg-plugin-about' );
+			$help_array = array('toplevel_page_cvg-gallery-overview', 'video-gallery_page_cvg-gallery-add', 'video-gallery_page_cvg-gallery-manage', 'video-gallery_page_cvg-gallery-details', 'video-gallery_page_cvg-gallery-sort', 'video-gallery_page_cvg-gallery-settings', 'video-gallery_page_cvg-player-settings', 'video-gallery_page_cvg-plugin-uninstall', 'video-gallery_page_cvg-video-sitemap');
 			
 			if(in_array($screen->base, $help_array)) {
 			
 				$screen->add_help_tab( array(
 			        'id'      => $screen_id,
-			        'title'   => __( 'Overview', 'plugin_domain' ),
-			        'content' => $help_content,
+			        'title'   => __( $screen_title, 'cool-video-gallery' ),
+			        'content' => __($help_content, 'cool-video-gallery'),
 			    ));
 			    return $contextual_help;
 			}
 		}
-
+		
 		/**
 		 * Function to include gallery overview page
-		 * @return includes file content
-		 * @author Praveen Rajan
 		 */
 		function gallery_overview() {
 			include('admin/gallery-overview.php');
@@ -431,8 +523,6 @@ if ( !class_exists('CoolVideoGallery') ) {
 
 		/**
 		 * Function to include gallery add page
-		 * @return includes file content
-		 * @author Praveen Rajan
 		 */
 		function gallery_add() {
 			include('admin/gallery-add.php');
@@ -440,8 +530,6 @@ if ( !class_exists('CoolVideoGallery') ) {
 		
 		/**
 		 * Function to include gallery manage page
-		 * @return includes file content
-		 * @author Praveen Rajan
 		 */
 		function gallery_manage() {
 			
@@ -461,8 +549,6 @@ if ( !class_exists('CoolVideoGallery') ) {
 		
 		/**
 		 * Function to include gallery settings page
-		 * @return includes file content
-		 * @author Praveen
 		 */
 		function gallery_settings() {
 			include('admin/gallery-settings.php');
@@ -470,8 +556,6 @@ if ( !class_exists('CoolVideoGallery') ) {
 		
 		/**
 		 * Function to include player settings page
-		 * @return includes file content
-		 * @author Praveen Rajan
 		 */
 		function player_settings() {
 			include('admin/player-settings.php');	
@@ -479,53 +563,43 @@ if ( !class_exists('CoolVideoGallery') ) {
 		
 		/**
 		 * Function to include video xml sitemap page
-		 * @return includes file content
-		 * @author Praveen Rajan
 		 */
 		function video_sitemap() {
 			include('admin/video-sitemap.php');	
 		}
+		
 		/**
 		 * Function to include plugin uninstall page
-		 * @return includes file content
-		 * @author Praveen Rajan
 		 */
 		function uninstall_plugin(){
 			include('admin/plugin-uninstall.php');	
 		} 
 		
 		/**
-		 * Function to include plugin author page
-		 * @return includes file content
-		 * @author Praveen Rajan
-		 */
-		function about_plugin_author() {
-			include('admin/plugin-author-details.php');
-		}
-		
-		/**
 		 * Function to include plugin description in WordPress Admin dashboard page
-		 * @author Praveen Rajan
 		 */
 		function cvg_custom_dashboard_widgets(){
 			
-			wp_add_dashboard_widget( 'cvg_admin_section', 'Cool Video Gallery <i style="font-size:12px;float:right;">by <a href="'. admin_url('admin.php?page=cvg-plugin-about') .'">Praveen Rajan</a></i>', array(&$this, 'CVGGallery_AdminNotices'));
+			wp_add_dashboard_widget( 'cvg_admin_section', __('Cool Video Gallery' , 'cool-video-gallery'), array(&$this, 'CVGGallery_AdminNotices'));
 		}
 		
+		/**
+		 * Display CVG overview in WordPress dashboard
+		 */
 		function CVGGallery_AdminNotices() {
-			CvgCore::gallery_overview();
+			$cvg_core = new CvgCore();
+			$cvg_core->gallery_overview();
 		}
 		/**
 		 * Function to include scripts
-		 * @author Praveen Rajan
 		 */
 		function gallery_script() {
 			
 			echo "<!-- Cool Video Gallery Script starts here -->";
 			
 			wp_enqueue_script('jquery');
-			wp_enqueue_script('jquery.slideshow', $this->plugin_url . 'js/jquery.slideshow.js', 'jquery');
-			wp_enqueue_script('jquery.stripslashes', $this->plugin_url . 'js/jquery.stripslashes.js', 'jquery');
+			wp_enqueue_script('jquery.slideshow', $this->plugin_url . 'third_party_lib/jquery.utils/jquery.slideshow.js', 'jquery');
+			wp_enqueue_script('jquery.stripslashes', $this->plugin_url . 'third_party_lib/jquery.utils/jquery.stripslashes.js', 'jquery');
 			wp_enqueue_style('cvg-styles', $this->plugin_url . 'css/cvg-styles.css', '');
 
 			echo "<!-- Cool Video Gallery Script ends here -->";
@@ -533,7 +607,6 @@ if ( !class_exists('CoolVideoGallery') ) {
 		
 		/**
 		 * Function to load required files.
-		 * @author Praveen
 		 */	
 		function load_video_files() {
 			require_once('lib/video-db.php');
@@ -541,100 +614,72 @@ if ( !class_exists('CoolVideoGallery') ) {
 			require_once('lib/youtube.php');
 			require_once('widgets/widgets.php');	
 			require_once('tinymce/tinymce.php');
+			require_once('cvg-player/core-functions.php');
 		}
 		
 		/**
-		 * Function to parse the video gallery format text.
+		 * Shortcode Function to render gallery.
 		 * 
-		 * @param $content - Syntax for the player.
-		 * @return content of video player.
-		 * @author Praveen Rajan
+		 * @param $arguments - input arguments.
+		 * @return Gallery.
 		 */
-		function CVGGallery_Parse($content){
+		 function cvg_gallery_shortcode($arguments) {
 			
-			$content = preg_replace_callback("/\[cvg-gallery ([^]]*)\/\]/i", array(&$this, 'CVGVideo_Gallery'), $content);
-			return $content;
-		}
-		
-		/**
-		 * Function to render gallery.
-		 * 
-		 * @param $matches - input arguments.
-		 * @return player code.
-		 * @author Praveen Rajan
-		 */
-		function CVGVideo_Gallery($matches){
-			
-			global $post, $wpdb;
 			$output = '';
 			
-			preg_match_all('/([\.\w]*)=(.*?) /i', $matches[1], $attributes);
-			$arguments = array();
-	
-			$arguments = CoolVideoGallery::splitargs($matches[1]);
+			$gallery_id = $arguments ['galleryid'];
 			
-			$gallery_id = $arguments['galleryId'];
-			
-			if(isset($arguments['limit']))
-				$limit =  $arguments['limit'];
+			if (isset ( $arguments ['limit'] ))
+				$limit = $arguments ['limit'];
 			else
 				$limit = 0;
-					
-			if(isset($arguments['mode'])) {	
-				$mode =  $arguments['mode'];
+			
+			if (isset ( $arguments ['mode'] )) {
+				$mode = $arguments ['mode'];
 				
-				if($mode == __('playlist')) {
-					$output = $this->CVG_render_playlist($gallery_id);
+				if ($mode ==  'playlist') {
+					$output = $this->CVG_render_playlist ( $gallery_id );
 					return $output;
-					
 				}
-				if($mode == __('slideshow'))
+				if ($mode == 'slideshow')
 					$slide = true;
-				elseif($mode == __('showcase'))
+				elseif ($mode == 'showcase')
 					$slide = false;
-			}else {
+			} else {
 				$slide = false;
-			}	
-					
-			$output = CvgCore::videoShowGallery($gallery_id, $slide, $limit);
+			}
+			
+			$cvg_core = new CvgCore();
+			$output = $cvg_core->videoShowGallery ( $gallery_id, $slide, $limit );
 			
 			return $output;
-		} 
+		}
 		
 		/**
-		 * Function to parse the video player format text.
-		 * 
-		 * @param $content - Syntax for the player.
-		 * @return content of video player.
-		 * @author Praveen Rajan
+		 * Shotcode Function to render videos
+		 * @param $arguments - input arguments.
+		 * @return video
 		 */
-		function CVGVideo_Parse($content){
+		function cvg_video_shortcode($arguments) {
 			
-			$content = preg_replace_callback("/\[cvg-video ([^]]*)\/\]/i", array(&$this, 'CVGVideo_Render'), $content);
-			return $content;
+			return $this -> CVGVideo_Render($arguments);
 		}
 		
 		/**
 		 * Function to render video player.
 		 * 
-		 * @param $matches - input arguments.
+		 * @param $arguments - input arguments.
 		 * @return player code.
-		 * @author Praveen Rajan
 		 */
-		function CVGVideo_Render($matches){
-			
-			global $post, $wpdb;
+		function CVGVideo_Render($arguments){
 			
 			$output = '';
-
-			preg_match_all('/([\.\w]*)=(.*?) /i', $matches[1], $attributes);
-			$arguments = array();
-			$arguments = CoolVideoGallery::splitargs($matches[1]);
 			
-			$video_details = videoDB::find_video($arguments['videoId']);
+			$cvg_videodb = new CvgVideoDB();
+			$video_details = $cvg_videodb->find_video($arguments['videoid']);
 			
 			if(!is_array($video_details))
-				return __('[Video not found]');
+				return __('[Video not found]', 'cool-video-gallery');
 			
 			$options = get_option('cvg_settings');
 				
@@ -687,8 +732,7 @@ if ( !class_exists('CoolVideoGallery') ) {
 							
 			$video['name']	= $video_details[0]->name;
 			if ( !array_key_exists('filename', $video) ){
-				return '<div style="background-color:#f99; padding:10px;">Error: Required parameter "filename" is missing!</div>';
-				exit;
+				return __('Error: Required parameter "filename" is missing!', 'cool-video-gallery');
 			}
 					
 			$options_player = get_option('cvg_player_settings');
@@ -721,17 +765,22 @@ if ( !class_exists('CoolVideoGallery') ) {
 			else 
 				$player_swf = "player.swf";
 				
+			$skin_url = "";
+			if($options_player['cvgplayer_skin'] != "") {
+			
+				$skin_url = $this->video_player_url . 'skins/' . $options_player['cvgplayer_skin'] . '-skin/' . $options_player['cvgplayer_skin']  . '.xml';
+			}
+				
 			//Embed section for a video
 			if(isset($arguments['mode']) && $arguments['mode'] == "playlist") {
 				
-				$video_display = '<div id="mediaplayer_vid_'.$arguments['videoId'].'">';
+				$video_display = '<div id="mediaplayer_vid_'.$arguments['videoid'].'">';
 				$video_display .= '</div>';
-					
-					?>
+				?>
 					<script type="text/javascript">
 					jQuery(document).ready(function(){
 						
-						jwplayer("<?php echo "mediaplayer_vid_".$arguments['videoId']; ?>").setup({
+						jwplayer("<?php echo "mediaplayer_vid_".$arguments['videoid']; ?>").setup({
 							"autostart" : "<?php echo $autoplay;?>",
 							"controlbar" : "<?php echo $options_player['cvgplayer_controlbar']; ?>",
 							"file" : "<?php echo $video['filename'];?>",
@@ -742,8 +791,62 @@ if ( !class_exists('CoolVideoGallery') ) {
 							"image" : "<?php echo $video['thumb_filename'] ; ?>",
 							"mute" : "<?php echo $mute; ?>",
 							"stretching" : "<?php echo $options_player['cvgplayer_stretching']; ?>",
-							"skin" : "<?php echo $this->video_player_url . 'skins/' . $options_player['cvgplayer_skin'] . '-skin/' . $options_player['cvgplayer_skin']  . '.xml' ?>"
+							"skin" : "<?php echo $skin_url; ?>"
 						});
+
+						<?php if($video_details[0]->video_type == $this->video_type_youtube){ ?>
+						
+							jwplayer("<?php echo "mediaplayer_vid_".$arguments['videoid']; ?>").onError(function(error) {
+								if(error.type == "jwplayerError") {
+									
+									if(error.message.indexOf("2035") > -1) {
+										// Youtube HTML5 Error
+										
+										var cvg_gallery_video_current_url = "<?php echo $video['filename'];?>";
+										
+										var cvg_youtube_video_id = cvg_gallery_video_current_url.split('v=')[1];
+										var ampersandPosition = cvg_youtube_video_id.indexOf('&');
+										if(ampersandPosition != -1) {
+											
+											  cvg_youtube_video_id = cvg_youtube_video_id.substring(0, ampersandPosition);
+										}
+
+										var errorHTML5Text = '<?php _e('Error loading Youtube Video. Web Browser not supporting Flash video playback. Switching to Youtube iFrame Player. Please wait!!!', 'cool-video-gallery'); ?>';
+										var errorHTML5PlayerDivContent = '<div class="cvg-html5-youtube-error"><div class="cvg-html5-youtube-error-inner"><img src="<?php echo $this->plugin_url . "cvg-player/cvg-ajax-loader.gif"; ?>" /><p>'+errorHTML5Text+'</p></div></div>';
+										
+										jQuery('#mediaplayer_vid_<?php echo $arguments['videoid'];?>_wrapper').empty();
+										jQuery('#mediaplayer_vid_<?php echo $arguments['videoid'];?>_wrapper').append("<div id='cvg_youtube_player_<?php echo $arguments['videoid'];?>' style='height:100%;'>"+errorHTML5PlayerDivContent+"</div>");
+	
+										setTimeout(function() {
+											var cvg_youtube_iframe_player = new YT.Player('cvg_youtube_player_<?php echo $arguments['videoid'];?>', {
+										          height: parseInt("<?php echo $options_player['cvgplayer_height']; ?>") ,
+										          width: parseInt("<?php echo $options_player['cvgplayer_width'] ; ?>") ,
+												      videoId: cvg_youtube_video_id,
+											      events: {
+												      	'onReady' : function(event) {
+	
+												      		cvg_youtube_iframe_player.unMute();
+												      		<?php if($options_player['cvgplayer_mute'] == 1)  { ?>
+												      			cvg_youtube_iframe_player.mute();
+												      		<?php } ?>
+	
+												      		cvg_youtube_iframe_player.setVolume('<?php echo $options_player['cvgplayer_volume']; ?>');
+												      	}
+											      },
+											      playerVars : {
+														'autoplay': 1,
+														'color' : 'white',
+														'rel': 0,
+														'showinfo' : 0
+											      }
+											});
+											
+										}, 4000);	
+									}
+								} 
+							});
+
+						<?php }?>
 					});
 					</script>
 				<?php 
@@ -753,41 +856,41 @@ if ( !class_exists('CoolVideoGallery') ) {
 			}else if(isset($arguments['mode']) && $arguments['mode'] == "list_items") {
 				
 				//List of videos section for a gallery
-				$videoDetails = videoDB::find_video($arguments["videoId"]); 	
+				$cvg_videodb = new CvgVideoDB();
+				$videoDetails = $cvg_videodb->find_video($arguments["videoid"]); 	
 				$gallery_id = $videoDetails[0]->galleryid;
 
-				$output .=  '<a href="' . $video['filename'] . '" title="' . stripslashes($video['title']) . '"  rel="fancy_cvg_gallery_'.$gallery_id.'_'. $arguments['placeholder'].'" style="float:left;height:'.$thumb_height.'px !important;">' ;
+				$output .=  '<a href="' . $video['filename'] . '" title="' . stripslashes($video['title']) . '"  rel="fancy_cvg_gallery_'.$gallery_id.'_'. $arguments['placeholder'].'" style="position:relative;float:left;height:'.$thumb_height.'px !important;">' ;
 				$output .=  '<img src="' .$video['thumb_filename'] . '" style="width:' . $thumb_width . 'px;height:' . $thumb_height .'px;max-width:100% !important;" ' ;
-				$output .=  'alt="' . htmlspecialchars('Click to Watch Video') . '" /><div style="width:' . $thumb_width . 'px;"></div></a>';
-				
+				$output .=  'alt="' . __('Click to Watch Video', 'cool-video-gallery') . '" /><div style="width:' . $thumb_width . 'px;"></div></a>';
 				
 			}else if(isset($arguments['mode']) && $arguments['mode'] == "slide_show") {
 				
 				//List of videos section for a gallery
-				 	
-				$videoDetails = videoDB::find_video($arguments["videoId"]); 	
+				$cvg_videodb = new CvgVideoDB();
+				$videoDetails = $cvg_videodb->find_video($arguments["videoid"]); 	
 				$gallery_id = $videoDetails[0]->galleryid;
 				
 				$output .=  '<a href="' . $video['filename'] . '" title="' . stripslashes($video['title']) . '"  rel="fancy_cvg_gallery_slide_'.$gallery_id.'_'. $arguments['placeholder'] .'">' ;
 				$output .=  '<img  src="' .$video['thumb_filename'] . '" style="width:' . $thumb_width . 'px;height:' . $thumb_height .'px;max-width:100% !important;" ' ;
-				$output .=  'alt="' . htmlspecialchars('Click to Watch Video') . '" /></a>';
+				$output .=  'alt="' . __('Click to Watch Video', 'cool-video-gallery') . '" /></a>';
 				
 			}else {
 				
-				//Single video display
-				$output .=  '<a href="' . $video['filename'] . '" title="' . stripslashes($video['title']) . '"  rel="fancy_cvg_video_'. $arguments['videoId'] . '">' ;
-				$output .=  '<img src="' .$video['thumb_filename'] . '" style="width:' . $thumb_width . 'px;height:' . $thumb_height .'px;" ' ;
-				$output .=  'alt="' . htmlspecialchars('Click to Watch Video') . '" id="fancy_cvg_video_preview_'. $arguments["videoId"] . '"  /><div style="width:' . $thumb_width . 'px;"></div></a>';
-				?>
+				// Single video display
+				$output .= '<a href="' . $video ['filename'] . '" title="' . stripslashes ( $video ['title'] ) . '"  rel="fancy_cvg_video_' . $arguments ['videoid'] . '">';
+				$output .= '<img src="' . $video ['thumb_filename'] . '" style="width:' . $thumb_width . 'px;height:' . $thumb_height . 'px;" ';
+				$output .= 'alt="' . __ ( 'Click to Watch Video', 'cool-video-gallery' ) . '" id="fancy_cvg_video_preview_' . $arguments ["videoid"] . '"  /></a>';
 				
+				?>
 				<script type="text/javascript">
 					jQuery(document).ready(function() {
 		
-						jQuery("a[rel=fancy_cvg_video_<?php echo $arguments['videoId'];?>]").fancybox({
+						jQuery("a[rel=fancy_cvg_video_<?php echo $arguments['videoid'];?>]").fancybox({
 							'titlePosition' : 'outside',
-							'transitionIn' : 'none',
-							'transitionOut' : 'none',
-							'autoScale' : true,
+							'transitionIn' : 'fade',
+							'transitionOut' : 'fade',
+							'autoScale' : false,
 							'titleFormat' : function(title, currentArray, currentIndex, currentOpts) {
 								
 								if(title.length != 0)
@@ -795,32 +898,33 @@ if ( !class_exists('CoolVideoGallery') ) {
 								else
 									return '';
 							},
-							'content' : '<div id="video_fancy_cvg_video_<?php echo $arguments['videoId'];?>" style="overflow:hidden;"></div>',
-	
+							'content' : '<div id="video_fancy_cvg_video_<?php echo $arguments['videoid'];?>" style="overflow:hidden;"></div>',
 							'autoDimensions' : false,
+							'padding' : 0,
+							'margin' : 0,
+							'scrolling' : 'no',
 							'width' : parseInt("<?php echo $options_player['cvgplayer_width']; ?>"),
-							'height' : parseInt("<?php echo $options_player['cvgplayer_height']; ?>") + 6,
+							'height' : parseInt("<?php echo $options_player['cvgplayer_height']; ?>"),
 							'onComplete' : function() {
+
+								var cvg_gallery_video_current_url = this.href;
 								
-								jwplayer('video_fancy_cvg_video_<?php echo $arguments['videoId'];?>').setup({
+								jwplayer('video_fancy_cvg_video_<?php echo $arguments['videoid'];?>').setup({
 									'file' : this.href,
 									"autostart" : "<?php echo $autoplay;?>",
 									"controlbar" : "<?php echo $options_player['cvgplayer_controlbar']; ?>",
 									"flashplayer" : "<?php echo $this->plugin_url . "cvg-player/" . $player_swf; ?>",
 									"volume" : "<?php echo $options_player['cvgplayer_volume']; ?>",
-									"width" : "<?php echo $options_player['cvgplayer_width']; ?>",
-									"height" : "<?php echo $options_player['cvgplayer_height']; ?>",
-									"image" :  jQuery('#fancy_cvg_video_preview_<?php echo $arguments["videoId"];?>').attr('src') ,
+									"width" : parseInt("<?php echo $options_player['cvgplayer_width']; ?>"),
+									"height" : parseInt("<?php echo $options_player['cvgplayer_height']; ?>"),
+									"image" :  jQuery('#fancy_cvg_video_preview_<?php echo $arguments["videoid"];?>').attr('src') ,
 									"mute" : "<?php echo $mute; ?>",
 									"stretching" : "<?php echo $options_player['cvgplayer_stretching']; ?>",
-									"skin" : "<?php echo $this->video_player_url . 'skins/' . $options_player['cvgplayer_skin'] . '-skin/' . $options_player['cvgplayer_skin']  . '.xml' ?>"
-									
+									"skin" : "<?php echo $skin_url; ?>"
 								});
 								
-								jwplayer('video_fancy_cvg_video_<?php echo $arguments['videoId'];?>').onComplete(function() {
-									
+								jwplayer('video_fancy_cvg_video_<?php echo $arguments['videoid'];?>').onComplete(function() {
 									<?php 
-										$options_player = get_option('cvg_player_settings');
 										if ($options_player['cvgplayer_auto_close_single']) {
 										?>
 											jQuery.fancybox.close();
@@ -828,60 +932,112 @@ if ( !class_exists('CoolVideoGallery') ) {
 										}
 									?>
 								});
+
+								<?php if($video_details[0]->video_type == $this->video_type_youtube){ ?>
+								
+									jwplayer('video_fancy_cvg_video_<?php echo $arguments['videoid'];?>').onError(function(error) {
+										if(error.type == "jwplayerError") {
+											
+											if(error.message.indexOf("2035") > -1) {
+												// Youtube HTML5 Error
+												var cvg_youtube_video_id = cvg_gallery_video_current_url.split('v=')[1];
+												var ampersandPosition = cvg_youtube_video_id.indexOf('&');
+												if(ampersandPosition != -1) {
+												  cvg_youtube_video_id = cvg_youtube_video_id.substring(0, ampersandPosition);
+												}
+												
+												var errorHTML5Text = '<?php _e('Error loading Youtube Video. Web Browser not supporting Flash video playback. Switching to Youtube iFrame Player. Please wait!!!', 'cool-video-gallery'); ?>';
+												var errorHTML5PlayerDivContent = '<div class="cvg-html5-youtube-error"><div class="cvg-html5-youtube-error-inner"><img src="<?php echo $this->plugin_url . "cvg-player/cvg-ajax-loader.gif"; ?>" /><p>'+errorHTML5Text+'</p></div></div>';
+												
+												jQuery('#video_fancy_cvg_video_<?php echo $arguments['videoid'];?>_wrapper').empty();
+												jQuery('#video_fancy_cvg_video_<?php echo $arguments['videoid'];?>_wrapper').append("<div id='cvg_youtube_player_<?php echo $arguments['videoid'];?>' style='height:100%;'>"+errorHTML5PlayerDivContent+"</div>");
+	
+												setTimeout(function() {
+													var cvg_youtube_iframe_player = new YT.Player('cvg_youtube_player_<?php echo $arguments['videoid'];?>', {
+												          height: parseInt("<?php echo $options_player['cvgplayer_height']; ?>") ,
+												          width: parseInt("<?php echo $options_player['cvgplayer_width'] ; ?>") ,
+														      videoId: cvg_youtube_video_id,
+													      events: {
+														      	'onReady' : function(event) {
+	
+														      		cvg_youtube_iframe_player.unMute();
+														      		<?php if($options_player['cvgplayer_mute'] == 1)  { ?>
+														      			cvg_youtube_iframe_player.mute();
+														      		<?php } ?>
+	
+														      		cvg_youtube_iframe_player.setVolume('<?php echo $options_player['cvgplayer_volume']; ?>');
+														      	},
+													            'onStateChange': function (event) {
+														            if(event.data == YT.PlayerState.ENDED) {
+													            		<?php 
+																			if ($options_player['cvgplayer_auto_close_single']) {
+																			?>
+																				jQuery.fancybox.close();
+																			<?php 
+																			}
+																		?>
+														            } 
+														         }
+													      },
+													      playerVars : {
+																'autoplay': 1,
+																'color' : 'white',
+																'rel': 0,
+																'showinfo' : 0
+													      }
+													});
+													
+												}, 4000);	
+											}
+										} 
+									});
+								<?php }?>
 							}
-		
 						});
 					});
-
 				</script>
 				<?php
 			}
-			
 			return $output;
 		} 
-		
 		
 		/**
 		 * Function to add players files to header.
 		 * 
 		 * @return script and styles for video player
-		 * @author Praveen Rajan
 		 */		
 		function addPlayerHeader(){
 			
 			$options_settings = get_option('cvg_settings');	
-			
 			echo "<!-- Cool Video Gallery Script starts here -->";
-			
 			wp_enqueue_script('jwplayer', $this->video_player_url . 'jwplayer.js', '');
 			wp_enqueue_script('jquery.fancybox', $this->plugin_url . 'third_party_lib/fancybox/jquery.fancybox-1.3.4.pack.js', 'jquery');
 			wp_enqueue_style('jquery.fancybox', $this->plugin_url . 'third_party_lib/fancybox/jquery.fancybox-1.3.4.css', 'jquery');
 			
-			if(isset($options_settings['cvg_navigation_controls']) && $options_settings['cvg_navigation_controls'] == 0) {
-				?>
-				<style type="text/css" media="screen">
-					#fancybox-left-ico { 
-					 left: 20px; 
-					} 
-					
-					#fancybox-right-ico { 
-					 right: 20px; 
-					 left: auto; 
-					} 
-				</style>
-			<?php } ?>
+			?>
 			<script type="text/javascript">
 				jQuery(document).ready(function(){
-					if(jQuery('.slideContent').length != 0) {
-						jQuery('.slideContent').each(function() {
+					if(jQuery('.cvg-slideshow-content').length != 0) {
+						jQuery('.cvg-slideshow-content').each(function() {
 							jQuery(this.id).s3Slider({
 						      timeOut: <?php echo $options_settings['cvg_slideshow']; ?>,
 							  item_id: this.id 
 						   });
 						}); 
-					}	   
-				});
+					}
 
+					// This code loads the IFrame Player API code asynchronously.
+					var tag = document.createElement('script');
+					tag.src = "https://www.youtube.com/iframe_api";
+					var firstScriptTag = document.getElementsByTagName('script')[0];
+					firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+					// This function creates an <iframe> (and YouTube player)
+					// after the API code downloads.
+					function onYouTubeIframeAPIReady() {
+					          	
+					}	  
+				});
 			</script>
 			<!-- Cool Video Gallery Script ends here -->
 			<?php
@@ -891,7 +1047,6 @@ if ( !class_exists('CoolVideoGallery') ) {
 		 * Function to generate playlist of videos
 		 * @param $gallery_id - gallery id
 		 * @return embeded playlist
-		 * @author Praveen
 		 */
 		function CVG_render_playlist( $gallery_id ) {
 			
@@ -912,13 +1067,19 @@ if ( !class_exists('CoolVideoGallery') ) {
 			else 
 				$player_swf = "player.swf";
 			
-			
-			$gallery_detail = videoDB::find_gallery($gallery_id);
+			$cvg_videodb = new CvgVideoDB();
+			$gallery_detail = $cvg_videodb->find_gallery($gallery_id);
 			
 			$gallery_name = $gallery_detail->name;
 			$playlist_xml = site_url() . '/' . $gallery_detail->path . '/' . $gallery_name . '-playlist.xml';
 			
 			$width = $options_player['cvgplayer_width'];
+			
+			$skin_url = "";
+			if($options_player['cvgplayer_skin'] != "") {
+			
+				$skin_url = $this->video_player_url . 'skins/' . $options_player['cvgplayer_skin'] . '-skin/' . $options_player['cvgplayer_skin']  . '.xml';
+			}
 			
 			if($options_player['cvgplayer_playlist'] == 'right' || $options_player['cvgplayer_playlist'] == 'left') {
 				$panel_width = $options_player['cvgplayer_playlist_width'];
@@ -949,7 +1110,17 @@ if ( !class_exists('CoolVideoGallery') ) {
 					'volume' : "<?php echo $options_player['cvgplayer_volume']; ?>",
 					'mute' : "<?php echo $mute; ?>",
 					'stretching' : "<?php echo $options_player['cvgplayer_stretching']; ?>",
-					"skin" : "<?php echo $this->video_player_url . 'skins/' . $options_player['cvgplayer_skin'] . '-skin/' . $options_player['cvgplayer_skin']  . '.xml' ?>"
+					"skin" : "<?php echo $skin_url; ?>"
+				});
+
+				jwplayer("<?php echo 'mediaplayer_gallery_'.$gallery_id; ?>").onError(function(error) {
+					if(error.type == "jwplayerError") {
+						
+						if(error.message.indexOf("2035") > -1) {
+
+							alert('<?php _e("Error loading Youtube Video. Web Browser not supporting Flash video playback.", 'cool-video-gallery');?>');		
+						}
+					} 
 				});
 			});
 			
@@ -957,45 +1128,6 @@ if ( !class_exists('CoolVideoGallery') ) {
 			<?php
 			return $gallery_display;
 		}
-		
-		/**
-		 * Function to split arguments
-		 * 
-		 * @param $argument_string - arguments passed
-		 * @return arugments parsed.
-		 * @author Praveen Rajan
-		 */
-		function splitargs($argument_string){
-
-			preg_match_all('/(?:[^ =]+?)=(?:["\'].+?["\']|[^ ]+)/', $argument_string, $items);
-		    $args = array();
-		
-		    foreach ($items[0] as $item){
-		        $parts = explode("=", $item);
-		        $name = $parts[0];
-		        $value = implode("=", array_slice($parts, 1));
-		        $args[$name] = trim($value, "\"'");
-		    }
-		
-		    return $args;
-		}
-		
-		/**
-		 * Function to add admin_bar_menu at top.
-		 */
-		function admin_bar_menu_cvg() {
-	
-	    	global $wp_admin_bar;
-	
-	    	$wp_admin_bar->add_menu( array( 'id' => 'cvg-menu', 'title' => __( 'CVG' ), 'href' => admin_url('admin.php?page=cvg-gallery-overview') ) );
-	        $wp_admin_bar->add_menu( array( 'parent' => 'cvg-menu', 'id' => 'cvg-menu-add-gallery-video', 'title' => __('Add Gallery / Videos', ''), 'href' => admin_url('admin.php?page=cvg-gallery-add') ) );
-			$wp_admin_bar->add_menu( array( 'parent' => 'cvg-menu', 'id' => 'cvg-menu-manage-gallery', 'title' => __('Manage Gallery', ''), 'href' => admin_url('admin.php?page=cvg-gallery-manage') ) );
-			$wp_admin_bar->add_menu( array( 'parent' => 'cvg-menu', 'id' => 'cvg-menu-gallery-settings', 'title' => __('Gallery Settings', ''), 'href' => admin_url('admin.php?page=cvg-gallery-settings') ) );
-			$wp_admin_bar->add_menu( array( 'parent' => 'cvg-menu', 'id' => 'cvg-menu-player-settings', 'title' => __('Video Player Settings', ''), 'href' => admin_url('admin.php?page=cvg-player-settings') ) );
-			$wp_admin_bar->add_menu( array( 'parent' => 'cvg-menu', 'id' => 'cvg-menu-google-sitemap', 'title' => __('Google XML Video Sitemap', ''), 'href' => admin_url('admin.php?page=cvg-video-sitemap') ) );
-			$wp_admin_bar->add_menu( array( 'parent' => 'cvg-menu', 'id' => 'cvg-menu-uninstall', 'title' => __('Uninstall', ''), 'href' => admin_url('admin.php?page=cvg-plugin-uninstall') ) );
-			$wp_admin_bar->add_menu( array( 'parent' => 'cvg-menu', 'id' => 'cvg-menu-about', 'title' => __('About Author', ''), 'href' => admin_url('admin.php?page=cvg-plugin-about') ) );
-	    }
 	}
 
 }else {

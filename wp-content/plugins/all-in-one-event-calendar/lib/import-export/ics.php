@@ -51,7 +51,11 @@ class Ai1ec_Ics_Import_Export_Engine
 	 * @see Ai1ec_Import_Export_Engine::export()
 	 */
 	public function export( array $arguments, array $params = array() ) {
-		$c = new vcalendar();
+		$vparams = array();
+		if ( isset( $params['xml'] ) && true === $params['xml'] ) {
+			$vparams['format'] = 'xcal';
+		}
+		$c = new vcalendar( $vparams );
 		$c->setProperty( 'calscale', 'GREGORIAN' );
 		$c->setProperty( 'method', 'PUBLISH' );
 		// if no post id are specified do not export those properties
@@ -136,7 +140,10 @@ class Ai1ec_Ics_Import_Export_Engine
 		$do_show_map     = isset( $args['do_show_map'] ) ? $args['do_show_map'] : 0;
 		$count           = 0;
 		$events_in_db    = isset( $args['events_in_db'] ) ? $args['events_in_db'] : 0;
+
+		//sort by event date function _cmpfcn of iCalcreator.class.php
 		$v->sort();
+
 		// Reverse the sort order, so that RECURRENCE-IDs are listed before the
 		// defining recurrence events, and therefore take precedence during
 		// caching.
@@ -306,8 +313,21 @@ class Ai1ec_Ics_Import_Export_Engine
 			}
 
 			if ( $rdate = $e->createRdate() ) {
-				$rdate = explode( ':', $rdate );
-				$rdate = trim( end( $rdate ) );
+				$arr     = explode( 'RDATE', $rdate );
+				$matches = null;
+				foreach ( $arr as $value ) {
+					$arr2 = explode( ':', $value );
+					if ( 2 === count( $arr2 ) ) {
+						$matches[] = $arr2[1];
+					}
+				}
+				if ( null !== $matches ) {
+					$rdate = implode( ',', $matches );	
+					unset( $matches ); 
+					unset( $arr ); 
+				} else {
+					$rdate = null;
+				}				
 			}
 
 			// ===================
@@ -593,6 +613,39 @@ class Ai1ec_Ics_Import_Export_Engine
 				wp_set_post_terms( $event->get( 'post_id' ), array_keys( $ids ), $tax_name );
 			}
 
+			// import the metadata used by ticket events
+
+			$cost_type    = $e->getProperty( 'X-COST-TYPE' );
+			if ( $cost_type && false === ai1ec_is_blank( $cost_type[1] ) ) {
+				update_post_meta( $event->get( 'post_id' ), '_ai1ec_cost_type', $cost_type[1] );
+			}
+
+			$api_event_id = $e->getProperty( 'X-API-EVENT-ID' );
+			if ( $api_event_id && false === ai1ec_is_blank( $api_event_id[1] ) ) {
+				update_post_meta( $event->get( 'post_id' ), Ai1ec_Api_Ticketing::EVENT_ID_METADATA, $api_event_id[1] );	
+			}
+
+			$api_url = $e->getProperty( 'X-API-URL' );
+			if ( $api_url && false === ai1ec_is_blank( $api_url[1] ) ) {
+				update_post_meta( $event->get( 'post_id' ), Ai1ec_Api_Ticketing::ICS_API_URL_METADATA, $api_url[1] );	
+			}
+
+			$checkout_url = $e->getProperty( 'X-CHECKOUT-URL' );
+			if ( $checkout_url && false === ai1ec_is_blank( $checkout_url[1] ) ) {
+				update_post_meta( $event->get( 'post_id' ), Ai1ec_Api_Ticketing::ICS_CHECKOUT_URL_METADATA, $checkout_url[1] );	
+			}
+			
+			$wp_images_url  = $e->getProperty( 'X-WP-IMAGES-URL' );
+			if ( $wp_images_url && false === ai1ec_is_blank( $wp_images_url[1] ) ) {
+				$images_arr = explode( ',', $wp_images_url[1] );
+				foreach ( $images_arr as $key => $value ) {
+					$images_arr[ $key ] = explode( ';', $value );
+				}
+				if ( count( $images_arr ) > 0 ) {
+					update_post_meta( $event->get( 'post_id' ), '_featured_image', $images_arr );	
+				}	
+			}
+
 			unset( $events_in_db[$event->get( 'post_id' )] );
 		} //close while iteration
 
@@ -745,9 +798,65 @@ class Ai1ec_Ics_Import_Export_Engine
 			)
 		);
 
+		$post_meta_values = get_post_meta( $event->get( 'post_id' ), '', false );
+
+		//getting the metadata used by Ticket Event
+		$api_event_id = null;
+		$cost_type    = null;
+		$api_url      = null;
+		$checkout_url = null;
+		if ( $post_meta_values ) {
+			foreach ($post_meta_values as $key => $value) {				
+				if ( '_ai1ec_cost_type' === $key ) {
+					$cost_type    = $value[0];
+				} else if ( Ai1ec_Api_Ticketing::EVENT_ID_METADATA === $key ) {
+					$api_event_id = $value[0];					
+				} else if ( Ai1ec_Api_Ticketing::ICS_API_URL_METADATA === $key ) {
+					$api_url = $value[0];
+				} else if ( Ai1ec_Api_Ticketing::ICS_CHECKOUT_URL_METADATA === $key ) {
+					$checkout_url = $value[0];
+				}
+ 			}			
+		}
+
+		if ( false === ai1ec_is_blank( $cost_type ) ) {
+			$e->setProperty(
+				'X-COST-TYPE',
+				$this->_sanitize_value( $cost_type )
+			);
+		}
+		
+		$url = '';
+		if ( $api_event_id ) {
+
+			//getting all necessary informations that will be necessary on imported ticket events
+			
+			$e->setProperty(
+				'X-API-EVENT-ID',
+				$this->_sanitize_value( $api_event_id )
+			);
+
+			if ( ai1ec_is_blank( $api_url ) ) {
+				$e->setProperty( 'X-API-URL', AI1EC_API_URL );			
+			} else {
+				$e->setProperty( 'X-API-URL', $this->_sanitize_value( $api_url ) );			
+			}
+
+			$api = $this->_registry->get( 'model.api.api-ticketing' );
+			if ( ai1ec_is_blank( $checkout_url ) ) {
+				$e->setProperty( 'X-CHECKOUT-URL', AI1EC_TICKETS_CHECKOUT_URL );			
+				$url = $api->create_checkout_url( $api_event_id );
+			} else {
+				$e->setProperty( 'X-CHECKOUT-URL', $this->_sanitize_value( $checkout_url ) );			
+				$url = $api->create_checkout_url( $api_event_id, $checkout_url );
+			}			
+
+		} else if ( $event->get( 'ticket_url' ) ) {					
+			$url = $event->get( 'ticket_url' );
+		}
+
 		//Adding Ticket URL to the Description field
-		if ( $event->get( 'ticket_url' ) ) {					
-			$url     = $event->get( 'ticket_url' );
+		if ( false === ai1ec_is_blank( $url ) ) {
 			$content = $this->_remove_ticket_url( $content );	
 			$content = $content
 		             . '<p>' . __( 'Tickets: ', AI1EC_PLUGIN_NAME )
@@ -760,11 +869,35 @@ class Ai1ec_Ics_Import_Export_Engine
 		$content = html_entity_decode( $content, ENT_QUOTES, 'UTF-8' );
 
 		// Prepend featured image if available.
-		$size = null;
-		$avatar = $this->_registry->get( 'view.event.avatar' );
+		$size    = null;
+		$avatar  = $this->_registry->get( 'view.event.avatar' );
 		$matches = $avatar->get_image_from_content( $content );
 		// if no img is already present - add thumbnail
 		if ( empty( $matches ) ) {
+
+			$post_id = get_post_thumbnail_id( $event->get( 'post_id' ) );
+			$images  = null;			
+			$added   = null;
+			foreach ( array( 'thumbnail', 'medium', 'large', 'full' ) as $_size ) {
+				$attributes = wp_get_attachment_image_src( $post_id, $_size );	
+				if ( false !== $attributes ) {
+					$key_str    = sprintf( '%d_%d', $attributes[1], $attributes[2]);	
+					if ( null === $added || false === isset( $added[$key_str] ) ) {
+						$added[$key_str] = true; 
+						array_unshift( $attributes, $_size );
+						$images[] = implode( ';', $attributes );
+					}
+				}	 					
+			}
+			if ( null !== $images ) {
+				$e->setProperty(
+					'X-WP-IMAGES-URL',
+					$this->_sanitize_value(
+						implode( ',', $images )
+					)
+				);
+			}
+
 			if ( $img_url = $avatar->get_post_thumbnail_url( $event, $size ) ) {
 				$content = '<div class="ai1ec-event-avatar alignleft timely"><img src="' .
 					esc_attr( $img_url ) . '" width="' . $size[0] . '" height="' .

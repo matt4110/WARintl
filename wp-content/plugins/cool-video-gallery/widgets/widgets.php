@@ -1,18 +1,18 @@
 <?php
-
 /**
  * cvgShowCaseWidget - Widget to show video gallery as a showcase
  *
  * @package Cool Video Gallery
  * @author Praveen Rajan
- * @copyright 2010 - 2011
+ * @copyright 2010 - 2016
  * @access public
  */
 class cvgShowCase_Widget extends WP_Widget {
 
 	function cvgShowCase_Widget() {
-		$widget_ops = array('classname' => 'cvg_widget_showcase', 'description' => __( 'Show a Cool Video Gallery Showcase') );
-		$this->WP_Widget('cvg_showcase', __('CVG Showcase'), $widget_ops);
+		
+		$widget_ops = array('classname' => 'cvg_widget_showcase', 'description' => __( 'Show a Cool Video Gallery Showcase', 'cool-video-gallery') );
+		parent::__construct('cvg_showcase', __('CVG Showcase', 'cool-video-gallery'), $widget_ops);
 	}
 
 	function widget( $args, $instance ) {
@@ -52,18 +52,17 @@ class cvgShowCase_Widget extends WP_Widget {
 
 	function form( $instance ) {
 		
-		global $wpdb;
-
 		//Defaults
-		$instance = wp_parse_args( (array) $instance, array( 'title' => 'CVG Showcase', 'galleryid' => '0') );
+		$instance = wp_parse_args( (array) $instance, array( 'title' => __('CVG Showcase', 'cool-video-gallery'), 'galleryid' => '0') );
 		$title  = esc_attr( $instance['title'] );
 		$number = isset($instance['number']) ? absint($instance['number']) : 5;
 
-		$tables = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix ."cvg_gallery ORDER BY 'name' ASC ");
+		$cvg_core = new CvgCore();
+		$tables = $cvg_core->cvg_videodb->get_all_gallery_widgets();
 		?>
-		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></p>
+		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'cool-video-gallery'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></p>
 		<p>
-			<label for="<?php echo $this->get_field_id('galleryid'); ?>"><?php _e('Select Gallery:'); ?></label>
+			<label for="<?php echo $this->get_field_id('galleryid'); ?>"><?php _e('Select Gallery:', 'cool-video-gallery'); ?></label>
 			<select size="1" name="<?php echo $this->get_field_name('galleryid'); ?>" id="<?php echo $this->get_field_id('galleryid'); ?>" class="widefat">
 			<?php
 			if($tables) {
@@ -77,7 +76,7 @@ class cvgShowCase_Widget extends WP_Widget {
 			</select>
 		</p>
 		
-		<p><label for="<?php echo $this->get_field_id('number'); ?>"><?php _e('Number of Videos to show:'); ?></label>
+		<p><label for="<?php echo $this->get_field_id('number'); ?>"><?php _e('Number of Videos to show:', 'cool-video-gallery'); ?></label>
 		<input id="<?php echo $this->get_field_id('number'); ?>" name="<?php echo $this->get_field_name('number'); ?>" type="text" value="<?php echo $number; ?>" size="3" /></p>
 <?php	
 	}
@@ -92,15 +91,15 @@ add_action('widgets_init', create_function('', 'return register_widget("cvgShowC
  *
  * @package Cool Video Gallery
  * @author Praveen Rajan
- * @copyright 2010 - 2011
+ * @copyright 2010 - 2016
  * @access public
  */
 
 class cvgSlideShow_Widget extends WP_Widget {
 
 	function cvgSlideShow_Widget() {
-		$widget_ops = array('classname' => 'cvg_widget_slideshow', 'description' => __( 'Show a Cool Video Gallery Slideshow') );
-		$this->WP_Widget('cvg_slideshow', __('CVG Slideshow'), $widget_ops);
+		$widget_ops = array('classname' => 'cvg_widget_slideshow', 'description' => __( 'Show a Cool Video Gallery Slideshow', 'cool-video-gallery') );
+		parent::__construct('cvg_slideshow', __('CVG Slideshow', 'cool-video-gallery'), $widget_ops);
 	}
 
 	function widget( $args, $instance ) {
@@ -140,18 +139,17 @@ class cvgSlideShow_Widget extends WP_Widget {
 
 	function form( $instance ) {
 		
-		global $wpdb;
-
 		//Defaults
-		$instance = wp_parse_args( (array) $instance, array( 'title' => 'CVG Slideshow', 'galleryid' => '0') );
+		$instance = wp_parse_args( (array) $instance, array( 'title' => __('CVG Slideshow', 'cool-video-gallery'), 'galleryid' => '0') );
 		$title  = esc_attr( $instance['title'] );
 		$number = isset($instance['number']) ? absint($instance['number']) : 5;
 		
-		$tables = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix ."cvg_gallery ORDER BY 'name' ASC ");
+		$cvg_core = new CvgCore();
+		$tables = $cvg_core->cvg_videodb->get_all_gallery_widgets();
 		?>
-		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></p>
+		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'cool-video-gallery'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></p>
 		<p>
-			<label for="<?php echo $this->get_field_id('galleryid'); ?>"><?php _e('Select Gallery:'); ?></label>
+			<label for="<?php echo $this->get_field_id('galleryid'); ?>"><?php _e('Select Gallery:', 'cool-video-gallery'); ?></label>
 			<select size="1" name="<?php echo $this->get_field_name('galleryid'); ?>" id="<?php echo $this->get_field_id('galleryid'); ?>" class="widefat">
 			<?php
 			if($tables) {
@@ -165,7 +163,7 @@ class cvgSlideShow_Widget extends WP_Widget {
 			</select>
 		</p>
 		
-		<p><label for="<?php echo $this->get_field_id('number'); ?>"><?php _e('Number of Videos to show:'); ?></label>
+		<p><label for="<?php echo $this->get_field_id('number'); ?>"><?php _e('Number of Videos to show:', 'cool-video-gallery'); ?></label>
 		<input id="<?php echo $this->get_field_id('number'); ?>" name="<?php echo $this->get_field_name('number'); ?>" type="text" value="<?php echo $number; ?>" size="3" /></p>
 <?php	
 	}

@@ -76,13 +76,24 @@
 		</div>
 	{% endif %}
 
-	{% if cost is not empty or event.is_free %}
+	{% if ( cost is not empty or event.is_free ) and tickets_block is empty %}
 		<div class="ai1ec-cost ai1ec-row">
 			<div class="ai1ec-field-label {{ col1 }}">{{ text_cost }}</div>
 			<div class="ai1ec-field-value {{ col2 }}">
 				{{ event.is_free ? text_free : cost }}
 			</div>
 		</div>
+	{% endif %}
+
+	{% if tickets_block is not empty %}
+		<div class="ai1ec-cost ai1ec-row">
+			<div class="ai1ec-field-label {{ col1 }}">
+				{{ text_tickets }}
+			</div>
+			<div class="ai1ec-field-value {{ col2 }}">
+				{{ tickets_block | raw }}
+			</div>
+		</div>{# / .timely-cost-row #}
 	{% endif %}
 
 	{% if contact is not empty %}
@@ -130,6 +141,20 @@
 		{% endfor %}	
 	{% endif %}
 
+	{% if filter_groups is not empty %}
+		{% for filter_group in filter_groups %}
+			<div class="ai1ec-categories ai1ec-row">
+				<div class="ai1ec-field-label {{ col1 }} ai1ec-col-xs-1">
+					<i class="ai1ec-fa {{ filter_group.icon_name }} ai1ec-tooltip-trigger"
+						title="{{ filter_group.text | e( 'html_attr' ) }}"></i>
+				</div>
+				<div class="ai1ec-field-value {{ col2 }} ai1ec-col-xs-10">
+					{{ filter_group.html_value | raw }}
+				</div>
+			</div>
+		{% endfor %}
+	{% endif %}
+
 {% if map is empty %}
 	</div>{# /.ai1ec-event-details #}
 {% else %}
@@ -145,6 +170,12 @@
 			'category_avatar'
 		], 'timely alignleft', false ) | raw }}
 	{% endif %}
+{% endif %}
+
+{% if API_URL is not empty %}
+<script>
+	( new Image() ).src = '{{ API_URL }}../img/1x1.gif?event_id={{ api_event_id }}&r=' + Math.random();
+</script>
 {% endif %}
 
 </div>

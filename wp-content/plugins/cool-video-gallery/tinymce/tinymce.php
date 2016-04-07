@@ -33,7 +33,7 @@ class CvgTinyMCE extends CoolVideoGallery {
 	
 	function register_button( $buttons ) {
 	
-		array_push( $buttons, "|", "cvglink" );
+		array_push( $buttons, "separator", "cvglink" );
 	 	return $buttons;
 	}
 
@@ -52,7 +52,7 @@ class CvgTinyMCE extends CoolVideoGallery {
 	
 	    // check for rights
 	    if ( !current_user_can('edit_pages') && !current_user_can('edit_posts') )
-	        die(__("You are not allowed to be here"));
+	        die(__("You are not allowed to be here", 'cool-video-gallery'));
 	
 	       include_once( dirname(__FILE__) . '/window.php');
 	   
