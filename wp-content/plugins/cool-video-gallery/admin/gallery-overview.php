@@ -27,6 +27,10 @@ class CvgGalleryOverview {
 				&$this,
 				'sharing_metabox' 
 		), 'cvg_overview', 'right', 'core' );
+		add_meta_box ( 'cvg_upcoming_features_meta_box', __ ( 'Upcoming Features!!!', 'cool-video-gallery' ), array (
+				&$this,
+				'upcomingfeature_metabox'
+		), 'cvg_overview', 'right', 'core' );
 		add_meta_box ( 'cvg_about_author_meta_box', __ ( 'About Author - Praveen Rajan', 'cool-video-gallery'), array (
 				&$this,
 				'about_author_metabox' 
@@ -35,6 +39,13 @@ class CvgGalleryOverview {
 				&$this,
 				'serverinfo_metabox' 
 		), 'cvg_overview', 'left', 'core' );
+		add_meta_box ( 'cvg_shortcode_meta_box', __ ( 'Shortcode Configuration Options', 'cool-video-gallery'), array (
+				&$this,
+				'shortcodeinfo_metabox'
+		), 'cvg_overview', 'left', 'core' );
+		
+		
+		
 	}
 	
 	// Show Overview of Gallery /Videos
@@ -55,6 +66,14 @@ class CvgGalleryOverview {
 	// Shows author details section
 	function about_author_metabox() {
 		$this->cvg_core->cvg_authorinfo ();
+	}
+	
+	function shortcodeinfo_metabox() {
+		$this->cvg_core->cvg_shortcodeinfo ();
+	}
+	
+	function upcomingfeature_metabox() {
+		$this->cvg_core->cvg_upcoming_features ();
 	}
 	
 	function display_overview() {

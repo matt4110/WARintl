@@ -11,8 +11,11 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 wp_enqueue_script('thickbox');
 wp_enqueue_style('thickbox');
 
-$cvg_player = new CVGPlayer();
 $cvg_core = new CvgCore();
+
+wp_enqueue_script ( 'postbox' );
+
+add_meta_box ( 'cvg_player_admin_meta_box', __ ( 'JWPlayer Settings', 'cool-video-gallery' ), 'player_settings_admin_metabox', 'cvg_player_settings', 'left', 'core' );
 
 if(isset($_POST['update_CVGSettings'])){
 	
@@ -27,42 +30,45 @@ if(isset($_POST['update_CVGSettings'])){
 }
 
 $options_player = get_option('cvg_player_settings');
-?>
-<script type="text/javascript">
-	function showHelpDialog() {
-		tb_show("", "#TB_inline?width=650&height=230&inlineId=skin_help&modal=false", false);
-	}
-</script>
-<div class="wrap">
-	<h2><?php _e('Video Player Settings', 'cool-video-gallery'); ?></h2>
+
+function player_settings_admin_metabox() {
 	
+	$cvg_core = new CvgCore();
+	$options_player = get_option('cvg_player_settings');
+	?>
 	<form method="post" action="<?php echo admin_url('admin.php?page=cvg-player-settings'); ?>">
-		<div class="cvg-clear" style="min-height:10px;"></div>
 		
+		<div class="cvg-gallery-settings-left-pane">	
+			<h4><?php _e('JWPlayer License Key:', 'cool-video-gallery');?></h4>
+		</div>
+		<div class="cvg-gallery-settings-right-pane">
+			<textarea name="options_player[cvgplayer_jwplayer_key]" COLS=60 ROWS=1><?php echo isset($options_player['cvgplayer_jwplayer_key']) ?  $options_player['cvgplayer_jwplayer_key'] : "";?></textarea>
+			<br/>
+			<i>(<?php _e('Register with JWPlayer and save your JWPlayer License Key here. For more details visit ', 'cool-video-gallery');?><a href="https://www.jwplayer.com/" target="_blank"><?php _e('JWPlayer', 'cool-video-gallery');?></a>)</i>
+			<br/>
+			<i>You here by agree to <a href="https://www.jwplayer.com/tos/" target="_blank">Terms of Service</a> of JW Player</i>
+		</div>
+		<br clear="all" />
+		<br clear="all" />
 		<div class="cvg-gallery-settings-left-pane">
-			<h4><?php _e('Width of video player:', 'cool-video-gallery');?></h4>
+			<h4><?php _e('Video Player Resolution:', 'cool-video-gallery');?></h4>
 		</div>
 		<div class="cvg-gallery-settings-right-pane">	
 			<textarea name="options_player[cvgplayer_width]" COLS=10 ROWS=1><?php echo $options_player['cvgplayer_width']?></textarea>
-		</div>
-		<div class="cvg-clear" ></div>
-		
-		<div class="cvg-gallery-settings-left-pane">	
-			<h4><?php _e('Height of video player:', 'cool-video-gallery');?></h4>
-		</div>
-		<div class="cvg-gallery-settings-right-pane">
+			<span>X</span>
 			<textarea name="options_player[cvgplayer_height]" COLS=10 ROWS=1><?php echo $options_player['cvgplayer_height']?></textarea>
+			<i>(Width X Height) in pixel</i>
 		</div>
-		<div class="cvg-clear"></div>
-			
+		<br clear="all" />
+		<br clear="all" />
 		<div class="cvg-gallery-settings-left-pane">	
 			<h4><?php _e('Choose skin for video player:', 'cool-video-gallery');?>
-				<i><a onclick="showHelpDialog();" id="skin_help_popup"  title="<b><?php _e('Steps to install new skin to CVG', 'cool-video-gallery');?></b>"><?php _e('Learn More', 'cool-video-gallery');?></a></i>
+				<i><a onclick="showHelpDialog();" id="skin_help_popup"  title="<?php _e('Steps to install new skin to CVG', 'cool-video-gallery');?>"><?php _e('Learn More', 'cool-video-gallery');?></a></i>
 			</h4>	
 		</div>
 		<?php 
 
-		$skins = $cvg_player->get_dir_skin( dirname(dirname((__FILE__))) . "/cvg-player/skins/", "-skin", "", false);
+		$skins = $cvg_core->get_dir_skin( dirname(dirname(__FILE__)) . "/third_party_lib/jwplayer_7.3.6/skins/", ".css", "", false);
 		
 		$option = '<option value="">No Skin</option>';
 		foreach ($skins as $value){
@@ -79,156 +85,124 @@ $options_player = get_option('cvg_player_settings');
 				<?php echo $option;?>				
 			</select>
 		</div>	
-		<div class="cvg-clear"></div>
-
+		<br clear="all" />
+		<br clear="all" />
 		<div class="cvg-gallery-settings-left-pane">	
 			<h4><?php _e('Default Volume:', 'cool-video-gallery');?></h4>
 		</div>			
 		<div class="cvg-gallery-settings-right-pane">		
 			<textarea name="options_player[cvgplayer_volume]" COLS=10 ROWS=1><?php echo $options_player['cvgplayer_volume']?></textarea>
 		</div>
-		<div class="cvg-clear"></div>
-		
+		<br clear="all" />
+		<br clear="all" />
 		<div class="cvg-gallery-settings-left-pane">	
-			<h4><?php _e('Video Playlist Width: ', 'cool-video-gallery');?><i><?php _e('(applicable if playlist location is left/right)', 'cool-video-gallery');?></i></h4>
-		</div>			
-		<div class="cvg-gallery-settings-right-pane">		
-			<textarea name="options_player[cvgplayer_playlist_width]" COLS=10 ROWS=1><?php echo $options_player['cvgplayer_playlist_width']?></textarea>
-		</div>
-		<div class="cvg-clear"></div>
-		
-		<div class="cvg-gallery-settings-left-pane">	
-			<h4><?php _e('Video Playlist Height: ', 'cool-video-gallery');?><i><?php _e('(applicable if playlist location is top/bottom)', 'cool-video-gallery');?></i></h4>
-		</div>			
-		<div class="cvg-gallery-settings-right-pane">		
-			<textarea name="options_player[cvgplayer_playlist_height]" COLS=10 ROWS=1><?php echo $options_player['cvgplayer_playlist_height']?></textarea>
-		</div>
-		<div class="cvg-clear"></div>
-
-		<div class="cvg-gallery-settings-left-pane">	
-			<h4><?php _e('Autoplay: ', 'cool-video-gallery');?><i><?php _e('(also enables continuous playback in gallery)', 'cool-video-gallery');?></i></h4>
+			<h4><?php _e('Autoplay: ', 'cool-video-gallery');?></h4>
 		</div>	
 		<div class="cvg-gallery-settings-right-pane">
-			<p>
 				<label for="autoplay_true"><input type="radio" id="autoplay_true" name="options_player[cvgplayer_autoplay]" value="1" <?php if ($options_player['cvgplayer_autoplay']) { _e('checked="checked"'); }?>/><?php _e('True', 'cool-video-gallery');?></label>
 				<label for="autoplay_false"><input type="radio" id="autoplay_false" name="options_player[cvgplayer_autoplay]" value="0" <?php if (!$options_player['cvgplayer_autoplay']) { _e('checked="checked"'); }?>/><?php _e('False', 'cool-video-gallery');?></label>
-			</p>
 		</div>	
-		<div class="cvg-clear"></div>
-		
+		<br clear="all" />
+		<br clear="all" />
 		<div class="cvg-gallery-settings-left-pane">	
 			<h4><?php _e('Mute Volume: ', 'cool-video-gallery');?></h4>
 		</div>	
 		<div class="cvg-gallery-settings-right-pane">
-			<p>
 				<label for="mute_true"><input type="radio" id="mute_true" name="options_player[cvgplayer_mute]" value="1" <?php if ($options_player['cvgplayer_mute']) { _e('checked="checked"'); }?>/><?php _e('True', 'cool-video-gallery');?></label>
 				<label for="mute_false"><input type="radio" id="mute_false" name="options_player[cvgplayer_mute]" value="0" <?php if (!$options_player['cvgplayer_mute']) { _e('checked="checked"'); }?>/><?php _e('False', 'cool-video-gallery');?></label>
-			</p>
 		</div>	
-		<div class="cvg-clear"></div>
-		
+		<br clear="all" />
+		<br clear="all" />
 		<div class="cvg-gallery-settings-left-pane">	
-			<h4><?php _e('Auto close on completion: ', 'cool-video-gallery');?><i><?php _e('(applicable for single video)', 'cool-video-gallery');?></i></h4>
+			<h4><?php _e('Auto close video popup on completion: ', 'cool-video-gallery');?></h4>
 		</div>	
 		<div class="cvg-gallery-settings-right-pane">
-			<p>
 				<label for="auto_close_single_true"><input type="radio" id="auto_close_single_true" name="options_player[cvgplayer_auto_close_single]" value="1" <?php if ($options_player['cvgplayer_auto_close_single']) { _e('checked="checked"'); }?>/><?php _e('True', 'cool-video-gallery');?></label>
 				<label for="auto_close_single_false"><input type="radio" id="auto_close_single_false" name="options_player[cvgplayer_auto_close_single]" value="0" <?php if (!$options_player['cvgplayer_auto_close_single']) { _e('checked="checked"'); }?>/><?php _e('False', 'cool-video-gallery');?></label>
-			</p>
 		</div>	
-		<div class="cvg-clear"></div>
-		
-		
+		<br clear="all" />
+		<br clear="all" />
 		<div class="cvg-gallery-settings-left-pane">	
-			<h4><?php _e('Enable share option: ', 'cool-video-gallery');?></h4>
+			<h4><?php _e('Enable Share: ', 'cool-video-gallery');?></h4>
 		</div>	
 		<div class="cvg-gallery-settings-right-pane">
-			<p>
 				<label for="share_option_true"><input type="radio" id="share_option_true" name="options_player[cvgplayer_share_option]" value="1" <?php if ($options_player['cvgplayer_share_option']) { _e('checked="checked"'); }?>/><?php _e('True', 'cool-video-gallery');?></label>
 				<label for="share_option_false"><input type="radio" id="share_option_false" name="options_player[cvgplayer_share_option]" value="0" <?php if (!$options_player['cvgplayer_share_option']) { _e('checked="checked"'); }?>/><?php _e('False', 'cool-video-gallery');?></label>
-			</p>
 		</div>	
-		<div class="cvg-clear"></div>
-		
-		
-		<div class="cvg-gallery-settings-left-pane">	
-			<h4><?php _e('Control bar Location: ', 'cool-video-gallery');?></h4>
-		</div>	
-		<div class="cvg-gallery-settings-right-pane">	
-			<p>
-				<label for="controlbar_bottom"><input type="radio" id="controlbar_bottom" name="options_player[cvgplayer_controlbar]" value="bottom" <?php if ($options_player['cvgplayer_controlbar'] == "bottom") { _e('checked="checked"'); }?>/><?php _e('Bottom', 'cool-video-gallery');?></label>
-				<label for="controlbar_top"><input type="radio" id="controlbar_top" name="options_player[cvgplayer_controlbar]" value="top" <?php if ($options_player['cvgplayer_controlbar'] == "top") { _e('checked="checked"'); }?> /><?php _e('Top', 'cool-video-gallery');?></label>
-				<label for="controlbar_over"><input type="radio" id="controlbar_over" name="options_player[cvgplayer_controlbar]" value="over" <?php if ($options_player['cvgplayer_controlbar'] == "over") { _e('checked="checked"'); }?> /><?php _e('Over', 'cool-video-gallery');?></label>
-				<label for="controlbar_none"><input type="radio" id="controlbar_none" name="options_player[cvgplayer_controlbar]" value="none" <?php if ($options_player['cvgplayer_controlbar'] == "none") { _e('checked="checked"'); }?> /><?php _e('None', 'cool-video-gallery');?></label>
-			</p>
-		</div>	
-		<div class="cvg-clear"></div>
-		
+		<br clear="all" />
+		<br clear="all" />
 		<div class="cvg-gallery-settings-left-pane">	
 			<h4><?php _e('Video Display: ', 'cool-video-gallery');?></h4>
 		</div>	
 		<div class="cvg-gallery-settings-right-pane">	
-			<p>
 				<label for="display_none"><input type="radio" id="display_none" name="options_player[cvgplayer_stretching]" value="none" <?php if ($options_player['cvgplayer_stretching'] == "none") { _e('checked="checked"'); }?>/><?php _e('None', 'cool-video-gallery');?></label>
 				<label for="display_exactfit"><input type="radio" id="display_exactfit" name="options_player[cvgplayer_stretching]" value="exactfit" <?php if ($options_player['cvgplayer_stretching'] == "exactfit") { _e('checked="checked"'); }?>/><?php _e('Exact Fit', 'cool-video-gallery');?></label>
 				<label for="display_uniform"><input type="radio" id="display_uniform" name="options_player[cvgplayer_stretching]" value="uniform" <?php if ($options_player['cvgplayer_stretching'] == "uniform") { _e('checked="checked"'); }?>/><?php _e('Uniform', 'cool-video-gallery');?></label>
 				<label for="display_fill"><input type="radio" id="display_fill" name="options_player[cvgplayer_stretching]" value="fill" <?php if ($options_player['cvgplayer_stretching'] == "fill") { _e('checked="checked"'); }?>/><?php _e('Fill', 'cool-video-gallery');?></label>
-			</p>
 		</div>	
-		
-		<div class="cvg-clear"></div>
-		
-		<div class="cvg-gallery-settings-left-pane">	
-			<h4><?php _e('Playlist Location:', 'cool-video-gallery');?></h4>
-		</div>	
-		<div class="cvg-gallery-settings-right-pane">	
-			<p>
-				<label for="playlist_top"><input type="radio" id="playlist_top" name="options_player[cvgplayer_playlist]" value="top" <?php if ($options_player['cvgplayer_playlist'] == "top") { _e('checked="checked"'); }?>/><?php _e('Top', 'cool-video-gallery');?></label>
-				<label for="playlist_right"><input type="radio" id="playlist_right" name="options_player[cvgplayer_playlist]" value="right" <?php if ($options_player['cvgplayer_playlist'] == "right") { _e('checked="checked"'); }?>/><?php _e('Right', 'cool-video-gallery');?></label>
-				<label for="playlist_bottom"><input type="radio" id="playlist_bottom" name="options_player[cvgplayer_playlist]" value="bottom" <?php if ($options_player['cvgplayer_playlist'] == "bottom") { _e('checked="checked"'); }?>/><?php _e('Bottom', 'cool-video-gallery');?></label>
-				<label for="playlist_left"><input type="radio" id="playlist_left" name="options_player[cvgplayer_playlist]" value="left" <?php if ($options_player['cvgplayer_playlist'] == "left") { _e('checked="checked"'); }?> /><?php _e('Left', 'cool-video-gallery');?></label>
-			</p>
-		</div>	
-		<div class="cvg-clear"></div>
-		<div class="cvg-clear"></div>
-		
+		<br clear="all" />
+		<br clear="all" />
 		<?php wp_nonce_field('cvg_player_settings_nonce','cvg_player_settings_nonce_csrf'); ?>
 		<div class="submit">
 			<input class="button-primary" type="submit" name="update_CVGSettings" value="<?php _e('Save Player Settings', 'cool-video-gallery');?>" />
 		</div>
 	</form>
 	
- </div>
- 
+	<?php 
+}
+?>
+<div class="wrap">
+	<h2><?php _e('Video Player Settings', 'cool-video-gallery'); ?></h2>
+	<div id="dashboard-widgets-container" class="cvg-overview">
+		<div id="dashboard-widgets" class="metabox-holder">
+			<div id="post-body">
+				<div id="dashboard-widgets-main-content">
+					<div class="postbox-container" id="main-container"
+						style="width: 100%;">
+                            <?php do_meta_boxes('cvg_player_settings', 'left', ''); ?>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+        postboxes.add_postbox_toggles('cvg_player_settings');
+    });
+	function showHelpDialog() {
+		tb_show("", "#TB_inline?width=650&height=280&inlineId=skin_help&modal=false", false);
+	}
+</script>
 <div style="display:none;">
 	<div id="skin_help">
 		<div>
-		<?php _e('As part of plugin feature upgrades, only a few skins are made available. But its easy to upload skin of your choice and that too in a few steps.', 'cool-video-gallery');?>
+		<?php _e('New JWPlayer skins available to use now. It\'s also easy to create and upload skin of your choice and that too in a few steps.', 'cool-video-gallery');?>
 		<ul>
-			<ol>
-				<?php _e('1. Download JW Player Skins from ', 'cool-video-gallery');?><a target="_blank" href="http://www.longtailvideo.com/addons/skins">http://www.longtailvideo.com/addons/skins</a>.
-			</ol>
-			<ol>
-				<?php _e('2. Extract the zip file for skin to a location in your Desktop and append "-skin" to folder name at the end.', 'cool-video-gallery');?>
-			</ol>
-			<ol>
-				<?php _e('3. Now locate your WorPress site installation folder in Webserver using an FTP client.', 'cool-video-gallery');?>
-			</ol>
-			<ol>
-				<?php _e('4. Navigate to the following path <i><b>/wp-content/plugins/cool-video-gallery/cvg-player/skins/</b></i>', 'cool-video-gallery');?>
-			</ol>
-			<ol>
-				<?php _e('5. Upload the extracted folder to this location in WebServer.', 'cool-video-gallery');?>
-			</ol>
-			<ol>
+			<li>
+				<?php _e('1. Find out more information on JWPlayer Skins at ', 'cool-video-gallery');?><a target="_blank" href="https://www.jwplayer.com/products/jwplayer/skins/">https://www.jwplayer.com/products/jwplayer/skins/</a>.
+			</li>
+			<li>
+				<?php _e('2. To create/customize skins check documentation at ', 'cool-video-gallery');?><a target="_blank" href="https://developer.jwplayer.com/jw-player/docs/developer-guide/customization/css-skinning/skins_creating/">https://developer.jwplayer.com/jw-player/docs/developer-guide/customization/css-skinning/skins_creating/</a>.
+			</li>
+			<li>
+				<?php _e('3. Locate your WorPress site installation folder in Webserver using an FTP client.', 'cool-video-gallery');?>
+			</li>
+			<li>
+				<?php _e('4. Navigate to the following path <i><b>/wp-content/plugins/cool-video-gallery/third_party_lib/jwplayer_7.3.6/skins/</b></i>', 'cool-video-gallery');?>
+			</li>
+			<li>
+				<?php _e('5. Upload the created skin file to this location in WebServer.', 'cool-video-gallery');?>
+			</li>
+			<li>
 				<?php _e('6. In admin section of WordPress navigate to Video Player Settings Panel of Cool Video Gallery plugin.', 'cool-video-gallery')?> 
-			</ol>
-			<ol>
-				<?php _e('7. The new JW Player skin will be listed in the drop down.', 'cool-video-gallery');?>
-			</ol>
-			<ol>
+			</li>
+			<li>
+				<?php _e('7. The new JWPlayer skin will be listed in the drop down. Select the skin and save the Save Player Settings.', 'cool-video-gallery');?>
+			</li>
+			<li>
 				<?php _e('8. Enjoy the skins from JW Player together with features of CVG.', 'cool-video-gallery');?>
-			</ol>
+			</li>
 		</ul>
 		</div>
 	</div>

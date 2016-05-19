@@ -50,7 +50,7 @@ if (isset ( $_POST ['generatexml'] )) {
 					<div class="cvg-clear"></div>
 					<h4 style="padding-left: 15px;"><?php echo _e('Pages / Posts', 'cool-video-gallery'); ?></h4>
 					<div>
-						<table class="widefat" cellspacing="0">
+						<table class="widefat">
 						<thead>
 						<tr>
 							<th scope="col" width="5%">
@@ -112,7 +112,7 @@ if (isset ( $_POST ['generatexml'] )) {
 											<input name="cvg_sitemapaction[]" type="checkbox" value="<?php echo $post_id ?>" />
 										</th>
 										<td><?php echo $post_id; ?></td>
-										<td><a href="<?php echo admin_url('post.php?post='.$post_id.'&action=edit'); ?>" target="_blank" title="<?php _e("Click to edit", 'cool-video-gallery');?>"><?php echo $name; ?></td></a>
+										<td><a href="<?php echo admin_url('post.php?post='.$post_id.'&action=edit'); ?>" target="_blank" title="<?php _e("Click to edit", 'cool-video-gallery');?>"><?php echo $name; ?></a></td>
 										<td><?php echo ucfirst($post->post_type); ?></td>
 										<td><?php echo $gallery_count; ?></td>
 										<td><?php echo $video_count; ?></td>

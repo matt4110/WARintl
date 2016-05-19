@@ -188,7 +188,7 @@ $gallerylist = $cvg_videodb->find_all_galleries('gid', 'asc', TRUE ,$per_page, $
 				</div>
 			<?php }?>
 		</div>
-		<table class="widefat" cellspacing="0">
+		<table class="widefat">
 			<thead>
 			<tr>
 				<th scope="col" class="column-cb" >
@@ -196,7 +196,7 @@ $gallerylist = $cvg_videodb->find_all_galleries('gid', 'asc', TRUE ,$per_page, $
 				</th>
 				<th scope="col" ><?php _e('ID', 'cool-video-gallery'); ?></th>
 				<th scope="col" ><?php _e('Title', 'cool-video-gallery'); ?></th>
-				<th scope="col" ><?php _e('Description', 'cool-video-gallery'); ?></th>
+				<th scope="col" style="width:50%;"><?php _e('Description', 'cool-video-gallery'); ?></th>
 				<th scope="col" ><?php _e('Author', 'cool-video-gallery'); ?></th>
 				<th scope="col" ><?php _e('Quantity', 'cool-video-gallery'); ?></th>
 				<th scope="col" ><?php _e('Action', 'cool-video-gallery'); ?></th>
@@ -388,7 +388,6 @@ $gallerylist = $cvg_videodb->find_all_galleries('gid', 'asc', TRUE ,$per_page, $
 				    	</td>
 					</tr>
 				</table>
-			</form>
 		</div>
 		<!-- #Shortcode generator -->
 		

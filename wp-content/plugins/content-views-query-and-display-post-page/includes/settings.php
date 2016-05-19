@@ -780,7 +780,7 @@ if ( !class_exists( 'PT_CV_Settings' ) ) {
 				),
 			);
 
-			#$result = apply_filters( PT_CV_PREFIX_ . 'view_type_settings_collapsible', $result );
+			$result = apply_filters( PT_CV_PREFIX_ . 'view_type_settings_collapsible_184', $result );
 
 			return $result;
 		}

@@ -1,0 +1,63 @@
+/**
+ * Style Name: Glossary
+ *
+ * @package   PT_Content_Views_Pro
+ * @author    PT Guy (http://www.contentviewspro.com/)
+ * @license   GPL-2.0+
+ * @link      http://www.contentviewspro.com/
+ * @copyright 2014 PT Guy
+ */
+
+.pt-cv-gls-menu {
+	margin-bottom: 20px;
+}
+
+.pt-cv-glossary.pt-cv-index-only .pt-cv-gls-group {
+	display: none;
+}
+
+/* Menu item */
+.pt-cv-gls-menu li {
+	display: inline-block;
+}
+
+.pt-cv-gls-menu li:first-child {
+	padding-left: 0;
+}
+
+.pt-cv-gls-menu li a {
+	font-weight: 600;
+	padding: 0 10px;
+}
+
+.pt-cv-gls-menu li a.pt-active {
+	text-decoration: none;
+    background: #ff5a5f;
+    color: #fff;
+}
+
+.pt-cv-gls-menu li a,
+.pt-cv-gls-header {
+	font-size: 18px;
+}
+
+/* Header */
+.pt-cv-gls-header {
+	padding: 6px;
+	margin: 0 15px 10px;
+
+}
+
+/* Content */
+.pt-cv-glossary .pt-cv-content-item {
+	padding-bottom: 10px;
+}
+
+.pt-cv-glossary .pt-cv-title a {
+	font-weight: 400;
+}
+
+/* Common */
+.pt-cv-gls-menu li a, .pt-cv-gls-header {
+	text-transform: uppercase;
+}

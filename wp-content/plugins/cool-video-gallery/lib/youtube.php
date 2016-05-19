@@ -36,7 +36,20 @@ class CVGYoutubeAPI {
 					
 					$obj -> title = $item ['snippet'] ['title'];
 					$obj -> description = $item ['snippet'] ['description'];
-					$obj -> thumbnailURL = $item ['snippet'] ['thumbnails'] ['standard'] ['url'];
+					
+					$thumbURL = "";
+					if(isset($item ['snippet'] ['thumbnails'] ['maxres'])) {
+						$thumbURL =  $item ['snippet'] ['thumbnails'] ['maxres'] ['url'];
+					}else if(isset($item ['snippet'] ['thumbnails'] ['standard'])) {
+						$thumbURL =  $item ['snippet'] ['thumbnails'] ['standard'] ['url'];
+					}else if(isset($item ['snippet'] ['thumbnails'] ['high'])) {
+						$thumbURL =  $item ['snippet'] ['thumbnails'] ['high'] ['url'];
+					}else if(isset($item ['snippet'] ['thumbnails'] ['medium'])) {
+						$thumbURL =  $item ['snippet'] ['thumbnails'] ['medium'] ['url'];
+					}else if(isset($item ['snippet'] ['thumbnails'] ['default'])) {
+						$thumbURL =  $item ['snippet'] ['thumbnails'] ['default'] ['url'];
+					}
+					$obj -> thumbnailURL = $thumbURL;
 					$obj -> watchURL = "https://www.youtube.com/watch?v=" . $item ['id'];
 					$obj -> length = $this->covtime ( $item ['contentDetails'] ['duration'] );
 				

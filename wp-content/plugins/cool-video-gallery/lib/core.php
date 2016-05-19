@@ -264,7 +264,6 @@ class CvgCore{
 					$this->create_thumbnail_video($video_id);
 			}	
 			
-			$this->xml_playlist($galleryID);
 			$this->show_video_message( count($videos_ids) . __(' Video(s) successfully uploaded.', 'cool-video-gallery'));
 		}
 		return;
@@ -304,7 +303,6 @@ class CvgCore{
 				$vid_id = $add_media;
 				$this->create_thumbnail_video($vid_id);
 			}
-			$this->xml_playlist($galleryID);
 			$this->show_video_message(__('Video successfully added.', 'cool-video-gallery'));
 		}
 	}
@@ -337,8 +335,6 @@ class CvgCore{
 			} 
 			
 			$videos_ids = $this->process_youtube_videos ( $galleryID, $_POST ['videourl'] );
-			
-			$this->xml_playlist ( $galleryID );
 			
 			if (count ( $videos_ids ) != 0)
 				$this->show_video_message ( count ( $videos_ids ) . __ ( ' Video(s) successfully added.', 'cool-video-gallery' ) );
@@ -505,8 +501,6 @@ class CvgCore{
 		}	
 		if(count($videos_ids)> 0) {
 			
-			$this->xml_playlist($galleryID);
-			
 			if($enable)
 				$this->show_video_message( count($videos_ids) . __(' Video(s) successfully added.', 'cool-video-gallery'));
 		}else {
@@ -555,87 +549,6 @@ class CvgCore{
 		return $video_ids;
 	}
 	
-	
-	/**
-	 * Function to generate xml for video playlist
-	 */
-	function xml_playlist($galleryID = null) {
-		
-		global $wpdb;
-		$cool_video_gallery = $this->cvg_instance;
-		
-		$gallery_detail = $this->cvg_videodb->find_gallery($galleryID);
-		$gallery_details = $this->cvg_videodb->get_gallery($galleryID, false);
-		
-		$options = get_option('cvg_settings');
-		
-		if(isset($options['cvg_random_video']) && $options['cvg_random_video'] == 1)
-			shuffle($gallery_details);
-		
-		$xml = "";
-		$xml .= '<?xml version="1.0" encoding="UTF-8"?>';
-		$xml .= '<rss version="2.0" xmlns:jwplayer="http://developer.longtailvideo.com/trac/" xmlns:media="http://search.yahoo.com/mrss/">'; 
-		$xml .= '<channel>';
-		$xml .= '<title>'. htmlspecialchars($gallery_detail->galdesc) . '</title>';
-		
-		foreach($gallery_details as $video){
-			
-			if($video->video_type == $cool_video_gallery->video_type_upload) {
-
-				$video_url = site_url()  . '/' . $video->path . '/' . $video->filename;
-				$thumb_url = site_url() . '/' . $video->path . '/thumbs/' . $video->thumb_filename;
-				
-				if(!file_exists(ABSPATH . '/' . $video->path . '/thumbs/' . $video->thumb_filename ))
-					$thumb_url  = WP_CONTENT_URL .  '/plugins/' . dirname(dirname( plugin_basename(__FILE__))) . '/images/default_video.png';
-	
-			}else if($video->video_type == $cool_video_gallery->video_type_youtube){
-
-				$video_url = $video->filename;
-				$thumb_url = $video->thumb_filename;
-			}else if($video->video_type == $cool_video_gallery->video_type_media){
-				
-				$video_url = $video->filename;
-	
-				$thumb_url = site_url() . '/' . $video->path . '/thumbs/' . $video->thumb_filename;
-				if(!file_exists(ABSPATH . '/' . $video->path . '/thumbs/' . $video->thumb_filename ))
-					$thumb_url  = WP_CONTENT_URL .  '/plugins/' . dirname(dirname( plugin_basename(__FILE__))) . '/images/default_video.png';
-	
-			}else {
-				
-				$video_url = site_url()  . '/' . $video->path . '/' . $video->filename;
-				$thumb_url = site_url() . '/' . $video->path . '/thumbs/' . $video->thumb_filename;
-				
-				if(!file_exists(ABSPATH . '/' . $video->path . '/thumbs/' . $video->thumb_filename ))
-					$thumb_url  = WP_CONTENT_URL .  '/plugins/' . dirname(dirname( plugin_basename(__FILE__))) . '/images/default_video.png';
-	
-			}
-				
-			$desc = stripcslashes($video->description);
-			$pub_date = $video->videodate;
-			$title = isset($video->video_title) ? $video->video_title : "" ;
-			
-			$xml .= '<item>';
-			$xml .= '<title>' . htmlspecialchars($title) . '</title>';
-			$xml .= '<pubDate>' . htmlspecialchars($pub_date) . '</pubDate>';
-			$xml .= '<description>' . htmlspecialchars($desc) . '</description>';
-			$xml .= '<media:content url="' . htmlspecialchars($video_url) . '" />';
-			$xml .= '<media:thumbnail url="' . htmlspecialchars($thumb_url) . '" />';
-			$xml .= '<jwplayer:playlist.image>' . htmlspecialchars($thumb_url) . '</jwplayer:playlist.image>';
-			$xml .= '</item>';
-		}
-		$xml .= '</channel></rss>';
-		
-		$gallery_name = $gallery_detail->name;
-		
-		$playlist_xml = ABSPATH . '/' . $gallery_detail->path . '/' . $gallery_name . '-playlist.xml';
-	  	 if($this->createFile($playlist_xml)) {
-			if (file_put_contents ($playlist_xml, $xml)) {
-				$this->chmod ($playlist_xml);
-				return true;
-			}
-	   }	
-	}
-	
 	/**
 	 * Function to create a preview thumbnail for video
 	 * 
@@ -645,9 +558,9 @@ class CvgCore{
 	function create_thumbnail_video($videoID) {
 	
 		$options = get_option('cvg_settings');
-		$thumb_width = $options['cvg_preview_width'];
-		$thumb_height = $options['cvg_preview_height'];
-				
+		$thumb_width = $options['cvg_ffmpeg_preview_width'];
+		$thumb_height = $options['cvg_ffmpeg_preview_height'];
+			
 		if (is_numeric ( $videoID ))
 			$videoDetails = $this->cvg_videodb->find_video ( $videoID );
 			
@@ -671,23 +584,21 @@ class CvgCore{
 		$new_target_filename = $video->alttext . '.png';
 		$new_target_file = $gallery->abspath . '/thumbs/thumbs_' . $new_target_filename;
 		
-		if($video->video_type == $cool_video_gallery->video_type_media){
-			$command = escapeshellarg($options['cvg_ffmpegpath']) . " -i '". escapeshellarg($video->filename) . "' -vcodec mjpeg -vframes 1 -an -f rawvideo -ss 5 -s ".escapeshellarg($thumb_width) ."x".escapeshellarg($thumb_height)." '". escapeshellarg($new_target_file). "'";
-		}else {
-			$command = escapeshellarg($options['cvg_ffmpegpath']) . " -i '". escapeshellarg($video_input). "' -vcodec mjpeg -vframes 1 -an -f rawvideo -ss 5 -s ".escapeshellarg($thumb_width) ."x".escapeshellarg($thumb_height)." '". escapeshellarg($new_target_file). "'";	
-		}
+		$input_file = "";
 		
-		exec ( $command );
+		$seek_location = $options ['cvg_ffmpeg_seek_hour'] . ":" . $options ['cvg_ffmpeg_seek_minute'] . ":" . $options ['cvg_ffmpeg_seek_second'];
+		
+		if($video->video_type == $cool_video_gallery->video_type_media){
+			$input_file = $video->filename;
+		}else {
+			$input_file = $video_input;
+		}
+		$command  = escapeshellarg($options['cvg_ffmpegpath']) . " -i '". escapeshellarg($input_file) . "' -ss " . escapeshellarg($seek_location) . " -s " .escapeshellarg($thumb_width) ."x".escapeshellarg($thumb_height)." -vframes 1 '". escapeshellarg($new_target_file). "' 2>&1";
+		
+		exec ( $command, $output );
 		
 		//get video duration
-		if($video->video_type == $cool_video_gallery->video_type_media){
-			
-			$video_duration = $this->video_duration($video->filename);
-		}else {
-			
-			$video_duration = $this->video_duration($video_input);	
-		}
-		
+		$video_duration = $this->video_duration($input_file);
 		
 		if (file_exists ( $new_target_file )) {
 			
@@ -703,6 +614,8 @@ class CvgCore{
 			// add them to the database
 			$this->cvg_videodb->update_video_meta ( $video->pid, array ('video_thumbnail' => $size , 'videoDuration' => $video_duration ) );
 		}else {
+			
+			$this->show_video_warning( __("FFMPEG Thumbnail Generation Error : ", 'cool-video-gallery') . $output[count($output) - 1]);
 			
 			// add them to the database
 			$this->cvg_videodb->update_video_meta ( $video->pid, array ('videoDuration' => $video_duration ) );
@@ -1011,7 +924,6 @@ class CvgCore{
 	    <p>
 		<a class="button rbutton" href="<?php echo admin_url('admin.php?page=cvg-gallery-add#uploadvideo');?>"><?php _e('Upload videos', 'cool-video-gallery') ?></a>
 		<p><?php _e('Here you can control your videos and galleries.', 'cool-video-gallery'); ?></p>
-		</p>
 		<?php
 	}
 	
@@ -1134,8 +1046,6 @@ class CvgCore{
 			</table>
 			<br/>
 			<i style="color:red;"><?php _e('Note: Youtube API Key is required to retrieve data from Youtube. Enter your Youtube API Key at ', 'cool-video-gallery');?><a href="<?php echo admin_url('admin.php?page=cvg-gallery-settings');?>"><?php _e('Gallery Settings', 'cool-video-gallery')?></a>.</i>
-			<br/>
-			<i style="color:red;"><?php _e('In Web Browsers that do not support Flash playback for YouTube Videos, Youtube IFrame API will be used. This will disable certain features of JWPlayer.', 'cool-video-gallery')?></a></i>
 			<br/>	
 			<?php wp_nonce_field('cvg_attach_youtube_nonce','cvg_attach_youtube_nonce_csrf'); ?>
 			<div class="submit">
@@ -1447,6 +1357,14 @@ class CvgCore{
 		   $ffmpeg = 'Installed';
 		else 
 		   $ffmpeg = 'Not Installed';
+		
+		$options_player = get_option('cvg_player_settings');
+		
+		$jwplayer_license = 'NO';
+		
+		if(isset($options_player['cvgplayer_jwplayer_key']) && ($options_player['cvgplayer_jwplayer_key'] != ""))
+			$jwplayer_license  = "YES";
+		
 		?>
 		<ul class="cvg_settings">
 		<li><?php _e('Operating System', 'cool-video-gallery'); ?> : <span><?php echo PHP_OS; ?>&nbsp;(<?php echo (PHP_INT_SIZE * 8) ?>&nbsp;Bit)</span></li>
@@ -1464,19 +1382,20 @@ class CvgCore{
 		<li style="width:100%;height:2px;background-color:#EEEEEE;"></li>
 		<li><?php _e('WordPress Version', 'cool-video-gallery')?> : <span><?php echo $wp_version; ?></span></li>
 		<li><?php _e('CVG Plugin Version', 'cool-video-gallery')?> : <span><?php echo $this->cvg_instance->cvg_version; ?></span></li>
-		
-		
-		<li><?php _e('JW Player Version', 'cool-video-gallery')?> : <span id="cvg_jwplayer_version"></span></li>
+		<li><?php _e('JWPlayer Version', 'cool-video-gallery')?> : <span id="cvg_jwplayer_version"></span></li>
+		<li><?php _e('JWPlayer License Key Installed', 'cool-video-gallery')?> : 
+			<span><?php _e($jwplayer_license, 'cool-video-gallery'); ?></span>
+			<?php if($jwplayer_license == 'NO') {?> 
+			<br /><span style="color:red;font-weight:lighter;"><?php _e('[Note: Please register with JWPlayer and receive a license key to use with this plugin. Save JWPlayer license at ', 'cool-video-gallery');?><a style="color:red;font-weight:bold;" href="<?php echo admin_url('admin.php?page=cvg-player-settings');?>">Video Player Settings</a>]</span>
+			<?php } ?>
 		</ul>
 		<script type="text/javascript">
 		jQuery(document).ready(function(){
-			jQuery('#cvg_jwplayer_version').html(jwplayer.version);
-			
+			jQuery('#cvg_jwplayer_version').html( jwplayer.version.split('+').length > 1 ? jwplayer.version.split('+')[0] : jwplayer.version);
 		});
 		</script>
 		
 		<?php
-		
 	}
 	
 	/**
@@ -1499,12 +1418,11 @@ class CvgCore{
 			<br/>
 			<br />
 			<div style="text-align: justify">
-			<?php _e('Myself, a Software Professional by work. I started my career into Software Development Industry in 2009 with PHP as my technology. It was then I started playing with WordPress plugins for a project at my firm. Soon I thought of making my own plugins for WordPress and I finally ended up here.', 'cool-video-gallery');?>
+			<?php _e('I started my career into Software Development Industry in 2009 with PHP as my technology. It was then I started playing with WordPress plugins for a project at my firm. Soon I thought of making my own plugins for WordPress and I finally ended up here.', 'cool-video-gallery');?>
 			</div>
 			<br />
 			<div style="text-align: justify">
-			<?php _e("Now I'm into Mobile Appliation Development(iOS, Android and BB Tablet) at my work. I do these stuffs as a hobby.  
-			Kindly give your supports by adding your ratings and let the world know that this is the one they are looking for.", 'cool-video-gallery');?>
+			<?php _e("Now I'm into Mobile Appliation Development(iOS, Android and BB Tablet) at my work. I do these stuffs as a hobby. Kindly give your supports by adding your ratings and let the world know that this is the right one they are looking for.", 'cool-video-gallery');?>
 			</div>
 			<br />
 			<?php _e('Apologies for the bugs in this plugin', 'cool-video-gallery');?> <img width="20" height="20" src="<?php echo trailingslashit( WP_PLUGIN_URL . '/' .	dirname(dirname( plugin_basename(__FILE__)))) ?>/images/2.png" /> <?php _e('Do let me know your suggestions and issues through', 'cool-video-gallery');?> <a href="http://wordpress.org/support/plugin/cool-video-gallery" target="_blank"><?php _e('WordPress Plugin Support Forum', 'cool-video-gallery');?></a>.
@@ -1535,6 +1453,61 @@ class CvgCore{
 			echo '<img src="' . trailingslashit ( WP_PLUGIN_URL . '/' . dirname ( dirname ( plugin_basename ( __FILE__ ) ) ) ) . '/images/star.png" />';
 		}
 		echo '</a>';
+	}
+	
+	/**
+	 * Function to display shortcode configuration settings
+	 */
+	function cvg_shortcodeinfo() {
+		
+		?>
+		<ul class="cvg_settings">
+		<li><span>galleryid</span>: Id of Gallery to present as Showcase / Slideshow / Playlist</li>
+		<li><span>videoid</span>: Id of Video to present as Embed / Popup</li>
+		<li><span>limit</span>: Number of Videos to be shown in a Gallery</li>
+		<li><span>width</span>: Width of Video Player</li>
+		<li><span>height</span>: Height of Video Player</li>
+		<li><span>preview-width</span>: Width of Preview Thumbnail</li>
+		<li><span>preview-height</span>: Height of Preview Thumbnail</li>
+		<li><span>mode</span>: Mode to present Gallery or Video(s). Different options available for mode:
+			<br />
+			<ul style="list-style-type: circle;margin-left:50px;margin-top:10px;">
+				<li>`showcase`: List all Videos</li>
+				<li>`slideshow`: Show Videos as Slideshow</li>
+				<li>`playlist`: Show Videos as Playlist / Embedded</li>
+				<li>`embed`: Show Video as Embedded</li>
+			</ul>
+		</li>
+		</ul>
+		
+		<?php 
+	}
+	
+	/**
+	 * Function to display upcoming version release details 
+	 */
+	function cvg_upcoming_features() {
+		
+		$contents = @file_get_contents("https://raw.githubusercontent.com/praveen-rajan/cool-video-gallery/master/Config/upcoming-release.json");
+		$contents = utf8_encode($contents);
+		$results = json_decode($contents);
+		
+		if (isset ( $results )) {
+			
+			_e ( "Version : ", "cool-video-gallery" );
+			echo $results->version;
+			echo "<br/><br/>";
+			_e ( "Features : ", "cool-video-gallery" );
+			echo '<ol class="cvg_settings">';
+			
+			foreach ( $results->changelog as $result ) {
+				echo '<li><span>' . $result . '</span></li>';
+			}
+			echo '</ol>';
+		}else {
+			
+			_e("Configuration file not available to display latest news.", "cool-video-gallery");
+		}
 	}
 	
 	/**
@@ -1576,373 +1549,662 @@ class CvgCore{
 	}
 	
 	/**
-	 * videoShowGallery() - return a gallery  
-	 * 
-	 * @param int $galleryID
-	 * @param string $template (optional) name for a template file
-	 * @param int $videos (optional) number of videos per page
+	 * video_show_gallery() - return a gallery
+	 *
+	 * @param arguments - Arguments passed in shortcode
+	 * @param place_holder - Main template or Widget
 	 * @return the content
 	 */
-	function videoShowGallery( $galleryID, $slide_show = false, $limit= 0, $place_holder = "main" ) {
-	    
-	    $galleryID = (int) $galleryID;
-	    
-		$this->scan_upload_videos($galleryID, false);
+	function video_show_gallery( $arguments , $place_holder = "main" ) {
+		 
+		$gallery_id = $arguments ['galleryid'];
+			
+		if (isset ( $arguments ['limit'] ))
+			$limit = $arguments ['limit'];
+		else
+			$limit = 0;
 		
-	     $limit_by  = ( $limit > 0 ) ? $limit : 0;
-	    
-	    // get gallery values
-	    $videolist = $this->cvg_videodb->get_gallery($galleryID, false, 'sortorder', 'ASC', $limit_by);
-	    $outer = '';
-	     
-		$options = get_option('cvg_settings');
+		$mode = $arguments ['mode'];
+				
+		$galleryID = (int) $gallery_id;
 		
-		if(isset($options['cvg_random_video']) && $options['cvg_random_video'] == 1)
-			shuffle($videolist);
+		// Check videos in gallery folder and automatically add them.
+		$this->scan_upload_videos ( $galleryID, false );
 		
-	    if ( !$videolist )
-	        return __('[Gallery not found]');
-
-	    if ( is_array($videolist) ) {
-	    
-	    	$outer .= '<div class="video-gallery-thumbnail-box-outer" id="video-'.$galleryID.'">';
-	        $outer .= $this->videoCreateGallery($videolist, $galleryID, $slide_show, $place_holder);
-			$outer .= '</div>';
-	    }	
-        return $outer;
+		$limit_by = ($limit > 0) ? $limit : 0;
+		
+		// get gallery videos
+		$videolist = $this->cvg_videodb->get_gallery ( $galleryID, false, 'sortorder', 'ASC', $limit_by );
+		
+		if (! $videolist)
+			return __( '[No videos found]', 'cool-video-gallery');
+		
+		// Different modes available
+		if ($mode == 'playlist') {
+			
+			return $this->cvg_render_playlist ($arguments, $place_holder);
+			
+		}else if ($mode == 'showcase') {
+		
+			return $this->cvg_render_showcase ($arguments, $place_holder);
+			
+		}else if ($mode == 'slideshow') {
+		
+			return $this->cvg_render_slideshow ($arguments, $place_holder);
+		}
 	}
 	
 	/**
-	 * Build a gallery output
-	 * 
-	 * @param array $videolist
-	 * @param bool $galleryID - gallery ID
-	 * @param string $template (optional) name for a template file
-	 * @param int $videos (optional) number of videos per page
-	 * @return the content
+	 * Function to generate showcase of videos
+	 * @param $arguments - arguments from shortcode
+	 * @return showcase
 	 */
-	function videoCreateGallery($videolist, $galleryID = false, $slide_show = false, $place_holder = "main") {
-	
-	    if ( !is_array($videolist) )
-	        $videolist = array($videolist);
-	       
-	    $video_gallery = $this->cvg_videodb->find_gallery($galleryID);
+	function cvg_render_showcase($arguments, $place_holder) {
 		
-	    $video_gallery_name = $video_gallery->name;
-		$index = 0;
-		$out = '';
-		$options = get_option('cvg_settings');
+		$cool_video_gallery = $this->cvg_instance;
 		
-		$options_player = get_option('cvg_player_settings');
-			
-		if($options_player['cvgplayer_autoplay'] == 1)
+		$options = get_option ( 'cvg_settings' );
+		$options_player = get_option ( 'cvg_player_settings' );
+		
+		if ($options_player ['cvgplayer_autoplay'] == 1)
 			$autoplay = "true";
-		else 
-			$autoplay = "false";	
+		else
+			$autoplay = "false";
 		
-		if($options_player['cvgplayer_mute'] == 1)
+		if ($options_player ['cvgplayer_mute'] == 1)
 			$mute = "true";
-		else 
+		else
 			$mute = "false";
 		
-		if($options_player['cvgplayer_share_option'] == 1)
-			$player_swf = "player-share.swf";
-		else 
-			$player_swf = "player.swf";
-			
-		$cool_video_gallery = $this->cvg_instance;	
-
-		$skin_url = "";
-		if($options_player['cvgplayer_skin'] != "") {
-				
-			$skin_url = $cool_video_gallery->video_player_url . 'skins/' . $options_player['cvgplayer_skin'] . '-skin/' . $options_player['cvgplayer_skin']  . '.xml';
-		}
+		// Thumbnail width and height
+		if (isset ( $arguments ['preview-width'] ))
+			$thumb_width = $arguments ['preview-width'];
+		else
+			$thumb_width = $options ['cvg_preview_width'];
 		
-		if($slide_show){
+		if (isset ( $arguments ['preview-height'] ))
+			$thumb_height = $arguments ['preview-height'];
+		else
+			$thumb_height = $options ['cvg_preview_height'];
+						
 			
-			$options = get_option('cvg_settings');
-			$thumb_width = intval($options['cvg_preview_width']) + 10;
-			$thumb_height = intval ($options['cvg_preview_height']) + 10;
-			
-			$out .= ' <div class="slide" style="height:'.$thumb_height .'px;"><ul class="cvg-slideshow-content" id="slide_'.$galleryID.'_'. $place_holder .'">';
-		}else {
-			if(!empty($video_gallery->galdesc)){
-				if($options['cvg_gallery_description'] == 1) 	
-					$out .= '<div class="cvg-clear"></div><div>'.$video_gallery->galdesc.'</div><br clear="all"/>';
-			}	
-		}		
-	    foreach ($videolist as $video) {
-	
-			if($slide_show) {
-			
-				$arg = array();
-				$arg['videoid'] = $video->pid;
-				$arg['mode'] = "slide_show";
-				$arg['placeholder'] = $place_holder;
-				
-				$out .= '<li class="cvg-slide-image">';
-				$out .= $cool_video_gallery->CVGVideo_Render($arg);
-				$out .= '<span class="bottom">Click to Play</span></li>';
-				
-			}else {	
-				
-				$arg = array();
-				$arg['videoid'] = $video->pid;
-				$arg['mode'] = "list_items";
-				$arg['placeholder'] = $place_holder;
-				
-				$out .= '<div style="float:left;margin-right:10px;"><div style="padding:0px;" id="vide-file-'.$index.'">';
-				$out .= $cool_video_gallery->CVGVideo_Render($arg);
-				$out .= '</div>';
-		    	
-				$options = get_option('cvg_settings');
-				$thumb_width = $options['cvg_preview_width'];
-				$thumb_height = $options['cvg_preview_height'];
-
-				$current_video_title = isset($video->video_title) ? $video->video_title : "";
-		    	if($options['cvg_description'] == 1) 	
-		    		$out .= '<br clear="all"/><div style="text-align:center;width:'.$thumb_width.'px;">'. stripcslashes($current_video_title).'</div><div class="cvg-clear"></div></div>';
-				else	
-			    	$out .= '<div class="cvg-clear"></div></div>';
-			}	
-	    	$index++;
-	    }
-	    
-	    if($slide_show){	
-		 $out .= '<div class="cvg-clear"></div></ul></div><div class="cvg-clear"></div>';
-		 
-		 if($options['cvg_gallery_description'] == 1) 
-		 	$out .= '<div>'.$video_gallery->galdesc.'</div>';
-		 	
-		 $out .= '<div class="cvg-clear" style="min-height:10px;"></div>';	
-		 ?>
-		 		<script type="text/javascript">
-					jQuery(document).ready(function() {
+		if (isset ( $arguments ['width'] ))
+			$player_width = $arguments ['width'];
+		else
+			$player_width = $options_player ['cvgplayer_width'];
 		
+		if (isset ( $arguments ['height'] ))
+			$player_height = $arguments ['height'];
+		else
+			$player_height = $options_player ['cvgplayer_height'];
+					
 						
-						jQuery("a[rel=fancy_cvg_gallery_slide_<?php echo $galleryID.'_'.$place_holder;?>]").fancybox({
-							'titlePosition' : 'outside',
-							'transitionIn' : 'fade',
-							'transitionOut' : 'fade',
-							'autoScale' : true,
-							'titleFormat' : function(title, currentArray, currentIndex, currentOpts) {
-								return '<span id="fancybox-title-over">Video ' + (currentIndex + 1) + ' / ' + currentArray.length + '</span><span class="fancybox-title-top">' + (title.length ?  jQuery.stripslashes(title) : '') + '</span>';
-							},
-							'content' : '<div id="video_fancy_cvg_slide_gallery_<?php echo $galleryID."_".$place_holder;?>" style="overflow:hidden;"></div>',
-	
-							'autoDimensions' : false,
-							'width' : parseInt("<?php echo $options_player['cvgplayer_width']; ?>"),
-							'height' :  parseInt("<?php echo $options_player['cvgplayer_height']; ?>"),
-							'autoDimensions' : false,
-							'padding' : 0,
-							'margin' : 0,
-							'scrolling' : 'no',
-							'onComplete' : function() {
-
-								var cvg_gallery_video_current_url = this.href;
-								
-								jwplayer('video_fancy_cvg_slide_gallery_<?php echo $galleryID.'_'.$place_holder;?>').setup({
-									'file' : this.href,
-									"autostart" : "<?php echo $autoplay;?>",
-									"controlbar" : "<?php echo $options_player['cvgplayer_controlbar']; ?>",
-									"flashplayer" : "<?php echo $cool_video_gallery->plugin_url . "cvg-player/" . $player_swf; ?>",
-									"volume" : "<?php echo $options_player['cvgplayer_volume']; ?>",
-									"width" : "<?php echo $options_player['cvgplayer_width']; ?>",
-									"height" : "<?php echo $options_player['cvgplayer_height']; ?>",
-									"mute" : "<?php echo $mute; ?>",
-									"stretching" : "<?php echo $options_player['cvgplayer_stretching']; ?>",
-									"skin" : "<?php echo $skin_url; ?>"
-																		
-								});
-								
-								jwplayer('video_fancy_cvg_slide_gallery_<?php echo $galleryID.'_'.$place_holder;?>').onComplete(function() {
-									
-									<?php 
-										if ($options_player['cvgplayer_autoplay']) {
-										?>
-											jQuery.fancybox.next();
-										<?php } 
-									?>
-								});
-
-								jwplayer('video_fancy_cvg_slide_gallery_<?php echo $galleryID.'_'.$place_holder;?>').onError(function(error) {
-									if(error.type == "jwplayerError") {
-
-										if(error.message.indexOf("2035") > -1) {
-											// Youtube HTML5 Error
-											var cvg_youtube_video_id = cvg_gallery_video_current_url.split('v=')[1];
-											var ampersandPosition = cvg_youtube_video_id.indexOf('&');
-											if(ampersandPosition != -1) {
-											  cvg_youtube_video_id = cvg_youtube_video_id.substring(0, ampersandPosition);
-											}
-
-											var errorHTML5Text = '<?php _e('Error loading Youtube Video. Web Browser not supporting Flash video playback. Switching to Youtube iFrame Player. Please wait!!!', 'cool-video-gallery'); ?>';
-											var errorHTML5PlayerDivContent = '<div class="cvg-html5-youtube-error"><div class="cvg-html5-youtube-error-inner"><img src="<?php echo $cool_video_gallery->plugin_url . "cvg-player/cvg-ajax-loader.gif"; ?>" /><p>'+errorHTML5Text+'</p></div></div>';
-
-											jQuery('#video_fancy_cvg_slide_gallery_<?php echo $galleryID.'_'.$place_holder;?>_wrapper').empty();
-											jQuery('#video_fancy_cvg_slide_gallery_<?php echo $galleryID.'_'.$place_holder;?>_wrapper').append("<div id='cvg_youtube_player_<?php echo $galleryID.'_'.$place_holder;?>' style='height:100%;'>"+errorHTML5PlayerDivContent+"</div>");
-
-											setTimeout(function() {
-												var cvg_youtube_iframe_player = new YT.Player('cvg_youtube_player_<?php echo $galleryID.'_'.$place_holder;?>', {
-											          height: parseInt("<?php echo $options_player['cvgplayer_height']; ?>") ,
-											          width: parseInt("<?php echo $options_player['cvgplayer_width'] ; ?>") ,
-													      videoId: cvg_youtube_video_id,
-												      events: {
-													      	'onReady' : function(event) {
-
-													      		cvg_youtube_iframe_player.unMute();
-													      		<?php if($options_player['cvgplayer_mute'] == 1)  { ?>
-													      			cvg_youtube_iframe_player.mute();
-													      		<?php } ?>
-
-													      		cvg_youtube_iframe_player.setVolume('<?php echo $options_player['cvgplayer_volume']; ?>');
-													      	},
-												            'onStateChange': function (event) {
-													            if(event.data == YT.PlayerState.ENDED) {
-												            		<?php 
-																		if ($options_player['cvgplayer_autoplay']) {
-																		?>
-																			jQuery.fancybox.next();
-																		<?php } 
-																	?>
-													            } 
-													         }
-												      },
-												      playerVars : {
-															'autoplay': 1,
-															'color' : 'white',
-															'rel': 0,
-															'showinfo' : 0
-												      }
-												});
-												
-											}, 4000);	
-										}
-									} 
-								});
-							}
-						});
+		$gallery_id = $arguments ['galleryid'];
+		
+		if (isset ( $arguments ['limit'] ))
+			$limit = $arguments ['limit'];
+		else
+			$limit = 0;
+		
+		$mode = $arguments ['mode'];
+		
+		$galleryID = ( int ) $gallery_id;
+		$limit_by = ($limit > 0) ? $limit : 0;
+		
+		$outer = '';
+		$out = '';
+		
+		// get gallery values
+		$videolist = $this->cvg_videodb->get_gallery ( $galleryID, false, 'sortorder', 'ASC', $limit_by );
+		
+		if (isset ( $options ['cvg_random_video'] ) && $options ['cvg_random_video'] == 1)
+			shuffle ( $videolist );
+		
+		if (is_array ( $videolist )) {
+			 
+			foreach ($videolist as $video) {
+				$first_video = $video;
+				break;
+			}
+			
+			if ($options ['cvg_gallery_description'] == 1)
+				$out .= '<span>' . $first_video->galdesc . '</span><br clear="all"/><br clear="all"/>';
+			
+			$out .= '<span class="cvg-gallery-showcase">';
+			
+			foreach ( $videolist as $video ) {
+				
+				$out .= '<span class="cvg-gallery-showcase-videos" style="height:' . $thumb_height . 'px;width:' . $thumb_width . 'px;">';
+				
+				$current_video = array();
+					
+				if($video->video_type == $cool_video_gallery->video_type_upload) {
 						
-					});
-	
-				</script>
-		 
-		 <?php
-		}else {
-		 	$out .= '<div class="cvg-clear"></div>';
-		 	?>
+					// Upload file type
+					$current_video['filename'] = site_url()  . '/' . $video->path . '/' . $video->filename;
+					$current_video['thumb_filename'] =  $video->path . '/thumbs/' . $video->thumb_filename;
+						
+					if (! file_exists ( ABSPATH . $current_video ['thumb_filename'] ))
+						$current_video ['thumb_filename'] = WP_CONTENT_URL . '/plugins/' . dirname(dirname( plugin_basename(__FILE__))) . '/images/default_video.png';
+					else
+						$current_video ['thumb_filename'] = site_url () . '/' . $current_video ['thumb_filename'];
+								
+				}else if($video->video_type == $cool_video_gallery->video_type_youtube){
+				
+					// Youtube file type
+					$current_video['filename'] =  $video->filename;
+					$current_video['thumb_filename'] =  $video->thumb_filename;
+				
+				}else if($video->video_type == $cool_video_gallery->video_type_media) {
+				
+					// Media file type
+					$current_video ['filename'] = $video->filename;
+					$current_video ['thumb_filename'] = $video->path . '/thumbs/' . $video->thumb_filename;
+					
+					if (! file_exists ( ABSPATH  . $current_video ['thumb_filename'] ))
+						$current_video ['thumb_filename'] = WP_CONTENT_URL . '/plugins/' . dirname(dirname( plugin_basename(__FILE__))) . '/images/default_video.png';
+					else
+						$current_video ['thumb_filename'] = site_url () . '/' . $current_video ['thumb_filename'];
+								
+				}
+				
+				$out .=  '<a href="' . $current_video['filename'] . '" title="' . stripslashes($video->description) . '"  rel="fancy_cvg_gallery_'.$galleryID.'_'. $place_holder.'">' ;
+				$out .=  '<img src="' .$current_video['thumb_filename'] . '" style="width:' . $thumb_width . 'px;height:' . $thumb_height .'px;" ' ;
+				$out .=  'alt="' . __('Click to Watch Video', 'cool-video-gallery') . '" /></a>';
+				
+				
+				$current_video_title = isset ( $video->video_title ) ? $video->video_title : "";
+				if ($options ['cvg_description'] == 1)
+					$out .= '<label class="cvg-single-video-wrapper-title" style="width:' . $thumb_width . 'px;">' . stripcslashes ( $current_video_title ) . '</label>';
+				
+				$out .= '</span>';
+			}
+			
+			echo "<!-- Cool Video Gallery Script starts here -->";
+			?>
 		 	<script type="text/javascript">
 				jQuery(document).ready(function() {
 						jQuery("a[rel=fancy_cvg_gallery_<?php echo $galleryID.'_'.$place_holder;?>]").fancybox({
-							'titlePosition' : 'outside',
-							'transitionIn' : 'fade',
-							'transitionOut' : 'fade',
-							'autoDimensions' : false,
-	
-							'titleFormat' : function(title, currentArray, currentIndex, currentOpts) {
-								return '<span id="fancybox-title-over">Video ' + (currentIndex + 1) + ' / ' + currentArray.length + '</span><span class="fancybox-title-top">' + (title.length ?  jQuery.stripslashes(title)  : '') + '</span>';
-							},
+
 							'content' : '<div id="video_fancy_cvg_items_gallery_<?php echo $galleryID.'_'.$place_holder;?>" style="overflow:hidden;"></div>',
-	
-							'width' : parseInt("<?php echo $options_player['cvgplayer_width'] ; ?>") ,
-							'height' :  parseInt("<?php echo $options_player['cvgplayer_height']; ?>") ,
+							'width' : "<?php echo $player_width ; ?>",
+							'height' :  "<?php echo $player_height ; ?>",
+							'titlePosition' : 'inside',
+							'autoScale' : false,
 							'autoDimensions' : false,
-							'padding' : 0,
 							'margin' : 0,
-							'scrolling' : 'no',
+							'padding' : 15,
+							'transitionIn' : 'none',
+							'transitionOut' : 'none',
+							'centerOnScroll' : false,
+							'showNavArrows' : false,
+							'titleFormat' : function(title, currentArray, currentIndex, currentOpts) {
+								
+								var label_count = 'Video ' + (currentIndex + 1) + ' / ' + currentArray.length + '<br/>';
+								var prev_disable_class = "";
+								var next_disable_class = "";
+								
+								if(currentIndex + 1 == currentArray.length) 
+									next_disable_class = "btnDisabled";	
+
+								if(currentIndex == 0) 
+									prev_disable_class = "btnDisabled";
+								
+								var prev_button = '<div class="cvg-fancybox-buttons fancybox-buttons"><a class="btnPrev ' +prev_disable_class+ '" title="Previous" href="javascript:;" onclick="jQuery.fancybox.prev();"></a></div>'   ;
+								var next_button = '<div class="cvg-fancybox-buttons fancybox-buttons"><a class="btnNext ' +next_disable_class+ '" title="Next" href="javascript:;" onclick="jQuery.fancybox.next();"></a></div><br/>';
+								var title = "";
+								
+								<?php if($options['cvg_description'] == 1) { ?>
+									title =  this.title.length ?  jQuery.stripslashes(this.title) : '';
+								<?php }?>
+									
+								return label_count + prev_button + next_button + title;
+							},
 							'onComplete' : function() {
 
-								var cvg_gallery_video_current_url = this.href;
-
 								jwplayer('video_fancy_cvg_items_gallery_<?php echo $galleryID.'_'.$place_holder;?>').setup({
+
 									'file' : this.href,
 									"autostart" : "<?php echo $autoplay;?>",
-									"controlbar" : "<?php echo $options_player['cvgplayer_controlbar']; ?>",
-									"flashplayer" : "<?php echo $cool_video_gallery->plugin_url . "cvg-player/" . $player_swf; ?>",
 									"volume" : "<?php echo $options_player['cvgplayer_volume']; ?>",
-									"width" : "<?php echo $options_player['cvgplayer_width']; ?>",
-									"height" : "<?php echo $options_player['cvgplayer_height']; ?>",
+									"width" : "<?php echo $player_width; ?>",
+									"height" : "<?php echo $player_height; ?>",
 									"mute" : "<?php echo $mute; ?>",
+									"image" :  this.orig[0].src ,
+									<?php if($options_player['cvgplayer_share_option'] == 1) { // Enable Share ?>			
+									"sharing" : {
+										"sites": ['twitter','email']
+									},
+									<?php } ?>
+										
 									"stretching" : "<?php echo $options_player['cvgplayer_stretching']; ?>",
-									"skin" : "<?php echo $skin_url; ?>"
+									"skin" : "<?php echo $options_player['cvgplayer_skin']; ?>",
+									"width" : "100%",
+									"height" : "100%"
 								});
 								
 								jwplayer('video_fancy_cvg_items_gallery_<?php echo $galleryID.'_'.$place_holder;?>').onComplete(function() {
 									
+									if((jQuery.fancybox.getPos() + 1) < jQuery.fancybox.getTotal()) {
+										<?php 
+											if ($options_player['cvgplayer_autoplay']) {
+											?>
+												jQuery.fancybox.next();
+											<?php } 
+										?>
+									}else {
+										<?php 
+											if ($options_player['cvgplayer_auto_close_single']) {
+											?>
+												jQuery.fancybox.close();
+											<?php 
+											}
+										?>
+									}
+								});
+							}
+						});
+					});
+				</script>
+		 	<?php
+		 	
+		 	echo "<!-- Cool Video Gallery Script ends here -->";
+		 	
+		 	$outer .= '<span class="video-gallery-thumbnail-box-outer">';
+		 	$outer .= $out;
+		 	$outer .= '</span>';
+		}
+		return $outer;
+	}
+	
+	/**
+	 * Function to generate slideshow of videos
+	 * @param $arguments - arguments from shortcode
+	 * @return slideshow
+	 */
+	function cvg_render_slideshow($arguments, $place_holder) {
+	
+		$cool_video_gallery = $this->cvg_instance;
+		
+		$options = get_option ( 'cvg_settings' );
+		$options_player = get_option ( 'cvg_player_settings' );
+		
+		if ($options_player ['cvgplayer_autoplay'] == 1)
+			$autoplay = "true";
+		else
+			$autoplay = "false";
+		
+		if ($options_player ['cvgplayer_mute'] == 1)
+			$mute = "true";
+		else
+			$mute = "false";
+			
+		// Thumbnail width and height
+		if (isset ( $arguments ['preview-width'] ))
+			$thumb_width = $arguments ['preview-width'];
+		else
+			$thumb_width = $options ['cvg_preview_width'];
+		
+		if (isset ( $arguments ['preview-height'] ))
+			$thumb_height = $arguments ['preview-height'];
+		else
+			$thumb_height = $options ['cvg_preview_height'];
+		
+		if (isset ( $arguments ['width'] ))
+			$player_width = $arguments ['width'];
+		else
+			$player_width = $options_player ['cvgplayer_width'];
+		
+		if (isset ( $arguments ['height'] ))
+			$player_height = $arguments ['height'];
+		else
+			$player_height = $options_player ['cvgplayer_height'];
+					
+		$gallery_id = $arguments ['galleryid'];
+		
+		if (isset ( $arguments ['limit'] ))
+			$limit = $arguments ['limit'];
+		else
+			$limit = 0;
+		
+		$mode = $arguments ['mode'];
+		
+		$galleryID = ( int ) $gallery_id;
+		
+		$limit_by = ($limit > 0) ? $limit : 0;
+		
+		// get gallery values
+		$videolist = $this->cvg_videodb->get_gallery ( $galleryID, false, 'sortorder', 'ASC', $limit_by );
+		$outer = '';
+		$out = '';
+		
+		if (isset ( $options ['cvg_random_video'] ) && $options ['cvg_random_video'] == 1)
+			shuffle ( $videolist );
+		
+		if (is_array ( $videolist )) {
+			
+			$video_gallery = $this->cvg_videodb->find_gallery ( $galleryID );
+			
+			foreach ($videolist as $video) {
+				$first_video = $video;
+				break;
+			}
+			
+			if($options['cvg_gallery_description'] == 1)
+				$out .= '<span>'. $first_video->galdesc.'</span><br clear="all"/><br clear="all"/>';
+					
+			$out .= '<span class="cvg-gallery-slideshow" id="cvg-gallery-slideshow-'.$galleryID.'-'.$place_holder.'" style="height:'.$thumb_height .'px;width:'.$thumb_width .'px;">';
+			
+			$i = 0;
+			foreach ( $videolist as $video ) {
+				
+				$class = "";
+				if($i == 0) {
+					$class = 'class="active"';
+				}
+				$i++;
+				
+				$out .= '<span '.$class .'>';
+				
+				
+				$current_video = array ();
+				
+				if ($video->video_type == $cool_video_gallery->video_type_upload) {
+					
+					// Upload file type
+					$current_video ['filename'] = site_url () . '/' . $video->path . '/' . $video->filename;
+					$current_video ['thumb_filename'] = $video->path . '/thumbs/' . $video->thumb_filename;
+					
+					if (! file_exists ( ABSPATH . $current_video ['thumb_filename'] ))
+						$current_video ['thumb_filename'] = WP_CONTENT_URL . '/plugins/' . dirname ( dirname ( plugin_basename ( __FILE__ ) ) ) . '/images/default_video.png';
+					else
+						$current_video ['thumb_filename'] = site_url () . '/' . $current_video ['thumb_filename'];
+				} else if ($video->video_type == $cool_video_gallery->video_type_youtube) {
+					
+					// Youtube file type
+					$current_video ['filename'] = $video->filename;
+					$current_video ['thumb_filename'] = $video->thumb_filename;
+				} else if ($video->video_type == $cool_video_gallery->video_type_media) {
+					
+					// Media file type
+					$current_video ['filename'] = $video->filename;
+					$current_video ['thumb_filename'] = $video->path . '/thumbs/' . $video->thumb_filename;
+					
+					if (! file_exists ( ABSPATH . $current_video ['thumb_filename'] ))
+						$current_video ['thumb_filename'] = WP_CONTENT_URL . '/plugins/' . dirname ( dirname ( plugin_basename ( __FILE__ ) ) ) . '/images/default_video.png';
+					else
+						$current_video ['thumb_filename'] = site_url () . '/' . $current_video ['thumb_filename'];
+				}
+				
+				
+				$out .=  '<a href="' . $current_video['filename'] . '" title="' . stripslashes($video->description) . '"  rel="fancy_cvg_gallery_slide_'.$galleryID.'_'. $place_holder .'">' ;
+				$out .=  '<img  src="' .$current_video['thumb_filename'] . '" style="width:' . $thumb_width . 'px;height:' . $thumb_height .'px;" ' ;
+				$out .=  'alt="' . __('Click to Watch Video', 'cool-video-gallery') . '" /></a>';
+				
+				
+				$current_video_title = isset($video->video_title) ? $video->video_title : "";
+				if($options['cvg_description'] == 1)
+					$out .= '<label class="cvg-single-video-wrapper-title" style="width:' . $thumb_width . 'px;">'. stripcslashes($current_video_title).'</label>';
+				
+				$out .= '</span>';	
+			}
+			
+			$out .= '</span>';
+			
+			echo "<!-- Cool Video Gallery Script starts here -->";
+			?>
+	 		<script type="text/javascript">
+				jQuery(document).ready(function() {
+					// Slider
+					jQuery(function() {
+						if(jQuery('#cvg-gallery-slideshow-<?php echo $galleryID;?>-<?php echo $place_holder;?> span').length > 1) {
+						    setInterval( function() { cvg_slide_switch('cvg-gallery-slideshow-<?php echo $galleryID;?>-<?php echo $place_holder;?>'); } , parseInt(<?php echo $options['cvg_slideshow']; ?>) );
+						}
+					});
+					
+					jQuery("a[rel=fancy_cvg_gallery_slide_<?php echo $galleryID.'_'.$place_holder;?>]").fancybox({
+						'content' : '<div id="video_fancy_cvg_slide_gallery_<?php echo $galleryID."_".$place_holder;?>" style="overflow:hidden;"></div>',
+						'width' : "<?php echo $player_width ; ?>",
+						'height' :  "<?php echo $player_height ; ?>",
+						'titlePosition' : 'inside',
+						'autoScale' : false,
+						'autoDimensions' : false,
+						'margin' : 0,
+						'padding' : 15,
+						'transitionIn' : 'none',
+						'transitionOut' : 'none',
+						'centerOnScroll' : false,
+						'showNavArrows' : false,
+						'titleFormat' : function(title, currentArray, currentIndex, currentOpts) {
+							
+							var label_count = 'Video ' + (currentIndex + 1) + ' / ' + currentArray.length + '<br/>';
+							var prev_disable_class = "";
+							var next_disable_class = "";
+							
+							if(currentIndex + 1 == currentArray.length) 
+								next_disable_class = "btnDisabled";	
+
+							if(currentIndex == 0) 
+								prev_disable_class = "btnDisabled";
+							
+							var prev_button = '<div class="cvg-fancybox-buttons fancybox-buttons"><a class="btnPrev ' +prev_disable_class+ '" title="Previous" href="javascript:;" onclick="jQuery.fancybox.prev();"></a></div>'   ;
+							var next_button = '<div class="cvg-fancybox-buttons fancybox-buttons"><a class="btnNext ' +next_disable_class+ '" title="Next" href="javascript:;" onclick="jQuery.fancybox.next();"></a></div><br/>';
+							var title = "";
+							
+							<?php if($options['cvg_description'] == 1) { ?>
+								title =  this.title.length ?  jQuery.stripslashes(this.title) : '';
+							<?php }?>
+								
+							return label_count + prev_button + next_button + title;
+						},
+						'onComplete' : function() {
+							
+							jwplayer('video_fancy_cvg_slide_gallery_<?php echo $galleryID.'_'.$place_holder;?>').setup({
+								'file' : this.href,
+								"autostart" : "<?php echo $autoplay;?>",
+								"volume" : "<?php echo $options_player['cvgplayer_volume']; ?>",
+								"width" : "<?php echo $player_width; ?>",
+								"height" : "<?php echo $player_height; ?>",
+								"mute" : "<?php echo $mute; ?>",
+								"image" :  this.orig[0].src ,
+								
+								<?php if($options_player['cvgplayer_share_option'] == 1) { // Enable Share ?>			
+								"sharing" : {
+									"sites": ['twitter','email']
+								},
+								<?php } ?>
+									
+								"stretching" : "<?php echo $options_player['cvgplayer_stretching']; ?>",
+								"skin" : "<?php echo $options_player['cvgplayer_skin']; ?>",
+								"width" : "100%",
+								"height" : "100%"
+							});
+							
+							jwplayer('video_fancy_cvg_slide_gallery_<?php echo $galleryID.'_'.$place_holder;?>').onComplete(function() {
+
+								if((jQuery.fancybox.getPos() + 1) < jQuery.fancybox.getTotal()) {
 									<?php 
 										if ($options_player['cvgplayer_autoplay']) {
 										?>
 											jQuery.fancybox.next();
 										<?php } 
 									?>
-									
-								});
-
-								jwplayer('video_fancy_cvg_items_gallery_<?php echo $galleryID.'_'.$place_holder;?>').onError(function(error) {
-									if(error.type == "jwplayerError") {
-										
-										if(error.message.indexOf("2035") > -1) {
-											// Youtube HTML5 Error
-											var cvg_youtube_video_id = cvg_gallery_video_current_url.split('v=')[1];
-											var ampersandPosition = cvg_youtube_video_id.indexOf('&');
-											if(ampersandPosition != -1) {
-											  cvg_youtube_video_id = cvg_youtube_video_id.substring(0, ampersandPosition);
-											}
-											var errorHTML5Text = '<?php _e('Error loading Youtube Video. Web Browser not supporting Flash video playback. Switching to Youtube iFrame Player. Please wait!!!', 'cool-video-gallery'); ?>';
-											var errorHTML5PlayerDivContent = '<div class="cvg-html5-youtube-error"><div class="cvg-html5-youtube-error-inner"><img src="<?php echo $cool_video_gallery->plugin_url . "cvg-player/cvg-ajax-loader.gif"; ?>" /><p>'+errorHTML5Text+'</p></div></div>';
-											
-											jQuery('#video_fancy_cvg_items_gallery_<?php echo $galleryID.'_'.$place_holder;?>_wrapper').empty();
-											jQuery('#video_fancy_cvg_items_gallery_<?php echo $galleryID.'_'.$place_holder;?>_wrapper').append("<div id='cvg_youtube_player_<?php echo $galleryID.'_'.$place_holder;?>' style='height:100%;'>"+errorHTML5PlayerDivContent+"</div>");
-
-											setTimeout(function() {
-												var cvg_youtube_iframe_player = new YT.Player('cvg_youtube_player_<?php echo $galleryID.'_'.$place_holder;?>', {
-											          height: parseInt("<?php echo $options_player['cvgplayer_height']; ?>") ,
-											          width: parseInt("<?php echo $options_player['cvgplayer_width'] ; ?>") ,
-													      videoId: cvg_youtube_video_id,
-												      events: {
-													      	'onReady' : function(event) {
-
-													      		cvg_youtube_iframe_player.unMute();
-													      		<?php if($options_player['cvgplayer_mute'] == 1)  { ?>
-													      			cvg_youtube_iframe_player.mute();
-													      		<?php } ?>
-
-													      		cvg_youtube_iframe_player.setVolume('<?php echo $options_player['cvgplayer_volume']; ?>');
-													      	},
-												            'onStateChange': function (event) {
-													            if(event.data == YT.PlayerState.ENDED) {
-												            		<?php 
-																		if ($options_player['cvgplayer_autoplay']) {
-																		?>
-																			jQuery.fancybox.next();
-																		<?php } 
-																	?>
-													            } 
-													         }
-												      },
-												      playerVars : {
-															'autoplay': 1,
-															'color' : 'white',
-															'rel': 0,
-															'showinfo' : 0
-												      }
-												});
-												
-											}, 4000);	
+								}else {
+									<?php 
+										if ($options_player['cvgplayer_auto_close_single']) {
+										?>
+											jQuery.fancybox.close();
+										<?php 
 										}
-									} 
-								});
-							}
-						});
+									?>
+								}
+							});
+						}
 					});
-				</script>
-		 
-		 <?php
-		 
+					
+				});
+
+			</script>
+			 <?php
+			 echo "<!-- Cool Video Gallery Script ends here -->";
+			
+			$outer .= '<span class="video-gallery-thumbnail-box-outer">';
+			$outer .= $out;
+			$outer .= '</span>';
 		}
-		return $out;
+		return $outer;
+	}
+		
+	/**
+	 * Function to generate playlist of videos
+	 * @param $arguments - arguments from shortcode
+	 * @return embeded playlist
+	 */
+	function cvg_render_playlist($arguments) {
+		
+		$cool_video_gallery = $this->cvg_instance;
+		
+		$options = get_option ( 'cvg_settings' );
+		$options_player = get_option ( 'cvg_player_settings' );
+		
+		if ($options_player ['cvgplayer_autoplay'] == 1)
+			$autoplay = "true";
+		else
+			$autoplay = "false";
+		
+		if ($options_player ['cvgplayer_mute'] == 1)
+			$mute = "true";
+		else
+			$mute = "false";
+			
+		if (isset ( $arguments ['width'] ))
+			$player_width = $arguments ['width'];
+		else
+			$player_width = $options_player ['cvgplayer_width'];
+		
+		if (isset ( $arguments ['height'] ))
+			$player_height = $arguments ['height'];
+		else
+			$player_height = $options_player ['cvgplayer_height'];
+		
+		$gallery_id = $arguments ['galleryid'];
+		
+		if (isset ( $arguments ['limit'] ))
+			$limit = $arguments ['limit'];
+		else
+			$limit = 0;
+		
+		$mode = $arguments ['mode'];
+		
+		
+		$limit_by = ($limit > 0) ? $limit : 0;
+		
+		// get gallery values
+		$videolist = $this->cvg_videodb->get_gallery ( $gallery_id, false, 'sortorder', 'ASC', $limit_by );
+		$outer = '';
+		$out = '';
+		
+		if (isset ( $options ['cvg_random_video'] ) && $options ['cvg_random_video'] == 1)
+			shuffle ( $videolist );
+			
+		$playlist = array();
+		
+		foreach ( $videolist as $video ) {
+			
+			if($video->video_type == $cool_video_gallery->video_type_upload) {
+			
+				$video_url = site_url()  . '/' . $video->path . '/' . $video->filename;
+				$thumb_url = site_url() . '/' . $video->path . '/thumbs/' . $video->thumb_filename;
+			
+				if(!file_exists(ABSPATH . '/' . $video->path . '/thumbs/' . $video->thumb_filename ))
+					$thumb_url  = WP_CONTENT_URL .  '/plugins/' . dirname(dirname( plugin_basename(__FILE__))) . '/images/default_video.png';
+			
+			}else if($video->video_type == $cool_video_gallery->video_type_youtube){
+			
+				$video_url = $video->filename;
+				$thumb_url = $video->thumb_filename;
+			}else if($video->video_type == $cool_video_gallery->video_type_media){
+			
+				$video_url = $video->filename;
+			
+				$thumb_url = site_url() . '/' . $video->path . '/thumbs/' . $video->thumb_filename;
+				if(!file_exists(ABSPATH . '/' . $video->path . '/thumbs/' . $video->thumb_filename ))
+					$thumb_url  = WP_CONTENT_URL .  '/plugins/' . dirname(dirname( plugin_basename(__FILE__))) . '/images/default_video.png';
+			
+			}else {
+			
+				$video_url = site_url()  . '/' . $video->path . '/' . $video->filename;
+				$thumb_url = site_url() . '/' . $video->path . '/thumbs/' . $video->thumb_filename;
+			
+				if(!file_exists(ABSPATH . '/' . $video->path . '/thumbs/' . $video->thumb_filename ))
+					$thumb_url  = WP_CONTENT_URL .  '/plugins/' . dirname(dirname( plugin_basename(__FILE__))) . '/images/default_video.png';
+			
+			}
+			
+			$desc = stripcslashes($video->description);
+			$pub_date = $video->videodate;
+			$title = isset($video->video_title) ? $video->video_title : "" ;
+			
+			$playlist_item = array();
+			
+			$playlist_item['file'] = htmlspecialchars($video_url);
+			$playlist_item['image'] = htmlspecialchars($thumb_url);
+			$playlist_item['pubDate'] = htmlspecialchars($pub_date);
+			
+			if ($options ['cvg_description'] == 1) {
+				$playlist_item['title'] = htmlspecialchars($title);
+				$playlist_item['description'] = htmlspecialchars($desc);
+			}
+			
+			array_push($playlist, $playlist_item);
+		}
+			
+		$gallery_display = '<div style="max-width:'.$player_width.'px;height:'.$player_height.'px;width: 100%;display: inline-block;">';
+		
+		foreach ($videolist as $video) {
+			$first_video = $video;
+			break;
+		}
+		
+		if($options['cvg_gallery_description'] == 1)
+			$gallery_display .= '<span>'. $first_video->galdesc.'</span><br clear="all" /><br clear="all" />';
+		
+		$gallery_display .= '<span id="mediaplayer_gallery_' . $gallery_id . '"></span>';
+		
+		$gallery_display .= '</div>'
+		?>
+		<script type="text/javascript">
+		
+		jQuery(document).ready(function(){
+			jwplayer("<?php echo 'mediaplayer_gallery_'.$gallery_id; ?>").setup({
+    			'playlist': <?php echo json_encode($playlist); ?>,
+    			'height' : parseInt("<?php echo $player_height; ?>"),
+				'width' : parseInt("<?php echo $player_width; ?>"),
+				'autostart' : "<?php echo $autoplay; ?>",
+				'volume' : "<?php echo $options_player['cvgplayer_volume']; ?>",
+				'mute' : "<?php echo $mute; ?>",
+				
+				<?php if($options_player['cvgplayer_share_option'] == 1) { // Enable Share ?>			
+				"sharing" : {
+					"sites": ['twitter','email']
+				},
+				<?php } ?>
+				
+				'stretching' : "<?php echo $options_player['cvgplayer_stretching']; ?>",
+				"skin" : "<?php echo $options_player['cvgplayer_skin']; ?>",
+				"width" : "100%"
+			});
+			jwplayer("<?php echo 'mediaplayer_gallery_'.$gallery_id; ?>").onReady(function() {
+				jQuery("#<?php echo 'mediaplayer_gallery_'.$gallery_id; ?>").addClass('cvg-single-video-wrapper');
+			});
+		});
+		
+		</script>
+		<?php
+		return $gallery_display;
 	}
 	
+			
 	/**
 	 * Function to publish videos as post.
 	 */
@@ -2085,6 +2347,48 @@ class CvgCore{
 		}else {
 			return;
 		}
+	}
+	
+	/**
+	 * Function to get list of all player skins from folder
+	 * @param $path - folder path of skins
+	 * @param $match - extention of file
+	 * @param $prematch
+	 * @param $revsort - order of sort
+	 * @return array of skins
+	 */
+	function get_dir_skin($path, $match = "", $prematch = "", $revsort = true){
+	
+		$handle = opendir($path);
+		$list = array();
+	
+		while (false !== ($file = readdir($handle))){
+			if ($match != ""){
+				if (substr($file, strlen($file) - strlen($match)) == $match){
+					if ($prematch != ""){
+						if (substr($file, 0, strlen($prematch)) == $prematch){
+							$list[count($list)] = substr($file, strlen($prematch), strlen($file) - (strlen($match) + strlen($prematch)));
+						}
+					}else{
+						$list[count($list)] = substr($file, 0, strlen($file) - strlen($match));
+					}
+				}
+			}else{
+				if ($prematch != ""){
+					if (substr($file, 0, strlen($prematch)) == $prematch){
+						$list[count($list)] = substr($file, strlen($prematch), strlen($file) - strlen($prematch));
+					}
+				}else{
+					$list[count($list)] = $file;
+				}
+			}
+		}
+		if ($revsort){
+			rsort($list);
+		}else{
+			sort($list);
+		}
+		return $list;
 	}
 }
 

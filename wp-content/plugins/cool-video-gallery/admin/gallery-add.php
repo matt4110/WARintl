@@ -13,52 +13,22 @@ wp_enqueue_style('jquery.ui.tabs', trailingslashit(WP_PLUGIN_URL . '/' . dirname
 
 $cvg_core = new CvgCore();
 
+if ($_SERVER ['REQUEST_METHOD'] == 'POST' && empty ( $_POST ) && empty ( $_FILES ) && $_SERVER ['CONTENT_LENGTH'] > 0) {
+	
+	$temp_file_size = intval ( $cvg_core->wp_convert_bytes_to_kb ( $_SERVER ['CONTENT_LENGTH'] ) );
+	$max_upload_size = $cvg_core->get_max_size ();
+	
+	if ($temp_file_size > $max_upload_size) {
+		$cvg_core->show_video_error ( __ ( 'File upload size limit exceeded.', 'cool-video-gallery' ) );
+	}
+}
+
 //Section on submitting data.
 if (!empty($_POST)) {
+	
 	$cvg_core->processor();
 }
 ?>
-<script type="text/javascript">
-	/*
-	* Section to initialize multiple file upload
-	*/
-	jQuery(document).ready(function(){
-		jQuery('#videofiles').MultiFile({
-			STRING: {
-				remove:'[<?php  _e('remove', 'cool-video-gallery');?>]',
-				denied:'<?php _e('File type not permitted.', 'cool-video-gallery');?>',
-				duplicate:'<?php _e('This file has already been selected: ', 'cool-video-gallery');?>$file'
-			},
-			accept : 'mp4,flv,MP4,FLV,mov,MOV,MP3,mp3,m4v,M4V'
-		});
-	
-		jQuery('#uploadvideo_btn').click(function(){
-			if(jQuery.trim(jQuery('#galleryselect').val()) == 0) {
-				alert('<?php _e('Please choose a gallery.', 'cool-video-gallery');?>');
-			}else {
-				jQuery('#uploadvideo_form').submit();
-			}
-		});
-	
-		jQuery('#addvideo_btn').click(function(){
-			if(jQuery.trim(jQuery('#galleryselect_add').val()) == 0) {
-				alert('<?php _e('Please choose a gallery.', 'cool-video-gallery');?>');
-			}else {
-				jQuery('#addvideo_form').submit();
-			}
-		});
-	
-		jQuery('#addmedia_btn').click(function(){
-			if(jQuery.trim(jQuery('#galleryselect_media').val()) == 0) {
-				alert('<?php _e('Please choose a gallery.', 'cool-video-gallery');?>');
-			}else if(jQuery.trim(jQuery('#mediaselect_add').val()) == 0) {
-				alert('<?php _e('Please choose a media file.', 'cool-video-gallery');?>');
-			}else {
-				jQuery('#addmedia_form').submit();
-			}
-		});
-	});
-</script>
 <div class="wrap">
 	<h2><?php _e('Add Gallery / Videos', 'cool-video-gallery');?></h2>
 	<?php $tabs = $cvg_core->tabs_order();?>
@@ -82,10 +52,38 @@ if (!empty($_POST)) {
 	</div>
 </div><!-- wrap -->
 <script type="text/javascript">
-	/*
-	 * Section to initialize tab
-	 */
-	jQuery(document).ready(function() {
+	jQuery(document).ready(function(){
+		jQuery('#videofiles').MultiFile({
+			STRING: {
+				remove:'[<?php  _e('remove', 'cool-video-gallery');?>]',
+				denied:'<?php _e('File type not permitted.', 'cool-video-gallery');?>',
+				duplicate:'<?php _e('This file has already been selected: ', 'cool-video-gallery');?>$file'
+			},
+			accept : 'mp4,flv,MP4,FLV,mov,MOV,MP3,mp3,m4v,M4V'
+		});
+		jQuery('#uploadvideo_btn').click(function(){
+			if(jQuery.trim(jQuery('#galleryselect').val()) == 0) {
+				alert('<?php _e('Please choose a gallery.', 'cool-video-gallery');?>');
+			}else {
+				jQuery('#uploadvideo_form').submit();
+			}
+		});
+		jQuery('#addvideo_btn').click(function(){
+			if(jQuery.trim(jQuery('#galleryselect_add').val()) == 0) {
+				alert('<?php _e('Please choose a gallery.', 'cool-video-gallery');?>');
+			}else {
+				jQuery('#addvideo_form').submit();
+			}
+		});
+		jQuery('#addmedia_btn').click(function(){
+			if(jQuery.trim(jQuery('#galleryselect_media').val()) == 0) {
+				alert('<?php _e('Please choose a gallery.', 'cool-video-gallery');?>');
+			}else if(jQuery.trim(jQuery('#mediaselect_add').val()) == 0) {
+				alert('<?php _e('Please choose a media file.', 'cool-video-gallery');?>');
+			}else {
+				jQuery('#addmedia_form').submit();
+			}
+		});
 		jQuery('#cvg_add_tab').tabs({
 			fxFade : true,
 			fxSpeed : 'fast'

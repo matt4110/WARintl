@@ -1,0 +1,154 @@
+/**
+ * Style Name: Pinterest
+ *
+ * @package   PT_Content_Views_Pro
+ * @author    PT Guy (http://www.contentviewspro.com/)
+ * @license   GPL-2.0+
+ * @link      http://www.contentviewspro.com/
+ * @copyright 2014 PT Guy
+ */
+
+.pt-cv-pinterest.pt-cv-shadow {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.pt-cv-pinterest .pt-cv-page {
+	opacity: 0;
+}
+
+/* Item */
+.pt-cv-pinterest .pt-cv-content-item {
+	background:         #fff;
+	border-top:         1px solid #ececec;
+	margin-bottom:      20px;
+	min-height:         60px;
+	padding-bottom:     0;
+
+	-webkit-transition: top 1s ease, left 1s ease;
+	-moz-transition:    top 1s ease, left 1s ease;
+	-o-transition:      top 1s ease, left 1s ease;
+	-ms-transition:     top 1s ease, left 1s ease;
+}
+.pt-cv-pinterest:not(.pt-cv-masonry) .pt-cv-content-item {
+	width:              236px;
+	float:              left;
+}
+.pt-cv-pinterest * {
+	margin-bottom: 0;
+}
+.pt-cv-masonry .pt-cv-content-item {
+	margin-bottom: 8px !important;
+}
+
+/* Shadow box */
+.pt-cv-pinterest.pt-cv-shadow .pt-cv-content-item {
+	-moz-box-shadow:    0 2px 5px rgba(202, 202, 202, 0.8);
+	-webkit-box-shadow: 0 2px 5px rgba(202, 202, 202, 0.8);
+	-khtml-box-shadow:  0 2px 5px rgba(202, 202, 202, 0.8);
+	box-shadow:         0 2px 5px rgba(202, 202, 202, 0.8);
+}
+.pt-cv-pinterest.pt-cv-shadow .pt-cv-content-item:hover {
+	-moz-box-shadow:    0 5px 10px rgba(0,0,0,.15);
+	-webkit-box-shadow: 0 5px 10px rgba(0,0,0,.15);
+	-khtml-box-shadow:  0 5px 10px rgba(0,0,0,.15);
+	box-shadow:         0 5px 10px rgba(0,0,0,.15);
+}
+.pt-cv-pinterest.pt-cv-masonry .pt-cv-content-item {
+	-moz-box-shadow:    0px 1px 3px rgba(202,202,202,.8);
+	-webkit-box-shadow: 0px 1px 3px rgba(202,202,202,.8);
+	-khtml-box-shadow:  0px 1px 3px rgba(202,202,202,.8);
+	box-shadow:         0px 1px 3px rgba(202,202,202,.8);
+}
+
+/* Border box */
+.pt-cv-pinterest.pt-cv-border .pt-cv-content-item {
+	border:                1px solid #eee;
+}
+
+/* Item fields */
+.pt-cv-pinterest:not(.pt-cv-no-bb) .pt-cv-content-item > * {
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.pt-cv-pinterest:not(.pt-cv-no-bb) .pt-cv-content-item > *:last-child {
+	border-bottom: none;
+}
+
+.pt-cv-pinterest .pt-cv-title,
+.pt-cv-pinterest .pt-cv-meta-fields,
+.pt-cv-pinterest .pt-cv-custom-fields,
+.pt-cv-pinterest .pt-cv-content,
+.pt-cv-pinterest .edd_download_purchase_form {
+	padding:       8px 12px;
+	margin-bottom: 0 !important;
+}
+
+/* Meta fields */
+.pt-cv-pinterest .pt-cv-meta-fields {
+	margin-top: 0;
+}
+
+/* Title */
+.pt-cv-pinterest .pt-cv-title {
+	padding-top:    15px;
+	padding-bottom: 15px;
+	margin-bottom: 0;
+}
+
+/* Thumbnail */
+.pt-cv-pinterest .pt-cv-thumbnail {
+	margin-bottom: 0 !important;
+	margin-top: 0;
+}
+
+.pt-cv-pinterest .pt-cv-1-col .pt-cv-thumbnail:not(.img-circle) {
+	width: 100%;
+}
+
+/* 2 columns */
+.pt-cv-pinterest .pt-cv-2-col .pt-cv-title,
+.pt-cv-pinterest .pt-cv-2-col .pt-cv-content,
+.pt-cv-pinterest .edd_download_purchase_form {
+	margin-left:   10px;
+	margin-right:  10px;
+	padding-left:  0;
+	padding-right: 0;
+}
+
+.pt-cv-pinterest .pt-cv-2-col .pt-cv-thumbnail {
+	margin-top: 10px !important;
+}
+.pt-cv-pinterest .pt-cv-2-col .pt-cv-thumbnail.pull-left {
+	margin-left: 10px;
+	margin-bottom: 10px !important;
+}
+.pt-cv-pinterest .pt-cv-2-col .pt-cv-thumbnail.pull-right {
+	margin-right: 10px;
+}
+.pt-cv-pinterest [data-col-md="1"] .pt-cv-content-item :first-child .pt-cv-thumbnail {
+	margin-left: 0 !important;
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* EDD */
+.pt-cv-pinterest .edd_purchase_submit_wrapper {
+	margin-top: 10px;
+}
+
+/* Social buttons */
+.pt-cv-pinterest .pt-cv-social-buttons {
+	margin: 5px auto !important;
+	text-align: center;
+}
+
+@media (min-width: 992px) {
+	.pt-cv-masonry .pt-cv-content-item {max-width: 49%}
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+	.pt-cv-pinterest .pt-cv-content-item {
+		max-width: 100%;
+	}
+}

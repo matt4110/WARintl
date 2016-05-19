@@ -1,0 +1,71 @@
+/**
+ * Style Name: Collapsible List
+ *
+ * @package   PT_Content_Views_Pro
+ * @author    PT Guy (http://www.contentviewspro.com/)
+ * @license   GPL-2.0+
+ * @link      http://www.contentviewspro.com/
+ * @copyright 2014 PT Guy
+ */
+
+.pt-cv-collapsible .panel {
+	border-radius: 0;
+
+	margin-bottom:      8px;
+	-webkit-box-shadow: 1px 1px 3px rgba(176, 178, 181, 0.34);
+	box-shadow:         1px 1px 3px rgba(176, 178, 181, 0.34);
+}
+
+.pt-cv-collapsible .panel-heading, .pt-cv-collapsible .clickable {
+	cursor: pointer;
+}
+
+.pt-cv-collapsible .panel-heading span {
+	position: absolute;
+	top:      38%;
+	line-height: 12px;
+	right:    10px;
+	color:    #00025F;
+	opacity:  0.6;
+	filter:   alpha(opacity=60);
+}
+
+.pt-cv-collapsible .panel-heading span .glyphicon {
+	font-size: 12px !important;
+	top: 0;
+}
+
+.pt-cv-collapsible .panel > .panel-heading {
+	position:         relative;
+	padding:          0;
+	background-color: #fff;
+	border:           none;
+}
+
+.pt-cv-collapsible .panel > .panel-heading a {
+	font-weight: 700;
+	padding:     10px;
+	display:     block;
+	border-bottom: none;
+}
+
+.pt-cv-collapsible .panel-group .panel-heading + .panel-collapse .panel-body {
+	border-top: 1px solid rgba(81, 151, 255, 0.5);
+	/*padding:    10px 10px 20px;*/
+	overflow:   hidden;
+}
+
+/* EDD */
+.pt-cv-collapsible .edd_purchase_submit_wrapper {
+	margin-bottom: 10px;
+}
+
+.pt-cv-collapsible .panel-body {
+	margin: 0;
+}
+.pt-cv-view .panel-default {
+	padding-bottom: 0;
+}
+.pt-cv-view .panel-default > .panel-heading {
+	margin-bottom: 0 !important;
+}

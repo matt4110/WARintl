@@ -2,35 +2,12 @@
 	color: #2583AD;
 	font-weight: bold;
 }
-.slide {
-	position: relative; /* important */
-}
 .cvg-slideshow-content {
 	top: 0;
-	margin-left: 0;
 	list-style-type: none !important;
 	margin-left: 0px !important;
 }
-.cvg-slide-image {
-	float: left;
-	position: relative;
-	display: none;
-}
-.cvg-slide-image span {
-	position: absolute;
-	font: 10px /15px Arial, Helvetica, sans-serif;
-	width: 100%;
-	background-color: #000;
-	filter: alpha(opacity=70);
-	-moz-opacity: 0.7;
-	-khtml-opacity: 0.7;
-	opacity: 0.7;
-	color: #fff;
-	display: none;
-	text-align: center;
-	bottom: 0;
-	left: 0;
-}
+
 .cvg-clear {
 	clear: both;
 }
@@ -51,7 +28,6 @@
 }
 .cvg-gallery-settings-right-pane {
 	float:left;
-	padding-top:6px	
 }
 .cvg-gallery-settings-right-pane i, .cvg-gallery-settings-left-pane i, .cvg-gallery-settings-left-pane h4 i {
 	font-size:10px !important;
@@ -77,4 +53,77 @@
 .cvg-html5-youtube-error-inner p {
 	font-size: 15px;
 	margin-top: 20px;
+}
+
+
+.cvg-single-video-wrapper-title {
+	display:inline-block;
+	text-align:center;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin-top: 10px;
+}
+.cvg-single-video-wrapper {
+	/* border: 1px solid black; */
+	box-shadow: 0px 1px 5px black;
+	display:inline-block;
+}
+
+.cvg-gallery-slideshow {
+    position:relative;
+    display:inline-block;
+}
+.cvg-gallery-slideshow SPAN {
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:8;
+    opacity:0.0;
+}
+
+.cvg-gallery-slideshow SPAN.active {
+    z-index:10;
+    opacity:1.0;
+}
+
+.cvg-gallery-slideshow SPAN.last-active {
+    z-index:9;
+}
+
+.cvg-gallery-slideshow SPAN IMG {
+    display: block;
+    border: 0;
+	box-shadow: 0px 1px 5px black;
+}
+.cvg-gallery-slideshow SPAN LABEL {
+	text-align:center;
+	display:inline-block;
+	width: 100%;
+	margin-top: 10px;
+}
+.cvg-playlist-title-outside {
+ 	display: block;
+}
+.cvg-playlist-title-outside label {
+	display: inline-block;
+	width: inherit;
+	word-wrap: break-word;
+}
+.cvg-gallery-showcase-videos {
+	float:left;
+	margin-right:10px;
+	margin-bottom: 30px;
+	box-shadow: 0px 1px 5px black;
+}
+.cvg-gallery-showcase-videos a {
+	line-height: 0px;
+}
+.cvg-gallery-showcase {
+	display: inline-block;
+}
+.cvg-gallery-showcase span span {
+	text-align:center;
+	width:100%;
+	display:inline-block;
 }

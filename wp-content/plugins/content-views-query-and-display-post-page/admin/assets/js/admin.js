@@ -40,7 +40,13 @@
 			var $self = this;
 
 			this.preview();
+			this._preview_btn_toggle();
+			this._content_type();
+			this._toggle_taxonomy_relation();
+			this._thumbnail_settings();
 
+			// Toggle panel
+			this._toggle_panel( '.' + _prefix + 'group .panel-heading' );
 			// 'Advance Settings'
 			this.toggle_group( '.' + _prefix + 'advanced-settings-item' );
 			// 'Terms' (in "Taxonomy Settings")
@@ -51,13 +57,6 @@
 			this.toggle_group( '[name="' + _prefix + 'view-type' + '"]', false );
 			// Toggle dependencies
 			this.dependence_do_all();
-			// Toggle panel
-			this._toggle_panel( '.' + _prefix + 'group .panel-heading' );
-
-			this._preview_btn_toggle();
-			this._content_type();
-			this._toggle_taxonomy_relation();
-			this._thumbnail_settings();
 
 			// Prevent click on links
 			$( '#' + _prefix + 'preview-box' ).on( 'click', 'a', function ( e ) {

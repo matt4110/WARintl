@@ -7,10 +7,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>Cool Video Gallery</title>
-	<script language="javascript" type="text/javascript" src="<?php echo site_url(); ?>/wp-includes/js/tinymce/tiny_mce_popup.js"></script>
-	<script language="javascript" type="text/javascript" src="<?php echo site_url(); ?>/wp-includes/js/tinymce/utils/mctabs.js"></script>
-	<script language="javascript" type="text/javascript" src="<?php echo site_url(); ?>/wp-includes/js/tinymce/utils/form_utils.js"></script>
-	<script language="javascript" type="text/javascript" src="<?php echo site_url(); ?>/wp-includes/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="<?php echo site_url(); ?>/wp-includes/js/tinymce/tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="<?php echo site_url(); ?>/wp-includes/js/tinymce/utils/mctabs.js"></script>
+	<script type="text/javascript" src="<?php echo site_url(); ?>/wp-includes/js/tinymce/utils/form_utils.js"></script>
+	<script type="text/javascript" src="<?php echo site_url(); ?>/wp-includes/js/jquery/jquery.js"></script>
 </head>
 <body>	
 	<?php
@@ -49,7 +49,6 @@
 		
 		<!-- gallery panel -->
 		<div id="gallery_panel" class="panel current" style="height:130px;">
-		<br />
 		<table border="0" cellpadding="2" cellspacing="0">
 	         <tr>
 	            <td nowrap="nowrap"><label for="gallerytag"><?php _e('Gallery', 'cool-video-gallery'); ?></label></td>
@@ -73,7 +72,6 @@
 		
 		<!-- single panel -->
 		<div id="single_panel" class="panel" style="height:130px;">
-		<br />
 		<table border="0" cellpadding="2" cellspacing="0">
 	         <tr>
 	            <td nowrap="nowrap"><label for="singletag"><?php _e('Video', 'cool-video-gallery'); ?></label></td>
@@ -156,7 +154,7 @@ function insertShortcode(){
 
 		var mode_temp = '';
 		if(showtype == 'embed')
-			mode_temp = "mode=playlist";
+			mode_temp = "mode=embed";
 		 
 		if (singleid != 0 )
 			tagtext = "[cvg-video videoid=" + singleid + " width=" + width + " height=" + height + " " + mode_temp + "]";

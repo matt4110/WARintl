@@ -25,7 +25,6 @@ if (isset ($_POST['updateSortOrder']))  {
 		$sort_video = $cvg_videodb->sort_gallery($_POST['sortOrder']);
 		
 		if($sort_video) {
-			$cvg_core->xml_playlist($_GET['gid']);
 			$cvg_core->show_video_message(__('Sort order updated successfully!', 'cool-video-gallery'));
 		}else {
 			$cvg_core->show_video_error(__('Error updating sort order.', 'cool-video-gallery'));

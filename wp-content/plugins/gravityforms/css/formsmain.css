@@ -232,7 +232,7 @@ body .gform_wrapper label.gfield_label + div.ginput_container { margin-top: .375
     overflow: hidden;
  }
 
-/*.gform_wrapper .top_label input.small, .gform_wrapper .top_label select.small { width: 25% } */
+.gform_wrapper .top_label input.small, .gform_wrapper .top_label select.small { width: 25% }
 .gform_wrapper .top_label input.medium, .gform_wrapper .top_label select.medium { width: 47.5% }
 .gform_wrapper .top_label input.large, .gform_wrapper .top_label select.large, .gform_wrapper .hidden_label input.large, .gform_wrapper .hidden_label select.large { width: 97.5% }
 .gform_wrapper textarea.small {

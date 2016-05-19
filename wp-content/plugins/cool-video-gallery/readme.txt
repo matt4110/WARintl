@@ -2,8 +2,8 @@
 Contributors: Praveen Rajan
 Tags: video gallery,playlist,tinymce,videos,gallery,media,player,flash player,flash-player,skins,flash player skins,admin,post,pages,pictures,widgets,picture,video,cool-video-gallery,cool video gallery,ffmpeg,showcase,fancybox,preview image,upload,flv,mp4,mov,m4v,mp3,H.264,shortcode
 Requires at least: 3.0.1
-Tested up to: 4.4.2
-Stable tag: 2.1
+Tested up to: 4.5
+Stable tag: 2.3
 License: GPLv2
 
 Cool Video Gallery is a Video Gallery plugin for WordPress with option to upload videos, add Youtube videos and manage them in multiple galleries. 
@@ -14,9 +14,7 @@ Cool Video Gallery is a Video Gallery plugin for WordPress with option to upload
 Option provided to upload images for video previews. Supports '.flv', '.mp4', '.mov', '.m4v' and '.mp3' video files presently. 
 
 = Note =
-* Video Player used by this plugin is <a href="https://www.jwplayer.com/" target="_blank">JW Player</a>. Please agree to the Terms and Conditions of JW Player.
-* JWPlayer used is not latest. Future upgrade of this plugin will use latest JWPlayer version. 
-
+* Video Player used by this plugin is <a href="https://www.jwplayer.com/" target="_blank">JW Player</a>. Agree to the Terms and Conditions of JW Player.
 
 = Features =
 * Supports H.264 (.mp4, .mov, .m4v), FLV (.flv) and MP3 (.mp3) files.
@@ -73,16 +71,29 @@ If you find this plugin useful please provide your valuable ratings.
 
 == Screenshots ==
 
-1. Screenshot - Video Gallery as Showcase in Page and Slideshow in Sidebar Widget
-2. Screenshot Admin Section - CVG Overview
-3. Screenshot Admin Section - Add Gallery / Upload Videos / Attach Media / Add Youtube Videos
-4. Screenshot Admin Section - Gallery Details 
-5. Screenshot Admin Section - Google XML Video Sitemap Generation
-6. Screenshot Admin Section - Insert Gallery/Video into Posts/Pages
-7. Screenshot Admin Section - Generate Shortcode for Gallery
-8. Screenshot Admin Section - Generate Shortcode for Video
+1. Video Gallery as Showcase in Page and Slideshow in Sidebar Widget
+2. Admin - CVG Overview
+3. Admin - Add Gallery / Upload Videos / Attach Media / Add Youtube Videos
+4. Admin - Gallery Details 
+5. Admin - Google XML Video Sitemap Generation
+6. Admin - Insert Gallery/Video into Posts/Pages
+7. Admin - Generate Shortcode for Gallery
+8. Admin - Generate Shortcode for Video
 
 == Changelog ==
+
+= 2.3 =
+* Fancybox reverted back to 1.3.4 per WordPress Guidelines.
+
+= 2.2 =
+* JWPlayer version 7.3.6 included.
+* Fancybox version 2.1.5 included and supports better configurations.
+* Responsive video player in embed.
+* Improved VideoPlayer Share option.
+* Admin panel config fixes.
+* Shortcode optimization and improvements.
+* Redesign of plugin images.
+* Improved support for FFMPEG library for thumbnail creation.
 
 = 2.1 =
 * Design issues fixed.
@@ -171,3 +182,8 @@ If you find this plugin useful please provide your valuable ratings.
 
 = 1.0 =
 * Initial version  
+
+== Upgrade Notice ==
+
+= 2.2 =
+Upgrade includes JWPlayer v7.3.6. In order to use this player, users have to register at jwplayer.com to obtain license key for JW Player 7(free for non-commerical).

@@ -40,7 +40,6 @@ if (isset ($_POST['updatevideogallery'])) {
 	// wp_nonce_field('cvg_details_update_gallery_nonce','cvg_details_update_gallery_nonce_csrf');
 	if ( check_admin_referer( 'cvg_details_update_gallery_nonce', 'cvg_details_update_gallery_nonce_csrf' ) ) {
 		if($cvg_videodb->update_gallery()) {
-			$cvg_core->xml_playlist($_GET['gid']);
 			$cvg_core->show_video_message(__('Gallery details successfully updated.', 'cool-video-gallery'));
 		}	
 	}
@@ -52,7 +51,6 @@ if(isset($_POST['updatevideos'])) {
 	// wp_nonce_field('cvg_details_update_video_nonce','cvg_details_update_video_nonce_csrf');
 	if ( check_admin_referer( 'cvg_details_update_video_nonce', 'cvg_details_update_video_nonce_csrf' ) ) {
 		if($cvg_core->update_videos()) {
-			$cvg_core->xml_playlist($_GET['gid']);
 			$cvg_core->show_video_message(__('Details of Video(s) updated successfully.', 'cool-video-gallery'));
 		}
 	}		 
@@ -67,7 +65,6 @@ if(isset($_POST['TB_gallerylist']) && !empty($_POST['TB_gallerylist'])) {
 			$cvg_core->delete_video_files($pid);
 			$cvg_videodb->delete_video($pid);
 		}
-		$cvg_core->xml_playlist($_GET['gid']);
 		$cvg_core->show_video_message(__('Video(s) deleted successfully.', 'cool-video-gallery'));
 	}
 }
@@ -83,8 +80,6 @@ if(isset($_POST['move_video_list']) && !empty($_POST['move_video_list'])) {
 			$cvg_core->move_video($pid, $_POST['galleryselect']);
 			$cvg_videodb->move_video($pid, $_POST['galleryselect']);
 		}
-		
-		$cvg_core->xml_playlist($_GET['gid']);
 		$cvg_core->show_video_message(__('Video(s) moved successfully.', 'cool-video-gallery'));
 	}
 }
@@ -97,7 +92,6 @@ if(isset($_POST['TB_videosingle']) && !empty($_POST['TB_videosingle'])) {
 		$pid = $_POST['TB_videosingle'];
 		$cvg_core->delete_video_files($pid);
 		$cvg_videodb->delete_video($pid);
-		$cvg_core->xml_playlist($_GET['gid']);
 		$cvg_core->show_video_message(__('Video deleted successfully.', 'cool-video-gallery'));
 	}
 }
@@ -112,8 +106,6 @@ if(isset($_POST['TB_previewimage_single']) && !empty($_POST['TB_previewimage_sin
 			$cvg_core->show_video_error(__('No preview images uploaded.', 'cool-video-gallery'));
 		else 	
 			$cvg_core->upload_preview();
-			
-		$cvg_core->xml_playlist($_GET['gid']);	
 	}
 }
 
@@ -135,8 +127,6 @@ if(isset($_POST['scanVideos'])) {
 			$cvg_core->show_video_error(__('No Gallery selected.', 'cool-video-gallery'));
 		else
 			$cvg_core->scan_upload_videos($_POST['galleryId']);
-			
-		$cvg_core->xml_playlist($_GET['gid']);	
 	}
 }
 
@@ -686,7 +676,7 @@ if(!isset($gid) || $gid == "") {
 							var mode_temp = "";
 							
 							if(selection == "embed"){
-								mode_temp = "mode=playlist";
+								mode_temp = "mode=embed";
 							}
 							
 							var shortcode_text = "[cvg-video videoid=" + videoId + " width=" + width + " height=" + height + " " + mode_temp + "]";
@@ -771,7 +761,7 @@ if(!isset($gid) || $gid == "") {
 							<?php _e('3. Now click on "Scan Gallery Folder" button available on this page.', 'cool-video-gallery');?>
 						</ol>
 						<ol>
-							<?php _e('4. Successfully uploaded videos are not available in selected gallery.', 'cool-video-gallery');?>
+							<?php _e('4. Successfully uploaded videos are now available in selected gallery.', 'cool-video-gallery');?>
 						</ol>
 					</ul>
 					</div>

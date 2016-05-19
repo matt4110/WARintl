@@ -1,0 +1,25 @@
+/**
+ * Style Name: One and others
+ *
+ * @package   PT_Content_Views_Pro
+ * @author    PT Guy (http://www.contentviewspro.com/)
+ * @license   GPL-2.0+
+ * @link      http://www.contentviewspro.com/
+ * @copyright 2015 PT Guy
+ */
+
+.pt-cv-ooc + .pt-cv-ooc {
+	padding: 0;
+}
+
+.pt-cv-one_others .pt-cv-hover-wrapper {
+	margin-bottom: 0 !important;
+}
+
+.pt-cv-ooc .pt-cv-thumbnail.pull-left {
+	margin-bottom: 0 !important;
+}
+
+.pt-cv-ooc:nth-child(2) .pt-cv-meta-fields {
+	margin-bottom: 0 !important;
+}
