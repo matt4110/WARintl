@@ -456,7 +456,7 @@ div#ProgramCategoriesInfo p:first-letter, div#ProgramCategoriesInfo h1:first-let
 }
 
 a:active, a:hover {
-	color: rgb(227,201,164);
+	: rgb(227,201,164);
 }
 
 li.ProgramCatb, li.ProgramCatbTop, li.ProgramCatbBottom, li.ProgramBack, li.ProgramCatInternational, li.ProgramCatDomestic, li.ProgramCatVocational, li.ProgramCatMicro, li.ProgramCatEducation, li.ProgramCatOutreach, li.ProgramCatOrphanage, li.ProgramCatHealth, li.ProgramCatEmergency {
