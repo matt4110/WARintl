@@ -9,12 +9,282 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: twentysixteen
 */
 
-/* TABLE OF CONTENTS */
-
-
-
-/* END TABLE OF CONTENTS */
+/* TABLE OF CONTENTS
+ * 1.0 - Normalize
+ * 2.0 - Genericons
+ * 3.0 - Typography
+ * 4.0 - Elements
+ * 5.0 - Forms
+ * 6.0 - Navigation
+ *   6.1 - Links
+ *   6.2 - Menus
+ * 7.0 - Accessibility
+ * 8.0 - Alignments
+ * 9.0 - Clearings
+ * 10.0 - Widgets
+ * 11.0 - Content
+ *    11.1 - Header
+ *    11.2 - Posts and pages
+ *    11.3 - Post Formats
+ *    11.4 - Comments
+ *    11.5 - Sidebar
+ *    11.6 - Footer
+ * 12.0 - Media
+ *    12.1 - Captions
+ *    12.2 - Galleries
+ * 13.0 - Utilities
+ *    13.1 - Grid
+ *    13.2 - Margins
+ *    13.3 - Padding
+ * 14.0 - Media Queries
+ *
+ * END TABLE OF CONTENTS */
 
 $dark-gold: #C19563;
 $light-gold: #E1BD89;
 $off-white: #F5EDE0;
+$black: #222;
+$red: #BA271D;
+$garamond: 'Garamond', garamond, serif;
+
+@mixin h-1($size){
+	font-size: $size;
+}
+
+/* 3.0 Typography */
+
+body{
+	font-family: $garamond;
+}
+
+/* 13.0 Utilities */
+
+
+/* 13.1 Grid */
+
+.col1-12 {
+  width: 8.33%; }
+
+.col2-12 {
+  width: 16.66%; }
+
+.col3-12 {
+  width: 25%; }
+
+.col4-12 {
+  width: 33.33%; }
+
+.col5-12 {
+  width: 41.66%; }
+
+.col6-12 {
+  width: 50%; }
+
+.col7-12 {
+  width: 58.33%; }
+
+.col8-12 {
+  width: 66.66%; }
+
+.col9-12 {
+  width: 75%; }
+
+.col10-12 {
+  width: 83.33%; }
+
+.col11-12 {
+  width: 91.66%; }
+
+.col1-5 {
+  width: 20%; }
+
+.col2-5 {
+  width: 40%; }
+
+.col3-5 {
+  width: 60%; }
+
+.col4-5 {
+  width: 80%; }
+
+.col1-3 {
+  width: 33.33%; }
+
+.col2-3 {
+  width: 66.66%; }
+
+
+/* 13.2 Margins */
+
+.mtop10 {
+  margin-top: 10px !important; }
+
+.mtop20 {
+  margin-top: 20px !important; }
+
+.mtop50 {
+  margin-top: 50px !important; }
+
+.mtop75 {
+  margin-top: 75px !important; }
+
+.mtop100 {
+  margin-top: 100px !important; }
+
+.mright10 {
+  margin-right: 10px !important; }
+
+.mright20 {
+  margin-right: 20px !important; }
+
+.mright30 {
+  margin-right: 30px !important; }
+
+.mright40 {
+  margin-right: 40px !important; }
+
+.mright50 {
+  margin-right: 50px !important; }
+
+.mright75 {
+  margin-right: 75px !important; }
+
+.mright100 {
+  margin-right: 100px !important; }
+
+.mleft10 {
+  margin-left: 10px !important; }
+
+.mleft20 {
+  margin-left: 20px !important; }
+
+.mleft30 {
+  margin-left: 30px !important; }
+
+.mleft40 {
+  margin-left: 40px !important; }
+
+.mleft50 {
+  margin-left: 50px !important; }
+
+.mleft75 {
+  margin-left: 75px !important; }
+
+.mleft100 {
+  margin-left: 100px !important; }
+
+
+/* 13.3 Padding */
+
+.paddl10 {
+  padding-left: 10px !important; }
+
+.paddl20 {
+  padding-left: 20px !important; }
+
+.paddl30 {
+  padding-left: 30px !important; }
+
+.paddl40 {
+  padding-left: 40px !important; }
+
+.paddl50 {
+  padding-left: 50px !important; }
+
+.paddr10 {
+  padding-right: 10px !important; }
+
+.paddr20 {
+  padding-right: 20px !important; }
+
+.paddr30 {
+  padding-right: 30px !important; }
+
+.paddr40 {
+  padding-right: 40px !important; }
+
+.paddr50 {
+  padding-right: 50px !important; }
+
+.paddt10 {
+  padding-top: 10px !important; }
+
+.paddt20 {
+  padding-top: 20px !important; }
+
+.paddt30 {
+  padding-top: 30px !important; }
+
+.paddt40 {
+  padding-top: 40px !important; }
+
+.paddt50 {
+  padding-top: 50px !important; }
+
+.paddb10 {
+  padding-bottom: 10px !important; }
+
+.paddb20 {
+  padding-bottom: 20px !important; }
+
+.paddb30 {
+  padding-bottom: 30px !important; }
+
+.paddb40 {
+  padding-bottom: 40px !important; }
+
+.paddb50 {
+  padding-bottom: 50px !important; }
+
+.paddlr10 {
+  padding-left: 10px;
+  padding-right: 10px; }
+
+.paddlr20 {
+  padding-left: 20px;
+  padding-right: 20px; }
+
+.paddlr30 {
+  padding-left: 30px;
+  padding-right: 30px; }
+
+.paddlr40 {
+  padding-left: 40px;
+  padding-right: 40px; }
+
+.paddlr50 {
+  padding-left: 50px;
+  padding-right: 50px; }
+
+.paddtb10 {
+  padding-top: 10px;
+  padding-bottom: 10px; }
+
+.paddtb20 {
+  padding-top: 20px;
+  padding-bottom: 20px; }
+
+.paddtb30 {
+  padding-top: 30px;
+  padding-bottom: 30px; }
+
+.paddtb40 {
+  padding-top: 40px;
+  padding-bottom: 40px; }
+
+.paddtb50 {
+  padding-top: 50px;
+  padding-bottom: 50px; }
+
+.padd10 {
+  padding: 10px 10px 10px 10px; }
+
+.padd20 {
+  padding: 20px 20px 20px 20px; }
+
+.padd30 {
+  padding: 30px 30px 30px 30px; }
+
+.padd40 {
+  padding: 40px 40px 40px 40px; }
+
