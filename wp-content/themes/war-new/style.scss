@@ -46,6 +46,13 @@ $off-white: #F5EDE0;
 $black: #222;
 $red: #BA271D;
 $garamond: 'Garamond', garamond, serif;
+$box-gradient: url('/assets/images/box-gradient.svg')
+
+@mixin gradient($h, $w){
+	background: $box-gradient;
+	height: $h;
+	width: $w;
+}
 
 
 /* 3.0 Typography */
