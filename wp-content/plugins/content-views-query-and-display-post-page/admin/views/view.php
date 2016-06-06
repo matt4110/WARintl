@@ -504,8 +504,45 @@ PT_CV_Functions::view_submit();
 							),
 						),
 					),
-					apply_filters( PT_CV_PREFIX_ . 'responsive_settings', array() ),
-					// Layout format of output item
+					apply_filters( PT_CV_PREFIX_ . 'more_responsive_settings', array(
+						'label'		 => array(
+							'text' => __( 'Responsive settings', 'content-views-query-and-display-post-page' ),
+						),
+						'params'	 => array(
+							array(
+								'type'	 => 'group',
+								'params' => array(
+									array(
+										'label'	 => array(
+											'text' => sprintf( '%s (%s)', __( 'Items per row', 'content-views-query-and-display-post-page' ), __( 'Tablet', 'content-views-query-and-display-post-page' ) ),
+										),
+										'params' => array(
+											array(
+												'type'			 => 'number',
+												'name'			 => 'resp-tablet-number-columns',
+												'std'			 => '2',
+												'append_text'	 => '1 &rarr; 4',
+											),
+										),
+									),
+									array(
+										'label'	 => array(
+											'text' => sprintf( '%s (%s)', __( 'Items per row', 'content-views-query-and-display-post-page' ), __( 'Mobile', 'content-views-query-and-display-post-page' ) ),
+										),
+										'params' => array(
+											array(
+												'type'			 => 'number',
+												'name'			 => 'resp-number-columns',
+												'std'			 => '1',
+												'append_text'	 => '1 &rarr; 4',
+											),
+										),
+									),
+								),
+							),
+						),
+						'dependence' => array( 'view-type', !get_option( 'pt_cv_version_pro' ) ? array( 'grid' ) : array( 'grid', 'scrollable', 'pinterest', 'glossary' ) ),
+					) ),
 					array(
 						'label'			 => array(
 							'text' => __( 'Layout format', 'content-views-query-and-display-post-page' ),

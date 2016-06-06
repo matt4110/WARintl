@@ -90,7 +90,7 @@
 			}
 
 			// Get the View element
-			var pages_holder = pagination_wrapper.prev( '.' + _prefix + 'view' );
+			var pages_holder = pagination_wrapper.closest( '.' + _prefix + 'wrapper' ).children( '.' + _prefix + 'view' );
 
 			// For Timeline
 			if ( pages_holder.hasClass( _prefix + 'timeline' ) ) {
@@ -200,6 +200,14 @@
 				$( 'html, body' ).animate( {
 					scrollTop: pages_holder.children( page_selector ).offset().top - 160
 				}, 1000 );
+
+				// Activate page number before/after View, only work for Numeric pagination w/o Ajax
+				var $paginations = pages_holder.closest( '.' + _prefix + 'wrapper' ).children( '.' + _prefix + 'pagination-wrapper' );
+				if ( $paginations.length === 2 ) {
+					$paginations.each( function () {
+						$( this ).find( 'a' ).eq( selected_page ).trigger( 'click' );
+					} );
+				}
 			}
 
 			return page_existed;

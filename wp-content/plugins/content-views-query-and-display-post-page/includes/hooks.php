@@ -21,6 +21,7 @@ if ( !class_exists( 'PT_CV_Hooks' ) ) {
 		static function init() {
 			add_filter( PT_CV_PREFIX_ . 'validate_settings', array( __CLASS__, 'filter_validate_settings' ), 10, 2 );
 			add_filter( PT_CV_PREFIX_ . 'field_content_excerpt', array( __CLASS__, 'filter_field_content_excerpt' ), 9, 3 );
+			add_filter( PT_CV_PREFIX_ . 'item_col_class', array( __CLASS__, 'filter_item_col_class' ), 20, 2 );
 
 			/**
 			 * @since 1.7.5
@@ -64,20 +65,14 @@ if ( !class_exists( 'PT_CV_Hooks' ) ) {
 				),
 			);
 
-			/**
-			 * Validate Query parameters
-			 */
 			// Post type
 			if ( empty( $args[ 'post_type' ] ) ) {
 				$errors[] = $messages[ 'field' ][ 'select' ] . $messages[ 'tab' ][ 'filter' ] . ' > ' . __( 'Content type', 'content-views-query-and-display-post-page' );
 			}
 
-			/**
-			 * Validate common Display parameters
-			 */
 			// View type
 			if ( empty( $dargs[ 'view-type' ] ) ) {
-				$errors[] = $messages[ 'field' ][ 'select' ] . $messages[ 'tab' ][ 'display' ] . ' > ' . __( 'View type', 'content-views-query-and-display-post-page' );
+				$errors[] = $messages[ 'field' ][ 'select' ] . $messages[ 'tab' ][ 'display' ] . ' > ' . __( 'View type (Layout)', 'content-views-query-and-display-post-page' );
 			}
 
 			// Layout format
@@ -87,7 +82,7 @@ if ( !class_exists( 'PT_CV_Hooks' ) ) {
 
 			// Field settings
 			if ( !isset( $dargs[ 'fields' ] ) ) {
-				$errors[] = $messages[ 'field' ][ 'select' ] . $messages[ 'tab' ][ 'display' ] . ' > ' . __( 'Fields', 'content-views-query-and-display-post-page' ) . ' > ' . __( 'Fields display', 'content-views-query-and-display-post-page' );
+				$errors[] = $messages[ 'field' ][ 'select' ] . $messages[ 'tab' ][ 'display' ] . ' > ' . __( 'Fields settings', 'content-views-query-and-display-post-page' );
 			}
 
 			// Item per page
@@ -97,9 +92,6 @@ if ( !class_exists( 'PT_CV_Hooks' ) ) {
 				}
 			}
 
-			/**
-			 * Validate Display parameters of view types
-			 */
 			if ( !empty( $dargs[ 'view-type' ] ) ) {
 				switch ( $dargs[ 'view-type' ] ) {
 					case 'grid':
@@ -129,6 +121,31 @@ if ( !class_exists( 'PT_CV_Hooks' ) ) {
 			if ( function_exists( 'qtranxf_use' ) ) {
 				global $q_config;
 				$args = qtranxf_use( $q_config[ 'language' ], $args );
+			}
+
+			return $args;
+		}
+
+		/**
+		 * Filter span with
+		 * @since 1.8.5
+		 *
+		 * @param array $args
+		 * @param int $span_width
+		 *
+		 * @return array
+		 */
+		public static function filter_item_col_class( $args, $span_width ) {
+			// In CV: apply for Grid only
+			if ( PT_CV_Functions::get_global_variable( 'view_type' ) === 'grid' ) {
+				// If was not applied in CVPro
+				if ( array_key_exists( 'pt_cv_item_col_class', $GLOBALS[ 'wp_filter' ] ) && count( $GLOBALS[ 'wp_filter' ][ 'pt_cv_item_col_class' ] ) == 1 ) {
+					$tablet_col	 = (int) PT_CV_Functions::setting_value( PT_CV_PREFIX . 'resp-tablet-number-columns' );
+					$mobile_col	 = (int) PT_CV_Functions::setting_value( PT_CV_PREFIX . 'resp-number-columns' );
+
+					$args[]	 = 'col-sm-' . (int) ( 12 / ($tablet_col ? $tablet_col : 2) );
+					$args[]	 = 'col-xs-' . (int) ( 12 / ($mobile_col ? $mobile_col : 1) );
+				}
 			}
 
 			return $args;

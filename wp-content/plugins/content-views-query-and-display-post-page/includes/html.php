@@ -115,7 +115,7 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 		 * @return type
 		 */
 		static function html_loading_img( $dimension = 15, $class = '' ) {
-			$img = sprintf( '<img width="%1$s" height="%1$s" class="%2$s" alt="%3$s" src="%4$s" /><div class="clear %5$s"></div>', esc_attr( $dimension ), esc_attr( $class ), __( 'Loading&#8230;' ), self::loading_img_src(), PT_CV_PREFIX . 'clear-pagination' );
+			$img = sprintf( '<img width="%1$s" height="%1$s" class="%2$s" alt="%3$s" src="%4$s" /><div class="clear %5$s"></div>', esc_attr( $dimension ), esc_attr( $class ), __( 'Loading...', 'content-views-query-and-display-post-page' ), self::loading_img_src(), PT_CV_PREFIX . 'clear-pagination' );
 
 			return apply_filters( PT_CV_PREFIX_ . 'loading_image', $img );
 		}

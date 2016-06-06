@@ -242,32 +242,21 @@ class PT_Content_Views {
 	 */
 	public function load_plugin_textdomain() {
 		/* In v1.6.8.3, textdomain changed from "content-views" to "content-views-query-and-display-post-page"
-		 *
-		 * To support existing translation files from before the change, we must look for translation files in several places:
-		 *
-		 * 1. wp-content/languages/plugins/content-views-query-and-display-post-page (use language packs through translate.wordpress.org)
-		 * 2. wp-content/languages/content-views/ (custom folder we have supported since 1.2.4)
-		 * 3. wp-content/plugins/content-views-query-and-display-post-page/languages/ (the default language files)
 		 */
 
 		// WPLANG is no longer needed since 4.0
 		$locale = get_locale();
 
-		// 2. Load mo file from wp-content/languages/content-views/
-		$custom_mofile = WP_LANG_DIR . "/content-views/content-views-{$locale}.mo";
+		$old_lang_file	 = WP_LANG_DIR . "/content-views/content-views-{$locale}.mo";
+		$lang_pack		 = WP_LANG_DIR . "/plugins/content-views-query-and-display-post-page-{$locale}.mo";
+		$plugin_lang_dir = dirname( plugin_basename( PT_CV_FILE ) ) . '/languages/';
 
-		// 1. Load mo file from wp-content/languages/plugins/content-views-query-and-display-post-page
-		$language_packs_mofile = WP_LANG_DIR . "/plugins/content-views-query-and-display-post-page/content-views-query-and-display-post-page-{$locale}.mo";
-
-		// 3. Load mo file from /languages directory of this plugin
-		$cv_lang_dir = dirname( plugin_basename( PT_CV_FILE ) ) . '/languages/';
-
-		if ( file_exists( $custom_mofile ) ) {
-			load_textdomain( 'content-views-query-and-display-post-page', $custom_mofile );
-		} elseif ( file_exists( $language_packs_mofile ) ) {
-			load_textdomain( 'content-views-query-and-display-post-page', $language_packs_mofile );
+		if ( file_exists( $old_lang_file ) ) {
+			load_textdomain( 'content-views-query-and-display-post-page', $old_lang_file );
+		} elseif ( file_exists( $lang_pack ) ) {
+			load_textdomain( 'content-views-query-and-display-post-page', $lang_pack );
 		} else {
-			load_plugin_textdomain( 'content-views-query-and-display-post-page', FALSE, $cv_lang_dir );
+			load_plugin_textdomain( 'content-views-query-and-display-post-page', FALSE, $plugin_lang_dir );
 		}
 	}
 
@@ -280,35 +269,35 @@ class PT_Content_Views {
 		 * Register custom post type : View
 		 */
 		$labels = array(
-			'name' => _x( 'Views', 'post type general name', 'content-views-query-and-display-post-page' ),
-			'singular_name' => _x( 'View', 'post type singular name', 'content-views-query-and-display-post-page' ),
-			'menu_name' => _x( 'Views', 'admin menu', 'content-views-query-and-display-post-page' ),
-			'name_admin_bar' => _x( 'View', 'add new on admin bar', 'content-views-query-and-display-post-page' ),
-			'add_new' => _x( 'Add New', 'post' ),
-			'add_new_item' => __( 'Add New View', 'content-views-query-and-display-post-page' ),
-			'new_item' => __( 'New View', 'content-views-query-and-display-post-page' ),
-			'edit_item' => __( 'Edit View', 'content-views-query-and-display-post-page' ),
-			'view_item' => __( 'View View', 'content-views-query-and-display-post-page' ),
-			'all_items' => __( 'All Views', 'content-views-query-and-display-post-page' ),
-			'search_items' => __( 'Search Views', 'content-views-query-and-display-post-page' ),
-			'parent_item_colon' => __( 'Parent Views:', 'content-views-query-and-display-post-page' ),
-			'not_found' => __( 'No views found.', 'content-views-query-and-display-post-page' ),
+			'name'				 => _x( 'Views', 'post type general name', 'content-views-query-and-display-post-page' ),
+			'singular_name'		 => _x( 'View', 'post type singular name', 'content-views-query-and-display-post-page' ),
+			'menu_name'			 => _x( 'Views', 'admin menu', 'content-views-query-and-display-post-page' ),
+			'name_admin_bar'	 => _x( 'View', 'add new on admin bar', 'content-views-query-and-display-post-page' ),
+			'add_new'			 => _x( 'Add New', 'post' ),
+			'add_new_item'		 => __( 'Add New View', 'content-views-query-and-display-post-page' ),
+			'new_item'			 => __( 'New View', 'content-views-query-and-display-post-page' ),
+			'edit_item'			 => __( 'Edit View', 'content-views-query-and-display-post-page' ),
+			'view_item'			 => __( 'View View', 'content-views-query-and-display-post-page' ),
+			'all_items'			 => __( 'All Views', 'content-views-query-and-display-post-page' ),
+			'search_items'		 => __( 'Search Views', 'content-views-query-and-display-post-page' ),
+			'parent_item_colon'	 => __( 'Parent Views:', 'content-views-query-and-display-post-page' ),
+			'not_found'			 => __( 'No views found.', 'content-views-query-and-display-post-page' ),
 			'not_found_in_trash' => __( 'No views found in Trash.', 'content-views-query-and-display-post-page' ),
 		);
 
 		$args = array(
-			'labels' => $labels,
-			'public' => false,
+			'labels'			 => $labels,
+			'public'			 => false,
 			// Hide in menu, but can see All Views page
-			'show_ui' => true, // set "true" to fix "Invalid post type" error
-			'show_in_menu' => false,
-			'query_var' => true,
-			'rewrite' => array( 'slug' => PT_CV_POST_TYPE ),
-			'capability_type' => 'post',
-			'has_archive' => true,
-			'hierarchical' => false,
-			'menu_position' => null,
-			'supports' => array( 'title', 'author', 'custom-fields' ),
+			'show_ui'			 => true, // set "true" to fix "Invalid post type" error
+			'show_in_menu'		 => false,
+			'query_var'			 => true,
+			'rewrite'			 => array( 'slug' => PT_CV_POST_TYPE ),
+			'capability_type'	 => 'post',
+			'has_archive'		 => true,
+			'hierarchical'		 => false,
+			'menu_position'		 => null,
+			'supports'			 => array( 'title', 'author', 'custom-fields' ),
 		);
 
 		register_post_type( PT_CV_POST_TYPE, $args );

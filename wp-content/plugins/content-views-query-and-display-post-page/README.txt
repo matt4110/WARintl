@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: post, post grid, grid, grid post, recent post, page, query, column, author, category, tag, responsive, excerpt, title, taxonomy, thumbnail, pagination, date, scrollable, collapsible
 Requires at least: 3.3
 Tested up to: 4.5.2
-Stable tag: 1.8.4.1
+Stable tag: 1.8.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -127,6 +127,11 @@ If you are using "Your latest posts" as home page, you should paste this code `<
 
 
 == Changelog ==
+
+= 1.8.5 - May 27 2016 =
+* New: Add setting to configure responsive output for Mobile, Tablet devices easily
+* Update: Hide all notices of other plugins in Add/Edit View page
+* Improvement: Faster performance with optimized core filter "item_col_class"
 
 = 1.8.4.1 - May 11 2016 =
 * Fix: [View dashboard] Term boxes under "Select taxonomy" panel are not shown after saving View

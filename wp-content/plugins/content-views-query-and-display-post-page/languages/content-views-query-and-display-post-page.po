@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Content Views\n"
-"POT-Creation-Date: 2016-05-08 16:45+0700\n"
-"PO-Revision-Date: 2016-05-08 17:18+0700\n"
+"POT-Creation-Date: 2016-05-27 16:04+0700\n"
+"PO-Revision-Date: 2016-05-27 16:04+0700\n"
 "Last-Translator: \n"
 "Language-Team: PT Guy <support@contentviewspro.com>\n"
 "MIME-Version: 1.0\n"
@@ -48,11 +48,11 @@ msgstr ""
 msgid "Content Views"
 msgstr ""
 
-#: code/admin/content-views-admin.php:300 code/public/content-views.php:292
+#: code/admin/content-views-admin.php:300 code/public/content-views.php:281
 msgid "All Views"
 msgstr ""
 
-#: code/admin/content-views-admin.php:304 code/public/content-views.php:288
+#: code/admin/content-views-admin.php:304 code/public/content-views.php:277
 msgid "Add New View"
 msgstr ""
 
@@ -79,7 +79,7 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: code/admin/views/view.php:36 code/public/content-views.php:290
+#: code/admin/views/view.php:36 code/public/content-views.php:279
 msgid "Edit View"
 msgstr ""
 
@@ -100,19 +100,19 @@ msgstr ""
 msgid "Enter a name to identify your views easily"
 msgstr ""
 
-#: code/admin/views/view.php:117 code/admin/views/view.php:632
+#: code/admin/views/view.php:117 code/admin/views/view.php:669
 msgid "Save"
 msgstr ""
 
-#: code/admin/views/view.php:124 code/includes/hooks.php:62
+#: code/admin/views/view.php:124 code/includes/hooks.php:63
 msgid "Filter Settings"
 msgstr ""
 
-#: code/admin/views/view.php:128 code/includes/hooks.php:63
+#: code/admin/views/view.php:128 code/includes/hooks.php:64
 msgid "Display Settings"
 msgstr ""
 
-#: code/admin/views/view.php:143 code/includes/hooks.php:72
+#: code/admin/views/view.php:143 code/includes/hooks.php:70
 msgid "Content type"
 msgstr ""
 
@@ -224,73 +224,75 @@ msgstr ""
 msgid "Enter keyword to searching for posts"
 msgstr ""
 
-#: code/admin/views/view.php:480 code/includes/hooks.php:107
+#: code/admin/views/view.php:480 code/includes/hooks.php:75
+#: code/includes/hooks.php:99
 msgid "View type (Layout)"
 msgstr ""
 
-#: code/admin/views/view.php:511 code/includes/hooks.php:85
+#: code/admin/views/view.php:509
+msgid "Responsive settings"
+msgstr ""
+
+#: code/admin/views/view.php:517 code/admin/views/view.php:530
+#: code/includes/hooks.php:99 code/includes/settings.php:736
+msgid "Items per row"
+msgstr ""
+
+#: code/admin/views/view.php:517
+msgid "Tablet"
+msgstr ""
+
+#: code/admin/views/view.php:530
+msgid "Mobile"
+msgstr ""
+
+#: code/admin/views/view.php:548 code/includes/hooks.php:80
 msgid "Layout format"
 msgstr ""
 
-#: code/admin/views/view.php:553
+#: code/admin/views/view.php:590
 msgid "Disable this format on mobile devices & extra small screens"
 msgstr ""
 
-#: code/admin/views/view.php:566
+#: code/admin/views/view.php:603 code/includes/hooks.php:85
 msgid "Fields settings"
 msgstr ""
 
-#: code/admin/views/view.php:584 code/includes/hooks.php:96
+#: code/admin/views/view.php:621 code/includes/hooks.php:91
 msgid "Pagination"
 msgstr ""
 
-#: code/admin/views/view.php:601
+#: code/admin/views/view.php:638
 msgid "Others"
 msgstr ""
 
-#: code/includes/functions.php:456
+#: code/includes/functions.php:449
 msgid "View all posts in"
 msgstr ""
 
-#: code/includes/functions.php:518 code/includes/html.php:430
+#: code/includes/functions.php:516 code/includes/html.php:430
 msgid "(no title)"
 msgstr ""
 
-#: code/includes/functions.php:582
+#: code/includes/functions.php:580
 msgid "Cheatin&#8217; uh?"
 msgstr ""
 
-#: code/includes/functions.php:620
+#: code/includes/functions.php:618
 #, php-format
 msgid "Empty settings (View %s is not existed)"
 msgstr ""
 
-#: code/includes/hooks.php:58
+#: code/includes/hooks.php:59
 msgid "Please select an option in"
 msgstr ""
 
-#: code/includes/hooks.php:59
+#: code/includes/hooks.php:60
 msgid "Please set value in"
 msgstr ""
 
-#: code/includes/hooks.php:80
-msgid "View type"
-msgstr ""
-
-#: code/includes/hooks.php:90
-msgid "Fields"
-msgstr ""
-
-#: code/includes/hooks.php:90
-msgid "Fields display"
-msgstr ""
-
-#: code/includes/hooks.php:96 code/includes/settings.php:152
+#: code/includes/hooks.php:91 code/includes/settings.php:152
 msgid "Items per page"
-msgstr ""
-
-#: code/includes/hooks.php:107 code/includes/settings.php:736
-msgid "Items per row"
 msgstr ""
 
 #: code/includes/html.php:79
@@ -298,7 +300,7 @@ msgid "Click to toggle"
 msgstr ""
 
 #: code/includes/html.php:118
-msgid "Loading&#8230;"
+msgid "Loading..."
 msgstr ""
 
 #: code/includes/html.php:249
@@ -669,26 +671,26 @@ msgstr ""
 msgid "Right"
 msgstr ""
 
-#: code/public/content-views.php:289
+#: code/public/content-views.php:278
 msgid "New View"
 msgstr ""
 
-#: code/public/content-views.php:291
+#: code/public/content-views.php:280
 msgid "View View"
 msgstr ""
 
-#: code/public/content-views.php:293
+#: code/public/content-views.php:282
 msgid "Search Views"
 msgstr ""
 
-#: code/public/content-views.php:294
+#: code/public/content-views.php:283
 msgid "Parent Views:"
 msgstr ""
 
-#: code/public/content-views.php:295
+#: code/public/content-views.php:284
 msgid "No views found."
 msgstr ""
 
-#: code/public/content-views.php:296
+#: code/public/content-views.php:285
 msgid "No views found in Trash."
 msgstr ""

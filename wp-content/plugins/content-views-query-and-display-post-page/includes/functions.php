@@ -428,36 +428,29 @@ if ( !class_exists( 'PT_CV_Functions' ) ) {
 		 * @return string
 		 */
 		static function post_terms( $post ) {
-			global $pt_cv_glb, $pt_cv_id;
+			global $pt_cv_glb;
 
 			if ( !isset( $pt_cv_glb[ 'item_terms' ] ) ) {
 				$pt_cv_glb[ 'item_terms' ] = array();
 			}
 
-			// List of HTML link to terms
-			$links = array();
-
-			// Get list of taxonomies
-			$taxonomies = get_taxonomies( '', 'names' );
-
-			// List of taxonomies to show
-			$taxonomies_to_show = apply_filters( PT_CV_PREFIX_ . 'taxonomies_to_show', $taxonomies );
-
-			// Get post ID
-			$post_id = is_object( $post ) ? $post->ID : $post;
-
-			// Get lists of terms of this post
-			$terms = wp_get_object_terms( $post_id, $taxonomies );
+			$links				 = array();
+			$taxonomy_terms		 = array();
+			$taxonomies			 = get_taxonomies( '', 'names' );
+			$taxonomies_to_show	 = apply_filters( PT_CV_PREFIX_ . 'taxonomies_to_show', $taxonomies );
+			$post_id			 = is_object( $post ) ? $post->ID : $post;
+			$terms				 = wp_get_object_terms( $post_id, $taxonomies );
 
 			foreach ( $terms as $term ) {
-				$include_this = apply_filters( PT_CV_PREFIX_ . 'terms_include_this', true, $term );
-				if ( $include_this && in_array( $term->taxonomy, $taxonomies_to_show ) ) {
+				$term_html		 = '';
+				$include_this	 = apply_filters( PT_CV_PREFIX_ . 'terms_include_this', true, $term ) && in_array( $term->taxonomy, $taxonomies_to_show );
+				if ( $include_this ) {
 					$href		 = esc_url( get_term_link( $term, $term->taxonomy ) );
 					$text		 = __( 'View all posts in', 'content-views-query-and-display-post-page' );
 					$term_name	 = esc_attr( $term->name );
 					$class		 = esc_attr( PT_CV_PREFIX . 'tax-' . PT_CV_Functions::term_slug_sanitize( $term->slug ) );
-					$term_html	 = "<a href='$href' title='$text $term_name' class='$class'>{$term->name}</a>";
-					$links[]	 = apply_filters( PT_CV_PREFIX_ . 'post_term_html', $term_html, $term );
+					$term_html	 = apply_filters( PT_CV_PREFIX_ . 'post_term_html', "<a href='$href' title='$text $term_name' class='$class'>{$term->name}</a>", $term );
+					$links[]	 = $term_html;
 				}
 
 				// Add this term to terms list of an item
@@ -465,10 +458,15 @@ if ( !class_exists( 'PT_CV_Functions' ) ) {
 					$pt_cv_glb[ 'item_terms' ][ $post_id ] = array();
 				}
 				$pt_cv_glb[ 'item_terms' ][ $post_id ][ PT_CV_Functions::term_slug_sanitize( $term->slug ) ] = $term->name;
+
+				// Add this term to terms list of an item
+				if ( !isset( $taxonomy_terms[ $term->taxonomy ] ) ) {
+					$taxonomy_terms[ $term->taxonomy ] = array();
+				}
+				$taxonomy_terms[ $term->taxonomy ][] = $term_html;
 			}
 
-			$separator = apply_filters( PT_CV_PREFIX_ . 'post_terms_separator', ', ' );
-			return implode( $separator, apply_filters( PT_CV_PREFIX_ . 'terms_list', $links, $pt_cv_id ) );
+			return apply_filters( PT_CV_PREFIX_ . 'post_terms_output', implode( ', ', $links ), $links, $taxonomy_terms );
 		}
 
 		/**
@@ -725,7 +723,10 @@ if ( !class_exists( 'PT_CV_Functions' ) ) {
 
 					// Output pagination
 					if ( (int) $max_num_pages > 0 ) {
-						$html .= "\n" . PT_CV_Html::pagination_output( $max_num_pages, $current_page, $view_id );
+						$pagination_html = PT_CV_Html::pagination_output( $max_num_pages, $current_page, $view_id );
+						$before_view	 = apply_filters( PT_CV_PREFIX_ . 'pagination_before_view', false ) ? $pagination_html . "\n" : '';
+						$after_view		 = apply_filters( PT_CV_PREFIX_ . 'pagination_after_view', true ) ? "\n" . $pagination_html : '';
+						$html			 = $before_view . $html . $after_view;
 					}
 				}
 			}

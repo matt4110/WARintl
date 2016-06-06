@@ -68,6 +68,9 @@ if ( !class_exists( 'PT_CV_Html_ViewType' ) ) {
 			// Split items to rows
 			$columns_item = array_chunk( $content_items, $columns, true );
 
+			// Get responsive class
+			$res_class = apply_filters( PT_CV_PREFIX_ . 'item_col_class', array(), 6 );
+
 			// Get HTML of each row
 			foreach ( $columns_item as $items_per_row ) {
 				$row_html = array();
@@ -78,7 +81,7 @@ if ( !class_exists( 'PT_CV_Html_ViewType' ) ) {
 					$_span_width = ( $count == $columns && $idx + 1 == $count ) ? $span_width_last : $span_width;
 
 					// Wrap content of item
-					$item_classes	 = apply_filters( PT_CV_PREFIX_ . 'item_col_class', array( $span_class . $_span_width, $class ), $_span_width );
+					$item_classes	 = array_merge( array( $span_class . $_span_width, $class ), $res_class );
 					$item_class		 = implode( ' ', array_filter( $item_classes ) );
 					$row_html[]		 = PT_CV_Html::content_item_wrap( $content_item, $item_class, $post_id );
 
@@ -191,6 +194,9 @@ if ( !class_exists( 'PT_CV_Html_ViewType' ) ) {
 			// Get wrapper class of a scrollable slide
 			$slide_class = apply_filters( PT_CV_PREFIX_ . 'scrollable_slide_class', 'item' );
 
+			// Get responsive class
+			$res_class = apply_filters( PT_CV_PREFIX_ . 'item_col_class', array(), 6 );
+
 			// Split items to slide
 			$slides_item = array_chunk( $content_items, $columns * $rows );
 			$pids		 = array_keys( $content_items );
@@ -212,9 +218,10 @@ if ( !class_exists( 'PT_CV_Html_ViewType' ) ) {
 						$_span_width = ( $count == $columns && $idx + 1 == $count ) ? $span_width_last : $span_width;
 
 						// Wrap content of item
-						$item_classes	 = apply_filters( PT_CV_PREFIX_ . 'item_col_class', array( $span_class . $_span_width ), $_span_width );
-						$item_class		 = implode( ' ', array_filter( $item_classes ) );
-						$row_html[]		 = PT_CV_Html::content_item_wrap( $content_item, $item_class, $pids[ $pidx++ ] );
+						$item_classes = array_merge( array( $span_class . $_span_width ), $res_class );
+
+						$item_class	 = implode( ' ', array_filter( $item_classes ) );
+						$row_html[]	 = PT_CV_Html::content_item_wrap( $content_item, $item_class, $pids[ $pidx++ ] );
 					}
 
 					$slide_html[] = implode( "\n", $row_html );

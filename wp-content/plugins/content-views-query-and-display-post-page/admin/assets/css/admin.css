@@ -10,7 +10,7 @@
 
 /* Overwrite WP */
 .wrap .updated,
-.wrap .error,
+.wrap .notice,
 .update-nag {
 	display: none;
 }
@@ -67,6 +67,9 @@ html {
 /* Other settings */
 .hide {
 	display: none;
+}
+.control-label {
+	padding-right: 0 !important;
 }
 
 /* Fix style bug */

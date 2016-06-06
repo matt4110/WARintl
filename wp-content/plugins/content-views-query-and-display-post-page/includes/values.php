@@ -168,7 +168,7 @@ if ( !class_exists( 'PT_CV_Values' ) ) {
 			// Sort values of param by saved order
 			$term_slug_name = apply_filters( PT_CV_PREFIX_ . 'settings_sort_single', $term_slug_name, $taxonomy . '-' . 'terms' );
 
-			$terms_of_taxonomies[ $taxonomy ] = $term_slug_name;
+			$terms_of_taxonomies[ $taxonomy ] = array_filter( $term_slug_name ); /* prevent term with empty name */
 		}
 
 		/**
