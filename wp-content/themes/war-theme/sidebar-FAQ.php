@@ -10,7 +10,7 @@
 
 	<div id="tertiary" class="widget-area" role="complementary">
 		<ol id="faq-list">
-			<h1>List of Questions & Links to the Answers</h1><br>
+			<h1>List of Questions</h1><br>
 			<strong>Questions about our Programs & Partners</strong>
 			<li><a href="#q1">How many countries does Women At Risk, International (WAR, Int’l) work in? </a></li>
 			<li><a href="#q2">Is trafficking the only risk factor that WAR, Int’l works with? How do you define an at-risk woman?</a></li> 

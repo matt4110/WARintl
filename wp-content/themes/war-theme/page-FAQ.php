@@ -8,10 +8,10 @@
  * @since Twenty Ten 1.0
  */
 get_header(); ?>
+<h1 id="faq-h1"> Frequently Asked Questions</h1>
 <?php get_sidebar('FAQ'); ?>
 		<div id="container3">
 			<div id="content" role="main">
-			<h1> Frequently Asked Questions</h1>
 				<h2>Questions about our Programs & Partners</h2>
 				<ol>
 				   <li id="q1"><h3>How many countries does Women At Risk, International (WAR, Int’l) work in?</h3> <p>WAR, Int’l works with partners in over 40 different countries, some of which are “creative access” countries. We partner with organizations and individuals in Uganda, Sudan, India, Thailand, Nepal, Pakistan, Kosovo, the Dominican Republic, the United States, and many other countries. Because we place a high value on cultural sensitivity and relevance, our programs and partnerships vary according to the unique culture and circumstances of each individual country or region.  </p></li>

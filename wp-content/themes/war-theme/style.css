@@ -25,7 +25,7 @@ body {
 
 #container3 {
 	float: right;
-	margin: 0 -50px 0 0;
+	margin: 60px -50px 0 0;
 	width: 65%;
 }
 
@@ -36,11 +36,11 @@ body {
 #faq-list{
 	color: #fff;
 	float: right;
-	margin-top: 100px;
+	margin-top: 60px;
 }
 
 #faq-list li{
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 	font-size: 1.2em;
 }
 
@@ -59,12 +59,21 @@ body {
 
 #faq-list h1{
 	font-size: 1.6em;
+	font-weight: bold;
 	color: #c19563;
 }
 
 #faq-list strong{
 	font-size: 1.4em;
+	font-weight: normal;
 	color:#c19563;
+}
+
+#faq-h1{
+	font-size: 3em;
+	font-weight: bold;
+	color: #c19563;
+	text-align: center;
 }
 
 #content .news_media h4{
@@ -782,10 +791,10 @@ body.single-program p:first-letter, body.single-country p:first-letter {
 #tertiary{
 	float: left;
 	overflow: hidden;
-	width: 270px;
+	width: 250px;
 	margin-top: 10px;
 	margin-left: 75px;
-	padding: 5px;
+	padding: 10px;
 }
 
 #content .home1 h3 {
