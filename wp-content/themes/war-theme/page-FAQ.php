@@ -10,6 +10,7 @@
 get_header(); ?>
 <h1 id="faq-h1"> Frequently Asked Questions</h1>
 <?php get_sidebar('FAQ'); ?>
+		<div id="vertical-line"></div>
 		<div id="container3">
 			<div id="content" role="main">
 				<h2>Questions about our Programs & Partners</h2>
