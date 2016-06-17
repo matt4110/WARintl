@@ -23,12 +23,19 @@ get_header(); ?>
 				<h2 style="margin-top:0px">Host A Party</h2>
 				<p>Jewelry parties are essential to our work at WAR, Int’l. When you host a jewelry party, your house becomes a haven of hospitality, safety, and restoration for women around the world. You respond to our overseas partners’ frequent prayers for more jewelry sales. By inviting friends and family into your home, you raise awareness about the struggles that women face and ignite passion in others who might soon host their own jewelry parties. You empower rescued women to earn an income with dignity far from their lives in slavery. Also, your participation in rescuing, redeeming, restoring, and empowering women around the world costs you nothing but your time.
 				</p>
-				<p style="clear:left;">Click the buttons in the header above to find out more!<br/></p>
+				<!--<p style="clear:left;">Click the buttons in the header above to find out more!<br/></p>-->
 				</div>
 				<div style="background-color:white;padding:15px; color:black; width:220px; margin-left: 30px; margin-top: 60px; font-size: .9em; box-shadow:5px 5px black;float:right;margin-right:-50px; border:1px solid black;">
 					<h3 style="margin-top: 5px !important;"><em>Imagine...</em></h3>
 					<p style="margin-left:10px; text-align: justify;">It's almost 7'oclock and the guests will be arriving soon.  You sneak a quick look at yourself in the mirror and tuck a few wisps of hair back into place.  You smooth the red tablecloth and rearrange some of the necklaces until they shine under the light of your favorite lamp.  You open the door and the guests enter, hurrying over to the table to <em>ooh</em> and <em>ahh</em> over the woven bracelets, silk scarves, and pearl earrings.  When you explain that the jewelery is both beautiful, and meaningful, purses open and smiles spread throughout the room.
 					</p>
+				</div>
+				<a class="headerbuttons lbp-inline-link-4" href="#" >Contact Us</a>
+				<div class="lightbx" style="display: none">
+					<div id="lbp-inline-href-4">
+						<h2>Contact Party Central</h2>
+						<?php echo do_shortcode('[gravityform id="11" name="Contact Party Central" ajax=true]') ;?>
+					</div>
 				</div>
 				<div class="testimonials">
 					<h3 style="color:white; clear:none;"><em>Hostess Testimonial:</em></h3><blockquote style="text-align:justify; padding:0; margin-top: 25px;"><sub style="font-size:36px; line-height:0px">“</sub>
@@ -36,7 +43,8 @@ get_header(); ?>
 					<sub style="font-size:36px; line-height:0px">”</sub></blockquote>
 				</div>
 				
-			
+				
+					
 
 				<!-- This is the content that appears when the tabs in the banner are clicked -->
 			<!--	<div class="lightbx" style="display: none">
