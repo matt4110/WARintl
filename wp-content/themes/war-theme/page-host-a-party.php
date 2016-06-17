@@ -5,7 +5,7 @@ get_header(); ?>
 <?php get_sidebar(); ?>
 		<div id="container">
 			<div id="content" role="main">
-				<?php if ($_GET["submit"]==1){echo "<p style='color:green;font-size:1.1em; background-color: white; padding: 5px;text-align: center; border: 4px solid black;'>Thank you for contacting Party Central!  <br/><br/>We'll be in touch with you soon!</p>"; }?>
+			<!--	<?php if ($_GET["submit"]==1){echo "<p style='color:green;font-size:1.1em; background-color: white; padding: 5px;text-align: center; border: 4px solid black;'>Thank you for contacting Party Central!  <br/><br/>We'll be in touch with you soon!</p>"; }?>
 					<div id="headermenu" class="host-a-party">
 					<strong>
 					<a class="headerbuttons lbp-inline-link-1" href="#" >The Purpose</a>
@@ -15,6 +15,10 @@ get_header(); ?>
 					</strong>
 				</div>
 				<img class="alignnone  no-border " alt="Host A Party" src="http://warinternational.org/wp-content/uploads/2014/02/host-a-party-header.png" width="660" height="367" />
+				
+			-->
+
+			<iframe width="700" height="390" src="https://www.youtube.com/embed/7MJBj0BJSDM" frameborder="0" allowfullscreen></iframe>
 				<div style="float:left; width:305px;">
 				<h2 style="margin-top:0px">Host A Party</h2>
 				<p>Jewelry parties are essential to our work at WAR, Int’l. When you host a jewelry party, your house becomes a haven of hospitality, safety, and restoration for women around the world. You respond to our overseas partners’ frequent prayers for more jewelry sales. By inviting friends and family into your home, you raise awareness about the struggles that women face and ignite passion in others who might soon host their own jewelry parties. You empower rescued women to earn an income with dignity far from their lives in slavery. Also, your participation in rescuing, redeeming, restoring, and empowering women around the world costs you nothing but your time.
@@ -32,15 +36,13 @@ get_header(); ?>
 					<sub style="font-size:36px; line-height:0px">”</sub></blockquote>
 				</div>
 				
+			
+
 				<!-- This is the content that appears when the tabs in the banner are clicked -->
-				<div class="lightbx" style="display: none">
+			<!--	<div class="lightbx" style="display: none">
 					<div id="lbp-inline-href-1">
 						<h2>The Purpose</h2>
 						<p></p>
-						<!--<p>WAR, Int'l's passion is to give voice to the silenced cries of the oppressed, wrap arms of love around them, and wisper messages of purpose and dignity into their brokenness.</p>
-						<p>As you may or may not know, WAR Int'l parters with organizations (programs) from around the world who share in this passion, and work to achieve similar goals thru culturally sensitive, value-added intervention projects.</p>
-						<p>Some of these projects provide training in skilled-trades, like sewing or jewelry making, which in-turn help the program become self-supportive, and evetually grow to birth and partner  with other programs.  In the process, they have begun creating some of the most precious and unique items of distinction found anywhere in the world.  </p>
-						<p>These items can be purchased at any one of our three physical store locations, online at warchestboutique.com, and most notebly at in-home parties and events held all accross the country by individual supporters like you.</p>-->
 						<p>WAR, Int'l's partnering safehouses tirelessly rescue women and children from the horror of human trafficking, providing them with holistic treatment, medical care, counseling, education, spiritual care and job skill training.  Product sales are essential to the continuation of their work.</p>
 						<p>When you open your home to host a party, you literally reach accross the neighborhood, state, or ocean and lift women and children to dignity.</p>
 						<p>The <strong>purpose</strong> of a WAR party is:<p>
@@ -73,8 +75,8 @@ get_header(); ?>
 						<h2>Contact Party Central</h2>
 						<?php echo do_shortcode('[gravityform id="11" name="Contact Party Central" ajax=true]') ;?>
 					</div>
-				</div> <!--class="lightbx" -->
-				
+				</div> 
+			-->
 				
 			<?php
 			/* Run the loop to output the page.
