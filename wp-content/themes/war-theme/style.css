@@ -7,6 +7,24 @@ Author URI:     http://example.com/about/
 Template:       twentyten
 Version:        0.1.0
 */
+/* TABLE OF CONTENTS
+************************
+** General Styles
+** The Grid
+** Front Slider Plugin
+** Next Gen Gallery Plugin
+** Sweetie Templates
+** Programs & Stories Updates
+** Recaptcha
+** About Us Page
+** News + Media
+** All in One Event Calendar
+** Host a Party Page
+** FAQ page
+** 10 Year Anniversary (sent to serve)
+** Gravity Forms Plugin
+** Content Views Plugin
+*/
 @import url("../twentyten/style.css");
 body {
   background: url("https://warinternational.org/wp-content/themes/war-theme/images/war_bkgd_top.jpg"), url("https://warinternational.org/wp-content/themes/war-theme/images/war_bkgd_repeat.jpg");
@@ -190,7 +208,8 @@ div#preload {
   display: table-cell; }
 
 .row {
-  clear: both; }
+  clear: both;
+  width: 100%; }
 
 [class*="grid"] {
   float: left;
@@ -235,7 +254,6 @@ div#preload {
 .grid-9-10 {
   width: 90%; }
 
-/***  FRONTSLIDER  ****/
 #slide-wrapper img {
   border: none !important;
   margin: 0px; }
@@ -247,8 +265,6 @@ div#preload {
   font-size: 10pt !important;
   line-height: 1.5em !important; }
 
-/***  END FRONTSLIDER  ****/
-/***  NEXT GEN GALLERY  ****/
 #content .ngg-album-compactbox img.Thumb {
   border: 0; }
 
@@ -276,24 +292,6 @@ div#preload {
 	color: red;
 	font-size: 16px;
 } */
-/* END NEXT GEN GALLERY */
-/* BEGIN ---- Styling for Blue Candle Prayer Walk Template 
-div#rootDiv {
-	margin-left:-33px;
-}
-
-div#rootDiv  img {
-	border-style: none;
-}
-div#rootDiv p {
-	margin-bottom: 30px;
-}
-
-div#rootDiv a {
-	color: #0067ce;
-}
-END ---- Styling for Blue Candle Prayer Walk Template */
-/* BEGIN ---- Styling for Sweetie Templates */
 .sweetie-excerpt {
   height: 165px;
   margin-bottom: 30px; }
@@ -348,8 +346,6 @@ END ---- Styling for Blue Candle Prayer Walk Template */
   float: left;
   margin: 10px 10px 10px 10px; }
 
-/* END ---- Styling for Sweetie Templates */
-/***************PROGRAMS AND STORIES - PJ ***********************/
 ul.ProgramCategories2 {
   width: 200px;
   float: left;
@@ -644,15 +640,12 @@ body.single-program p:first-letter, body.single-country p:first-letter {
   margin: 5px 0 14px;
   background: #e3c9a4; }
 
-/**************************END PROGRAMS AND STORIES********************************/
-/***************RE CAPTCHA***********************/
 #recaptcha_table {
   line-height: 0em; }
 
 #recaptcha_response_field {
   height: 24px; }
 
-/************About Us Page************************/
 .about-us-location {
   margin-top: 20px;
   display: table;
@@ -871,40 +864,66 @@ a.teamwarheaderbuttons:hover {
 
 #container3 {
   float: right;
-  margin: 60px -50px 0 0;
-  width: 65%; }
+  margin: 60px -10px 0 0;
+  width: 95%; }
+  #container3 p {
+    font-size: .85em; }
+  #container3 #content {
+    width: 80%;
+    margin-left: 15%;
+    padding-top: 30px; }
+  #container3 .grid-3-10 {
+    margin-right: 5%; }
+  #container3 .grid-3-10:last-child {
+    margin-right: 0; }
 
-#container3 p {
-  font-size: .85em; }
+.faq-top-box {
+  max-width: 100%;
+  padding: 35px 15px 15px 15px;
+  background: -webkit-linear-gradient(#FF3F3F, #D40B00);
+  background: -o-linear-gradient(#FF3F3F, #D40B00);
+  background: -moz-linear-gradient(#FF3F3F, #D40B00);
+  background: linear-gradient(#FF3F3F, #D40B00); }
+  .faq-top-box h1 {
+    color: #fff;
+    font-size: 1.75em;
+    text-align: center;
+    line-height: 1.5em; }
+  .faq-top-box hr {
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #BF0404;
+    height: 3px; }
+  #container3 .faq-top-box p {
+    color: #fff;
+    font-size: 1.15em;
+    width: 90%;
+    margin-left: 5%; }
 
 #faq-list {
   color: #fff;
   float: right;
   margin-top: 60px; }
-
-#faq-list li {
-  margin-bottom: 15px;
-  font-size: 1.2em; }
-
-#faq-list li a {
-  color: #dedede; }
-
-#faq-list li a:visited {
-  color: #dedede; }
-
-#faq-list li a:hover {
-  color: #fff;
-  text-decoration: none; }
-
-#faq-list h1 {
-  font-size: 1.6em;
-  font-weight: bold;
-  color: #c19563; }
-
-#faq-list strong {
-  font-size: 1.4em;
-  font-weight: normal;
-  color: #c19563; }
+  #faq-list li {
+    margin-bottom: 15px;
+    font-size: 1.2em; }
+    #faq-list li a {
+      color: #dedede; }
+      #faq-list li a:visited {
+        color: #dedede; }
+      #faq-list li a:hover {
+        color: #fff;
+        text-decoration: none; }
+  #faq-list h1 {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #c19563; }
+  #faq-list strong {
+    font-size: 1.4em;
+    font-weight: normal;
+    color: #c19563; }
 
 #faq-h1 {
   font-size: 3em;

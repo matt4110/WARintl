@@ -8,8 +8,34 @@ Template:       twentyten
 Version:        0.1.0
 */
 
+/* TABLE OF CONTENTS
+************************
+** General Styles
+** The Grid
+** Front Slider Plugin
+** Next Gen Gallery Plugin
+** Sweetie Templates
+** Programs & Stories Updates
+** Recaptcha
+** About Us Page
+** News + Media
+** All in One Event Calendar
+** Host a Party Page
+** FAQ page
+** 10 Year Anniversary (sent to serve)
+** Gravity Forms Plugin
+** Content Views Plugin
+*/
 
 @import url("../twentyten/style.css");
+
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+///////////////// General Styles /////////////////
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+
+
 
 body {
 	background: url('https://warinternational.org/wp-content/themes/war-theme/images/war_bkgd_top.jpg'), url('https://warinternational.org/wp-content/themes/war-theme/images/war_bkgd_repeat.jpg');
@@ -22,8 +48,6 @@ body {
 	margin: 0 0 0 125px;
 	width: 95%;
 }
-
-
 
 #content .news_media h4{
 	font-size: 16pt;
@@ -238,6 +262,7 @@ div#preload { display: none; }
 
 .row{
 	clear: both;
+	width: 100%;
 }
 
 [class*="grid"]{
@@ -297,7 +322,11 @@ div#preload { display: none; }
 	width:90%;
 }
 
-/***  FRONTSLIDER  ****/
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////// Front Slider Plugin ///////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
 
 #slide-wrapper img {
 	border: none !important;
@@ -313,10 +342,11 @@ div#preload { display: none; }
 	line-height: 1.5em !important;
 }
 
-/***  END FRONTSLIDER  ****/
-
-
-/***  NEXT GEN GALLERY  ****/
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////// Next Gen Gallery ////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
 
 #content .ngg-album-compactbox img.Thumb {
 	border: 0;
@@ -352,29 +382,12 @@ div#preload { display: none; }
 	font-size: 16px;
 } */
 
-/* END NEXT GEN GALLERY */
+/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// Sweetie Templates ///////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 
-
-/* BEGIN ---- Styling for Blue Candle Prayer Walk Template 
-div#rootDiv {
-	margin-left:-33px;
-}
-
-div#rootDiv  img {
-	border-style: none;
-}
-div#rootDiv p {
-	margin-bottom: 30px;
-}
-
-div#rootDiv a {
-	color: #0067ce;
-}
-END ---- Styling for Blue Candle Prayer Walk Template */
-
-
-
-/* BEGIN ---- Styling for Sweetie Templates */
 .sweetie-excerpt {
 	height: 165px;
 	margin-bottom: 30px;
@@ -438,8 +451,12 @@ END ---- Styling for Blue Candle Prayer Walk Template */
 	float: left;
 	margin: 10px 10px 10px 10px;
 }
-/* END ---- Styling for Sweetie Templates */
-/***************PROGRAMS AND STORIES - PJ ***********************/
+
+/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+////////////////////////// Programs & Stories Updates ///////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 
 ul.ProgramCategories2 {
 	width: 200px;
@@ -796,16 +813,26 @@ body.single-program p:first-letter, body.single-country p:first-letter {
 	margin: 5px 0 14px;
 	background: rgb(227,201,164);
 }
-/**************************END PROGRAMS AND STORIES********************************/
 
-/***************RE CAPTCHA***********************/
+/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////// Recaptcha ///////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+
 #recaptcha_table {
 	line-height: 0em;
 }
 #recaptcha_response_field{
 	height: 24px;
 }
-/************About Us Page************************/
+
+/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////// About Us Page //////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+
 .about-us-location {
 	margin-top: 20px;
 	display: table;
@@ -1087,48 +1114,95 @@ a.teamwarheaderbuttons:hover {
 
 #container3 {
 	float: right;
-	margin: 60px -50px 0 0;
-	width: 65%;
+	margin: 60px -10px 0 0;
+	width: 95%;
+
+	p{
+		font-size: .85em;
+	}
+
+	#content{
+		width: 80%;
+		margin-left: 15%;
+		padding-top: 30px;
+
+	}
+
+	.grid-3-10{
+		margin-right: 5%;
+	}
+	.grid-3-10:last-child{
+		margin-right: 0;
+	}
 }
 
-#container3 p{
-	font-size: .85em;
+.faq-top-box{
+	max-width:100%;
+	padding: 35px 15px 15px 15px;
+	background: -webkit-linear-gradient(#FF3F3F,#D40B00);
+	background: -o-linear-gradient(#FF3F3F,#D40B00);
+	background: -moz-linear-gradient(#FF3F3F,#D40B00);
+	background: linear-gradient(#FF3F3F,#D40B00);
+	//box-shadow: 5px 5px 10px #8C0909;
+
+	h1{
+		color: #fff;
+		font-size: 1.75em;
+		text-align: center;
+		line-height: 1.5em;
+	}
+
+	hr{
+		width: 90%;
+		margin-left: 5%;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		background-color: #BF0404;
+		height: 3px;
+	}
+
+	#container3 & p{
+		color: #fff;
+		font-size: 1.15em;
+		width: 90%;
+		margin-left: 5%;
+	}
 }
 
-#faq-list{
+#faq-list{ 
 	color: #fff;
 	float: right;
 	margin-top: 60px;
-}
 
-#faq-list li{
-	margin-bottom: 15px;
-	font-size: 1.2em;
-}
+	li{
+		margin-bottom: 15px;
+		font-size: 1.2em;
 
-#faq-list li a{
-	color: #dedede;
-}
+		a{
+			color: #dedede;
 
-#faq-list li a:visited{
-	color: #dedede;
-}
+			&:visited{
+				color: #dedede;
+			}
 
-#faq-list li a:hover{
-	color: #fff;
-	text-decoration: none;
-}
+			&:hover{
+				color: #fff;
+				text-decoration: none;
+			}
+		}
+	}
 
-#faq-list h1{
-	font-size: 1.6em;
-	font-weight: bold;
-	color: #c19563;
-}
+	h1{
+		font-size: 1.6em;
+		font-weight: bold;
+		color: #c19563;
+	}
 
-#faq-list strong{
-	font-size: 1.4em;
-	font-weight: normal;
-	color:#c19563;
+	strong{
+		font-size: 1.4em;
+		font-weight: normal;
+		color:#c19563;
+	}
 }
 
 #faq-h1{
