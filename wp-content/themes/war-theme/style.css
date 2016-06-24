@@ -211,48 +211,57 @@ div#preload {
   clear: both;
   width: 100%; }
 
-[class*="grid"] {
-  float: left;
-  clear: none; }
-
 .grid-1-2 {
-  width: 50%; }
+  width: 50%;
+  float: left; }
 
 .grid-1-3 {
-  width: 33.33%; }
+  width: 33.33%;
+  float: left; }
 
 .grid-2-3 {
-  width: 66.66%; }
+  width: 66.66%;
+  float: left; }
 
 .grid-1-4 {
-  width: 25%; }
+  width: 25%;
+  float: left; }
 
 .grid-3-4 {
-  width: 75%; }
+  width: 75%;
+  float: left; }
 
 .grid-1-10 {
-  width: 10%; }
+  width: 10%;
+  float: left; }
 
 .grid-2-10 {
-  width: 20%; }
+  width: 20%;
+  float: left; }
 
 .grid-3-10 {
-  width: 30%; }
+  width: 30%;
+  float: left; }
 
 .grid-4-10 {
-  width: 40%; }
+  width: 40%;
+  float: left; }
 
 .grid-6-10 {
-  width: 60%; }
+  width: 60%;
+  float: left; }
 
 .grid-7-10 {
-  width: 70%; }
+  width: 70%;
+  float: left; }
 
 .grid-8-10 {
-  width: 80%; }
+  width: 80%;
+  float: left; }
 
 .grid-9-10 {
-  width: 90%; }
+  width: 90%;
+  float: left; }
 
 #slide-wrapper img {
   border: none !important;
@@ -873,22 +882,27 @@ a.teamwarheaderbuttons:hover {
     margin-left: 15%;
     padding-top: 30px; }
   #container3 .grid-3-10 {
-    margin-right: 5%; }
+    margin-right: 5%;
+    margin-top: 50px; }
   #container3 .grid-3-10:last-child {
     margin-right: 0; }
+  #container3 .grid-margin-17 {
+    width: 17.5%;
+    float: left;
+    clear: none; }
 
 .faq-top-box {
   max-width: 100%;
-  padding: 35px 15px 15px 15px;
-  background: -webkit-linear-gradient(#FF3F3F, #D40B00);
-  background: -o-linear-gradient(#FF3F3F, #D40B00);
-  background: -moz-linear-gradient(#FF3F3F, #D40B00);
-  background: linear-gradient(#FF3F3F, #D40B00); }
+  height: 200px;
+  padding: -70px 15px 15px 15px;
+  background: #fff;
+  box-shadow: 5px 5px 10px #700F0F; }
   .faq-top-box h1 {
-    color: #fff;
-    font-size: 1.75em;
+    color: #BF0404;
+    font-size: 1.5em;
     text-align: center;
-    line-height: 1.5em; }
+    line-height: 1.5em;
+    font-weight: bold; }
   .faq-top-box hr {
     width: 90%;
     margin-left: 5%;
@@ -897,10 +911,42 @@ a.teamwarheaderbuttons:hover {
     background-color: #BF0404;
     height: 3px; }
   #container3 .faq-top-box p {
-    color: #fff;
+    color: #BF0404;
     font-size: 1.15em;
     width: 90%;
     margin-left: 5%; }
+  .faq-top-box .faq-top-box-content {
+    position: relative;
+    top: -30px; }
+  .faq-top-box #circle1 {
+    border-radius: 50%;
+    background-color: #222;
+    width: 75px;
+    height: 75px;
+    position: relative;
+    top: -40px;
+    left: 95px; }
+  .faq-top-box #circle2 {
+    border-radius: 50%;
+    background-color: #222;
+    width: 75px;
+    height: 75px;
+    position: relative;
+    top: -40px;
+    left: 95px; }
+  .faq-top-box #circle3 {
+    border-radius: 50%;
+    background-color: #222;
+    width: 75px;
+    height: 75px;
+    position: relative;
+    top: -40px;
+    left: 95px; }
+  .faq-top-box img {
+    display: block;
+    margin: auto auto;
+    position: relative;
+    top: 20px; }
 
 #faq-list {
   color: #fff;
@@ -1126,7 +1172,37 @@ input[type=submit].gform_button {
   font-weight: 500 !important;
   font-size: 1em !important; }
 
-[data-groups="current_news news"] img {
-  border: 2px solid blue !important; }
+[data-groups*="current_news"] img {
+  border: 3px solid #544836 !important; }
+
+[data-groups*="nat_news"] img {
+  border: 3px solid #4f3a51 !important; }
+
+[data-groups*="intl_news"] img {
+  border: 3px solid #563737 !important; }
+
+[data-groups*="program_news"] img {
+  border: 3px solid #405066 !important; }
+
+div .btn-group [data-value="current_news"] {
+  background-color: transparent;
+  border-width: 0 0 5px 0 !important;
+  border-color: #544836 !important; }
+div .btn-group [data-value="intl_news"] {
+  background-color: transparent;
+  border-width: 0 0 5px 0 !important;
+  border-color: #563737 !important; }
+div .btn-group [data-value="nat_news"] {
+  background-color: transparent;
+  border-width: 0 0 5px 0 !important;
+  border-color: #4f3a51 !important; }
+div .btn-group [data-value="program_news"] {
+  background-color: transparent;
+  border-width: 0 0 5px 0 !important;
+  border-color: #405066 !important; }
+div .btn-group [data-value="all"] {
+  background-color: transparent;
+  border-width: 0 0 5px 0 !important;
+  border-color: #c19563 !important; }
 
 /*# sourceMappingURL=style.css.map */

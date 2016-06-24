@@ -10,25 +10,66 @@
 get_header(); ?>
 <h1 id="faq-h1"> Frequently Asked Questions</h1>
 <div id="container3">
-	<!-- Top Section w/ boxes (Matt Johnson)-->
+<!-- Top Section w/ boxes (Matt Johnson)-->
+	<!-- Top Row -->
 	<div class="row">
 		<div class="grid-3-10">
 			<div class="faq-top-box">
-				<h1>Questions about Programs and Partners</h1>
-				<hr>
-				<p>Learn more about programs that help and partnerships we develop.</p>
+				<div id="circle1">
+					<img src="/images/icon-1.png">
+				</div>
+				<div class="faq-top-box-content">
+					<h1>Questions about Programs and Partners</h1>
+					<hr>
+					<p>Learn more about programs that help and partnerships we develop.</p>
+				</div>
 			</div>
 		</div>
 		<div class="grid-3-10">
 			<div class="faq-top-box">
-				<h1>Questions about Trafficking and Rescue</h1>
+				<div id="circle2">
+					<img src="/images/icon-1.png">
+				</div>
+				<div class="faq-top-box-content">
+					<h1>Questions about Trafficking and Rescue</h1>
+					<hr>
+					<p></p>
+				</div>
+			</div>
+		</div>
+		<div class="grid-3-10">
+			<div class="faq-top-box">
+				<div id="circle3">
+					<img src="">
+				</div>
+				<h1></h1>
+				<hr>
+				<p></p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Bottom Row -->
+	<div class="row">
+		<div class="grid-margin-17">&nbsp;</div>
+		<div class="grid-3-10">
+			<div class="faq-top-box">
+				<div class="circle4">
+					<img src="">
+				</div>
+				<h1></h1>
 				<hr>
 				<p></p>
 			</div>
 		</div>
 		<div class="grid-3-10">
 			<div class="faq-top-box">
+				<div class="circle5">
+					<img src="">
+				</div>
 				<h1></h1>
+				<hr>
+				<p></p>
 			</div>
 		</div>
 	</div>
