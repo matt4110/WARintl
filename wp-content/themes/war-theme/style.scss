@@ -1156,6 +1156,11 @@ a.teamwarheaderbuttons:hover {
 		float: left;
 		clear: none;
 	}
+
+	h2{
+		font-size: 2.25em;
+		color: lighten($gold, 25%);
+	}
 }
 
 .faq-top-box{
@@ -1222,12 +1227,48 @@ a.teamwarheaderbuttons:hover {
 		left: 95px;
 	}
 
+	#circle4{
+		border-radius: 50%;
+		background-color: #222;
+		width:75px;
+		height:75px;
+		position: relative;
+		top: -40px;
+		left: 95px;
+	}
+
+	#circle5{
+		border-radius: 50%;
+		background-color: #222;
+		width:75px;
+		height:75px;
+		position: relative;
+		top: -40px;
+		left: 95px;
+	}
+
 	img{
 		display: block;
 		margin: auto auto;
 		position:relative;
+	}
+
+	#circle1 img{
+		top: 23px;
+	}
+	#circle2 img{
+		top: 16px;
+	}
+	#circle3 img{
 		top: 20px;
 	}
+	#circle4 img{
+		top: 23px;
+	}
+	#circle5 img{
+		top: 15px;
+	}
+
 }
 
 #faq-list{ 

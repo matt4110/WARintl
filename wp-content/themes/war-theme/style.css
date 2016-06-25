@@ -890,6 +890,9 @@ a.teamwarheaderbuttons:hover {
     width: 17.5%;
     float: left;
     clear: none; }
+  #container3 h2 {
+    font-size: 2.25em;
+    color: #e5d3be; }
 
 .faq-top-box {
   max-width: 100%;
@@ -942,11 +945,36 @@ a.teamwarheaderbuttons:hover {
     position: relative;
     top: -40px;
     left: 95px; }
+  .faq-top-box #circle4 {
+    border-radius: 50%;
+    background-color: #222;
+    width: 75px;
+    height: 75px;
+    position: relative;
+    top: -40px;
+    left: 95px; }
+  .faq-top-box #circle5 {
+    border-radius: 50%;
+    background-color: #222;
+    width: 75px;
+    height: 75px;
+    position: relative;
+    top: -40px;
+    left: 95px; }
   .faq-top-box img {
     display: block;
     margin: auto auto;
-    position: relative;
+    position: relative; }
+  .faq-top-box #circle1 img {
+    top: 23px; }
+  .faq-top-box #circle2 img {
+    top: 16px; }
+  .faq-top-box #circle3 img {
     top: 20px; }
+  .faq-top-box #circle4 img {
+    top: 23px; }
+  .faq-top-box #circle5 img {
+    top: 15px; }
 
 #faq-list {
   color: #fff;

@@ -16,7 +16,7 @@ get_header(); ?>
 		<div class="grid-3-10">
 			<div class="faq-top-box">
 				<div id="circle1">
-					<img src="/images/icon-1.png">
+					<img src="/images/icon-programs.png">
 				</div>
 				<div class="faq-top-box-content">
 					<h1>Questions about Programs and Partners</h1>
@@ -28,7 +28,7 @@ get_header(); ?>
 		<div class="grid-3-10">
 			<div class="faq-top-box">
 				<div id="circle2">
-					<img src="/images/icon-1.png">
+					<img src="/images/icon-rescue.png">
 				</div>
 				<div class="faq-top-box-content">
 					<h1>Questions about Trafficking and Rescue</h1>
@@ -40,11 +40,13 @@ get_header(); ?>
 		<div class="grid-3-10">
 			<div class="faq-top-box">
 				<div id="circle3">
-					<img src="">
+					<img src="/images/icon-products.png">
 				</div>
-				<h1></h1>
-				<hr>
-				<p></p>
+				<div class="faq-top-box-content">
+					<h1>Questions about Our Products</h1>
+					<hr>
+					<p></p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -54,22 +56,26 @@ get_header(); ?>
 		<div class="grid-margin-17">&nbsp;</div>
 		<div class="grid-3-10">
 			<div class="faq-top-box">
-				<div class="circle4">
-					<img src="">
+				<div id="circle4">
+					<img src="/images/icon-get-involved.png">
 				</div>
-				<h1></h1>
-				<hr>
-				<p></p>
+				<div class="faq-top-box-content">
+					<h1>Questions about Getting Involved</h1>
+					<hr>
+					<p></p>
+				</div>
 			</div>
 		</div>
 		<div class="grid-3-10">
 			<div class="faq-top-box">
-				<div class="circle5">
-					<img src="">
+				<div id="circle5">
+					<img src="/images/icon-organization.png">
 				</div>
-				<h1></h1>
-				<hr>
-				<p></p>
+				<div class="faq-top-box-content">
+					<h1>Questions about the Organization</h1>
+					<hr>
+					<p></p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -123,7 +129,7 @@ get_header(); ?>
 		         <li>According to the <a href="http://www.state.gov/j/tip/index.htm">U.S. State Dept.</a>, there are currently more than 1.5 million people within North America who are victims of sex or labor trafficking. (This number does not include victims of drug trafficking.) </li>
 		         <li><a href="https://traffickingresourcecenter.org/states">Data from The National Human Trafficking Resource Center</a> indicates that there were 5,544 human trafficking cases reported in 2015. Keep in mind that this is only the number of reported cases; it is likely that the majority of cases go unreported. </li>
 		         <li>Any child under the age of 18 who is engaged in a sex act which is exchanged for something of value (not necessarily money) is considered to be a victim of sex trafficking. Exotic dancing, escort services, massage services, pornography, and phone sex are just some of the venues through which minors can be forced into trafficking (<a href="https://traffickingresourcecenter.org/sites/default/files/Homelessness,%20Survival%20Sex,%20and%20Human%20Trafficking%20-%20Covenant%20House%20NY.pdf">Trafficking Resource Center</a>/Covenant House, New York).</li>
-		         <li>The U.S. State Dept. estimates that between 100,000 and 300,000 underage girls are sold for sex in the U.S. every year.</li>
+		         <li> According to the <a href="http://www.missingkids.com/home">National Center for Missing and Exploited Children</a>, <a href="http://www.missingkids.org/en_US/publications/missingchildrenstatecare.pdf">between 100,000 and 300,000 underage youth are “at risk” for commercial sexual exploitation</a> in the U.S. every year.</li>
 		      </ul>
 		   </li>
 

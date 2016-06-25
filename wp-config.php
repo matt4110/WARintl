@@ -19,9 +19,9 @@ define('WP_POST_REVISIONS',  10);
 /****************************************************************************/
 /*                         Database Configuration                           */
 /****************************************************************************/
-define('DB_NAME', 'db1997927893');
-define('DB_USER', 'fw3100844153');
-define('DB_PASSWORD', 'xutqj6tG744okAsH6Z4J8uijMFV9Xt');
+define('DB_NAME', 'WAR');
+define('DB_USER', 'root');
+define('DB_PASSWORD', '');
 define('DB_HOST', '127.0.0.1');
 define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
@@ -56,7 +56,7 @@ define('WP_CACHE', false);
 /****************************************************************************/
 /*                              Custom Content                              */
 /****************************************************************************/
-define('FORCE_SSL_ADMIN', true);
+define('FORCE_SSL_ADMIN', false);
 
 
 /****************************************************************************/

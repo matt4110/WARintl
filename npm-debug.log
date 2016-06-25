@@ -1,0 +1,299 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', '-g', 'install', 'stylelint' ]
+2 info using npm@2.7.4
+3 info using node@v0.12.2
+4 silly cache add args [ 'stylelint', null ]
+5 verbose cache add spec stylelint
+6 silly cache add parsed spec { raw: 'stylelint',
+6 silly cache add   scope: null,
+6 silly cache add   name: 'stylelint',
+6 silly cache add   rawSpec: '',
+6 silly cache add   spec: '*',
+6 silly cache add   type: 'range' }
+7 verbose addNamed stylelint@*
+8 silly addNamed semver.valid null
+9 silly addNamed semver.validRange *
+10 silly addNameRange { name: 'stylelint', range: '*', hasData: false }
+11 silly mapToRegistry name stylelint
+12 silly mapToRegistry using default registry
+13 silly mapToRegistry registry https://registry.npmjs.org/
+14 silly mapToRegistry uri https://registry.npmjs.org/stylelint
+15 verbose addNameRange registry:https://registry.npmjs.org/stylelint not in flight; fetching
+16 verbose request uri https://registry.npmjs.org/stylelint
+17 verbose request no auth needed
+18 info attempt registry request try #1 at 10:03:49 AM
+19 verbose request id f902c6599c3331ee
+20 http request GET https://registry.npmjs.org/stylelint
+21 http 200 https://registry.npmjs.org/stylelint
+22 silly get cb [ 200,
+22 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+22 silly get     etag: '"DOP9VA9LHROIECJDAZG1EBC6C"',
+22 silly get     'content-type': 'application/json',
+22 silly get     'content-encoding': 'gzip',
+22 silly get     'cache-control': 'max-age=300',
+22 silly get     'content-length': '21598',
+22 silly get     'accept-ranges': 'bytes',
+22 silly get     date: 'Fri, 24 Jun 2016 14:03:50 GMT',
+22 silly get     via: '1.1 varnish',
+22 silly get     age: '285',
+22 silly get     connection: 'keep-alive',
+22 silly get     'x-served-by': 'cache-ord1743-ORD',
+22 silly get     'x-cache': 'HIT',
+22 silly get     'x-cache-hits': '1',
+22 silly get     'x-timer': 'S1466777030.710098,VS0,VE0',
+22 silly get     vary: 'Accept-Encoding' } ]
+23 verbose get saving stylelint to /Users/matthewjohnson/.npm/registry.npmjs.org/stylelint/.cache.json
+24 silly addNameRange number 2 { name: 'stylelint', range: '*', hasData: true }
+25 silly addNameRange versions [ 'stylelint',
+25 silly addNameRange   [ '0.0.0',
+25 silly addNameRange     '0.1.0',
+25 silly addNameRange     '0.1.1',
+25 silly addNameRange     '0.1.2',
+25 silly addNameRange     '0.2.0',
+25 silly addNameRange     '0.3.0',
+25 silly addNameRange     '0.3.1',
+25 silly addNameRange     '0.3.2',
+25 silly addNameRange     '0.4.0',
+25 silly addNameRange     '0.4.1',
+25 silly addNameRange     '0.5.0',
+25 silly addNameRange     '0.6.0',
+25 silly addNameRange     '0.6.1',
+25 silly addNameRange     '0.6.2',
+25 silly addNameRange     '0.7.0',
+25 silly addNameRange     '0.8.0',
+25 silly addNameRange     '1.0.0',
+25 silly addNameRange     '1.0.1',
+25 silly addNameRange     '1.1.0',
+25 silly addNameRange     '1.2.0',
+25 silly addNameRange     '1.2.1',
+25 silly addNameRange     '2.0.0',
+25 silly addNameRange     '2.1.0',
+25 silly addNameRange     '2.2.0',
+25 silly addNameRange     '2.3.0',
+25 silly addNameRange     '2.3.1',
+25 silly addNameRange     '2.3.2',
+25 silly addNameRange     '2.3.3',
+25 silly addNameRange     '2.3.4',
+25 silly addNameRange     '2.3.5',
+25 silly addNameRange     '2.3.6',
+25 silly addNameRange     '2.3.7',
+25 silly addNameRange     '3.0.0',
+25 silly addNameRange     '3.0.1',
+25 silly addNameRange     '3.0.2',
+25 silly addNameRange     '3.0.3',
+25 silly addNameRange     '3.1.0',
+25 silly addNameRange     '3.1.1',
+25 silly addNameRange     '3.1.2',
+25 silly addNameRange     '3.1.3',
+25 silly addNameRange     '3.1.4',
+25 silly addNameRange     '3.2.0',
+25 silly addNameRange     '3.2.1',
+25 silly addNameRange     '3.2.2',
+25 silly addNameRange     '3.2.3',
+25 silly addNameRange     '4.0.0',
+25 silly addNameRange     '4.1.0',
+25 silly addNameRange     '4.2.0',
+25 silly addNameRange     '4.3.0',
+25 silly addNameRange     '4.3.1',
+25 silly addNameRange     '4.3.2',
+25 silly addNameRange     '4.3.3',
+25 silly addNameRange     '4.3.4',
+25 silly addNameRange     '4.3.5',
+25 silly addNameRange     '4.3.6',
+25 silly addNameRange     '4.4.0',
+25 silly addNameRange     '4.5.0',
+25 silly addNameRange     '4.5.1',
+25 silly addNameRange     '5.0.0',
+25 silly addNameRange     '5.0.1',
+25 silly addNameRange     '5.1.0',
+25 silly addNameRange     '5.2.0',
+25 silly addNameRange     '5.2.1',
+25 silly addNameRange     '5.3.0',
+25 silly addNameRange     '5.4.0',
+25 silly addNameRange     '6.0.0',
+25 silly addNameRange     '6.0.1',
+25 silly addNameRange     '6.0.2',
+25 silly addNameRange     '6.0.3',
+25 silly addNameRange     '6.1.0',
+25 silly addNameRange     '6.1.1',
+25 silly addNameRange     '6.2.0',
+25 silly addNameRange     '6.2.1',
+25 silly addNameRange     '6.2.2',
+25 silly addNameRange     '6.3.0',
+25 silly addNameRange     '6.3.1',
+25 silly addNameRange     '6.3.2',
+25 silly addNameRange     '6.3.3',
+25 silly addNameRange     '6.4.0',
+25 silly addNameRange     '6.4.1',
+25 silly addNameRange     '6.4.2',
+25 silly addNameRange     '6.5.0',
+25 silly addNameRange     '6.5.1',
+25 silly addNameRange     '6.6.0',
+25 silly addNameRange     '6.7.0',
+25 silly addNameRange     '6.7.1' ] ]
+26 verbose addNamed stylelint@6.7.1
+27 silly addNamed semver.valid 6.7.1
+28 silly addNamed semver.validRange 6.7.1
+29 silly mapToRegistry name stylelint
+30 silly mapToRegistry using default registry
+31 silly mapToRegistry registry https://registry.npmjs.org/
+32 silly mapToRegistry uri https://registry.npmjs.org/stylelint
+33 verbose addRemoteTarball https://registry.npmjs.org/stylelint/-/stylelint-6.7.1.tgz not in flight; adding
+34 verbose addRemoteTarball [ 'https://registry.npmjs.org/stylelint/-/stylelint-6.7.1.tgz',
+34 verbose addRemoteTarball   '1d4251cc5b7b697dc327eaf4955d26b55b5a06d7' ]
+35 info retry fetch attempt 1 at 10:03:50 AM
+36 info attempt registry request try #1 at 10:03:50 AM
+37 http fetch GET https://registry.npmjs.org/stylelint/-/stylelint-6.7.1.tgz
+38 http fetch 200 https://registry.npmjs.org/stylelint/-/stylelint-6.7.1.tgz
+39 silly fetchAndShaCheck shasum 1d4251cc5b7b697dc327eaf4955d26b55b5a06d7
+40 verbose addTmpTarball /var/folders/nb/ph00tj115snfy805z431pq900000gn/T/npm-68565-8463cf32/registry.npmjs.org/stylelint/-/stylelint-6.7.1.tgz not in flight; adding
+41 verbose addTmpTarball already have metadata; skipping unpack for stylelint@6.7.1
+42 silly cache afterAdd stylelint@6.7.1
+43 verbose afterAdd /Users/matthewjohnson/.npm/stylelint/6.7.1/package/package.json not in flight; writing
+44 verbose afterAdd /Users/matthewjohnson/.npm/stylelint/6.7.1/package/package.json written
+45 silly install resolved [ { name: 'stylelint',
+45 silly install resolved     version: '6.7.1',
+45 silly install resolved     description: 'Modern CSS linter',
+45 silly install resolved     keywords: [ 'css', 'csslint', 'lint', 'linter', 'stylelint' ],
+45 silly install resolved     authors: [ 'David Clark', 'Maxime Thirouin', 'Richard Hallows' ],
+45 silly install resolved     license: 'MIT',
+45 silly install resolved     repository:
+45 silly install resolved      { type: 'git',
+45 silly install resolved        url: 'git+https://github.com/stylelint/stylelint.git' },
+45 silly install resolved     main: 'dist/index.js',
+45 silly install resolved     bin: { stylelint: 'dist/cli.js' },
+45 silly install resolved     files: [ 'CONTRIBUTING.md', 'dist', 'src', 'docs', '!**/__tests__' ],
+45 silly install resolved     dependencies:
+45 silly install resolved      { autoprefixer: '^6.0.0',
+45 silly install resolved        'balanced-match': '^0.4.0',
+45 silly install resolved        chalk: '^1.1.1',
+45 silly install resolved        colorguard: '^1.2.0',
+45 silly install resolved        cosmiconfig: '^1.1.0',
+45 silly install resolved        doiuse: '^2.3.0',
+45 silly install resolved        execall: '^1.0.0',
+45 silly install resolved        'get-stdin': '^5.0.0',
+45 silly install resolved        globby: '^5.0.0',
+45 silly install resolved        globjoin: '^0.1.2',
+45 silly install resolved        htmlparser2: '^3.9.0',
+45 silly install resolved        'html-tags': '^1.1.1',
+45 silly install resolved        lodash: '^4.0.0',
+45 silly install resolved        'log-symbols': '^1.0.2',
+45 silly install resolved        meow: '^3.3.0',
+45 silly install resolved        multimatch: '^2.1.0',
+45 silly install resolved        'normalize-selector': '^0.2.0',
+45 silly install resolved        postcss: '^5.0.20',
+45 silly install resolved        'postcss-less': '^0.13.0',
+45 silly install resolved        'postcss-reporter': '^1.3.0',
+45 silly install resolved        'postcss-resolve-nested-selector': '^0.1.1',
+45 silly install resolved        'postcss-scss': '^0.1.3',
+45 silly install resolved        'postcss-selector-parser': '^2.0.0',
+45 silly install resolved        'postcss-value-parser': '^3.1.1',
+45 silly install resolved        'resolve-from': '^2.0.0',
+45 silly install resolved        specificity: '^0.2.1',
+45 silly install resolved        'string-width': '^1.0.1',
+45 silly install resolved        stylehacks: '^2.3.0',
+45 silly install resolved        sugarss: '^0.1.2',
+45 silly install resolved        'svg-tags': '^1.0.0',
+45 silly install resolved        table: '^3.7.8' },
+45 silly install resolved     devDependencies:
+45 silly install resolved      { 'babel-cli': '^6.1.18',
+45 silly install resolved        'babel-preset-es2015': '^6.1.18',
+45 silly install resolved        'babel-tape-runner': '^2.0.0',
+45 silly install resolved        benchmark: '^2.1.0',
+45 silly install resolved        coveralls: '^2.11.9',
+45 silly install resolved        eslint: '^2.4.0',
+45 silly install resolved        'eslint-config-stylelint': '^2.0.0',
+45 silly install resolved        'npm-run-all': '^2.1.0',
+45 silly install resolved        npmpub: '^3.0.1',
+45 silly install resolved        nyc: '^6.4.4',
+45 silly install resolved        'postcss-import': '^8.0.2',
+45 silly install resolved        'remark-cli': '^1.0.0',
+45 silly install resolved        'remark-lint': '^4.0.0',
+45 silly install resolved        request: '^2.69.0',
+45 silly install resolved        rimraf: '^2.5.2',
+45 silly install resolved        sinon: '^1.16.1',
+45 silly install resolved        tape: '^4.2.0' },
+45 silly install resolved     scripts:
+45 silly install resolved      { 'benchmark-rule': 'babel-node scripts/benchmark-rule.js',
+45 silly install resolved        coveralls: 'nyc report --reporter=text-lcov | coveralls',
+45 silly install resolved        'lint:js': 'eslint . --ignore-path .gitignore',
+45 silly install resolved        'lint:md': 'remark . --quiet --frail',
+45 silly install resolved        lint: 'npm-run-all --parallel lint:*',
+45 silly install resolved        pretest: 'npm run lint',
+45 silly install resolved        tape: 'nyc babel-tape-runner "src/**/__tests__/*.js"',
+45 silly install resolved        test: 'npm run tape',
+45 silly install resolved        prebuild: 'rimraf dist',
+45 silly install resolved        build: 'babel src --out-dir dist',
+45 silly install resolved        prepublish: 'npm run build',
+45 silly install resolved        release: 'npmpub' },
+45 silly install resolved     babel: { presets: [Object] },
+45 silly install resolved     eslintConfig: { extends: 'stylelint', rules: [Object] },
+45 silly install resolved     remarkConfig: { plugins: [Object] },
+45 silly install resolved     gitHead: '784e4c280d3695a7d9ad1417e03cd0526cd1add9',
+45 silly install resolved     bugs: { url: 'https://github.com/stylelint/stylelint/issues' },
+45 silly install resolved     homepage: 'https://github.com/stylelint/stylelint#readme',
+45 silly install resolved     _id: 'stylelint@6.7.1',
+45 silly install resolved     _shasum: '1d4251cc5b7b697dc327eaf4955d26b55b5a06d7',
+45 silly install resolved     _from: 'stylelint@*',
+45 silly install resolved     _npmVersion: '3.7.3',
+45 silly install resolved     _nodeVersion: '5.9.0',
+45 silly install resolved     _npmUser: { name: 'jeddy3', email: 'npm@richardhallows.com' },
+45 silly install resolved     dist:
+45 silly install resolved      { shasum: '1d4251cc5b7b697dc327eaf4955d26b55b5a06d7',
+45 silly install resolved        tarball: 'https://registry.npmjs.org/stylelint/-/stylelint-6.7.1.tgz' },
+45 silly install resolved     maintainers: [ [Object], [Object], [Object] ],
+45 silly install resolved     _npmOperationalInternal:
+45 silly install resolved      { host: 'packages-16-east.internal.npmjs.com',
+45 silly install resolved        tmp: 'tmp/stylelint-6.7.1.tgz_1466693548222_0.005760662490502' },
+45 silly install resolved     directories: {},
+45 silly install resolved     _resolved: 'https://registry.npmjs.org/stylelint/-/stylelint-6.7.1.tgz' } ]
+46 info install stylelint@6.7.1 into /usr/local/lib
+47 info installOne stylelint@6.7.1
+48 verbose installOne of stylelint to /usr/local/lib not in flight; installing
+49 verbose lock using /Users/matthewjohnson/.npm/_locks/stylelint-3ba3369400be567c.lock for /usr/local/lib/node_modules/stylelint
+50 silly install write writing stylelint 6.7.1 to /usr/local/lib/node_modules/stylelint
+51 silly cache addNamed cb stylelint@6.7.1
+52 verbose unbuild lib/node_modules/stylelint
+53 silly gentlyRm /usr/local/lib/node_modules/stylelint is being purged from base /usr/local
+54 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/stylelint
+55 verbose tar unpack /Users/matthewjohnson/.npm/stylelint/6.7.1/package.tgz
+56 verbose tar unpacking to /usr/local/lib/node_modules/stylelint
+57 silly gentlyRm /usr/local/lib/node_modules/stylelint is being purged
+58 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/stylelint
+59 silly gunzTarPerm modes [ '755', '644' ]
+60 error tar.unpack untar error /Users/matthewjohnson/.npm/stylelint/6.7.1/package.tgz
+61 verbose unlock done using /Users/matthewjohnson/.npm/_locks/stylelint-3ba3369400be567c.lock for /usr/local/lib/node_modules/stylelint
+62 verbose fstream_path /usr/local/lib/node_modules/stylelint
+63 verbose fstream_type Directory
+64 verbose fstream_class DirWriter
+65 verbose stack Error: EACCES, mkdir '/usr/local/lib/node_modules/stylelint'
+65 verbose stack     at Error (native)
+66 verbose fstream_stack /usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+66 verbose fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53
+66 verbose fstream_stack FSReqWrap.oncomplete (fs.js:95:15)
+67 verbose cwd /Users/matthewjohnson/websites/WAR/women-at-risk-intl
+68 error Darwin 15.3.0
+69 error argv "node" "/usr/local/bin/npm" "-g" "install" "stylelint"
+70 error node v0.12.2
+71 error npm  v2.7.4
+72 error path /usr/local/lib/node_modules/stylelint
+73 error code EACCES
+74 error errno -13
+75 error Error: EACCES, mkdir '/usr/local/lib/node_modules/stylelint'
+75 error     at Error (native)
+75 error  { [Error: EACCES, mkdir '/usr/local/lib/node_modules/stylelint']
+75 error   errno: -13,
+75 error   code: 'EACCES',
+75 error   path: '/usr/local/lib/node_modules/stylelint',
+75 error   fstream_type: 'Directory',
+75 error   fstream_path: '/usr/local/lib/node_modules/stylelint',
+75 error   fstream_class: 'DirWriter',
+75 error   fstream_stack:
+75 error    [ '/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+75 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53',
+75 error      'FSReqWrap.oncomplete (fs.js:95:15)' ] }
+76 error Please try running this command again as root/Administrator.
+77 verbose exit [ -13, true ]
+78 verbose unbuild lib/node_modules/stylelint
+79 silly gentlyRm /usr/local/lib/node_modules/stylelint is being purged from base /usr/local
+80 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/stylelint
