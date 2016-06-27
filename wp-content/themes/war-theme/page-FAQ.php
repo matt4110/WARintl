@@ -50,7 +50,7 @@ get_header(); ?>
 					<div class="faq-top-box-content">
 						<h1>Questions about Our Products</h1>
 						<hr>
-						<p>Learn more about how our products are made and how they help change lives.</p>
+						<p>Learn more about our products and how they help change lives.</p>
 					</div>
 				</div>
 			</a>	
