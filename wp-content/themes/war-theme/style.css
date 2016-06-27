@@ -893,6 +893,8 @@ a.teamwarheaderbuttons:hover {
   #container3 h2 {
     font-size: 2.25em;
     color: #e5d3be; }
+  #container3 .grid-3-10 a {
+    text-decoration: none; }
 
 .faq-top-box {
   max-width: 100%;

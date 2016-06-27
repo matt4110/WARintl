@@ -14,40 +14,46 @@ get_header(); ?>
 	<!-- Top Row -->
 	<div class="row">
 		<div class="grid-3-10">
-			<div class="faq-top-box">
-				<div id="circle1">
-					<img src="/images/icon-programs.png">
+			<a href="#faq-programs">
+				<div class="faq-top-box">
+					<div id="circle1">
+						<img src="/images/icon-programs.png">
+					</div>
+					<div class="faq-top-box-content">
+						<h1>Questions about Programs and Partners</h1>
+						<hr>
+						<p>Learn more about programs that help and partnerships we develop.</p>
+					</div>
 				</div>
-				<div class="faq-top-box-content">
-					<h1>Questions about Programs and Partners</h1>
-					<hr>
-					<p>Learn more about programs that help and partnerships we develop.</p>
-				</div>
-			</div>
+			</a>
 		</div>
 		<div class="grid-3-10">
-			<div class="faq-top-box">
-				<div id="circle2">
-					<img src="/images/icon-rescue.png">
+			<a href="#faq-rescue">
+				<div class="faq-top-box">
+					<div id="circle2">
+						<img src="/images/icon-rescue.png">
+					</div>
+					<div class="faq-top-box-content">
+						<h1>Questions about Trafficking and Rescue</h1>
+						<hr>
+						<p>Learn more about trafficking and how we help to rescue victims.</p>
+					</div>
 				</div>
-				<div class="faq-top-box-content">
-					<h1>Questions about Trafficking and Rescue</h1>
-					<hr>
-					<p></p>
-				</div>
-			</div>
+			</a>
 		</div>
 		<div class="grid-3-10">
-			<div class="faq-top-box">
-				<div id="circle3">
-					<img src="/images/icon-products.png">
+			<a href="#faq-products">
+				<div class="faq-top-box">
+					<div id="circle3">
+						<img src="/images/icon-products.png">
+					</div>
+					<div class="faq-top-box-content">
+						<h1>Questions about Our Products</h1>
+						<hr>
+						<p>Learn more about how our products are made and how they help change lives.</p>
+					</div>
 				</div>
-				<div class="faq-top-box-content">
-					<h1>Questions about Our Products</h1>
-					<hr>
-					<p></p>
-				</div>
-			</div>
+			</a>	
 		</div>
 	</div>
 
@@ -55,35 +61,39 @@ get_header(); ?>
 	<div class="row">
 		<div class="grid-margin-17">&nbsp;</div>
 		<div class="grid-3-10">
-			<div class="faq-top-box">
-				<div id="circle4">
-					<img src="/images/icon-get-involved.png">
+			<a href="#faq-get-involved">
+				<div class="faq-top-box">
+					<div id="circle4">
+						<img src="/images/icon-get-involved.png">
+					</div>
+					<div class="faq-top-box-content">
+						<h1>Questions about Getting Involved</h1>
+						<hr>
+						<p>Learn more about how you can get involved to help make a difference.</p>
+					</div>
 				</div>
-				<div class="faq-top-box-content">
-					<h1>Questions about Getting Involved</h1>
-					<hr>
-					<p></p>
-				</div>
-			</div>
+			</a>
 		</div>
 		<div class="grid-3-10">
-			<div class="faq-top-box">
-				<div id="circle5">
-					<img src="/images/icon-organization.png">
+			<a href="#faq-organization">
+				<div class="faq-top-box">
+					<div id="circle5">
+						<img src="/images/icon-organization.png">
+					</div>
+					<div class="faq-top-box-content">
+						<h1>Questions about the Organization</h1>
+						<hr>
+						<p>Learn more about the history and organization of WAR, Intl.</p>
+					</div>
 				</div>
-				<div class="faq-top-box-content">
-					<h1>Questions about the Organization</h1>
-					<hr>
-					<p></p>
-				</div>
-			</div>
+			</a>
 		</div>
 	</div>
 
 	<br>
 <div class="row">
 	<div id="content" role="main">		
-		<h2>Questions about our Programs & Partners</h2>
+		<h2 id="faq-programs">Questions about our Programs & Partners</h2>
 		<ol>
 		   <li id="q1"><h3>How many countries does Women At Risk, International (WAR, Int’l) work in?</h3> <p>WAR, Int’l works with partners in over 40 different countries, some of which are “creative access” countries. We partner with organizations and individuals in Uganda, Sudan, India, Thailand, Nepal, Pakistan, Kosovo, the Dominican Republic, the United States, and many other countries. Because we place a high value on cultural sensitivity and relevance, our programs and partnerships vary according to the unique culture and circumstances of each individual country or region.  </p></li>
 
@@ -109,7 +119,7 @@ get_header(); ?>
 		   <li id="q8"><h3>Why doesn’t WAR, Int’l list the names of its partners?</h3><p>It is the policy of WAR, Int’l to not publicize the names of our partners or the individuals they serve in order to protect their confidentiality.  When we give partner updates or enlist prayer or financial support on their behalf, we use pseudonyms. We also use pseudonyms on our website and in our publications. This allows us to communicate our partners’ needs and share their stories while respecting the privacy of those they serve, allowing wounded and at-risk individuals space to heal and grow in safety.</p></li>
 
 
-		<h2>Questions About Trafficking and Rescue</h2>
+		<h2 id="faq-rescue">Questions About Trafficking and Rescue</h2>
 
 		   <li id="q9"><h3>What exactly is “human trafficking”?</h3><p>The U.S. State Department defines human trafficking, also known as trafficking in persons, as “the exploitation of someone for the purposes of compelled labor or a commercial sex act through the use of force, fraud, or coercion.” Exploitation of a minor for commercial sex purposes is considered a crime regardless of whether force, fraud, or coercion is involved (<a href="http://www.state.gov/j/tip/rls/fs/2014/233732.htm">2014 Trafficking In Persons Report</a>). Although the term “trafficking” seems to imply movement, transport may or may not be involved.</p></li>
 
@@ -206,7 +216,7 @@ get_header(); ?>
 		   <p>Yet another type of situation involves an abuser who has fostered an emotional or economic dependence—this may be the case with a pimp who has fathered the victim’s child, a controlling spouse or partner, or a trafficker who acts as a boyfriend or parent figure. The victim may be unable to leave the situation without permission, or she may be afraid to leave due to threats of further abuse, fear of losing her children, or lack of a place to go and a means to support herself. In this sort of setting, we work to educate the victim about her rights and the rights of her children and talk with her about shelter and employment options. If she is unable or unwilling to leave, we attempt to work with the abuser to ensure her safety and maintain our influence.</p></li>
 
 
-		<h2>Questions About Our Products</h2>
+		<h2 id="faq-products">Questions About Our Products</h2>
 
 		   <li id="q27"><h3>Where do the materials used in Women At Risk, International’s (WAR, Int’l’s) products come from? </h3>
 		   <p>Our partners make every effort to create all or most of their products with locally-sourced materials. This benefits the surrounding communities and helps to ensure program sustainability. To help facilitate this, WAR, Int’l has sent professional experts and consultants overseas to locate and identify regional products, evaluate local markets, and fine-tune ways to make the products marketable locally or abroad. </p></li>
@@ -246,7 +256,7 @@ get_header(); ?>
 		      </ul>
 		   </li>
 
-		<h2>Questions About Getting Involved</h2>
+		<h2 id="faq-get-involved">Questions About Getting Involved</h2>
 
 		   <li id="q32"><h3>Do you send out newsletters? Can I receive them via email? </h3>
 		   <p>WAR, Int’l sends out regular updates via mail and email. Due to their sensitive and confidential nature, you will not see them online and must request to be put on our mailing list. To do so, please send your name, address, and email address to <a href="mailto:newsletter@warinternational.org" target="_top">newsletter@warinternational.org</a> or call us at 616-855-0796. If you provide an email address, you will by default receive your newsletters via email. If you prefer to receive the printed version, please indicate that and be sure to provide your mailing address.</p></li>
@@ -301,7 +311,7 @@ get_header(); ?>
 
 
 
-		<h2>Questions About the Organization</h2>
+		<h2 id="faq-organization">Questions About the Organization</h2>
 
 
 		   <li id="q43"><h3>What is the passion behind the founding of Women At Risk, International (WAR, Int’l)?</h3>
