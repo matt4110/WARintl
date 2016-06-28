@@ -29,11 +29,12 @@ Version:        0.1.0
 
 @import url("../twentyten/style.css");
 
-$gold: #c19563;
+$gold: #e3c9a4;
+$dark-gold: #c19563;
 $dark-red: #BF0404;
 
-$current-news-color: #f26666;
-$intl-news-color: #ff3131;
+$intl-news-color: #f26666;
+$current-news-color: #ff3131;
 $national-news-color: #a02d2d;
 $programs-color: #842020;
 
@@ -150,12 +151,12 @@ body {
 }
 
 a:link {
-	color: #e1bd89;  /*rgb(208,166,108);*/
+	color: $gold;
 	text-decoration: underline;
 }
 
 a:hover, a:visited {
-	color: #c19563;
+	color: $gold;
 }
 
 .aligncenter, .textAlignCenter {
@@ -1378,14 +1379,19 @@ button{
 	border: none;
 }
 
-button.large{
+.large{
 	padding: 15px;
 	font-size: 1.5em;
+
+	a{
+		color: lighten($gold, 25%);
+	}
 }
 
-button#small{
+#small{
 	padding: 5px;
 }
+
 
 
 /*******************************************************************************/

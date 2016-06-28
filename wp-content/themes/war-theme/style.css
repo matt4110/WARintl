@@ -113,12 +113,11 @@ body {
   margin-right: 0px; }
 
 a:link {
-  color: #e1bd89;
-  /*rgb(208,166,108);*/
+  color: #e3c9a4;
   text-decoration: underline; }
 
 a:hover, a:visited {
-  color: #c19563; }
+  color: #e3c9a4; }
 
 .aligncenter, .textAlignCenter {
   text-align: center; }
@@ -892,7 +891,7 @@ a.teamwarheaderbuttons:hover {
     clear: none; }
   #container3 h2 {
     font-size: 2.25em;
-    color: #e5d3be; }
+    color: white; }
   #container3 .grid-3-10 a {
     text-decoration: none; }
 
@@ -1054,11 +1053,13 @@ button {
   color: white;
   border: none; }
 
-button.large {
+.large {
   padding: 15px;
   font-size: 1.5em; }
+  .large a {
+    color: white; }
 
-button#small {
+#small {
   padding: 5px; }
 
 /*******************************************************************************/
@@ -1203,16 +1204,16 @@ input[type=submit].gform_button {
   font-size: 1em !important; }
 
 button.pt-cv-more.btn.btn-primary {
-  background-color: #c19563; }
+  background-color: #e3c9a4; }
 
 [data-groups*="current_news"] img {
-  border: 5px solid #f26666 !important; }
+  border: 5px solid #ff3131 !important; }
 
 [data-groups*="nat_news"] img {
   border: 5px solid #a02d2d !important; }
 
 [data-groups*="intl_news"] img {
-  border: 5px solid #ff3131 !important; }
+  border: 5px solid #f26666 !important; }
 
 [data-groups*="program_news"] img {
   border: 5px solid #842020 !important; }
@@ -1220,11 +1221,11 @@ button.pt-cv-more.btn.btn-primary {
 div .btn-group [data-value="current_news"] {
   background-color: transparent;
   border-width: 0 0 5px 0 !important;
-  border-color: #f26666 !important; }
+  border-color: #ff3131 !important; }
 div .btn-group [data-value="intl_news"] {
   background-color: transparent;
   border-width: 0 0 5px 0 !important;
-  border-color: #ff3131 !important; }
+  border-color: #f26666 !important; }
 div .btn-group [data-value="nat_news"] {
   background-color: transparent;
   border-width: 0 0 5px 0 !important;
@@ -1236,6 +1237,6 @@ div .btn-group [data-value="program_news"] {
 div .btn-group [data-value="all"] {
   background-color: transparent;
   border-width: 0 0 5px 0 !important;
-  border-color: #c19563 !important; }
+  border-color: #e3c9a4 !important; }
 
 /*# sourceMappingURL=style.css.map */
