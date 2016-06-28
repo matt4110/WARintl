@@ -32,10 +32,10 @@ Version:        0.1.0
 $gold: #c19563;
 $dark-red: #BF0404;
 
-$programs-color: #405066;
-$current-news-color: #544836;
-$national-news-color: #4f3a51;
-$intl-news-color: #563737;
+$current-news-color: #f26666;
+$intl-news-color: #ff3131;
+$national-news-color: #a02d2d;
+$programs-color: #842020;
 
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////
@@ -1539,23 +1539,25 @@ input[type=submit].gform_button {
 /////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////
 
-
+button.pt-cv-more.btn.btn-primary{
+	background-color: $gold;
+}
 
 //This sets the color around the post images in the grid - Matt
 [data-groups*= "current_news"] img{
-	border: 3px solid $current-news-color !important;
+	border: 5px solid $current-news-color !important;
 }
 
 [data-groups*= "nat_news"] img{
-	border: 3px solid $national-news-color !important;
+	border: 5px solid $national-news-color !important;
 }
 
 [data-groups*= "intl_news"] img{
-	border: 3px solid $intl-news-color !important;
+	border: 5px solid $intl-news-color !important;
 }
 
 [data-groups*= "program_news"] img{
-	border: 3px solid $programs-color !important;
+	border: 5px solid $programs-color !important;
 }
 
 //This sets the color of the buttons that filter the posts - Matt
