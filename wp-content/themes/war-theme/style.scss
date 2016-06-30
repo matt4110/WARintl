@@ -32,6 +32,7 @@ Version:        0.1.0
 $gold: #e3c9a4;
 $dark-gold: #c19563;
 $dark-red: #BF0404;
+$dark-grey: #333333;
 
 $intl-news-color: #f26666;
 $current-news-color: #ff3131;
@@ -1550,7 +1551,7 @@ button.pt-cv-more.btn.btn-primary{
 }
 
 //This sets the color around the post images in the grid - Matt
-[data-groups*= "current_news"] img{
+/*[data-groups*= "current_news"] img{
 	border: 5px solid $current-news-color !important;
 }
 
@@ -1565,36 +1566,67 @@ button.pt-cv-more.btn.btn-primary{
 [data-groups*= "program_news"] img{
 	border: 5px solid $programs-color !important;
 }
+*/
 
 //This sets the color of the buttons that filter the posts - Matt
 
-div .btn-group{
+
+div#pt-cv-filter-bar-2052b213ca-category.btn-group.pt-cv-filter-bar.pull-left button{
+	border: none;
+	background-color: $dark-gold;
+	&:hover{
+		background-color: $gold;
+		color: #fff;
+	}
+}
+
+div{
+	#pt-cv-filter-bar-2052b213ca-category.btn-group.pt-cv-filter-bar.pull-left button.btn.btn-none.pt-cv-filter-option.active{
+		background-color: darken($dark-gold, 10%);
+		color: #ffffff;
+	}
+}
+
+/*div .btn-group{
 	[data-value= "current_news"]{
-		background-color: transparent;
-		border-width: 0 0 5px 0 !important;
-		border-color: $current-news-color !important;
+		background-color: $gold;
+		//border-width: 0 0 5px 0 !important;
+		//border-color: $current-news-color !important;
+		&:active{
+			background-color: $current-news-color;
+		}
 	}
 
 	[data-value= "intl_news"]{
-		background-color: transparent;
-		border-width: 0 0 5px 0 !important;
-		border-color: $intl-news-color !important;
+		background-color: $gold;
+		//border-width: 0 0 5px 0 !important;
+		//border-color: $intl-news-color !important;
 	}
 	[data-value= "nat_news"]{
-		background-color: transparent;
-		border-width: 0 0 5px 0 !important;
-		border-color: $national-news-color !important;
+		background-color: $gold;
+		//border-width: 0 0 5px 0 !important;
+		//border-color: $national-news-color !important;
+		&:active{
+			background-color: $national-news-color;
+		}
 	}
 
 	[data-value= "program_news"]{
-		background-color: transparent;
-		border-width: 0 0 5px 0 !important;
-		border-color: $programs-color !important;
+		background-color: $gold;
+		//border-width: 0 0 5px 0 !important;
+		//border-color: $programs-color !important;
+		&:active{
+			background-color: $programs-color;
+		}
 	}
 
 	[data-value= "all"]{
-		background-color: transparent;
-		border-width: 0 0 5px 0 !important;
-		border-color: $gold !important;
+		background-color: $gold;
+		//border-width: 0 0 5px 0 !important;
+		//border-color: $gold !important;
+		&:active{
+			background-color: $dark-red;
+		}
 	}
 }
+*/
