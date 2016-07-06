@@ -53,17 +53,6 @@ body {
 	background-position: center top, center 848px;
 }
 
-#container2 {
-	float: left;
-	margin: 0 0 0 125px;
-	width: 95%;
-}
-
-#content .news_media h4{
-	font-size: 16pt;
-	line-height: 1em !important;
-}
-
 #container_news {
 	float: left;
 	margin: 0 -240px 0 0;
@@ -932,6 +921,64 @@ body.single-program p:first-letter, body.single-country p:first-letter {
 
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
+/////////////////////////// News + Media New ///////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+
+#container2 {
+	float: left;
+	margin: 0 0 0 70px;
+	width: 95%;
+}
+
+#container2 #content{
+	margin: 0 40px 0 20px;
+}
+
+#content .news_media h4{
+	font-size: 16pt;
+	line-height: 1em !important;
+}
+
+////////////// Content views plugin for news and media page ///////////////
+button.pt-cv-more.btn.btn-primary{
+	background-color: $gold;
+}
+
+//This sets the color of the buttons that filter the posts - Matt
+
+
+div.pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button{
+	background-color: $dark-gold;
+	box-shadow: 1px 1px 2px 1px darken($dark-red,10%);
+	text-shadow: 1px 1px darken($dark-gold, 15%);
+	&:hover{
+		background-color: $gold;
+		color: #fff;
+
+	}
+}
+
+div{
+	.pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button.btn.btn-none.pt-cv-filter-option.active{
+		background-color: $dark-gold;
+		box-shadow: 1px 1px 2px 1px darken($dark-gold, 30%) inset !important;
+		color: #ffffff;
+
+	}
+}
+
+div .pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button:active{
+	background-color: $dark-gold;
+	box-shadow: 1px 1px 2px 1px darken($dark-gold, 30%) inset !important;
+}
+
+.pt-cv-filter-bar .pt-cv-filter-option{
+	border-color: $dark-gold !important;
+}
+
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 //////////////////////// All in One Event Calendar /////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
@@ -1546,9 +1593,7 @@ input[type=submit].gform_button {
 /////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////
 
-button.pt-cv-more.btn.btn-primary{
-	background-color: $gold;
-}
+
 
 //This sets the color around the post images in the grid - Matt
 /*[data-groups*= "current_news"] img{
@@ -1568,24 +1613,7 @@ button.pt-cv-more.btn.btn-primary{
 }
 */
 
-//This sets the color of the buttons that filter the posts - Matt
 
-
-div#pt-cv-filter-bar-2052b213ca-category.btn-group.pt-cv-filter-bar.pull-left button{
-	border: none;
-	background-color: $dark-gold;
-	&:hover{
-		background-color: $gold;
-		color: #fff;
-	}
-}
-
-div{
-	#pt-cv-filter-bar-2052b213ca-category.btn-group.pt-cv-filter-bar.pull-left button.btn.btn-none.pt-cv-filter-option.active{
-		background-color: darken($dark-gold, 10%);
-		color: #ffffff;
-	}
-}
 
 /*div .btn-group{
 	[data-value= "current_news"]{

@@ -53,6 +53,7 @@
 	 */
 	wp_head();
 ?>
+<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>?v=1.1" />
 </head>
 
 

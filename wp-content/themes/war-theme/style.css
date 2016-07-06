@@ -31,15 +31,6 @@ body {
   background-repeat: no-repeat, repeat-y;
   background-position: center top, center 848px; }
 
-#container2 {
-  float: left;
-  margin: 0 0 0 125px;
-  width: 95%; }
-
-#content .news_media h4 {
-  font-size: 16pt;
-  line-height: 1em !important; }
-
 #container_news {
   float: left;
   margin: 0 -240px 0 0;
@@ -716,6 +707,41 @@ body.single-program p:first-letter, body.single-country p:first-letter {
 .story {
   border: 10px; }
 
+#container2 {
+  float: left;
+  margin: 0 0 0 70px;
+  width: 95%; }
+
+#container2 #content {
+  margin: 0 40px 0 20px; }
+
+#content .news_media h4 {
+  font-size: 16pt;
+  line-height: 1em !important; }
+
+button.pt-cv-more.btn.btn-primary {
+  background-color: #e3c9a4; }
+
+div.pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button {
+  background-color: #c19563;
+  box-shadow: 1px 1px 2px 1px #8d0303;
+  text-shadow: 1px 1px #9a6f3d; }
+  div.pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button:hover {
+    background-color: #e3c9a4;
+    color: #fff; }
+
+div .pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button.btn.btn-none.pt-cv-filter-option.active {
+  background-color: #c19563;
+  box-shadow: 1px 1px 2px 1px #634728 inset !important;
+  color: #ffffff; }
+
+div .pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button:active {
+  background-color: #c19563;
+  box-shadow: 1px 1px 2px 1px #634728 inset !important; }
+
+.pt-cv-filter-bar .pt-cv-filter-option {
+  border-color: #c19563 !important; }
+
 .entry-content .timely .ai1ec-month-view .ai1ec-event {
   color: white; }
 
@@ -1203,9 +1229,6 @@ input[type=submit].gform_button {
   font-weight: 500 !important;
   font-size: 1em !important; }
 
-button.pt-cv-more.btn.btn-primary {
-  background-color: #e3c9a4; }
-
 /*[data-groups*= "current_news"] img{
 	border: 5px solid $current-news-color !important;
 }
@@ -1222,17 +1245,6 @@ button.pt-cv-more.btn.btn-primary {
 	border: 5px solid $programs-color !important;
 }
 */
-div#pt-cv-filter-bar-2052b213ca-category.btn-group.pt-cv-filter-bar.pull-left button {
-  border: none;
-  background-color: #c19563; }
-  div#pt-cv-filter-bar-2052b213ca-category.btn-group.pt-cv-filter-bar.pull-left button:hover {
-    background-color: #e3c9a4;
-    color: #fff; }
-
-div #pt-cv-filter-bar-2052b213ca-category.btn-group.pt-cv-filter-bar.pull-left button.btn.btn-none.pt-cv-filter-option.active {
-  background-color: #ac7c45;
-  color: #ffffff; }
-
 /*div .btn-group{
 	[data-value= "current_news"]{
 		background-color: $gold;
