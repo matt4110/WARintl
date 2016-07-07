@@ -393,7 +393,7 @@ html {
 body {
   background: #fff; }
 
-body {
+html {
   font-family: "Garamond", garamond, serif;
   font-size: 16pt; }
 
@@ -445,19 +445,41 @@ button {
 
 .horizontal-li {
   display: inline-block;
-  font-size: 1em;
+  font-size: 1.2rem;
   color: #F5EDE0;
-  margin: 0 10px 0 0; }
+  margin: 0 30px 0 0; }
   .horizontal-li:last-child {
     margin: 0 0 0 0; }
-  .horizontal-li--gold-border {
-    display: inline-block;
-    padding: 0 15px 0 10px;
-    font-size: 1em;
-    color: #E1BD89;
-    border-right: 2px solid #E1BD89; }
-    .horizontal-li--gold-border:last-child {
-      border-right: none; }
+  .horizontal-li:hover .sub-nav {
+    display: block; }
+  .horizontal-li .sub-nav {
+    display: none;
+    position: absolute;
+    background-color: inherit; }
+    .horizontal-li .sub-nav-li {
+      font-size: 0.8rem;
+      color: #F5EDE0;
+      background-color: #000;
+      text-align: left;
+      padding: 10px 20px;
+      margin-left: -60px; }
+
+.horizontal-li--gold-border {
+  display: inline-block;
+  padding: 0 15px 0 10px;
+  font-size: 1rem;
+  color: #E1BD89;
+  border-right: 2px solid #E1BD89; }
+  .horizontal-li--gold-border:last-child {
+    border-right: none; }
+
+.full-width-nav--black {
+  background-color: #000;
+  color: #F5EDE0;
+  margin: 0 auto 0 auto;
+  padding: 5px 0 5px 0;
+  text-align: center;
+  font-weight: 500; }
 
 .box--black {
   border: 3px solid #222;
@@ -476,7 +498,7 @@ button {
 ////////////////////////////////////////////////////////////////////////////////////////////////////*/
 #header {
   background-repeat: repeat;
-  padding: 75px 15px 15px 15px;
+  padding: 125px 15px 5px 15px;
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent), url("/wp-content/themes/war-new/assets/images/headerPattern.jpg");
   background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.7), transparent), url("/wp-content/themes/war-new/assets/images/headerPattern.jpg");
   background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.7), transparent), url("/wp-content/themes/war-new/assets/images/headerPattern.jpg");
@@ -491,5 +513,8 @@ button {
   clear: both;
   content: "";
   display: table; }
+
+.no-margin {
+  margin: 0; }
 
 /*# sourceMappingURL=style.css.map */
