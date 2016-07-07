@@ -27,8 +27,8 @@
 
 		<header role="banner">
 			<div id="header">
-				<a href=<?php get_bloginfo( 'url' ); ?> ><img src="" alt="women at risk seal"></a>
-				<img src="" alt="women at risk logo">
+				<a href=<?php get_bloginfo( 'url' ); ?> ><img id="seal" src="/wp-content/themes/war-new/assets/images/war-seal.png" alt="women at risk seal"></a>
+				<img id="logo" src="/wp-content/themes/war-new/assets/images/war-logo.png" alt="women at risk logo">
 				<ul class="horizontal-list-right no-margin">
 					<li class="horizontal-li--gold-border"><a href="http://store.warchestboutique.com">SHOP WITH A PURPOSE</a></li>
 					<li class="horizontal-li--gold-border"><a href=<?php get_bloginfo( 'url' ); ?>"/get-involved/host-a-party">HOST A PARTY</a></li>
@@ -36,6 +36,7 @@
 				</ul>
 				<div class="clearfix"></div>
 			</div>
+			<!-- Main Nav -->
 			<ul class="full-width-nav--black">
 				<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?> >Home</a></li>
 				<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"">About Us</a>
@@ -66,10 +67,28 @@
 						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Liz Curtis Higgs Event</a></li>
 					</ul>
 				</li>
-				<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"">Programs</a></li>
+				<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"">Programs</a>
+					<ul class="sub-nav">
+						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">International Safehouses</a></li>
+						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Domestic Safehouses</a></li>
+						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Vocational Training</a></li>
+						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Micro Enterprises</a></li>
+						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Education</a></li>
+						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Orphanages</a></li>
+						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Outreach</a></li>
+						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Medical Aid</a></li>
+						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Emergency Intervention</a></li>
+					</ul>
+				</li>
 				<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"">Donate</a></li>
 				<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"">Store</a></li>
-				<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"">Prayer</a></li>
+				<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"">Prayer</a>
+					<ul class="sub-nav">
+						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Prayer Calendar</a></li>
+						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Prayer Request Form</a></li>
+						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Red Light Blogger</a></li>
+					</ul>
+				</li>
 			</ul>
 		</header><!-- .site-header -->
 

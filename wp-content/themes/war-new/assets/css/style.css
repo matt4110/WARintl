@@ -469,8 +469,7 @@ button {
   padding: 0 15px 0 10px;
   font-size: 1rem;
   color: #E1BD89;
-  border-right: 2px solid #E1BD89;
-  margin-top: 175px; }
+  border-right: 2px solid #E1BD89; }
   .horizontal-li--gold-border:last-child {
     border-right: none; }
 
@@ -492,11 +491,6 @@ button {
 .box--link {
   color: #E1BD89; }
 
-.red-box {
-  background-color: #BA271D;
-  width: 500px;
-  box-shadow: 0 0 50px 50px #781913 inset; }
-
 /*////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 4.0 Layout ////////////////////////////////////////////////////////////////////////////////////////
@@ -504,20 +498,17 @@ button {
 ////////////////////////////////////////////////////////////////////////////////////////////////////*/
 #header {
   background-repeat: repeat;
-  padding: 5px 15px 5px 15px;
+  padding: 125px 15px 5px 15px;
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent), url("/wp-content/themes/war-new/assets/images/headerPattern.jpg");
   background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.7), transparent), url("/wp-content/themes/war-new/assets/images/headerPattern.jpg");
   background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.7), transparent), url("/wp-content/themes/war-new/assets/images/headerPattern.jpg");
   background-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent), url("/wp-content/themes/war-new/assets/images/headerPattern.jpg"); }
 
 #seal {
-  width: 15%;
-  float: left; }
+  width: 50%; }
 
 #logo {
-  position: relative;
-  top: 60px;
-  left: -15px; }
+  position: absolute; }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////

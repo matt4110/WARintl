@@ -189,6 +189,7 @@ button{
   padding: 0 15px 0 10px;
   @include font(1rem, $light-gold);
   border-right: 2px solid $light-gold;
+  margin-top: 175px;
 
   &:last-child{
     border-right: none;
@@ -249,7 +250,9 @@ button{
 
 }
 
-
+.red-box{
+  @include red-box(500px);
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 3.6 Slider
@@ -282,11 +285,22 @@ button{
 
 #header{
   background-repeat: repeat;
-  padding: 125px 15px 5px 15px;
+  padding: 5px 15px 5px 15px;
   background-image: linear-gradient(to bottom,rgba(0,0,0,.7),rgba(0,0,0,0)), url("/wp-content/themes/war-new/assets/images/headerPattern.jpg");
   background-image: -moz-linear-gradient(top,rgba(0,0,0,.7),rgba(0,0,0,0)), url("/wp-content/themes/war-new/assets/images/headerPattern.jpg");
   background-image: -o-linear-gradient(top,rgba(0,0,0,.7),rgba(0,0,0,0)), url("/wp-content/themes/war-new/assets/images/headerPattern.jpg");
   background-image: -webkit-linear-gradient(to bottom,rgba(0,0,0,.7),rgba(0,0,0,0)), url("/wp-content/themes/war-new/assets/images/headerPattern.jpg");
+}
+
+#seal{
+  width: 15%;
+  float: left;
+}
+
+#logo{
+  position: relative;
+  top: 60px;
+  left: -15px;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////

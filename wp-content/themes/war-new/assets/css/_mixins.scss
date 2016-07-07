@@ -14,3 +14,9 @@
 	margin-left: auto;
 	margin-right: auto;
 }
+
+@mixin red-box($w:100%){
+	background-color: $red;
+	width: $w;
+	box-shadow: 0 0 $w / 10 $w /10 darken($red, 15%) inset;
+}
