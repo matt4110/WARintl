@@ -8,7 +8,7 @@
  * @since Twenty Ten 1.0
  */
 get_header(); ?>
-<h1 id="faq-h1"> Frequently Asked Questions</h1>
+<h1 class="display-heading">  Frequently Asked Questions</h1>
 <div id="container3">
 <!-- Top Section w/ boxes (Matt Johnson)-->
 	<!-- Top Row -->

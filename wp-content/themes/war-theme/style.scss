@@ -1179,7 +1179,7 @@ a.teamwarheaderbuttons:hover {
 
 #container3 {
 	float: right;
-	margin: 60px -10px 0 0;
+	margin: 25px -10px 0 0;
 	width: 95%;
 
 	p{
@@ -1360,11 +1360,17 @@ a.teamwarheaderbuttons:hover {
 	}
 }
 
-#faq-h1{
+.display-heading{
+	margin-top: 25px;
 	font-size: 3em;
 	font-weight: bold;
 	color: #c19563;
 	text-align: center;
+	text-transform: uppercase;
+}
+
+.display-heading::first-letter{
+	font-size: 1.5em;
 }
 
 #vertical-line{
