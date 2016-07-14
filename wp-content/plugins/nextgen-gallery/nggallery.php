@@ -3,8 +3,8 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You 
 
 /**
  * Plugin Name: NextGEN Gallery
- * Description: The most popular gallery plugin for WordPress and one of the most popular plugins of all time with over 14 million downloads.
- * Version: 2.1.43
+ * Description: The most popular gallery plugin for WordPress and one of the most popular plugins of all time with over 15 million downloads.
+ * Version: 2.1.46
  * Author: Imagely
  * Plugin URI: https://www.imagely.com/wordpress-gallery-plugin/nextgen-gallery/
  * Author URI: https://www.imagely.com
@@ -595,7 +595,7 @@ class C_NextGEN_Bootstrap
 		define('NGG_PRODUCT_URL', path_join(str_replace("\\", '/', NGG_PLUGIN_URL), 'products'));
 		define('NGG_MODULE_URL', path_join(str_replace("\\", '/', NGG_PRODUCT_URL), 'photocrati_nextgen/modules'));
 		define('NGG_PLUGIN_STARTED_AT', microtime());
-		define('NGG_PLUGIN_VERSION', '2.1.43');
+		define('NGG_PLUGIN_VERSION', '2.1.46');
 
 		if (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG)
 			define('NGG_SCRIPT_VERSION', (string)mt_rand(0, mt_getrandmax()));
@@ -853,7 +853,7 @@ function ngg_fs_custom_connect_message(
 ) {
 	return sprintf(
 		__fs( 'hey-x' ) . '<br>' .
-		__( 'Want to help make %2$s even more awesome? Allow %6$s to collect some diagnostic & usage data with %5$s. If you skip this, that\'s okay! %2$s will still work just fine.', 'nggallery' ),
+		__( 'Allow %6$s to collect some usage data with %5$s to make the plugin even more awesome. If you skip this, that\'s okay! %2$s will still work just fine.', 'nggallery' ),
 		$user_first_name,
 		'<b>' . __('NextGEN Gallery', 'nggallery') . '</b>',
 		'<b>' . $user_login . '</b>',
@@ -891,8 +891,9 @@ function ngg_fs() {
 			// Always run Freemius in development mode for new plugin installs.
 			$run_freemius = true;
 		} else {
-			// Run Freemius code on 10% of the new installations.
-			$run_freemius = ( 1 == rand( 1, 10 ) );
+			// Run Freemius code on 20% of the new installations.
+			$random = rand( 1, 10 );
+			$run_freemius = ( 1 <= $random && $random <= 2 );
 		}
 
 		update_option('ngg_run_freemius', $run_freemius);

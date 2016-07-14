@@ -213,6 +213,7 @@ html {
 
 /* Preview */
 #pt-cv-preview-box {
+	resize: vertical;
 	margin-bottom: 5px;
 	height:        300px;
 	padding:       20px;

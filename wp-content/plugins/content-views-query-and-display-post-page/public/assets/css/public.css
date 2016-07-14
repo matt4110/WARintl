@@ -387,6 +387,11 @@
 	margin-bottom: 0 !important;
 }
 
+/* Theme isuses */
+.pt-cv-pagination:after, .pt-cv-pagination:before {
+	content: none !important;
+}
+
 /* Media CSS */
 @media (max-width: 480px) {
 	/* Disable 2 columns in extra small screens */

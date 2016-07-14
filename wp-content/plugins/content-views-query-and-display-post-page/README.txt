@@ -1,63 +1,51 @@
-=== Display post grid, list without coding - Content Views ===
+=== Display Posts Grid, List Without Coding - Content Views ===
 Contributors: pt-guy
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JGUF974QBRKQE
-Tags: post, post grid, grid, grid post, recent post, page, query, column, author, category, tag, responsive, excerpt, title, taxonomy, thumbnail, pagination, date, scrollable, collapsible
+Tags: Post, posts, page, grid, post grid, grid post, recent post, query, column, author, category, tag, responsive, excerpt, title, taxonomy, thumbnail, pagination, date, scrollable, collapsible
 Requires at least: 3.3
-Tested up to: 4.5.2
-Stable tag: 1.8.5
+Tested up to: 4.5.3
+Stable tag: 1.8.6.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Display any post, page anywhere in amazing Grid and List without coding!
+Display recent or any posts by category, tag, author, ID in responsive grid, list layout easier than ever.
 
 == Description ==
 
-With Content Views, you can:
+Content Views helps you to display latest posts on any page, and more:
 
-* display latest posts in seconds
-* display post grid, post list anywhere (in page, widget, theme file)
-* query any post by ID, category, tag, author...
-* sort post by title, date, ID
-* display post with Ajax, non-Ajax pagination
-* display featured image of post in various sizes (thumbnail, medium, large, full)
+* display posts by category, tag, author, ID, keyword, status
+* display pages by author, ID, keyword, status
+* display children of a parent page
+* sort posts by title, date, ID
+* display any post data: featured image, title, full content or excerpt, meta data (date, author, category, tag, comment count)
+* display featured image in any size (thumbnail, medium, large, full...)
+* limit number of posts to display
+* enable/disable pagination (ajax, non-ajax)
+* custom actions, filters hook for developers
 
-quickly & easily, without any line of code!
-
-It provides you an intuitive form to filter & display posts in responsive grid, list layout quickly, in 3 simple steps:
+It provides you a friendly form to filter & display posts quickly, in 3 simple steps:
 
 * Step 1 : Filter any posts (by ID, category, tag, author, keyword, status)
-* Step 2 : Select a layout (grid, scrollable list, collapsible list) to display your posts. You can select what info of post (title, content/excerpt, thumbnail, meta fields) to display, too.
-* Step 3 : Paste shortcode **[pt_view id="VIEW_ID"]** to page, widget... editor; or paste `<?php echo do_shortcode("[pt_view id=VIEW_ID]"); ?>` to WordPress theme file to show these posts.
+* Step 2 : Select layout (grid, scrollable list, collapsible list) to display your posts. You can choose to display any post data (title, featured image, full content or excerpt, meta data)
+* Step 3 : Paste generated shortcode to anywhere you want (page content, text widget, theme template file...)
 
 
 [youtube https://www.youtube.com/watch?v=drxqtCiaw4I]
 
 
-= Plugin features: =
-
-* display posts, pages in responsive, mobile friendly layouts (Grid, Scrollable list, Collapsible list) without coding
-* filter any posts (by post ID, category, tag, post author, keyword, post status)
-* sort posts by ID, title, date in ascending, descending order
-* limit number of posts to display
-* enable/disable pagination
-* select what info of post (thumbnail, title, content, meta fields) to display
-* select thumbnail size of post (thumbnail, medium, large, full)
-* display full post content, or display post excerpt with specific number of words
-* select what meta-fields (post date, post author, category, tag, comment count) to display
-* custom actions, filters hook anywhere to customize output
-
 = Premium features: =
 
 * Most amazing layouts: Pinterest, Masonry, Facebook Timeline...
-* Unlimited possible output with drag & drop (to change display order of fields), custom style settings (for title, content, read-more button...)
-* Replace default layout in Category page, Search result page, Archive page... by amazing layout
+* Unlimited output with drag & drop, custom font, unlimited color...
+* Replace layout of Category page, Blog page, Search result page, Archive page... by amazing layout
 * Support custom post type plugins: WooCommerce, Easy Digital Downloads, Events Manager...
 * Support custom field plugins: Advanced Custom Fields, Pods framework, Toolset Types...
 * Support membership plugins: Paid Memberships Pro, Members, Ultimate Member
 * Support translation plugins: WPML, Polylang, qTranslate
-* Filterable grid by categories, tags... with cool animation
-* Nice animation on mouse over post thumbnail
-* Ajax Load more, Infinite scroll pagination
+* Filterable output by categories, tags... with cool animation
+* Nice animation on mouse over featured image
+* Ajax pagination: load more, infinite scroll
 * And much more...
 
 [Get Content Views Pro](http://www.contentviewspro.com/?utm_source=wordpress&utm_medium=plugin&utm_campaign=content-views "Get Content Views Pro").
@@ -127,6 +115,12 @@ If you are using "Your latest posts" as home page, you should paste this code `<
 
 
 == Changelog ==
+
+= 1.8.6 - June 27 2016 =
+* Fix: Conflict with Autoptimize plugin (when enabled `forced JS in HEAD`)
+* Fix: Incorrect number of words in excerpt when uses `\xC2\xA0` or `&nbsp;` as space
+* Improvement: Able to resize Preview box
+* Tweak: Add filter hook to create custom output completely
 
 = 1.8.5 - May 27 2016 =
 * New: Add setting to configure responsive output for Mobile, Tablet devices easily

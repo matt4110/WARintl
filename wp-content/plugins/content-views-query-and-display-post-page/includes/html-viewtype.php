@@ -69,7 +69,7 @@ if ( !class_exists( 'PT_CV_Html_ViewType' ) ) {
 			$columns_item = array_chunk( $content_items, $columns, true );
 
 			// Get responsive class
-			$res_class = apply_filters( PT_CV_PREFIX_ . 'item_col_class', array(), 6 );
+			$res_class = apply_filters( PT_CV_PREFIX_ . 'item_col_class', array( $class ), 6 );
 
 			// Get HTML of each row
 			foreach ( $columns_item as $items_per_row ) {
@@ -81,7 +81,7 @@ if ( !class_exists( 'PT_CV_Html_ViewType' ) ) {
 					$_span_width = ( $count == $columns && $idx + 1 == $count ) ? $span_width_last : $span_width;
 
 					// Wrap content of item
-					$item_classes	 = array_merge( array( $span_class . $_span_width, $class ), $res_class );
+					$item_classes	 = array_merge( array( $span_class . $_span_width ), $res_class );
 					$item_class		 = implode( ' ', array_filter( $item_classes ) );
 					$row_html[]		 = PT_CV_Html::content_item_wrap( $content_item, $item_class, $post_id );
 

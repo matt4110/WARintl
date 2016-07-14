@@ -201,15 +201,17 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 				}
 
 				$fields_html = apply_filters( PT_CV_PREFIX_ . 'fields_html', $fields_html, $post );
+				$content	 = apply_filters( PT_CV_PREFIX_ . 'view_type_custom_output', $content, $fields_html, $post );
+				if ( !$content ) {
+					// Get HTML content of view type, with specific style
+					$file_path = apply_filters( PT_CV_PREFIX_ . 'view_type_file', $view_type_dir . '/' . 'html' . '/' . $style . '.' . 'php' );
 
-				// Get HTML content of view type, with specific style
-				$file_path = apply_filters( PT_CV_PREFIX_ . 'view_type_file', $view_type_dir . '/' . 'html' . '/' . $style . '.' . 'php' );
-
-				if ( file_exists( $file_path ) ) {
-					ob_start();
-					// Include, not include_once
-					include $file_path;
-					$content = ob_get_clean();
+					if ( file_exists( $file_path ) ) {
+						ob_start();
+						// Include, not include_once
+						include $file_path;
+						$content = ob_get_clean();
+					}
 				}
 			}
 

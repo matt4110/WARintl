@@ -1151,7 +1151,9 @@ class Mixin_GalleryStorage_Driver_Base extends Mixin
             $image = NULL;
             if ($image_id) {
                 $image = $this->object->_image_mapper->find($image_id, TRUE);
-                unset($image->meta_data['saved']);
+                if ($image) {
+                    unset($image->meta_data['saved']);
+                }
             }
             if (!$image) {
                 $image = $this->object->_image_mapper->create();
@@ -1604,7 +1606,7 @@ class Mixin_GalleryStorage_Driver_Base extends Mixin
         $thumbnail = NULL;
         $result = $this->object->calculate_image_clone_result($image_path, $clone_path, $params);
         // XXX this should maybe be removed and extra settings go into $params?
-        $settings = C_NextGen_Settings::get_instance();
+        $settings = apply_filters('ngg_settings_during_image_generation', C_NextGen_Settings::get_instance()->to_array());
         // Ensure we have a valid image
         if ($image_path && @file_exists($image_path) && $result != null && !isset($result['error'])) {
             $image_dir = dirname($image_path);
@@ -1686,8 +1688,8 @@ class Mixin_GalleryStorage_Driver_Base extends Mixin
                     $watermark = null;
                 }
                 if ($watermark == 1 || $watermark === true) {
-                    if (in_array(strval($settings->wmType), array('image', 'text'))) {
-                        $watermark = $settings->wmType;
+                    if (in_array(strval($settings['wmType']), array('image', 'text'))) {
+                        $watermark = $settings['wmType'];
                     } else {
                         $watermark = 'text';
                     }
@@ -1719,6 +1721,7 @@ class Mixin_GalleryStorage_Driver_Base extends Mixin
                     // Force format
                     $thumbnail->format = strtoupper($format_list[$clone_format]);
                 }
+                $thumbnail = apply_filters('ngg_before_save_thumbnail', $thumbnail);
                 $thumbnail->save($destpath, $quality);
                 // IF the original contained IPTC metadata we should attempt to copy it
                 if (isset($detailed_size['APP13']) && function_exists('iptcembed')) {
@@ -4555,6 +4558,12 @@ class C_NggLegacy_Thumbnail
         $min_x = min(array($box[0], $box[2], $box[4], $box[6]));
         $min_y = min(array($box[1], $box[3], $box[5], $box[7]));
         return array('width' => $max_x - $min_x, 'height' => $max_y - $min_y);
+    }
+    public function applyFilter($filterType)
+    {
+        $args = func_get_args();
+        array_unshift($args, $this->newImage);
+        return call_user_func_array('imagefilter', $args);
     }
     /**
      * Modfied Watermark function by Steve Peart 

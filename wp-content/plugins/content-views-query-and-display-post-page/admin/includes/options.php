@@ -58,6 +58,9 @@ if ( !class_exists( 'PT_Options_Framework' ) ) {
 		 * @param array  $dependence_ Global dependence array
 		 */
 		public static function _dependence_assign( $dependence, $random_id, &$dependence_ ) {
+			if ( !isset( $dependence[ 1 ] ) ) {
+				return;
+			}
 			$dependence_[ $dependence[ 0 ] ][] = array( $random_id, $dependence[ 1 ], isset( $dependence[ 2 ] ) ? $dependence[ 2 ] : '=' );
 		}
 

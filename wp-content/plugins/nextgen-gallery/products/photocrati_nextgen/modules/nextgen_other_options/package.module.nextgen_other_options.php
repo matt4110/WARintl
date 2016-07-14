@@ -526,8 +526,9 @@ class A_Watermarking_Ajax_Actions extends Mixin
                 $settings->load();
             }
             return array('thumbnail_url' => $thumbnail_url);
+        } else {
+            return array('thumbnail_url' => '', 'error' => 'You are not allowed to perform this operation');
         }
-        return null;
     }
 }
 class A_Watermarks_Form extends Mixin

@@ -253,9 +253,14 @@ if ( !class_exists( 'PT_CV_Functions' ) ) {
 		 * @param type $text
 		 */
 		static function cv_strip_shortcodes( $text ) {
-			global $shortcode_tags;
-			$tagnames	 = array_keys( $shortcode_tags );
-			$tagregexp	 = join( '|', array_map( 'preg_quote', $tagnames ) );
+			$trans_key	 = 'cv_tagregexp';
+			$tagregexp	 = get_transient( $trans_key );
+			if ( false === $tagregexp ) {
+				global $shortcode_tags;
+				$tagnames	 = array_keys( $shortcode_tags );
+				$tagregexp	 = join( '|', array_map( 'preg_quote', $tagnames ) );
+				set_transient( $trans_key, $tagregexp, 7 * DAY_IN_SECONDS );
+			}
 
 			return preg_replace( '/'
 				. '\[' // Opening bracket
@@ -274,8 +279,8 @@ if ( !class_exists( 'PT_CV_Functions' ) ) {
 		 * @return string
 		 */
 		static function trim_words( $result, $num_words ) {
-			// Split words
-			$array	 = preg_split( "/[\t ]+/", $result, $num_words + 1, PREG_SPLIT_NO_EMPTY );
+			$spaces	 = function_exists( 'wp_spaces_regexp' ) ? wp_spaces_regexp() : '[\r\n\t ]|\xC2\xA0|&nbsp;';
+			$array	 = preg_split( "/$spaces/", $result, $num_words + 1, PREG_SPLIT_NO_EMPTY );
 			array_splice( $array, $num_words );
 			$result	 = implode( ' ', $array );
 
@@ -615,7 +620,7 @@ if ( !class_exists( 'PT_CV_Functions' ) ) {
 		 */
 		static function view_process_settings( $view_id, $settings, $pargs = array() ) {
 			if ( empty( $settings[ PT_CV_PREFIX . 'view-type' ] ) ) {
-				return sprintf( __( 'Empty settings (View %s is not existed)', 'content-views-query-and-display-post-page' ), "<strong>$view_id</strong>" );
+				return sprintf( __( 'Empty settings (View %s does not exist)', 'content-views-query-and-display-post-page' ), "<strong>$view_id</strong>" );
 			}
 
 			// Check duplicated
@@ -633,11 +638,8 @@ if ( !class_exists( 'PT_CV_Functions' ) ) {
 			}
 
 			// Get View settings
-			$view_settings = array();
-			foreach ( $settings as $key => $value ) {
-				$view_settings[ $key ] = esc_sql( $value );
-			}
-			$pt_cv_glb[ $pt_cv_id ][ 'view_settings' ] = $view_settings;
+			$view_settings								 = array_map( 'esc_sql', $settings );
+			$pt_cv_glb[ $pt_cv_id ][ 'view_settings' ]	 = $view_settings;
 
 			$content_type	 = PT_CV_Functions::setting_value( PT_CV_PREFIX . 'content-type', $view_settings );
 			$view_type		 = PT_CV_Functions::setting_value( PT_CV_PREFIX . 'view-type', $view_settings );
@@ -650,6 +652,8 @@ if ( !class_exists( 'PT_CV_Functions' ) ) {
 			// Keep current ID
 			$pt_cv_cur_id = $view_id;
 
+			$rebuild = isset( $view_settings[ PT_CV_PREFIX . 'rebuild' ] ) ? $view_settings[ PT_CV_PREFIX . 'rebuild' ] : false;
+
 			if ( defined( 'PT_CV_DOING_PAGINATION' ) ) {
 				$session_data	 = self::get_session( PT_CV_PREFIX . 'view-data-' . $view_id, array( 'args' => '', 'dargs' => '' ) );
 				$args			 = $session_data[ 'args' ];
@@ -658,7 +662,7 @@ if ( !class_exists( 'PT_CV_Functions' ) ) {
 
 			if ( empty( $args ) || empty( $dargs ) ) {
 				$dargs	 = PT_CV_Functions::view_display_settings( $view_type, $dargs );
-				$args	 = PT_CV_Functions::view_filter_settings( $content_type, $view_settings );
+				$args	 = $rebuild ? $rebuild : PT_CV_Functions::view_filter_settings( $content_type, $view_settings );
 
 				// Store view data before get pagination settings
 				self::set_session( PT_CV_PREFIX . 'view-data-' . $view_id, array(
@@ -680,7 +684,7 @@ if ( !class_exists( 'PT_CV_Functions' ) ) {
 			do_action( PT_CV_PREFIX_ . 'add_global_variables' );
 
 			// Validate settings, if some required parameters are missing, show error and exit
-			$error = apply_filters( PT_CV_PREFIX_ . 'validate_settings', array(), $args );
+			$error = !$rebuild ? apply_filters( PT_CV_PREFIX_ . 'validate_settings', array(), $args ) : false;
 			if ( $error ) {
 				return ( implode( '</p><p>', $error ) );
 			}

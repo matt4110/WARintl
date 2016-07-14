@@ -18,6 +18,25 @@ class Publicize_UI {
 
 		$this->publicize = $publicize = new Publicize;
 
+		add_action( 'init', array( $this, 'init' ) );
+	}
+
+	function init() {
+		// Show only to users with the capability required to manage their Publicize connections.
+		/**
+		 * Filter what user capability is required to use the publicize form on the edit post page. Useful if publish post capability has been removed from role.
+		 *
+		 * @module publicize
+		 *
+		 * @since 4.1.0
+		 *
+		 * @param string $capability User capability needed to use publicize
+		 */
+		$capability = apply_filters( 'jetpack_publicize_capability', 'publish_posts' );
+		if ( ! current_user_can( $capability ) ) {
+			return;
+		}
+
 		// assets (css, js)
 		add_action( 'load-settings_page_sharing', array( &$this, 'load_assets' ) );
 		add_action( 'admin_head-post.php', array( &$this, 'post_page_metabox_assets' ) );
@@ -121,7 +140,7 @@ class Publicize_UI {
 
 			<?php
 			if ( $this->in_jetpack ) {
-				$doc_link = "http://jetpack.me/support/publicize/";
+				$doc_link = "http://jetpack.com/support/publicize/";
 			} else {
 				$doc_link = "http://en.support.wordpress.com/publicize/";
 			}
@@ -285,7 +304,7 @@ class Publicize_UI {
 
 	/**
 	* CSS for styling the publicize message box and counter that displays on the post page.
-	* There is also some Javascript for length counting and some basic display effects.
+	* There is also some JavaScript for length counting and some basic display effects.
 	*/
 	function post_page_metabox_assets() {
 		global $post;
@@ -303,7 +322,7 @@ class Publicize_UI {
 <script type="text/javascript">
 jQuery( function($) {
 	var wpasTitleCounter    = $( '#wpas-title-counter' ),
-		wpasTwitterCheckbox = $( '.wpas-submit-twitter' ).size(),
+		wpasTwitterCheckbox = $( '.wpas-submit-twitter' ).length,
 		wpasTitle = $('#wpas-title').keyup( function() {
 		var length = wpasTitle.val().length;
 		wpasTitleCounter.text( length );
@@ -329,7 +348,7 @@ jQuery( function($) {
 		$('#publicize-form').slideDown( 'fast', function() {
 			wpasTitle.focus();
 			if ( !wpasTitle.text() ) {
-				var url = $('#shortlink').size() ? $('#shortlink').val() : '';
+				var url = $('#shortlink').length ? $('#shortlink').val() : '';
 
 				var defaultMessage = $.trim( '<?php printf( $default_prefix, 'url' ); printf( $default_message, '$("#title").val()', 'url' ); printf( $default_suffix, 'url' ); ?>' );
 

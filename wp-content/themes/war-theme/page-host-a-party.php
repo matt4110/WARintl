@@ -18,7 +18,7 @@ get_header(); ?>
 				
 			-->
 
-			<iframe width="700" height="390" src="https://www.youtube.com/embed/7MJBj0BJSDM" frameborder="0" allowfullscreen></iframe>
+			<iframe width="700" height="390" src="https://www.youtube.com/embed/N3pxjeQ1Sn4" frameborder="0" allowfullscreen></iframe>
 				<div style="float:left; width:305px;">
 				<h2 style="margin-top:0px">Host A Party</h2>
 				<p>Jewelry parties are essential to our work at WAR, Int’l. When you host a jewelry party, your house becomes a haven of hospitality, safety, and restoration for women around the world. You respond to our overseas partners’ frequent prayers for more jewelry sales. By inviting friends and family into your home, you raise awareness about the struggles that women face and ignite passion in others who might soon host their own jewelry parties. You empower rescued women to earn an income with dignity far from their lives in slavery. Also, your participation in rescuing, redeeming, restoring, and empowering women around the world costs you nothing but your time.

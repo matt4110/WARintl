@@ -3,8 +3,8 @@ Contributors: fernandobt
 Donate Link: http://picandocodigo.net/programacion/wordpress/list-category-posts-wordpress-plugin-english/#support
 Tags: list, categories, posts, cms
 Requires at least: 3.3
-Tested up to: 4.4.2
-Stable tag: 0.68
+Tested up to: 4.5.2
+Stable tag: 0.69
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -532,8 +532,14 @@ Template system has changed. Custom templates should be stored in WordPress them
 
 == Changelog ==
 
+= 0.69 =
+
+* Update lcp-widget.php for PHP 7 compatibility. Thanks @kenshin23!
+
 = 0.68 =
+
 Thanks @mmatthews1981, @ottadvantage and @mhoeher for their contributions on this version:
+
 * Adds Alt Tag to thumbnail
 * Handle child_categories flag correctly - https://github.com/picandocodigo/List-Category-Posts/pull/185
 * Adds a default value to numberposts on plugin activation - https://github.com/picandocodigo/List-Category-Posts/pull/193

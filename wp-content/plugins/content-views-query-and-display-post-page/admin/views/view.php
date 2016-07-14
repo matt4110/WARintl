@@ -39,8 +39,8 @@ PT_CV_Functions::view_submit();
 	if ( $id ) {
 		?>
 		<div>
-			<div class="view-code">For page, widget... editor: <input class="form-control" style="width: 190px;background-color: #ADFFAD;margin-right: 50px;" type="text" value="[pt_view id=&quot;<?php echo $id ?>&quot;]" onclick="this.select()" readonly=""></div>
-			<div class="view-code">For theme file: <input class="form-control" style="width: 370px;" type="text" value='&lt;?php echo do_shortcode("[pt_view id=<?php echo $id ?>]"); ?&gt;' onclick="this.select()" readonly=""></div>
+			<div class="view-code">For page content, text widget... <input class="form-control" style="width: 190px;background-color: #ADFFAD;margin-right: 50px;" type="text" value="[pt_view id=&quot;<?php echo $id ?>&quot;]" onclick="this.select()" readonly=""></div>
+			<div class="view-code">For theme file <input class="form-control" style="width: 370px;" type="text" value='&lt;?php echo do_shortcode("[pt_view id=<?php echo $id ?>]"); ?&gt;' onclick="this.select()" readonly=""></div>
 			<?php echo apply_filters( PT_CV_PREFIX_ . 'view_actions', '<a class="btn btn-info pull-right" target="_blank" href="http://www.contentviewspro.com/?utm_source=client&utm_medium=view">Get Pro version</a>', $id ) ?>
 		</div>
 		<div class="clear"></div>

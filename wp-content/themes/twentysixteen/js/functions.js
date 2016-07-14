@@ -160,7 +160,7 @@
 					newImg = new Image();
 					newImg.src = element.attr( 'src' );
 
-					$( newImg ).load( function() {
+					$( newImg ).on( 'load.twentysixteen', function() {
 						if ( newImg.width >= 840  ) {
 							element.addClass( 'below-entry-meta' );
 
@@ -197,5 +197,4 @@
 		belowEntryMetaClass( 'img.size-full' );
 		belowEntryMetaClass( 'blockquote.alignleft, blockquote.alignright' );
 	} );
-
 } )( jQuery );

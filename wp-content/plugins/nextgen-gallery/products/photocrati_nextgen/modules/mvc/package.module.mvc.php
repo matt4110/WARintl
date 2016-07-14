@@ -17,7 +17,7 @@ class A_MVC_Fs extends Mixin
     public function initialize()
     {
         register_shutdown_function(array(&$this, 'cache_lookups'));
-        self::$_lookups = C_Photocrati_Transient_Manager::fetch($this->_get_cache_key(), array());
+        //self::$_lookups = C_Photocrati_Transient_Manager::fetch($this->_get_cache_key(), array());
         self::$_non_minified_modules = apply_filters('ngg_non_minified_modules', array());
     }
     public function cache_lookups()

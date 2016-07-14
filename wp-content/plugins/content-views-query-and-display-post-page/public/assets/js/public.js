@@ -141,7 +141,8 @@
 				sid: session_id,
 				page: selected_page,
 				lang: PT_CV_PUBLIC.lang,
-				ajax_nonce: PT_CV_PUBLIC._nonce
+				ajax_nonce: PT_CV_PUBLIC._nonce,
+				custom_data: window.cvdata
 			};
 
 			// Sent POST request
