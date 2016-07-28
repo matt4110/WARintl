@@ -950,7 +950,7 @@ button.pt-cv-more.btn.btn-primary{
 
 div.pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button{
 	background-color: $dark-gold;
-	box-shadow: 1px 1px 2px 1px darken($dark-red,10%);
+	box-shadow: 2px 2px 3px 1px darken($dark-red,10%);
 	text-shadow: 1px 1px darken($dark-gold, 15%);
 	&:hover{
 		background-color: $gold;

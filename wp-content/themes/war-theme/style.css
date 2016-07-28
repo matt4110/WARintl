@@ -724,7 +724,7 @@ button.pt-cv-more.btn.btn-primary {
 
 div.pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button {
   background-color: #c19563;
-  box-shadow: 1px 1px 2px 1px #8d0303;
+  box-shadow: 2px 2px 3px 1px #8d0303;
   text-shadow: 1px 1px #9a6f3d; }
   div.pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button:hover {
     background-color: #e3c9a4;
