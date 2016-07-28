@@ -27,8 +27,8 @@
 
 		<header role="banner">
 			<div id="header">
-				<a href=<?php get_bloginfo( 'url' ); ?> ><img id="seal" src="/wp-content/themes/war-new/assets/images/war-seal.png" alt="women at risk seal"></a>
-				<img id="logo" src="/wp-content/themes/war-new/assets/images/war-logo.png" alt="women at risk logo">
+				<a href=<?php get_bloginfo( 'url' ); ?> ><img id="seal" src="/wp-content/themes/war-2016/assets/images/war-seal.png" alt="women at risk seal"></a>
+				<img id="logo" src="/wp-content/themes/war-2016/assets/images/war-logo.png" alt="women at risk logo">
 				<ul class="horizontal-list-right no-margin">
 					<li class="horizontal-li--gold-border"><a href="http://store.warchestboutique.com">SHOP WITH A PURPOSE</a></li>
 					<li class="horizontal-li--gold-border"><a href=<?php get_bloginfo( 'url' ); ?>"/get-involved/host-a-party">HOST A PARTY</a></li>

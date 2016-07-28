@@ -13,7 +13,13 @@
 		</div><!-- .site-content -->
 
 		<footer id="footer">
-			<img id="footer-logo" src="/wp-content/themes/war-new/assets/images/war-logo.png">
+			<div id="footer-left">
+				<a href=<?php get_bloginfo( 'url' ); ?>><img id="footer-logo" src="/wp-content/themes/war-2016/assets/images/war-logo.png"></a>
+				<p>(616)855-0796</p>
+				<p><a href="mailto:info@warinternational.org">info@warinternational.org</a></p>
+			</div>
+			<div id="footer-right">
+			</div>
 
 			
 
