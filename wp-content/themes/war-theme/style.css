@@ -197,6 +197,9 @@ div#preload {
 .displayTableCell {
   display: table-cell; }
 
+img#wpstats {
+  display: none; }
+
 .row {
   clear: both;
   width: 100%; }
