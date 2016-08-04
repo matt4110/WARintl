@@ -498,6 +498,44 @@ button {
   width: 500px;
   box-shadow: 0 0 50px 50px #781913 inset; }
 
+#slider {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden; }
+
+#slides-holder {
+  position: relative;
+  width: 500%;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  text-align: left;
+  animation: 30s sliding infinite; }
+
+.slides {
+  width: 20%;
+  height: auto;
+  float: left; }
+
+@keyframes sliding {
+  0% {
+    left: 0%; }
+  20% {
+    left: 0%; }
+  25% {
+    left: -100%; }
+  45% {
+    left: -100%; }
+  50% {
+    left: -200%; }
+  70% {
+    left: -200%; }
+  75% {
+    left: -300%; }
+  95% {
+    left: -300%; }
+  100% {
+    left: -400%; } }
 /*////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 4.0 Layout ////////////////////////////////////////////////////////////////////////////////////////
