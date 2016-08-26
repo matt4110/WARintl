@@ -37,59 +37,79 @@
 				<div class="clearfix"></div>
 			</div>
 			<!-- Main Nav -->
-			<ul class="full-width-nav--black">
-				<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?> >Home</a></li>
-				<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"">About Us</a>
-					<ul class="sub-nav">
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"">Location & Hours</a></li>
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"">Contact Us</a></li>
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"">FAQ</a></li>
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"">Endorsements</a></li>
-					</ul>
-				</li>
-				<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"">News & Media</a>
-					<ul class="sub-nav">
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Upcoming Events</a></li>
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Story Gallery</a></li>
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Sweetie Updates</a></li>
-					</ul>
-				</li>
-				<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"">Get Involved</a>
-					<ul class="sub-nav">
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Understand the Risks</a></li>
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Upcoming Events</a></li>
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Host A Party</a></li>
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Civilian First Responders</a></li>
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Fundraisers</a></li>
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">S.O.A.P. Project</a></li>
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Team WAR</a></li>
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">One Light Defense</a></li>
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Liz Curtis Higgs Event</a></li>
-					</ul>
-				</li>
-				<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"">Programs</a>
-					<ul class="sub-nav">
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">International Safehouses</a></li>
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Domestic Safehouses</a></li>
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Vocational Training</a></li>
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Micro Enterprises</a></li>
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Education</a></li>
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Orphanages</a></li>
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Outreach</a></li>
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Medical Aid</a></li>
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Emergency Intervention</a></li>
-					</ul>
-				</li>
-				<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"">Donate</a></li>
-				<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"">Store</a></li>
-				<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"">Prayer</a>
-					<ul class="sub-nav">
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Prayer Calendar</a></li>
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Prayer Request Form</a></li>
-						<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Red Light Blogger</a></li>
-					</ul>
-				</li>
-			</ul>
+			<div id="desktop-menu">
+				<ul class="full-width-nav--black">
+					<!-- Desktop/Full Menu -->
+					<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?> >Home</a></li>
+					<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"">About Us</a>
+						<ul class="sub-nav">
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"">Location & Hours</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"">Contact Us</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"">FAQ</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"">Endorsements</a></li>
+						</ul>
+					</li>
+					<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"">News & Media</a>
+						<ul class="sub-nav">
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Upcoming Events</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Story Gallery</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Sweetie Updates</a></li>
+						</ul>
+					</li>
+					<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"">Get Involved</a>
+						<ul class="sub-nav">
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Understand the Risks</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Upcoming Events</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Host A Party</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Civilian First Responders</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Fundraisers</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">S.O.A.P. Project</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Team WAR</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">One Light Defense</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Liz Curtis Higgs Event</a></li>
+						</ul>
+					</li>
+					<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"">Programs</a>
+						<ul class="sub-nav">
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">International Safehouses</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Domestic Safehouses</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Vocational Training</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Micro Enterprises</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Education</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Orphanages</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Outreach</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Medical Aid</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Emergency Intervention</a></li>
+						</ul>
+					</li>
+					<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"">Donate</a></li>
+					<li class="horizontal-li"><a href="http://store.warchestboutique.com">Store</a></li>
+					<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"">Prayer</a>
+						<ul class="sub-nav">
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Prayer Calendar</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Prayer Request Form</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Red Light Blogger</a></li>
+						</ul>
+					</li>
+					<!-- /Desktop/Full Menu -->
+				</ul>
+			</div>
+			<!-- Mobile Menu -->
+			<div id="mobile-menu">
+				<ul class="full-width-nav--mobile">
+					<li class="mobile-nav-li nav-featured"><a href=<?php get_bloginfo( 'url' ); ?>"/">DONATE</a></li>
+					<li class="mobile-nav-li nav-featured"><a href=<?php get_bloginfo( 'url' ); ?>"/">SHOP WITH A PURPOSE</a></li>
+					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">HOME</a></li>
+					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">ABOUT US</a></li>
+					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">NEWS & MEDIA</a></li>
+					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">GET INVOLVED</a></li>
+					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">PROGRAMS</a></li>
+					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">PRAYER</a></li>
+				</ul>
+			</div>
+			<!-- /Mobile Menu -->
+			<!-- /main nav -->
+
 		</header><!-- .site-header -->
 
 		<div id="content" class="site-content">

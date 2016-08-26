@@ -1,16 +1,10 @@
-/*
-Theme Name: WAR 2016
-Theme URI: http://www.womenatriskinternational.org
-Author: Matt Johnson
-Template: twentysixteen
-Version: 1.1
-License: GNU General Public License v2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: twentysixteen
-*/
+///////////////////////////////////////////////////////
+//////// MEDIA QUERIES FOR PHONE SIZED DEVICES ////////
+///////////////////////////////////////////////////////
 
 
- // Table of Contents
+
+// Table of Contents
  //
  // 1.0 Normalize and imports
  // 2.0 Base Styles - basic styling (ie: removing borders, unstyling links, removing bullet point, etc.)
@@ -52,11 +46,7 @@ Text Domain: twentysixteen
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-@import 'normalize';
-@import 'bourbon/_bourbon.scss';
-@import 'var';
-@import 'mixins';
-@import 'neat/_neat.scss';
+
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -69,78 +59,37 @@ Text Domain: twentysixteen
 // 2.1 Body
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-body{
-  background: #fff;
-}
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 2.2 Typography
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-html{
-  font-family: $garamond;
-  font-size: 16pt;
-}
 
-h1{
-  @include font(3em, $off-white);
-  font-weight: bold;
-}
-
-h2{
-  @include font(2em, $off-white);
-  font-weight: bold;
-}
-
-h3{
-  @include font(1.5em, $off-white);
-  font-weight: bold;
-}
-
-p{
-  @include font(1em, $off-white);
-  line-height: 1.8em;
-}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 2.3 Links
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-a{
-  text-decoration: none;
-  color: inherit;
-  &:visited{
-    color: inherit;
-  }
-  &:hover{
-    color: $dark-gold;
-  }
-}
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 2.4 Lists
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-ul{
-  list-style: none;
-}
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 2.5 Forms
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-input{
-  border: none;
-  border-radius: 10px;
-}
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 2.6 Buttons
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-button{
-  border: none;
-}
+
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -153,67 +102,7 @@ button{
 // 3.1 Navigation
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//top nav
-.horizontal-list-right{
-  float: right;
-}
 
-//main nav
-.horizontal-li{
-  display: inline-block;
-  @include font(1.2rem, $off-white);
-  margin: 0 30px 0 0;
-
-  &:last-child{
-    margin: 0 0 0 0;
-  }
-
-  &:hover .sub-nav{
-    display: block;
-    z-index: 100;
-  }
-
-  .sub-nav{
-    display: none;
-    position: absolute;
-    background-color: inherit;
-
-    &-li{
-      @include font(.8rem, $off-white);
-      background-color: #000;
-      text-align: left;
-      padding: 10px 20px;
-      margin-left: -60px;
-    }
-  }
-}
-
-//top nav list items
-.horizontal-li--gold-border{
-  display: inline-block;
-  padding: 0 15px 0 10px;
-  @include font(1rem, $light-gold);
-  border-right: 2px solid $light-gold;
-  margin-top: 175px;
-
-  &:last-child{
-    border-right: none;
-  }
-}
-
-//Main nav black bar
-.full-width-nav--black{
-  background-color: #000;
-  color: $off-white;
-  margin: 0 auto 0 auto;
-  padding: 5px 0 5px 0;
-  text-align: center;
-  font-weight: 500;
-}
-
-#mobile-menu{
-  display: none;
-}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 3.2 Forms
@@ -237,193 +126,13 @@ button{
 // 3.5 Boxes
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-.box{
 
-  &--black{
-    border: 3px solid $black;
-    padding: 2px;
-  }
-
-  &--left{
-    width: 66.66%;
-  }
-
-  &--right{
-    width: 33.33%;
-  }
-
-  &--link{
-    color: $light-gold;
-  }
-
-}
-
-.red-box{
-  @include red-box(500px);
-}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 3.6 Slider
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-.carousel-wrapper{
-  width:100%;
-  position:relative;
-  margin:0 auto;
-}
 
-//Padding is set relative to the width of the element, so here padding-top:60% is a percentage of the width. This allows us to set the height as a ratio of the width
-
-.carousel{
-  width: 100%;
-  height: 500px;
-  position: relative;
-  padding-top: 60%;
-  overflow: hidden;
-}
-
-.inner{
-  width: 100%;
-  height: 500px;
-  position: absolute;
-  top:0;
-  left: 0;
-}
-
-
-// Animations Styles
-
-.slide{
-  width: 100%;
-  height: 500px;
-  position: absolute;
-  top:0;
-  right:0;
-  left:0;
-  z-index: 1;
-  opacity: 0;
-}
-
-.slide.active,
-.slide.left,
-.slide.right{
-  z-index: 2;
-  opacity: 1;
-}
-
-.js-reset-left{left:auto}
-
-// CSS Animations
-
-.slide.left{
-  left:-100%;
-  right:0;
-}
-
-.slide.right{
-  right:-100%;
-  left: auto;
-}
-
-.transition .slide.left{left:0%}
-.transition .slide.right{right:0%}
-
-.transition .slide.shift-right{right: 100%;left:auto}
-.transition .slide.shift-left{left: 100%;right:auto}
-
-.transition .slide{
-  -webkit-transition-property: right, left, margin;
-  transition-property: right, left, margin;
-}
-
-.indicators{
-  width:100%;
-  position: absolute;
-  bottom:0;
-  z-index: 4;
-  padding:0;
-  text-align: center;
-}
-
-.indicators li{
-  width: 13px;
-  height: 13px;
-  display: inline-block;
-  margin: 5px;
-  background: #fff;
-  list-style-type: none;
-  border-radius: 50%;
-  cursor:pointer;
-  -webkit-transition:background 0.3s ease-out;
-  transition:background 0.3s ease-out;
-}
-
-.indicators li.active{background:#93278f}
-
-.indicators li:hover{background-color:#2b2b2b}
-
-// Arrows
-.arrow{
-  width: 20px;
-  height: 20px;
-  position:absolute;
-  top:50%;
-  z-index:5;
-  border-top:3px solid #fff;
-  border-right:3px solid #fff;
-  cursor:pointer;
-  -webkit-transition:border-color 0.3s ease-out;
-  transition:border-color 0.3s ease-out;
-}
-
-.arrow:hover{border-color:#93278f}
-
-.arrow-left{
-  left:20px;
-  -webkit-transform:rotate(225deg);
-  transform:rotate(225deg);
-}
-
-.arrow-right{
-  right:20px;
-  -webkit-transform:rotate(45deg);
-  transform:rotate(45deg);
-}
-
-/* ==========================
- * For demo purposes only
- * Please note that the styles below are used for the purposes of this demo only. There is no need
- * to use these in any of your own projects
- */
-
-.slide{
-  text-align:center;
-  padding-top:25%;
-  background-size:cover;
-}
-
-h1{
-  width:100px;
-  height:100px;
-  background-color:rgba(146, 45, 141,0.7);
-  margin:auto;
-  line-height:100px;
-  color:#fff;
-  font-size:2.4em;
-  border-radius:50%;
-}
-
-.slide:nth-child(1){
-  background-image:url(/wp-content/themes/war-2016/assets/images/slider/slide1.jpg);
- }
-
-.slide:nth-child(2){
-  background-image:url(/wp-content/themes/war-2016/assets/images/slider/slide2.jpg);
-}
-
-.slide:nth-child(3){
-  background-image:url(/wp-content/themes/war-2016/assets/images/slider/slide3.jpg);
- }
 
 
 
@@ -450,74 +159,13 @@ h1{
 // 4.1 Header
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#header{
-  background-repeat: repeat;
-  padding: 5px 15px 5px 15px;
-  background-image: linear-gradient(to bottom,rgba(0,0,0,.7),rgba(0,0,0,0)), url("/wp-content/themes/war-2016/assets/images/headerPattern.jpg");
-  background-image: -moz-linear-gradient(top,rgba(0,0,0,.7),rgba(0,0,0,0)), url("/wp-content/themes/war-2016/assets/images/headerPattern.jpg");
-  background-image: -o-linear-gradient(top,rgba(0,0,0,.7),rgba(0,0,0,0)), url("/wp-content/themes/war-2016/assets/images/headerPattern.jpg");
-  background-image: -webkit-linear-gradient(to bottom,rgba(0,0,0,.7),rgba(0,0,0,0)), url("/wp-content/themes/war-2016/assets/images/headerPattern.jpg");
-}
 
-#seal{
-  width: 15%;
-  float: left;
-}
-
-#logo{
-  position: relative;
-  top: 60px;
-  left: -15px;
-}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 4.2 Footer
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#footer{
-  background-color: #eee;
-  margin-top: 75px;
-  padding: 25px 50px 50px 50px;
-  min-height: 100%;
 
-  .info{
-    color: $dark-gold;
-    line-height: .25rem;
-  }
-}
-
-.footer-left{
-  float: left;
-  clear: none;
-}
-
-.footer-right{
-  float: right;
-  clear: none;
-}
-
-.footer-icon{
-  max-width: 45px;
-}
-
-#ecfa{
-  margin-top: 25px;
-}
-
-#ecfa-icon{
-  max-width: 60px;
-  margin-right: 15px;
-  float: left
-}
-
-#ecfa-text{
-  width: 40%;
-  color: $dark-gold;
-  font-size: .75rem;
-  line-height: .75rem;
-  float: left;
-  margin-top: 5px;
-}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 4.3 Sidebar
@@ -534,26 +182,7 @@ h1{
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 4.5 The Grid
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-.grid-1-12 {width: 8.33%;}
-.grid-2-12 {width: 16.66%;}
-.grid-3-12 {width: 25%;}
-.grid-4-12 {width: 33.33%;}
-.grid-5-12 {width: 41.66%;}
-.grid-6-12 {width: 50%;}
-.grid-7-12 {width: 58.33%;}
-.grid-8-12 {width: 66.66%;}
-.grid-9-12 {width: 75%;}
-.grid-10-12 {width: 83.33%;}
-.grid-11-12 {width: 91.66%;}
 
-.row{
-  clear: both;
-}
-
-div [class$="-12"]{
-  float: left;
-  clear: none;
-}
 
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -562,20 +191,4 @@ div [class$="-12"]{
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-.clearfix{
-  @include clearfix;
-}
 
-.no-margin{
-  margin: 0;
-}
-
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-// 6.0 Media Queries /////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////*/
-@import 'media-1257';
-@import 'media-975';
-@import 'media-phone';
