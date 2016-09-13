@@ -24,9 +24,34 @@ get_header(); ?>
   		</div>
 	</div>
 
+	<!-- Box Menu -->
 	<div id="primary" class="content-area">
-		
+		<div class="box-menu">
+			<div class="box-menu-item">
+				<div class="box-menu-image">
+					<img src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/box-store.jpg">
+				</div>
 
+				<div class="box-menu-split-text">
+					<h1>shop</h1>
+					<h1 class="small">with a</h1>
+					<h1>purpose</h1>
+					<p>Gifts of International Distinction</p>
+				</div>
+
+			</div>
+
+			<div class="box-menu-item">
+				<div class="box-menu-image">
+					<img src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/box-ustc.jpg">
+				</div>
+				<div class="box-menu-split-text">
+					<h1>Shop with a Purpose</h1>
+				</div>
+			</div>
+		<!-- /Box Menu -->	
+		</div>
+		<div class="clearfix"></div>
 	</div><!-- .content-area -->
 
 <?php get_footer(); ?>

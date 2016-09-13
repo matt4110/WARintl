@@ -486,15 +486,59 @@ button {
 #mobile-menu {
   display: none; }
 
-.box--black {
-  border: 3px solid #222;
-  padding: 2px; }
-.box--left {
-  width: 66.66%; }
-.box--right {
-  width: 33.33%; }
-.box--link {
-  color: #E1BD89; }
+.box-menu {
+  display: block;
+  width: 85%;
+  margin: 15px auto;
+  clear: both; }
+  .box-menu-item {
+    display: block;
+    float: left;
+    clear: none;
+    width: 49%;
+    height: 100%;
+    margin: 0;
+    padding: 3px;
+    border: 3px solid #222; }
+    .box-menu-item:nth-child(even) {
+      margin-left: 2%; }
+  .box-menu-image {
+    width: 57.5%;
+    float: left;
+    clear: none;
+    margin-bottom: -6px; }
+    .box-menu-image img {
+      max-width: 100%; }
+  .box-menu-split-text {
+    float: left;
+    clear: none;
+    width: 42.5%;
+    height: 100%;
+    min-height: 100%;
+    padding: 20px;
+    background-color: #BA271D;
+    box-shadow: 0 0 25px 10px #a4221a inset;
+    color: #E1BD89; }
+    .box-menu-split-text h1 {
+      font-size: 1.8rem;
+      font-weight: 100;
+      font-family: garamond, 'Garamond', Serif;
+      text-align: center;
+      color: #E1BD89;
+      text-transform: uppercase;
+      margin: 5px 0 0 0; }
+      .box-menu-split-text h1.small {
+        font-size: 1rem; }
+    .box-menu-split-text p {
+      font-size: .8rem;
+      display: block;
+      width: 87%;
+      margin: 8px auto 0 auto;
+      font-style: italic;
+      color: #E1BD89;
+      font-family: 'Didot', serif;
+      font-weight: 100;
+      line-height: 1.15em; }
 
 .red-box {
   background-color: #BA271D;
@@ -508,21 +552,20 @@ button {
 
 .carousel {
   width: 100%;
-  height: 500px;
   position: relative;
   padding-top: 60%;
   overflow: hidden; }
 
 .inner {
   width: 100%;
-  height: 500px;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0; }
 
 .slide {
   width: 100%;
-  height: 500px;
+  height: 100%;
   position: absolute;
   top: 0;
   right: 0;
@@ -626,7 +669,7 @@ button {
   padding-top: 25%;
   background-size: cover; }
 
-h1 {
+.slide h1 {
   width: 100px;
   height: 100px;
   background-color: rgba(146, 45, 141, 0.7);
