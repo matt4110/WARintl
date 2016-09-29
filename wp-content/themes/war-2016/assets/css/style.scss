@@ -30,6 +30,9 @@ Text Domain: twentysixteen
  //   3.6 Slider
  //   3.7 Image Grid
  //   3.8 Light Box
+ //   3.9 Mission Statement
+ //   3.10 Filigree
+ //   3.11 Call to Action
  //
  // 4.0 Layout
  //   4.1 Header
@@ -54,6 +57,7 @@ Text Domain: twentysixteen
 
 @import 'normalize';
 @import 'bourbon/_bourbon.scss';
+@import 'fonts';
 @import 'var';
 @import 'mixins';
 @import 'neat/_neat.scss';
@@ -240,28 +244,26 @@ button{
 .box-menu{
   display: block;
   width: 85%;
-  margin: 15px auto;
+  margin: 20px auto;
   clear: both;
 
   &-item{
-    display: block;
+    display: flex;
     float: left;
     clear: none;
     width: 49%;
-    height: 100%;
-    margin:0;
+    margin:0 0 20px 0;
     padding: 3px;
     border: 3px solid $black;
 
     &:nth-child(even){
-      margin-left: 2%;
+      margin-left: 1%;
     }
   }
 
   &-image{
-    width: 57.5%;
-    float: left;
-    clear: none;
+    flex-grow: 1;
+    flex-basis: 57.5%;
     margin-bottom: -6px;
     img{
       max-width: 100%;
@@ -269,17 +271,15 @@ button{
   }
 
   &-split-text{
-    float: left;
-    clear: none;
-    width: 42.5%;
-    height: 100%;
-    min-height: 100%;
-    padding: 20px;
+    flex-grow: 1;
+    flex-basis: 42.5%;
+    padding: 3%;
     background-color: $red;
     box-shadow: 0 0 25px 10px darken($red, 5%) inset;
     color: $light-gold;
+
     h1{
-      font-size: 1.8rem;
+      font-size: 3vw;
       font-weight: 100;
       font-family: garamond, 'Garamond', Serif;
       text-align: center;
@@ -288,12 +288,16 @@ button{
       margin: 5px 0 0 0;
     
       &.small{
-        font-size: 1rem;
+        font-size: 1.5vw;
+      }
+
+      &.medium{
+        font-size: 2.2vw;
       }
     }
 
     p{
-      font-size: .8rem;
+      font-size: 1.2vw;
       display: block;
       width: 87%;
       margin: 8px auto 0 auto;
@@ -486,6 +490,58 @@ button{
 
 
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+// 3.9 Mission Statement
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+#mission-box{
+  background-color: $red;
+  box-shadow: 0 0 25px 10px darken($red, 5%) inset;
+  padding: 10px 0;
+
+  h1{
+    text-align: center;
+    margin:0;
+    font-size: 1.75rem;
+    font-family: italianno;
+    color: $dark-gold;
+  }
+
+  p{
+    color: $black;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto 10px;
+    font-size: 1rem;
+    line-height: .85rem;
+    letter-spacing: .08rem;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+// 3.10 Filigree
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.filigree{
+  background-image: url(/wp-content/themes/war-2016/assets/images/filigree-pattern-black.png);
+  background-repeat: repeat-x;
+  line-height: .7em;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+// 3.11 Call to Action
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.cta{
+  @include red-box;
+
+  h1{
+    font-size: 2.5em;
+  }
+
+  
+  
+}
+
 /*////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 4.0 Layout ////////////////////////////////////////////////////////////////////////////////////////
@@ -508,7 +564,23 @@ button{
 
 #seal{
   width: 15%;
+  max-height: 200px;
   float: left;
+}
+
+#donate{
+  position: absolute;
+  top: 0;
+  right: 100px;
+  background-image:url(/wp-content/themes/war-2016/assets/images/ribbon.png);
+  background-repeat: no-repeat;
+
+  #donate-header{
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 30px 18px 40px 18px;
+
+  }
 }
 
 #logo{

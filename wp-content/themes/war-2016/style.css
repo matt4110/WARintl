@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
 Theme Name: WAR 2016
 Theme URI: http://www.womenatriskinternational.org
@@ -379,6 +380,12 @@ textarea {
   font: inherit;
   /* 2 */ }
 
+@font-face {
+  font-family: 'italianno';
+  src: url("fonts/Italianno-Regular-OTF.eot");
+  src: local("☺"), url("fonts/Italianno-Regular-OTF.woff") format("woff"), url("fonts/Italianno-Regular-OTF.ttf") format("truetype"), url("fonts/Italianno-Regular-OTF.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
 html {
   box-sizing: border-box; }
 
@@ -489,38 +496,33 @@ button {
 .box-menu {
   display: block;
   width: 85%;
-  margin: 15px auto;
+  margin: 20px auto;
   clear: both; }
   .box-menu-item {
-    display: block;
+    display: flex;
     float: left;
     clear: none;
     width: 49%;
-    height: 100%;
-    margin: 0;
+    margin: 0 0 20px 0;
     padding: 3px;
     border: 3px solid #222; }
     .box-menu-item:nth-child(even) {
-      margin-left: 2%; }
+      margin-left: 1%; }
   .box-menu-image {
-    width: 57.5%;
-    float: left;
-    clear: none;
+    flex-grow: 1;
+    flex-basis: 57.5%;
     margin-bottom: -6px; }
     .box-menu-image img {
       max-width: 100%; }
   .box-menu-split-text {
-    float: left;
-    clear: none;
-    width: 42.5%;
-    height: 100%;
-    min-height: 100%;
-    padding: 20px;
+    flex-grow: 1;
+    flex-basis: 42.5%;
+    padding: 3%;
     background-color: #BA271D;
     box-shadow: 0 0 25px 10px #a4221a inset;
     color: #E1BD89; }
     .box-menu-split-text h1 {
-      font-size: 1.8rem;
+      font-size: 3vw;
       font-weight: 100;
       font-family: garamond, 'Garamond', Serif;
       text-align: center;
@@ -528,9 +530,11 @@ button {
       text-transform: uppercase;
       margin: 5px 0 0 0; }
       .box-menu-split-text h1.small {
-        font-size: 1rem; }
+        font-size: 1.5vw; }
+      .box-menu-split-text h1.medium {
+        font-size: 2.2vw; }
     .box-menu-split-text p {
-      font-size: .8rem;
+      font-size: 1.2vw;
       display: block;
       width: 87%;
       margin: 8px auto 0 auto;
@@ -688,6 +692,37 @@ button {
 .slide:nth-child(3) {
   background-image: url(/wp-content/themes/war-2016/assets/images/slider/slide3.jpg); }
 
+#mission-box {
+  background-color: #BA271D;
+  box-shadow: 0 0 25px 10px #a4221a inset;
+  padding: 10px 0; }
+  #mission-box h1 {
+    text-align: center;
+    margin: 0;
+    font-size: 1.75rem;
+    font-family: italianno;
+    color: #C19563; }
+  #mission-box p {
+    color: #222;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto 10px;
+    font-size: 1rem;
+    line-height: .85rem;
+    letter-spacing: .08rem; }
+
+.filigree {
+  background-image: url(/wp-content/themes/war-2016/assets/images/filigree-pattern-black.png);
+  background-repeat: repeat-x;
+  line-height: .7em; }
+
+.cta {
+  background-color: #BA271D;
+  width: 100%;
+  box-shadow: 0 0 10% 10% #781913 inset; }
+  .cta h1 {
+    font-size: 2.5em; }
+
 /*////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 4.0 Layout ////////////////////////////////////////////////////////////////////////////////////////
@@ -703,7 +738,19 @@ button {
 
 #seal {
   width: 15%;
+  max-height: 200px;
   float: left; }
+
+#donate {
+  position: absolute;
+  top: 0;
+  right: 100px;
+  background-image: url(/wp-content/themes/war-2016/assets/images/ribbon.png);
+  background-repeat: no-repeat; }
+  #donate #donate-header {
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 30px 18px 40px 18px; }
 
 #logo {
   position: relative;
@@ -804,7 +851,7 @@ div [class$="-12"] {
 // 6.0 Media Queries /////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////*/
-@media screen and (max-width: 1257px) {
+@media screen and (max-width: 1245px) {
   /*////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   // 1.0 Normalize and Imports /////////////////////////////////////////////////////////////////////////
@@ -871,6 +918,9 @@ div [class$="-12"] {
     .mobile-nav-li:hover {
       background-color: #F5EDE0;
       color: #222; }
+
+  .box-menu {
+    width: 95%; }
 
   /*////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////
