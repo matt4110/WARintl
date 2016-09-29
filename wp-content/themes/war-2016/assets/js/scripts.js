@@ -1,7 +1,8 @@
 $.noConflict();
 jQuery( document ).ready(function( $ ){
 
-// CAROUSEL
+//////////////////
+////////////////// CAROUSEL
 
 /*
  * We trigger the factory() function is different
@@ -413,6 +414,29 @@ var args = {
 
 $('.carousel').Zippy(args);
 
-// END OF CAROUSEL
+//////////////////
+////////////////// END OF CAROUSEL
+
+
+//////////////////
+////////////////// MOBILE MENU
+
+$( ".cross" ).hide();
+$( ".full-width-nav--mobile" ).hide();
+$( ".hamburger" ).click(function() {
+	$( ".full-width-nav--mobile" ).slideToggle( "slow", function() {
+		$( ".hamburger" ).hide();
+		$( ".cross" ).show();
+	});
+});
+
+$( ".cross" ).click(function() {
+	$( ".full-width-nav--mobile" ).slideToggle( "slow", function() {
+		$( ".cross" ).hide();
+		$( ".hamburger" ).show();
+	});
+});
+
+
 
 });

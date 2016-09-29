@@ -493,6 +493,42 @@ button {
 #mobile-menu {
   display: none; }
 
+.mobile-menu-bar {
+  width: 100%;
+  background: #090909;
+  height: 60px;
+  line-height: 60px; }
+
+.hamburger {
+  background: none;
+  position: absolute;
+  top: 150;
+  right: 0;
+  line-height: 45px;
+  padding: 5px 15px 0px 15px;
+  color: #fff;
+  border: 0;
+  font-size: 1.4em;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  z-index: 10000000000000; }
+
+.cross {
+  background: none;
+  position: absolute;
+  top: 150;
+  right: 0;
+  padding: 16px 15px 0px 15px;
+  color: #fff;
+  border: 0;
+  font-size: 3em;
+  line-height: 65px;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  z-index: 10000000000000; }
+
 .box-menu {
   display: block;
   width: 85%;

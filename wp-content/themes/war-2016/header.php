@@ -99,6 +99,10 @@
 			</div>
 			<!-- Mobile Menu -->
 			<div id="mobile-menu">
+				<div class="mobile-menu-bar">
+					<button class="hamburger">&#9776;</button>
+	  				<button class="cross">&#735;</button>
+  				</div>
 				<ul class="full-width-nav--mobile">
 					<li class="mobile-nav-li nav-featured"><a href=<?php get_bloginfo( 'url' ); ?>"/">DONATE</a></li>
 					<li class="mobile-nav-li nav-featured"><a href=<?php get_bloginfo( 'url' ); ?>"/">SHOP WITH A PURPOSE</a></li>
