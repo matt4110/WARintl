@@ -45,8 +45,8 @@ get_header(); ?>
 			</div>
 	    
 	    <div class="carousel__nav">
-	      <a class="nav nav--left">Previous</a>
-	      <a class="nav nav--right">Next</a>
+	      <a class="nav nav--left link-cursor">Previous</a>
+	      <a class="nav nav--right link-cursor">Next</a>
 	    </div>
 	    
 		</div>
