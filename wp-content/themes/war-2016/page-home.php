@@ -14,22 +14,42 @@ get_header(); ?>
 		<p>Women At Risk International unites and educates women to create circles of protection and hope around women at risk through culturally sensitive, value-added intervention projects.</p>
 	</div>
 
-	<div class="carousel-wrapper">
+	<div class="wrapper">
 		<div class="carousel">
-		    <div class="inner">
-		      <div class="slide active">
-		      	<h1>1</h1>
-		      </div>
-		      <div class="slide">
-		        <h1>2</h1>
-		      </div>
-		      <div class="slide">
-		      	<h1>3</h1>
-		      </div>
-		    </div>
-		    <div class="arrow arrow-left"></div>
-		    <div class="arrow arrow-right"></div>
-  		</div>
+			<div class="carousel__content">
+				<div class="item">
+			        <p class="title">First</p>
+			        <img src="http://placehold.it/1800x850/70AD96/FFF&text=&nbsp;" alt="">
+			      </div>
+				<div class="item">
+			        <p class="title">Second</p>
+			        <img src="http://placehold.it/1800x850/EA4E23/FFF&text=&nbsp;" alt="">
+			      </div>
+				<div class="item">
+			        <p class="title">Third</p>
+			        <img src="http://placehold.it/1800x850/9BA452/FFF&text=&nbsp;" alt="">
+			      </div>
+				<div class="item">
+			        <p class="title">Fourth</p>
+			        <img src="http://placehold.it/1800x850/472D38/FFF&text=&nbsp;" alt="">
+			      </div>
+				<div class="item">
+			        <p class="title">Fifth</p>
+			        <img src="http://placehold.it/1800x850/F77C85/FFF&text=&nbsp;" alt="">
+			      </div>
+				<div class="item">
+			        <p class="title">Sixth</p>
+			        <p class="title title--sub">Last Item</p>
+			        <img src="http://placehold.it/1800x850/00FFAE/FFF&text=&nbsp;" alt="">
+			      </div>
+			</div>
+	    
+	    <div class="carousel__nav">
+	      <a class="nav nav--left">Previous</a>
+	      <a class="nav nav--right">Next</a>
+	    </div>
+	    
+		</div>
 	</div>
 
 	<!-- Box Menu -->
