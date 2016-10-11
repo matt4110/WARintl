@@ -40,6 +40,7 @@ Text Domain: twentysixteen
  //   4.3 Sidebar
  //   4.4 Post
  //   4.5 The Grid
+ //   4.6 Homepage
  //
  // 5.0 Helpers
  //   5.1 Margin
@@ -108,6 +109,14 @@ p{
   @include font(1em, $off-white);
   line-height: 1.8em;
 }
+
+.gold-heading{
+    text-align: center;
+    margin:0;
+    font-size: 1.75rem;
+    font-family: italianno;
+    color: $dark-gold;
+  }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 2.3 Links
@@ -276,6 +285,21 @@ button{
   cursor: pointer;
 }
 
+.double-circle{
+
+
+  &--left{
+    float: left;
+    padding: 125px 30px;
+  }
+
+  &--right{
+    float: right;
+    padding: 125px 30px;
+  }
+
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 3.4 Lists
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -360,8 +384,12 @@ button{
 }
 
 .red-stripe-box{
-  @include red-stripe-box(85%);
-  padding: 30px;
+  @include red-stripe-box(100%);
+
+  &--home{
+    @include red-stripe-box(100%);
+    margin: 0 auto 20px auto;
+  }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -481,14 +509,6 @@ button{
   box-shadow: 0 0 25px 10px darken($red, 5%) inset;
   padding: 10px 0;
 
-  h1{
-    text-align: center;
-    margin:0;
-    font-size: 1.75rem;
-    font-family: italianno;
-    color: $dark-gold;
-  }
-
   p{
     color: $black;
     text-align: center;
@@ -496,7 +516,7 @@ button{
     margin: 0 auto 10px;
     font-size: 1rem;
     line-height: .85rem;
-    letter-spacing: .08rem;
+    letter-spacing: .07rem;
   }
 }
 
@@ -657,6 +677,20 @@ div [class$="-12"]{
   clear: none;
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+// 4.6 Home
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.about-home{
+  width: 85%;
+  margin: 50px auto 20px auto;
+
+  p{
+    float: left;
+    width: 50%;
+    text-align: justify;
+  }
+}
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -704,4 +738,5 @@ div [class$="-12"]{
 ////////////////////////////////////////////////////////////////////////////////////////////////////*/
 @import 'media-1257';
 @import 'media-975';
+@import 'media-750';
 @import 'media-phone';
