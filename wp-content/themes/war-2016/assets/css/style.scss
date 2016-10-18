@@ -113,10 +113,23 @@ p{
 .gold-heading{
     text-align: center;
     margin:0;
-    font-size: 1.75rem;
-    font-family: modern_roman;
-    color: $dark-gold;
+    font-size: 1.5rem;
+    font-family: modern_roman, 'modern_roman';
+    font-weight: normal;
+    font-style: normal;
+    color: $light-gold;
   }
+
+.gold-line{
+  border: 0;
+  width: 85%;
+  height: 2px;
+  background: $light-gold;
+  background: -webkit-linear-gradient(to right, rgba(186,39,29,.2), rgba(225,189,137,1), rgba(186,39,29,.2));
+  background: -moz-linear-gradient(to right, rgba(186,39,29,.2), rgba(225,189,137,1), rgba(186,39,29,.2));
+  background: -o-linear-gradient(to right, rgba(186,39,29,.2), rgba(225,189,137,1), rgba(186,39,29,.2));
+  background: linear-gradient(to right, rgba(186,39,29,.2), rgba(225,189,137,1), rgba(186,39,29,.2));
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 2.3 Links
@@ -289,11 +302,13 @@ button{
 
 
   &--left{
+    width:25%;
     float: left;
     padding: 125px 30px;
   }
 
   &--right{
+    width: 25%;
     float: right;
     padding: 125px 30px;
   }
@@ -480,11 +495,6 @@ button{
     }
   }
 }
-
-
-
-
-
 
 
 

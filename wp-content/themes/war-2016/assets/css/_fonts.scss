@@ -1,18 +1,10 @@
 @font-face {
-	font-family: 'italianno';
-	src: url('fonts/Italianno-Regular-OTF.eot');
-	src: local('☺'), url('fonts/Italianno-Regular-OTF.woff') format('woff'), url('fonts/Italianno-Regular-OTF.ttf') format('truetype'), url('fonts/Italianno-Regular-OTF.svg') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
     font-family: 'modern_roman';
-    src: url('lmromancaps10-oblique-webfont.eot');
-    src: url('lmromancaps10-oblique-webfont.eot?#iefix') format('embedded-opentype'),
-         url('lmromancaps10-oblique-webfont.woff') format('woff'),
-         url('lmromancaps10-oblique-webfont.ttf') format('truetype'),
-         url('lmromancaps10-oblique-webfont.svg#latin_modern_roman_caps10Ob') format('svg');
+    src: url('assets/css/fonts/lmromancaps10-oblique-webfont.eot');
+    src: url('assets/css/fonts/lmromancaps10-oblique-webfont.eot?#iefix') format('embedded-opentype'),
+         url('assets/css/fonts/lmromancaps10-oblique-webfont.woff') format('woff'),
+         url('assets/css/fonts/lmromancaps10-oblique-webfont.ttf') format('truetype'),
+         url('asssets/css/fonts/lmromancaps10-oblique-webfont.svg#latin_modern_roman_caps10Ob') format('svg');
     font-weight: normal;
     font-style: normal;
 }

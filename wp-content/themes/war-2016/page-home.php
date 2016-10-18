@@ -139,6 +139,7 @@ get_header(); ?>
 			</div>
 			<div class="red-stripe-box--home">
 				<h2 class="gold-heading">Creating Circles of Protection & Hope</h2>
+				<hr class="gold-line">
 				<div class="row">
 					<img class="double-circle--left" src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/dbl-circle-left.png">
 					<img class="double-circle--right" src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/dbl-circle-right.png">
