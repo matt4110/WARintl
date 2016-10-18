@@ -14,7 +14,7 @@ get_header(); ?>
 		<p>Women At Risk International unites and educates women to create circles of protection and hope around women at risk through culturally sensitive, value-added intervention projects.</p>
 	</div>
 
-	<div class="wrapper">
+	<div class="wrapper-carousel">
 		<div class="carousel">
 			<div class="carousel__content">
 				<div class="item">
