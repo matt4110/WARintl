@@ -424,7 +424,7 @@ h3 {
 
 p {
   font-size: 1em;
-  color: #F5EDE0;
+  color: #222;
   line-height: 1.8em; }
 
 .gold-heading {
@@ -623,19 +623,24 @@ button {
   background-image: url("/wp-content/themes/war-2016/assets/images/red-box-pattern.jpg");
   background-repeat: repeat;
   width: 100%;
-  padding: 2%; }
+  padding: 2%;
+  color: #F5EDE0; }
   .red-stripe-box--home {
     background-image: url("/wp-content/themes/war-2016/assets/images/red-box-pattern.jpg");
     background-repeat: repeat;
     width: 100%;
     padding: 2%;
     margin: 0 auto 20px auto; }
+    .red-stripe-box--home p {
+      color: #F5EDE0; }
+  .red-stripe-box p {
+    color: #F5EDE0; }
 
 .box-1-3 {
   float: left;
-  width: 29vw;
-  height: 29vw;
-  margin-left: 6vw;
+  width: 24.9vw;
+  height: 24.9vw;
+  margin-left: 5vw;
   clear: none; }
   .box-1-3:first-child {
     margin-left: 0; }
@@ -1022,7 +1027,7 @@ div [class$="-12"] {
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////*/
   .standard-content {
-    width: 97vw; }
+    width: 96vw; }
 
   /*////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////

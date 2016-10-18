@@ -111,7 +111,7 @@ h3{
 }
 
 p{
-  @include font(1em, $off-white);
+  @include font(1em, $black);
   line-height: 1.8em;
 }
 
@@ -408,10 +408,18 @@ button{
 
 .red-stripe-box{
   @include red-stripe-box(100%);
+  color: $off-white;
 
   &--home{
     @include red-stripe-box(100%);
     margin: 0 auto 20px auto;
+    p{
+    color: $off-white;
+  }
+  }
+
+  p{
+    color: $off-white;
   }
 }
 
@@ -419,9 +427,9 @@ button{
 //Box grid (3 boxes per row)
 .box-1-3{
   float: left;
-  width: 29vw;
-  height: 29vw;
-  margin-left: 6vw;
+  width: 24.9vw;
+  height: 24.9vw;
+  margin-left: 5vw;
   clear: none;
 
   &:first-child{
