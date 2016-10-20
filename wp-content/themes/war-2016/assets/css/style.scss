@@ -413,9 +413,10 @@ button{
   &--home{
     @include red-stripe-box(100%);
     margin: 0 auto 20px auto;
+    
     p{
     color: $off-white;
-  }
+    }
   }
 
   p{
@@ -547,7 +548,7 @@ button{
 #mission-box{
   background-color: $red;
   box-shadow: 0 0 25px 10px darken($red, 5%) inset;
-  padding: 10px 0;
+  padding: 0 0 10px 0;
 
   p{
     color: $black;

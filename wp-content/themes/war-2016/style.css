@@ -712,7 +712,7 @@ button {
 #mission-box {
   background-color: #BA271D;
   box-shadow: 0 0 25px 10px #a4221a inset;
-  padding: 10px 0; }
+  padding: 0 0 10px 0; }
   #mission-box p {
     color: #222;
     text-align: center;
@@ -990,6 +990,19 @@ div [class$="-12"] {
   .horizontal-li--gold-border {
     display: none; }
 
+  .double-circle--left {
+    width: 45%;
+    clear: both;
+    margin-left: 6%;
+    padding: 10px;
+    height: 38vw; }
+  .double-circle--right {
+    width: 45%;
+    float: left;
+    clear: right;
+    padding: 10px;
+    height: 38vw; }
+
   /*////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   // 4.0 Layout ////////////////////////////////////////////////////////////////////////////////////////
@@ -1010,6 +1023,20 @@ div [class$="-12"] {
   #donate {
     display: none; } }
 @media screen and (max-width: 750px) {
+  .footer-right {
+    float: left;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    clear: both; }
+
+  .about-home p {
+    float: none;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.2rem;
+    line-height: 1.5em; }
+
   /*////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   // 5.0 Helpers ///////////////////////////////////////////////////////////////////////////////////////
@@ -1086,11 +1113,6 @@ div [class$="-12"] {
 
   #footer {
     padding: 15px; }
-
-  .footer-right {
-    float: left;
-    margin-top: 25px;
-    margin-bottom: 20px; }
 
   #ecfa-text {
     width: 70%; }
