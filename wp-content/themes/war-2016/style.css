@@ -876,7 +876,6 @@ button.pt-cv-more.btn.btn-primary {
 
 div.pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button {
   background-color: #C19563;
-  box-shadow: 2px 2px 3px 1px #8e1e16;
   text-shadow: 1px 1px #9a6f3d; }
   div.pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button:hover {
     background-color: #C19563;
@@ -884,7 +883,7 @@ div.pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button {
 
 div .pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button.btn.btn-none.pt-cv-filter-option.active {
   background-color: #C19563;
-  box-shadow: 1px 1px 2px 1px #634728 inset !important;
+  box-shadow: 1px 1px 2px 1px #ac7c45 inset !important;
   color: #ffffff; }
 
 div .pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button:active {
@@ -893,6 +892,9 @@ div .pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button:active {
 
 .pt-cv-filter-bar .pt-cv-filter-option {
   border-color: #C19563 !important; }
+
+.pt-cv-wrapper .btn {
+  font-size: 1.3vw; }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////

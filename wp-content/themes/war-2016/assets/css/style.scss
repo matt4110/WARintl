@@ -772,9 +772,9 @@ button.pt-cv-more.btn.btn-primary{
 //This sets the color of the buttons that filter the posts - Matt
 
 
-div.pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button{
+//'Filter By' buttons
+div.pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button{ 
   background-color: $dark-gold;
-  box-shadow: 2px 2px 3px 1px darken($red,10%);
   text-shadow: 1px 1px darken($dark-gold, 15%);
   &:hover{
     background-color: $dark-gold;
@@ -783,10 +783,11 @@ div.pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button{
   }
 }
 
+//Active 'Filter By' button
 div{
   .pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button.btn.btn-none.pt-cv-filter-option.active{
     background-color: $dark-gold;
-    box-shadow: 1px 1px 2px 1px darken($dark-gold, 30%) inset !important;
+    box-shadow: 1px 1px 2px 1px darken($dark-gold, 10%) inset !important;
     color: #ffffff;
 
   }
@@ -797,8 +798,14 @@ div .pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button:active{
   box-shadow: 1px 1px 2px 1px darken($dark-gold, 30%) inset !important;
 }
 
+
+//Filter By Menu
 .pt-cv-filter-bar .pt-cv-filter-option{
   border-color: $dark-gold !important;
+}
+
+.pt-cv-wrapper .btn{
+  font-size: 1.3vw;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
