@@ -459,8 +459,23 @@ ul {
   list-style: none; }
 
 input {
+  border-bottom: #E1BD89 solid 1px;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  background: #f6f6f6; }
+
+textarea {
+  background: #f6f6f6;
+  border: none; }
+
+input[type="submit"] {
+  background: #E1BD89;
   border: none;
-  border-radius: 10px; }
+  border-radius: 10px;
+  padding: 15px;
+  cursor: pointer;
+  color: #f6f6f6; }
 
 button {
   border: none; }
@@ -751,6 +766,7 @@ button {
 #seal {
   width: 15%;
   max-height: 200px;
+  max-width: 200px;
   float: left; }
 
 #donate {
