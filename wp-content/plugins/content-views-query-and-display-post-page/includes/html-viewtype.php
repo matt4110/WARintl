@@ -1,5 +1,4 @@
 <?php
-
 /**
  * HTML output for specific View types
  *
@@ -16,6 +15,7 @@ if ( !class_exists( 'PT_CV_Html_ViewType' ) ) {
 	 * @todo List of functions relates to View type output
 	 */
 	class PT_CV_Html_ViewType {
+
 		/**
 		 * Generate class for columns
 		 *
@@ -62,7 +62,6 @@ if ( !class_exists( 'PT_CV_Html_ViewType' ) ) {
 		 * @return array Array of rows, each row contains columns
 		 */
 		static function grid_wrapper( $content_items, &$content, $column = 0, $class = '' ) {
-
 			list( $columns, $span_width_last, $span_width, $span_class ) = self::process_column_width( $column );
 
 			// Split items to rows
@@ -88,9 +87,8 @@ if ( !class_exists( 'PT_CV_Html_ViewType' ) ) {
 					$idx ++;
 				}
 
-				$list_item = implode( "\n", $row_html );
-
-				$content[] = apply_filters( PT_CV_PREFIX_ . 'row_wrap', $list_item );
+				$list_item	 = implode( "\n", $row_html );
+				$content[]	 = apply_filters( PT_CV_PREFIX_ . 'row_wrap', $list_item );
 			}
 		}
 
@@ -107,10 +105,11 @@ if ( !class_exists( 'PT_CV_Html_ViewType' ) ) {
 			$idx				 = 0;
 			$collapsible_list	 = array();
 			$open_first			 = PT_CV_Functions::setting_value( PT_CV_PREFIX . 'collapsible-open-first-item' );
+			$open_all			 = apply_filters( PT_CV_PREFIX_ . 'collapsible_open_all', false );
 
 			foreach ( $content_items as $post_id => $content_item ) {
 				// Replace class in body of collapsible item, to show one (now is the first item)
-				$class			 = ( $idx++ == 0 && $open_first === 'yes' ) ? 'in' : '';
+				$class			 = ( $open_all || ($idx++ == 0 && $open_first === 'yes') ) ? 'in' : '';
 				$content_item	 = str_replace( PT_CV_PREFIX_UPPER . 'CLASS', $class, $content_item );
 				$content_item	 = PT_CV_Html::content_item_wrap( $content_item, 'panel panel-default', $post_id );
 
@@ -118,15 +117,9 @@ if ( !class_exists( 'PT_CV_Html_ViewType' ) ) {
 				$collapsible_list[] = str_replace( PT_CV_PREFIX_UPPER . 'ID', $random_id, $content_item );
 			}
 
-			// Data attribute
-			$data_attr = apply_filters( PT_CV_PREFIX_ . 'collapsible_data_attr', '' );
-
-			// Collapsible wrapper class
-			$wrapper_class = apply_filters( PT_CV_PREFIX_ . 'wrapper_collapsible_class', 'panel-group' );
-
-			$output = sprintf( '<div class="%s" id="%s" %s>%s</div>', esc_attr( $wrapper_class ), esc_attr( $random_id ), $data_attr, implode( "\n", $collapsible_list ) );
-
-			$content[] = $output;
+			$wrapper_class	 = apply_filters( PT_CV_PREFIX_ . 'wrapper_collapsible_class', 'panel-group' );
+			$output			 = sprintf( '<div class="%s" id="%s">%s</div>', esc_attr( $wrapper_class ), esc_attr( $random_id ), implode( "\n", $collapsible_list ) );
+			$content[]		 = $output;
 		}
 
 		/**
@@ -138,7 +131,6 @@ if ( !class_exists( 'PT_CV_Html_ViewType' ) ) {
 		 * @return array Array of rows, each row contains columns
 		 */
 		static function scrollable_wrapper( $content_items, &$content ) {
-
 			$dargs = PT_CV_Functions::get_global_variable( 'dargs' );
 
 			// ID for the wrapper of scrollable list
@@ -170,7 +162,7 @@ if ( !class_exists( 'PT_CV_Html_ViewType' ) ) {
 
 			// Get wrapper class scrollable
 			$scrollable_class	 = apply_filters( PT_CV_PREFIX_ . 'scrollable_class', 'carousel slide' );
-			$content[]			 = sprintf( '<div id="%s" class="%s" data-ride="carousel" data-interval=%s>%s</div>', esc_attr( $wrapper_id ), esc_attr( $scrollable_class ), $interval, implode( "\n", $scrollable_html ) );
+			$content[]			 = sprintf( '<div id="%s" class="%s" data-ride="cvcarousel" data-interval=%s>%s</div>', esc_attr( $wrapper_id ), esc_attr( $scrollable_class ), esc_attr( $interval ), implode( "\n", $scrollable_html ) );
 		}
 
 		/**

@@ -134,13 +134,17 @@
 			var $wrap_taxonomies = $( '#' + _prefix + 'group-taxonomy' );
 
 			// If there is no taxonomies
+			var is_multi = false;
 			if ( $wrap_taxonomies.find( '.' + _prefix + 'taxonomies .checkbox' ).filter( function () {
 				return !$( this ).hasClass( 'hidden' ) && $( this ).find( 'input:checked' ).length;
 			} ).length > 1 ) {
 				$taxonomy_relation.removeClass( 'hidden' );
+				is_multi = true;
 			} else {
 				$taxonomy_relation.addClass( 'hidden' );
 			}
+
+			$( '.pt-wrap' ).trigger( _prefix + 'multiple-taxonomies', [ is_multi ] );
 		},
 		/**
 		 * Get field value, depends on field type & its parent is show/hide
@@ -491,16 +495,25 @@
 				url: ajaxurl,
 				data: data
 			} ).done( function ( response ) {
-				if ( response == -1 ) {
-					location.reload();
+				var reload = false;
+				if ( response == -1 || response == 0 ) {
+					reload = true;
+					response = "Your session has expired. This page will be reloaded.";
 				}
 
 				preview_box.css( 'opacity', '1' );
+
 				// Hide loading icon
 				preview_box.next().addClass( 'hidden' );
 
 				// Update content of Preview box
 				preview_box.html( response );
+
+				if ( reload ) {
+					location.reload();
+				}
+
+				$self._filter_response( preview_box );
 
 				// Toggle text of this button
 				$this_btn.html( PT_CV_ADMIN.btn.preview.hide );
@@ -511,6 +524,24 @@
 				// Trigger action, to recall function such as pagination, pinterest render layout...
 				$( 'body' ).trigger( _prefix + 'admin-preview' );
 			} );
+		},
+		_filter_response: function ( preview_box ) {
+			var fn_alert_visible_sc = function () {
+				$( '.' + _prefix + 'content', preview_box ).each( function () {
+					var tclass = _prefix + 'caution';
+					$( '.' + tclass ).remove();
+
+					var content = $( this ).html();
+					var regex = /\[[^\]]+\]/;
+					if ( regex.test( content ) ) {
+						$( '<div />', { html: PT_CV_ADMIN.text.visible_shortcode, class: tclass } ).insertBefore( preview_box );
+						return false;
+					}
+				} );
+			};
+			fn_alert_visible_sc();
+
+			$( 'body' ).trigger( _prefix + 'preview-response', [ preview_box ] );
 		},
 		/**
 		 * Toggle 'Thumbnail settings'

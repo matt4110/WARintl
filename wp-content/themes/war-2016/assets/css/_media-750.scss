@@ -96,19 +96,20 @@
 
 
   &--left{
-    width: 45%;
+    width: 35%;
     clear: both;
-    margin-left: 6%;
+    margin-left: 13%;
     padding: 10px;
-    height: 38vw; //keeps circle from skewing as browser width changes -MJ
+    height: 30vw; //keeps circle from skewing as browser width changes -MJ
   }
 
   &--right{
-    width: 45%;
+    width: 35%;
     float: left;
     clear: right;
     padding: 10px;
-    height: 38vw; //keeps circle from skewing as browser width changes -MJ
+    margin-left:7%;
+    height: 30vw; //keeps circle from skewing as browser width changes -MJ
   }
 
 }
@@ -121,6 +122,52 @@
 // 3.5 Boxes
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+@media screen and (max-width:650px){
+	.box-menu{
+  display: block;
+  width: 95%;
+  margin: 20px auto;
+  clear: both;
+
+  &-item{
+    display: flex;
+    float: left;
+    clear: none;
+    width: 100%;
+    margin:0 0 20px 0;
+    padding: 3px;
+    border: 3px solid $black;
+
+    &:nth-child(even){
+      margin-left: 0;
+    }
+  }
+
+  &-split-text{
+
+    h1{
+      font-size: 6vw;
+      margin: 5px 0 0 0;
+    
+      &.small{
+        font-size: 3.5vw;
+      }
+
+      &.medium{
+        font-size: 4.4vw;
+      }
+    }
+
+    p{
+      font-size: 3vw;
+      display: block;
+      width: 97%;
+      margin: 3px auto 0 auto;
+      line-height: 1.15em;
+    }
+  }
+}
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 3.6 Slider

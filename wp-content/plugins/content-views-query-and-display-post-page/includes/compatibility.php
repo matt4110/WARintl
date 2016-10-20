@@ -15,3 +15,18 @@ function cv_filter_js_defer( $defer ) {
 	$defer = "defer ";
 	return $defer;
 }
+
+# Page Builder by SiteOrigin: Excerpt is incorrect
+add_filter( 'pt_cv_field_content_excerpt', 'cv_field_content_excerpt_siteorigin', 9, 3 );
+function cv_field_content_excerpt_siteorigin( $args, $fargs, $this_post ) {
+	// Prevent recursive call
+	if ( empty( $fargs ) ) {
+		return $args;
+	}
+
+	if ( function_exists( 'siteorigin_panels_filter_content' ) ) {
+		$args = siteorigin_panels_filter_content( $args );
+	}
+
+	return $args;
+}

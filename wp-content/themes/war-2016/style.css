@@ -448,7 +448,8 @@ p {
 
 a {
   text-decoration: none;
-  color: inherit; }
+  color: inherit;
+  cursor: pointer; }
   a:visited {
     color: inherit; }
   a:hover {
@@ -870,6 +871,29 @@ div [class$="-12"] {
 // 6.0 Plugins ///////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////*/
+button.pt-cv-more.btn.btn-primary {
+  background-color: #C19563; }
+
+div.pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button {
+  background-color: #C19563;
+  box-shadow: 2px 2px 3px 1px #8e1e16;
+  text-shadow: 1px 1px #9a6f3d; }
+  div.pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button:hover {
+    background-color: #C19563;
+    color: #fff; }
+
+div .pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button.btn.btn-none.pt-cv-filter-option.active {
+  background-color: #C19563;
+  box-shadow: 1px 1px 2px 1px #634728 inset !important;
+  color: #ffffff; }
+
+div .pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button:active {
+  background-color: #C19563;
+  box-shadow: 1px 1px 2px 1px #634728 inset !important; }
+
+.pt-cv-filter-bar .pt-cv-filter-option {
+  border-color: #C19563 !important; }
+
 /*////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 7.0 Media Queries /////////////////////////////////////////////////////////////////////////////////
@@ -991,18 +1015,48 @@ div [class$="-12"] {
     display: none; }
 
   .double-circle--left {
-    width: 45%;
+    width: 35%;
     clear: both;
-    margin-left: 6%;
+    margin-left: 13%;
     padding: 10px;
-    height: 38vw; }
+    height: 30vw; }
   .double-circle--right {
-    width: 45%;
+    width: 35%;
     float: left;
     clear: right;
     padding: 10px;
-    height: 38vw; }
-
+    margin-left: 7%;
+    height: 30vw; } }
+@media screen and (max-width: 750px) and (max-width: 650px) {
+  .box-menu {
+    display: block;
+    width: 95%;
+    margin: 20px auto;
+    clear: both; }
+    .box-menu-item {
+      display: flex;
+      float: left;
+      clear: none;
+      width: 100%;
+      margin: 0 0 20px 0;
+      padding: 3px;
+      border: 3px solid #222; }
+      .box-menu-item:nth-child(even) {
+        margin-left: 0; }
+    .box-menu-split-text h1 {
+      font-size: 6vw;
+      margin: 5px 0 0 0; }
+      .box-menu-split-text h1.small {
+        font-size: 3.5vw; }
+      .box-menu-split-text h1.medium {
+        font-size: 4.4vw; }
+    .box-menu-split-text p {
+      font-size: 3vw;
+      display: block;
+      width: 97%;
+      margin: 3px auto 0 auto;
+      line-height: 1.15em; } }
+@media screen and (max-width: 750px) {
   /*////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   // 4.0 Layout ////////////////////////////////////////////////////////////////////////////////////////
@@ -1061,35 +1115,6 @@ div [class$="-12"] {
   // 3.0 Modules ///////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////*/
-  .box-menu {
-    display: block;
-    width: 95%;
-    margin: 20px auto;
-    clear: both; }
-    .box-menu-item {
-      display: flex;
-      float: left;
-      clear: none;
-      width: 100%;
-      margin: 0 0 20px 0;
-      padding: 3px;
-      border: 3px solid #222; }
-      .box-menu-item:nth-child(even) {
-        margin-left: 0; }
-    .box-menu-split-text h1 {
-      font-size: 6vw;
-      margin: 5px 0 0 0; }
-      .box-menu-split-text h1.small {
-        font-size: 3.5vw; }
-      .box-menu-split-text h1.medium {
-        font-size: 4.4vw; }
-    .box-menu-split-text p {
-      font-size: 3vw;
-      display: block;
-      width: 97%;
-      margin: 3px auto 0 auto;
-      line-height: 1.15em; }
-
   /*////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   // 4.0 Layout ////////////////////////////////////////////////////////////////////////////////////////

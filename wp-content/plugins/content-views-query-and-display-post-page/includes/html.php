@@ -116,7 +116,6 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 		 */
 		static function html_loading_img( $dimension = 15, $class = '' ) {
 			$img = sprintf( '<img width="%1$s" height="%1$s" class="%2$s" alt="%3$s" src="%4$s" /><div class="clear %5$s"></div>', esc_attr( $dimension ), esc_attr( $class ), __( 'Loading...', 'content-views-query-and-display-post-page' ), self::loading_img_src(), PT_CV_PREFIX . 'clear-pagination' );
-
 			return apply_filters( PT_CV_PREFIX_ . 'loading_image', $img );
 		}
 
@@ -141,6 +140,7 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 		/**
 		 * Html output for a link, but style as button
 		 *
+		 * @deprecated since version 2.0
 		 * @param string $link  Value for href attribute of link
 		 * @param string $style Bootstrap type of button
 		 * @param string $text  Text of button
@@ -235,7 +235,6 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 			$classes	 = array( $class );
 			$classes[]	 = PT_CV_PREFIX . 'content-item';
 			$classes[]	 = PT_CV_PREFIX . PT_CV_Functions::setting_value( PT_CV_PREFIX . 'layout-format' );
-			$classes[]	 = PT_CV_Functions::setting_value( PT_CV_PREFIX . 'lf-mobile-disable' ) ? PT_CV_PREFIX . 'nolf' : '';
 			$item_class	 = apply_filters( PT_CV_PREFIX_ . 'content_item_class', $classes, $post_id );
 			$item_filter = apply_filters( PT_CV_PREFIX_ . 'content_item_filter_value', '', $post_id );
 
@@ -243,12 +242,17 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 			do_action( PT_CV_PREFIX_ . 'item_extra_html', $post_id );
 			$html_item .= ob_get_clean();
 
-			$result = sprintf( '<div class="%s" %s>%s</div>', implode( ' ', $item_class ), $item_filter, force_balance_tags( $html_item ) );
+			$result = sprintf( '<div class="%s" %s>%s</div>', esc_attr( implode( ' ', $item_class ) ), cv_sanitize_html_data( $item_filter ), $html_item );
 			return apply_filters( PT_CV_PREFIX_ . 'item_final_html', $result, $post_id );
 		}
 
 		static function no_post_found() {
 			return apply_filters( PT_CV_PREFIX_ . 'content_no_post_found_text', __( 'No posts found.' ) );
+		}
+
+		static function grid_item_wrap( $content_item ) {
+			$class = PT_CV_PREFIX . 'ifield';
+			return "<div class='$class'>$content_item</div>";
 		}
 
 		/**
@@ -262,41 +266,29 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 		 * @return string Full HTML output for Content View
 		 */
 		static function content_items_wrap( $content_items, $current_page, $post_per_page, $id ) {
-
-			$dargs = PT_CV_Functions::get_global_variable( 'dargs' );
-
 			if ( empty( $content_items ) ) {
 				return PT_CV_Functions::debug_output( 'empty content_items', self::no_post_found() );
 			}
 
-			// Assign as global variable
 			PT_CV_Functions::set_global_variable( 'content_items', $content_items );
+			$dargs			 = PT_CV_Functions::get_global_variable( 'dargs' );
+			$content		 = array();
+			$non_paging		 = !defined( 'PT_CV_DOING_PAGINATION' );
+			$before_output	 = $non_paging ? apply_filters( PT_CV_PREFIX_ . 'before_output_html', '' ) : '';
+			$view_type		 = $dargs[ 'view-type' ];
 
-			$full_output = !defined( 'PT_CV_DOING_PAGINATION' );
-
-			// 1. Before output
-			$before_output = $full_output ? apply_filters( PT_CV_PREFIX_ . 'before_output_html', '' ) : '';
-
-			// 2. Output content
-			$content	 = array();
-			$view_type	 = $dargs[ 'view-type' ];
-
-			// Separate items by row, column
 			switch ( $view_type ) {
-
-				// Grid
 				case 'grid':
+					$content_items = array_map( array( __CLASS__, 'grid_item_wrap' ), $content_items );
 					PT_CV_Html_ViewType::grid_wrapper( $content_items, $content );
 
 					break;
 
-				// Collapsible List
 				case 'collapsible':
 					PT_CV_Html_ViewType::collapsible_wrapper( $content_items, $content );
 
 					break;
 
-				// Scrollable List
 				case 'scrollable':
 					PT_CV_Html_ViewType::scrollable_wrapper( $content_items, $content );
 
@@ -312,22 +304,20 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 					break;
 			}
 
-			// Join content
 			$content_list = implode( "\n", $content );
 
-			// Wrap in Page
 			if ( apply_filters( PT_CV_PREFIX_ . 'wrap_in_page', true ) ) {
 				$cols		 = sprintf( 'data-cvc="%s"', (int) $dargs[ 'number-columns' ] );
 				$page_attr	 = apply_filters( PT_CV_PREFIX_ . 'page_attr', $cols, $view_type, $content_items );
-				$html		 = sprintf( '<div id="%s" class="%s" %s>%s</div>', PT_CV_PREFIX . 'page' . '-' . $current_page, PT_CV_PREFIX . 'page', $page_attr, $content_list );
+				$html		 = sprintf( '<div data-id="%s" class="%s" %s>%s</div>', esc_attr( PT_CV_PREFIX . 'page' . '-' . $current_page ), PT_CV_PREFIX . 'page', cv_sanitize_html_data( $page_attr ), $content_list );
 			} else {
 				$html = $content_list;
 			}
 
 			// Wrap in View
-			if ( $full_output ) {
+			if ( $non_paging ) {
 				$use_grid	 = PT_CV_Functions::get_global_variable( 'use_grid', true );
-				$view_class	 = apply_filters( PT_CV_PREFIX_ . 'view_class', array( PT_CV_PREFIX . 'view', PT_CV_PREFIX . $view_type, $use_grid ? PT_CV_PREFIX . 'colsys' : '' ) );
+				$view_class	 = apply_filters( PT_CV_PREFIX_ . 'view_class', array( PT_CV_PREFIX . 'view', PT_CV_PREFIX . $view_type, $use_grid ? PT_CV_PREFIX . 'colsys' : '', PT_CV_Functions::setting_value( PT_CV_PREFIX . 'lf-mobile-disable' ) ? PT_CV_PREFIX . 'nolf' : '' ) );
 				$view_id	 = PT_CV_PREFIX . 'view-' . $id;
 				$output		 = sprintf( '<div class="%s" id="%s">%s</div>', esc_attr( implode( ' ', array_filter( $view_class ) ) ), $view_id, $html );
 
@@ -350,57 +340,37 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 		 * @return string
 		 */
 		static function field_item_html( $field_name, $post, $fargs ) {
-
-			$dargs = PT_CV_Functions::get_global_variable( 'dargs' );
-
 			if ( empty( $field_name ) ) {
 				return '';
 			}
 
 			$html = '';
 
-			// Get other settings
-			$oargs = isset( $dargs[ 'other-settings' ] ) ? $dargs[ 'other-settings' ] : array();
-
 			switch ( $field_name ) {
 
-				// Thumbnail
 				case 'thumbnail':
-
-					if ( empty( $fargs[ 'thumbnail' ] ) ) {
-						break;
+					if ( !empty( $fargs[ 'thumbnail' ] ) ) {
+						$html = self::_field_thumbnail( $post, $fargs );
 					}
-
-					$html = self::_field_thumbnail( $post, $fargs );
 
 					break;
 
-				// Title
 				case 'title':
-
-					$html = self::_field_title( $post, $oargs, $fargs );
+					$html = self::_field_title( $post, $fargs );
 
 					break;
 
-				// Content
 				case 'content':
-
-					if ( empty( $fargs[ 'content' ] ) ) {
-						break;
+					if ( !empty( $fargs[ 'content' ] ) ) {
+						$html = self::_field_content( $post, $fargs );
 					}
-
-					$html = self::_field_content( $post, $fargs );
 
 					break;
 
-				// Meta fields
 				case 'meta-fields':
-
-					if ( empty( $fargs[ 'meta-fields' ] ) ) {
-						break;
+					if ( !empty( $fargs[ 'meta-fields' ] ) ) {
+						$html = self::_field_meta( $post, $fargs[ 'meta-fields' ] );
 					}
-
-					$html = self::_field_meta( $post, $fargs[ 'meta-fields' ] );
 
 					break;
 
@@ -409,108 +379,77 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 					break;
 			}
 
-			return $html;
+			return apply_filters( PT_CV_PREFIX_ . 'item_' . $field_name, $html, $post );
 		}
 
 		/**
 		 * Get Title
 		 *
-		 * @param object $post
-		 * @param array  $oargs
 		 * @return string
 		 */
-		static function _field_title( $post, $oargs, $fargs ) {
-			// Get title class
+		static function _field_title( $post, $fargs ) {
 			$title_class = apply_filters( PT_CV_PREFIX_ . 'field_title_class', PT_CV_PREFIX . 'title' );
-
-			// Get title tag
-			$tag = apply_filters( PT_CV_PREFIX_ . 'field_title_tag', 'h4' );
-
-			// Get post title
-			$title = get_the_title( $post );
+			$tag		 = apply_filters( PT_CV_PREFIX_ . 'field_title_tag', 'h4' );
+			$title		 = get_the_title( $post );
 			if ( empty( $title ) ) {
 				$title = __( '(no title)', 'content-views-query-and-display-post-page' );
 			}
 
-			$title = apply_filters( PT_CV_PREFIX_ . 'field_title_result', $title, $fargs, $post->ID );
-
-			$html = sprintf(
-				'<%1$s class="%2$s">%3$s</%1$s>', $tag, esc_attr( $title_class ), self::_field_href( $oargs, $post, $title )
+			$title	 = apply_filters( PT_CV_PREFIX_ . 'field_title_result', $title, $fargs, $post->ID );
+			$html	 = sprintf(
+				'<%1$s class="%2$s">%3$s</%1$s>', tag_escape( $tag ), esc_attr( $title_class ), self::_field_href( $post, $title )
 			);
 
-			return apply_filters( PT_CV_PREFIX_ . 'field_title_extra', $html, $post );
+			return $html;
 		}
 
 		/**
 		 * Get content
 		 *
-		 * @param object $post
-		 * @param array  $fargs
-		 *
 		 * @return string
 		 */
 		static function _field_content( $post, $fargs ) {
-			$dargs = PT_CV_Functions::get_global_variable( 'dargs' );
-
-			// Get other settings
-			$oargs = isset( $dargs[ 'other-settings' ] ) ? $dargs[ 'other-settings' ] : array();
-
-			// Sets up global post data
 			setup_postdata( $post );
 
-			// Handle the more tag inside content
 			do_action( PT_CV_PREFIX_ . 'handle_teaser' );
 
-			// Get content class
-			$content_class = apply_filters( PT_CV_PREFIX_ . 'field_content_class', PT_CV_PREFIX . 'content' );
+			$content_class	 = apply_filters( PT_CV_PREFIX_ . 'field_content_class', PT_CV_PREFIX . 'content' );
+			$tag			 = apply_filters( PT_CV_PREFIX_ . 'field_content_tag', 'div' );
+			$content		 = '';
 
-			// Get content tag (div/p/span...)
-			$tag = apply_filters( PT_CV_PREFIX_ . 'field_content_tag', 'div' );
-
-			// Get full content/exceprt
-			$content = '';
 			switch ( $fargs[ 'content' ][ 'show' ] ) {
 				case 'excerpt':
 					$length			 = (int) $fargs[ 'content' ][ 'length' ];
 					$readmore_btn	 = '';
-					$dots			 = ' ...';
-					$readmore_html	 = apply_filters( PT_CV_PREFIX_ . 'field_excerpt_dots', 1, $fargs ) ? $dots : '';
+					$show_dots		 = apply_filters( PT_CV_PREFIX_ . 'field_excerpt_dots', 1, $fargs );
+					$tail			 = $show_dots ? ' ...' : '';
 
 					// Read more button
 					if ( apply_filters( PT_CV_PREFIX_ . 'field_content_readmore_enable', 1, $fargs[ 'content' ] ) ) {
-						// Leverage WordPress translation
-						$default_readmore	 = ucwords( rtrim( __( 'Read more...' ), '.' ) );
-						$text				 = apply_filters( PT_CV_PREFIX_ . 'field_content_readmore_text', $default_readmore, $fargs[ 'content' ] );
-						$btn_class			 = apply_filters( PT_CV_PREFIX_ . 'field_content_readmore_class', 'btn btn-success', $fargs );
-						$readmore_btn .= self::_field_href( $oargs, $post, $text, PT_CV_PREFIX . 'readmore ' . $btn_class );
-						$readmore_html .= apply_filters( PT_CV_PREFIX_ . 'field_content_readmore_seperated', '<br/>', $fargs ) . $readmore_btn;
+						$readmore_text	 = self::get_readmore_text( $fargs[ 'content' ] );
+						$btn_class		 = PT_CV_PREFIX . 'readmore ' . apply_filters( PT_CV_PREFIX_ . 'field_content_readmore_class', 'btn btn-success', $fargs );
+						$readmore_btn	 = self::_field_href( $post, $readmore_text, $btn_class );
+						$tail .= apply_filters( PT_CV_PREFIX_ . 'field_content_readmore_seperated', '<br/>', $fargs );
 					}
 
 					// Get excerpt
 					if ( $length > 0 ) {
 						$GLOBALS[ 'cv_excerpt_type' ] = 'content';
 
-						// Get manual excerpt, apply filters => modify $GLOBALS[ 'cv_excerpt_type' ] relatively
 						$full_excerpt = apply_filters( PT_CV_PREFIX_ . 'field_content_excerpt', get_the_content(), $fargs, $post );
 
-						// Limit length
 						if ( apply_filters( PT_CV_PREFIX_ . 'trim_excerpt', $GLOBALS[ 'cv_excerpt_type' ] == 'content' ) ) {
-							$trimmed_excerpt = PT_CV_Functions::cv_trim_words( $full_excerpt, $length );
-							$excerpt		 = apply_filters( PT_CV_PREFIX_ . 'trim_length_excerpt', $trimmed_excerpt, $full_excerpt, $length );
+							$excerpt = PT_CV_Functions::cv_trim_words( $full_excerpt, $length );
 						} else {
 							$excerpt = $full_excerpt;
 						}
 
 						// Append readmore button
-						$hide_readmore	 = apply_filters( PT_CV_PREFIX_ . 'hide_readmore', false, $excerpt, $full_excerpt, $post );
-						$content		 = $excerpt . ($hide_readmore ? '' : $readmore_html);
+						$content = apply_filters( PT_CV_PREFIX_ . 'excerpt_html', ($show_dots ? rtrim( $excerpt, '.' ) : $excerpt) . $tail, $post ) . $readmore_btn;
 					} else {
 						// Display only readmore button if length <= 0
 						$content = $readmore_btn;
 					}
-
-					// Trim period which precedes dots
-					$content = str_replace( '.' . $dots, $dots, $content );
 
 					break;
 
@@ -523,46 +462,23 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 			}
 
 			$content = apply_filters( PT_CV_PREFIX_ . 'field_content_final', $content, $post );
-
-			$html = rtrim( $content, '.' ) ? sprintf(
-					'<%1$s class="%2$s">%3$s</%1$s>', $tag, esc_attr( $content_class ), force_balance_tags( $content )
-				) : '';
+			$html	 = rtrim( $content, '.' ) ? sprintf( '<%1$s class="%2$s">%3$s</%1$s>', tag_escape( $tag ), esc_attr( $content_class ), force_balance_tags( $content ) ) : '';
 
 			return $html;
 		}
 
 		/**
 		 * Output link to item
-		 *
-		 * @param array  $oargs   The other settings
-		 * @param object $post    The post object
-		 * @param string $content The HTML of <a> tag
 		 */
-		static function _field_href( $oargs, $post, $content, $defined_class = '' ) {
+		static function _field_href( $post, $content, $defined_class = '' ) {
+			$dargs	 = PT_CV_Functions::get_global_variable( 'dargs' );
+			$oargs	 = isset( $dargs[ 'other-settings' ] ) ? $dargs[ 'other-settings' ] : array();
 
-			// Open in
-			$open_in = isset( $oargs[ 'open-in' ] ) ? $oargs[ 'open-in' ] : '_blank';
-
-			// Class of href
-			$href_class = apply_filters( PT_CV_PREFIX_ . 'field_href_class', array( $open_in, $defined_class ), $oargs );
-
-			// Custom data
+			$open_in	 = isset( $oargs[ 'open-in' ] ) ? $oargs[ 'open-in' ] : '_blank';
+			$href		 = apply_filters( PT_CV_PREFIX_ . 'field_href', get_permalink( $post->ID ), $post );
+			$href_class	 = apply_filters( PT_CV_PREFIX_ . 'field_href_class', array( $open_in, $defined_class ), $oargs );
 			$custom_attr = apply_filters( PT_CV_PREFIX_ . 'field_href_attrs', array(), $open_in, $oargs );
-
-			// Don't wrap link
-			$no_link = apply_filters( PT_CV_PREFIX_ . 'field_href_no_link', 0, $open_in );
-
-			$href = apply_filters( PT_CV_PREFIX_ . 'field_href', get_permalink( $post->ID ), $post );
-
-			// Change href
-			if ( $no_link && strpos( $defined_class, 'readmore' ) === false ) {
-				$href = 'javascript:void(0)';
-			}
-
-			// Generate a tag
-			$html = sprintf(
-				'<a href="%s" class="%s" target="%s" %s>%s</a>', $href, implode( ' ', array_filter( $href_class ) ), $open_in, implode( ' ', array_filter( $custom_attr ) ), $content
-			);
+			$html		 = sprintf( '<a href="%s" class="%s" target="%s" %s>%s</a>', esc_url( $href ), esc_attr( implode( ' ', array_filter( $href_class ) ) ), esc_attr( $open_in ), cv_sanitize_html_data( implode( ' ', $custom_attr ) ), $content );
 
 			return $html;
 		}
@@ -623,9 +539,7 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 			$html = apply_filters( PT_CV_PREFIX_ . 'field_thumbnail_image_html', $html );
 
 			// Add link to thumbnail
-			$dargs	 = PT_CV_Functions::get_global_variable( 'dargs' );
-			$oargs	 = isset( $dargs[ 'other-settings' ] ) ? $dargs[ 'other-settings' ] : array();
-			$html	 = self::_field_href( $oargs, $post, $html, implode( ' ', array( PT_CV_PREFIX . 'href-thumbnail', PT_CV_PREFIX . 'thumb-' . $thumbnail_position ) ) );
+			$html = self::_field_href( $post, $html, implode( ' ', array( PT_CV_PREFIX . 'href-thumbnail', PT_CV_PREFIX . 'thumb-' . $thumbnail_position ) ) );
 
 			return $html;
 		}
@@ -639,10 +553,8 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 		 * @return string
 		 */
 		static function _field_meta( $post, $fargs ) {
-
 			$html = array();
 
-			// Sets up global post data
 			setup_postdata( $post );
 
 			foreach ( $fargs as $meta => $val ) {
@@ -652,18 +564,15 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 
 				switch ( $meta ) {
 					case 'date':
-						// Get date wrapper class
 						$date_class	 = apply_filters( PT_CV_PREFIX_ . 'field_meta_class', 'entry-date', 'date' );
 						$prefix_text = apply_filters( PT_CV_PREFIX_ . 'field_meta_prefix_text', '', 'date' );
 						$date_format = apply_filters( PT_CV_PREFIX_ . 'field_meta_date_format', get_option( 'date_format' ) );
 						$date		 = apply_filters( PT_CV_PREFIX_ . 'field_meta_date_final', mysql2date( $date_format, $post->post_date ), get_the_time( 'U' ) );
 
-						$html[ 'date' ] = sprintf( '<span class="%s">%s <time datetime="%s">%s</time></span>', esc_html( $date_class ), $prefix_text, esc_attr( get_the_date( 'c' ) ), esc_html( $date ) );
+						$html[ 'date' ] = sprintf( '<span class="%s">%s <time datetime="%s">%s</time></span>', esc_attr( $date_class ), $prefix_text, esc_attr( get_the_date( 'c' ) ), esc_html( $date ) );
 						break;
 
 					case 'taxonomy':
-
-						// Get terms wrapper class
 						$term_class	 = apply_filters( PT_CV_PREFIX_ . 'field_meta_class', 'terms', 'terms' );
 						$prefix_text = apply_filters( PT_CV_PREFIX_ . 'field_meta_prefix_text', __( 'in', 'content-views-query-and-display-post-page' ), 'terms' );
 
@@ -676,7 +585,6 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 
 					case 'comment':
 						if ( !post_password_required() && ( comments_open() || get_comments_number() ) ) :
-							// Get comment wrapper class
 							$comment_class	 = apply_filters( PT_CV_PREFIX_ . 'field_meta_class', 'comments-link', 'comment' );
 							$prefix_text	 = apply_filters( PT_CV_PREFIX_ . 'field_meta_prefix_text', '', 'comment' );
 
@@ -689,8 +597,6 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 						break;
 
 					case 'author':
-
-						// Get author wrapper class
 						$author_class	 = apply_filters( PT_CV_PREFIX_ . 'field_meta_class', 'author', 'author' );
 						$prefix_text	 = apply_filters( PT_CV_PREFIX_ . 'field_meta_prefix_text', __( 'by', 'content-views-query-and-display-post-page' ), 'author' );
 
@@ -724,29 +630,16 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 		 * @return string
 		 */
 		static function _field_meta_wrap( $meta_html, $seperator = NULL ) {
-
 			if ( !$meta_html ) {
 				return '';
 			}
 
-			$seperator = isset( $seperator ) ? $seperator : apply_filters( PT_CV_PREFIX_ . 'field_meta_seperator', ' / ' );
-
-			// Get meta fields class
-			$meta_fields_class = apply_filters( PT_CV_PREFIX_ . 'field_meta_fields_class', PT_CV_PREFIX . 'meta-fields' );
-
-			// Get meta fields tag
-			$tag = apply_filters( PT_CV_PREFIX_ . 'field_meta_fields_tag', 'div' );
-
-			// Define wrapper
-			$wrapper = sprintf(
-				'<%1$s class="%2$s">%3$s</%1$s>', $tag, esc_attr( $meta_fields_class ), '%s'
-			);
-
-			// Join fields
-			$meta_html = implode( $seperator, (array) apply_filters( PT_CV_PREFIX_ . 'meta_field_html', $meta_html ) );
-
-			// Wrap
-			$html = !empty( $meta_html ) ? sprintf( $wrapper, $meta_html ) : '';
+			$seperator	 = isset( $seperator ) ? $seperator : apply_filters( PT_CV_PREFIX_ . 'field_meta_seperator', ' / ' );
+			$class		 = apply_filters( PT_CV_PREFIX_ . 'field_meta_fields_class', PT_CV_PREFIX . 'meta-fields' );
+			$tag		 = apply_filters( PT_CV_PREFIX_ . 'field_meta_fields_tag', 'div' );
+			$wrapper	 = sprintf( '<%1$s class="%2$s">%3$s</%1$s>', tag_escape( $tag ), esc_attr( $class ), '%s' );
+			$meta_html	 = implode( $seperator, (array) apply_filters( PT_CV_PREFIX_ . 'meta_field_html', $meta_html ) );
+			$html		 = !empty( $meta_html ) ? sprintf( $wrapper, $meta_html ) : '';
 
 			return $html;
 		}
@@ -756,42 +649,34 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 		 *
 		 * @param type   $max_num_pages The total of pages
 		 * @param type   $current_page  The current pages
-		 * @param string $session_id    The session ID of current view
+		 * @param string $sid    View ID
 		 *
 		 * @return type
 		 */
-		static function pagination_output( $max_num_pages, $current_page, $session_id ) {
-
-			$dargs = PT_CV_Functions::get_global_variable( 'dargs' );
-
+		static function pagination_output( $max_num_pages, $current_page, $sid ) {
 			if ( !$max_num_pages || (int) $max_num_pages === 1 ) {
 				return '';
 			}
 
-			$pagination_btn = '';
-
-			$type	 = isset( $dargs[ 'pagination-settings' ][ 'type' ] ) ? $dargs[ 'pagination-settings' ][ 'type' ] : 'ajax';
-			$style	 = isset( $dargs[ 'pagination-settings' ][ 'style' ] ) ? $dargs[ 'pagination-settings' ][ 'style' ] : 'regular';
+			$dargs			 = PT_CV_Functions::get_global_variable( 'dargs' );
+			$pagination_btn	 = '';
+			$type			 = isset( $dargs[ 'pagination-settings' ][ 'type' ] ) ? $dargs[ 'pagination-settings' ][ 'type' ] : 'ajax';
+			$style			 = isset( $dargs[ 'pagination-settings' ][ 'style' ] ) ? $dargs[ 'pagination-settings' ][ 'style' ] : 'regular';
 
 			if ( $type == 'normal' || $style == 'regular' ) {
 				$ul_class		 = implode( ' ', array( PT_CV_PREFIX . 'pagination', PT_CV_PREFIX . $type, 'pagination' ) );
-				$pagination_btn	 = sprintf( '<ul class="%s" data-totalpages="%s" data-sid="%s">%s</ul>', $ul_class, esc_attr( $max_num_pages ), esc_attr( $session_id ), PT_CV_Functions::pagination( $max_num_pages, $current_page ) );
+				$pagination_btn	 = sprintf( '<ul class="%s" data-totalpages="%s" data-sid="%s">%s</ul>', $ul_class, esc_attr( $max_num_pages ), esc_attr( $sid ), PT_CV_Functions::pagination( $max_num_pages, $current_page ) );
 			} else {
-				$pagination_btn = apply_filters( PT_CV_PREFIX_ . 'btn_more_html', $pagination_btn, $max_num_pages, $session_id );
+				$pagination_btn = apply_filters( PT_CV_PREFIX_ . 'btn_more_html', $pagination_btn, $max_num_pages, $sid );
 			}
-			// Add loading icon
 			$pagination_btn .= self::html_loading_img( 15, PT_CV_PREFIX . 'spinner' );
 
-			$wrapper_class	 = apply_filters( PT_CV_PREFIX_ . 'pagination_class', '' );
-			$output			 = apply_filters( PT_CV_PREFIX_ . 'pagination_output', sprintf( '<div class="%s">%s</div>', implode( ' ', array( $wrapper_class, PT_CV_PREFIX . 'pagination-wrapper' ) ), $pagination_btn ) );
+			$class	 = esc_attr( implode( ' ', array( apply_filters( PT_CV_PREFIX_ . 'pagination_class', '' ), PT_CV_PREFIX . 'pagination-wrapper' ) ) );
+			$output	 = sprintf( '<div class="%s">%s</div>', $class, $pagination_btn );
 
-			return $output;
+			return apply_filters( PT_CV_PREFIX_ . 'pagination_output', $output );
 		}
 
-		/**
-		 * Get assets content of all selected view types in a page
-		 * by merging css files to public/assets/css/public.css, js files to public/assets/js/public.js
-		 */
 		static function assets_of_view_types() {
 			global $pt_cv_glb, $pt_cv_id;
 
@@ -836,19 +721,15 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 		 * Scripts for Preview & WP frontend
 		 */
 		static function frontend_scripts() {
-			PT_CV_Asset::enqueue( 'bootstrap' );
-
-			// Public script
 			PT_CV_Asset::enqueue(
-				'public', 'script', array(
-				'src'	 => plugins_url( 'public/assets/js/public.js', PT_CV_FILE ),
+				'content-views', 'script', array(
+				'src'	 => plugins_url( 'public/assets/js/cv.js', PT_CV_FILE ),
 				'deps'	 => array( 'jquery' ),
 				)
 			);
 
-			// Localize for Public script
 			PT_CV_Asset::localize_script(
-				'public', PT_CV_PREFIX_UPPER . 'PUBLIC', array(
+				'content-views', PT_CV_PREFIX_UPPER . 'PUBLIC', array(
 				'_prefix'			 => PT_CV_PREFIX,
 				'page_to_show'		 => apply_filters( PT_CV_PREFIX_ . 'pages_to_show', 5 ),
 				'_nonce'			 => wp_create_nonce( PT_CV_PREFIX_ . 'ajax_nonce' ),
@@ -860,9 +741,8 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 				) + apply_filters( PT_CV_PREFIX_ . 'public_localize_script_extra', array() )
 			);
 
-			// Localize for Pagination script
 			PT_CV_Asset::localize_script(
-				array( 'bootstrap', 'bootstrap-admin' ), PT_CV_PREFIX_UPPER . 'PAGINATION', array(
+				array( 'content-views', 'bootstrap-admin' ), PT_CV_PREFIX_UPPER . 'PAGINATION', array(
 				'first'			 => apply_filters( PT_CV_PREFIX_ . 'pagination_first', '&laquo;' ),
 				'prev'			 => apply_filters( PT_CV_PREFIX_ . 'pagination_prev', '&lsaquo;' ),
 				'next'			 => apply_filters( PT_CV_PREFIX_ . 'pagination_next', '&rsaquo;' ),
@@ -886,11 +766,9 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 		 * @global bool $is_IE
 		 */
 		static function frontend_styles() {
-			PT_CV_Asset::enqueue( 'bootstrap', 'style' );
-
 			PT_CV_Asset::enqueue(
 				'public', 'style', array(
-				'src' => plugins_url( 'public/assets/css/public.css', PT_CV_FILE ),
+				'src' => plugins_url( 'public/assets/css/' . (!cv_is_damaged_style() ? 'cv.css' : 'cv.im.css'), PT_CV_FILE ),
 				)
 			);
 
@@ -959,6 +837,28 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 
 		static function is_responsive_image_disabled() {
 			return apply_filters( PT_CV_PREFIX_ . 'disable_responsive_image', PT_CV_Functions::setting_value( PT_CV_PREFIX . 'field-thumbnail-nowprpi' ) );
+		}
+
+		/**
+		 * Return Readmore text, able to get translation from CV, WP
+		 *
+		 * @since 1.9.1
+		 * @param array $args
+		 * @return string
+		 */
+		static function get_readmore_text( $args ) {
+			$result = '';
+			if ( !empty( $args[ 'readmore-text' ] ) ) {
+				$result = stripslashes( cv_sanitize_tag_content( $args[ 'readmore-text' ] ) );
+				// CV translation
+				if ( $result === 'Read More' ) {
+					$result = __( 'Read More', 'content-views-query-and-display-post-page' );
+				}
+			} else {
+				// WP translation
+				$result = ucwords( rtrim( __( 'Read more...' ), '.' ) );
+			}
+			return $result;
 		}
 
 	}

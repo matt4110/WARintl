@@ -143,6 +143,7 @@ p{
 a{
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
   &:visited{
     color: inherit;
   }
@@ -413,7 +414,7 @@ button{
   &--home{
     @include red-stripe-box(100%);
     margin: 0 auto 20px auto;
-    
+
     p{
     color: $off-white;
     }
@@ -764,7 +765,41 @@ div [class$="-12"]{
 // 6.2 Content Views
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+button.pt-cv-more.btn.btn-primary{
+  background-color: $dark-gold;
+}
 
+//This sets the color of the buttons that filter the posts - Matt
+
+
+div.pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button{
+  background-color: $dark-gold;
+  box-shadow: 2px 2px 3px 1px darken($red,10%);
+  text-shadow: 1px 1px darken($dark-gold, 15%);
+  &:hover{
+    background-color: $dark-gold;
+    color: #fff;
+
+  }
+}
+
+div{
+  .pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button.btn.btn-none.pt-cv-filter-option.active{
+    background-color: $dark-gold;
+    box-shadow: 1px 1px 2px 1px darken($dark-gold, 30%) inset !important;
+    color: #ffffff;
+
+  }
+}
+
+div .pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button:active{
+  background-color: $dark-gold;
+  box-shadow: 1px 1px 2px 1px darken($dark-gold, 30%) inset !important;
+}
+
+.pt-cv-filter-bar .pt-cv-filter-option{
+  border-color: $dark-gold !important;
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 6.3 Calendar
