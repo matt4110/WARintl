@@ -14,7 +14,7 @@
 			<span class="sticky-post"><?php _e( 'Featured', 'twentysixteen' ); ?></span>
 		<?php endif; ?>
 
-		<?php the_title( sprintf( '<h2 class="post-title">', '</h2>') ); ?>
+		<?php the_title( sprintf( '<h2>', '</h2>') ); ?>
 	</header><!-- .entry-header -->
 
 	

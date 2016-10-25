@@ -452,6 +452,10 @@ p {
   text-shadow: 1px 1px 2px #9a6f3d;
   font-weight: bold; }
 
+.post-nav-title {
+  font-size: 1.2em;
+  color: #C19563; }
+
 a {
   text-decoration: none;
   color: inherit;
