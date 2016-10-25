@@ -136,8 +136,10 @@ p{
   background: linear-gradient(to right, rgba(186,39,29,.2), rgba(225,189,137,1), rgba(186,39,29,.2));
 }
 
-.entry-title{
-
+.post-title{
+  @include font(3em, $dark-gold);
+  text-shadow: 1px 1px 2px darken($dark-gold, 15%);
+  font-weight: bold;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
