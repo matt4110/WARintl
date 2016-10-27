@@ -34,7 +34,7 @@
 				</div>
 				<ul class="horizontal-list-right no-margin">
 					<li class="horizontal-li--gold-border"><a href="http://store.warchestboutique.com">SHOP WITH A PURPOSE</a></li>
-					<li class="horizontal-li--gold-border"><a href=<?php get_bloginfo( 'url' ); ?>"/get-involved/host-a-party">HOST A PARTY</a></li>
+					<li class="horizontal-li--gold-border"><a href=<?php get_bloginfo( 'url' ); ?>"/take-action/host-a-party">HOST A PARTY</a></li>
 					<li class="horizontal-li--gold-border"><a href=<?php get_bloginfo( 'url' ); ?>"/events">UPCOMING EVENTS</a></li>
 				</ul>
 				<div class="clearfix"></div>
@@ -49,40 +49,33 @@
 							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/about-us/locations-hours/">Location & Hours</a></li>
 							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/about-us/contact-us/">Contact Us</a></li>
 							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/faq">FAQ</a></li>
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/about-us/endorsements/">Endorsements</a></li>
 						</ul>
 					</li>
 					<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"/news">News & Media</a>
 						<ul class="sub-nav">
 							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/events">Upcoming Events</a></li>
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Story Gallery</a></li>
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/sweetie">Sweetie Updates</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/news-media/video-gallery">Video Gallery</a></li>
 						</ul>
 					</li>
-					<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"/get-involved">Take Action</a>
+					<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"/take-action">Take Action</a>
 						<ul class="sub-nav">
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Understand the Risks</a></li>
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Upcoming Events</a></li>
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/host-a-party">Host A Party</a></li>
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Civilian First Responders</a></li>
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Fundraisers</a></li>
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">S.O.A.P. Project</a></li>
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Team WAR</a></li>
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">One Light Defense</a></li>
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Liz Curtis Higgs Event</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/understand-the-risks/">Understand the Risks</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/events">Upcoming Events</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/fundraiser">Fundraisers</a></li>
 						</ul>
 					</li>
 					<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"/programs">Programs</a>
 						<ul class="sub-nav">
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">International Safehouses</a></li>
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Domestic Safehouses</a></li>
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Vocational Training</a></li>
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Micro Enterprises</a></li>
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Education</a></li>
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Orphanages</a></li>
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Outreach</a></li>
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Medical Aid</a></li>
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/">Emergency Intervention</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/sweetie">Sweetie Updates</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/international-safehouses/">International Safehouses</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/domestic-safehouses">Domestic Safehouses</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/vocational-training">Vocational Training</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/micro-enterprises">Micro Enterprises</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/education">Education</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/orphanages">Orphanages</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/outreach">Outreach</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/medical-aid">Medical Aid</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/emergency-intervention">Emergency Intervention</a></li>
 						</ul>
 					</li>
 					<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"/donate">Donate</a></li>
@@ -109,7 +102,7 @@
 					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/home">HOME</a></li>
 					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/about-us">ABOUT US</a></li>
 					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/news-media">NEWS & MEDIA</a></li>
-					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/get-involved">GET INVOLVED</a></li>
+					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/take-action">TAKE ACTION</a></li>
 					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/programs">PROGRAMS</a></li>
 					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/prayer">PRAYER</a></li>
 				</ul>
