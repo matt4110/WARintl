@@ -86,6 +86,12 @@ body{
   margin:25px auto 50px auto;
 }
 
+.light-bg{
+  box-shadow: 0 0 10vw 2vw $off-white inset;
+  padding:20px;
+  background-color: lighten($off-white,5%);
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 2.2 Typography
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -101,12 +107,12 @@ h1{
 }
 
 h2{
-  @include font(2em, $off-white);
+  @include font(2em, $dark-gold);
   font-weight: bold;
 }
 
 h3{
-  @include font(1.5em, $off-white);
+  @include font(1.5em, $dark-gold);
   font-weight: bold;
 }
 
@@ -772,6 +778,7 @@ div [class$="-12"], div [class$="-12"]{
 .grid-3-10{
   margin-right: 5%;
   margin-top: 50px;
+  float: left;
 }
 .grid-3-10:last-child{
   margin-right: 0;
@@ -793,13 +800,14 @@ div [class$="-12"], div [class$="-12"]{
   height:200px;
   padding: -70px 15px 15px 15px;
   background: #fff;
-  box-shadow: 5px 5px 10px #700F0F;
+  box-shadow: 0 0 15px darken($red, 15%) inset;
+  background-color: $red;
 
   h1{
-    color: $dark-red;
-    font-size: 1.5em;
+    color: $off-white;
+    font-size: 1em;
     text-align: center;
-    line-height: 1.5em;
+    line-height: 1rem;
     font-weight: bold;
   }
 
@@ -808,20 +816,21 @@ div [class$="-12"], div [class$="-12"]{
     margin-left: 5%;
     margin-top: 20px;
     margin-bottom: 20px;
-    background-color: #BF0404;
+    background-color: $light-gold;
     height: 3px;
+    border: none;
   }
 
-  #container3 & p{
-    color: $dark-red;
-    font-size: 1.15em;
-    width: 90%;
-    margin-left: 5%;
+  p{
+    line-height: 1rem;
+    font-size: .8rem;
+    margin:5px;
+    color: $off-white;
   }
 
   .faq-top-box-content{
     position: relative;
-    top: -30px;
+    top: -50px;
   }
 
   #circle1{
@@ -896,41 +905,6 @@ div [class$="-12"], div [class$="-12"]{
 
 }
 
-#faq-list{ 
-  color: #fff;
-  float: right;
-  margin-top: 60px;
-
-  li{
-    margin-bottom: 15px;
-    font-size: 1.2em;
-
-    a{
-      color: #dedede;
-
-      &:visited{
-        color: #dedede;
-      }
-
-      &:hover{
-        color: #fff;
-        text-decoration: none;
-      }
-    }
-  }
-
-  h1{
-    font-size: 1.6em;
-    font-weight: bold;
-    color: #c19563;
-  }
-
-  strong{
-    font-size: 1.4em;
-    font-weight: normal;
-    color:#c19563;
-  }
-}
 
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////
