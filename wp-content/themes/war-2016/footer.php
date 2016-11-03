@@ -18,6 +18,10 @@
 					<a href=<?php get_bloginfo( 'url' ); ?>><img id="footer-logo" src="/wp-content/themes/war-2016/assets/images/war-logo.png"></a>
 					<p class="info">(616)855-0796</p>
 					<p class="info"><a href="mailto:info@warinternational.org">info@warinternational.org</a></p>
+					<br>
+					<p class="info"><a href=<?php get_bloginfo('url'); ?>"/career-opportunities/">Career Opportunities</a></p>
+					<p class="info"><a href=<?php get_bloginfo('url'); ?>"/about-us/board-of-directors">Board of Directors</a></p>
+					<p class="info"><a href=<?php get_bloginfo('url'); ?>"/about-us/board-of-reference">Board of Reference</a></p>
 				</div>
 				<div class="footer-right">
 					<a href="http://instagram.com/the_war_chest_boutique/" target="_blank"><img class="footer-icon" src="/wp-content/themes/war-2016/assets/images/icon-instagram.png"></a>
