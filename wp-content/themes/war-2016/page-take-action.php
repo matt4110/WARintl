@@ -1,17 +1,6 @@
 <?php
 /**
- * The main template file
- *
- * This is the most generic template file in a WordPress theme
- * and one of the two required files for a theme (the other being style.css).
- * It is used to display a page when nothing more specific matches a query.
- * E.g., it puts together the home page when no home.php file exists.
- *
- * @link http://codex.wordpress.org/Template_Hierarchy
- *
- * @package WordPress
- * @subpackage Twenty_Sixteen
- * @since Twenty Sixteen 1.0
+ * Template Name: Take Action Page
  */
 
 get_header(); ?>
@@ -20,36 +9,45 @@ get_header(); ?>
 		<main id="main" class="site-main" role="main">
 			<div class="standard-content">
 
-			<?php if ( have_posts() ) : ?>
+			<!-- 1st column -->
+			<div class="column-1-3">
+				<div class="column-box">
+					<h1 class="column-heading" ><a href=<?php get_bloginfo('url'); ?>"">Host a Party</a></h1 class="column-heading" >
+				</div>
+				<div class="column-box">
+					<h1 class="column-heading" ><a href=<?php get_bloginfo('url'); ?>"">Volunteer</a></h1 class="column-heading" >
+				</div>
+				<div class="column-box">
+					<h1 class="column-heading" ><a href=<?php get_bloginfo('url'); ?>"">Join Our Team</a></h1 class="column-heading" >
+				</div>
+			</div>
 
-				<?php if ( is_home() && ! is_front_page() ) : ?>
-					<header>
-						<h1 class="post-title screen-reader-text"><?php single_post_title(); ?></h1>
-					</header>
-				<?php endif; ?>
+			<div class="column-1-3">
+				<div class="column-box">
+					<h1 class="column-heading" ><a href=<?php get_bloginfo('url'); ?>"">Join our Professional Circle</a></h1 class="column-heading" >
+				</div>
+				<div class="column-box">
+					<h1 class="column-heading" ><a href=<?php get_bloginfo('url'); ?>"">Share your creative skills</a></h1 class="column-heading" >
+				</div>
+				<div class="column-box">
+					<h1 class="column-heading" ><a href=<?php get_bloginfo('url'); ?>"">Become a Circle of Protection</a></h1 class="column-heading" >
+				</div>
+			</div>
 
-				<?php
-				// Start the loop.
-				while ( have_posts() ) : the_post();
+			<div class="column-1-3">
+				<div class="column-box">
+					<h1 class="column-heading" ><a href=<?php get_bloginfo('url'); ?>"">Give Items Old & New</a></h1 class="column-heading" >
+				</div>
+				<div class="column-box">
+					<h1 class="column-heading" ><a href=<?php get_bloginfo('url'); ?>"">Give Through Your Purchases</a></h1 class="column-heading" >
+				</div>
+				<div class="column-box">
+					<h1 class="column-heading" ><a href=<?php get_bloginfo('url'); ?>"">Give your sweat, space, or fundraising solutions</a></h1 class="column-heading" >
+				</div>
+			</div>
+			<div class="clearfix">
 
-					/*
-					 * Include the Post-Format-specific template for the content.
-					 * If you want to override this in a child theme, then include a file
-					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-					 */
-					get_template_part( 'template-parts/content', get_post_format() );
-
-				// End the loop.
-				endwhile;
-
-			// If no content, include the "No posts found" template.
-			else :
-				get_template_part( 'template-parts/content', 'none' );
-
-			endif;
-			?>
-
-			</div><!-- .standard-content -->
+			</div><!-- .standard-content --> 
 		</main><!-- .site-main -->
 	</div><!-- .content-area -->
 

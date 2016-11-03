@@ -46,6 +46,6 @@
 <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 <script type="text/javascript" src=<?php get_bloginfo( 'url' ); ?>"/wp-content/themes/war-2016/assets/js/slider.js"></script>
 <script type="text/javascript" src=<?php get_bloginfo( 'url' ); ?>"/wp-content/themes/war-2016/assets/js/scripts.js"></script>
-
+<!-- live reload --> <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 </body>
 </html>
