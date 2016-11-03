@@ -433,6 +433,11 @@ p {
   line-height: 1.8em;
   letter-spacing: .07rem; }
 
+.small-text {
+  font-size: 0.75rem;
+  color: #444;
+  line-height: 1.3rem; }
+
 .gold-heading {
   text-align: center;
   margin: 0;
@@ -463,7 +468,7 @@ p {
   color: #C19563; }
 
 .column-heading {
-  font-size: 1.5rem;
+  font-size: 2.25vw;
   color: #C19563; }
 
 a {
@@ -675,22 +680,23 @@ button {
 .column-1-3 {
   float: left;
   clear: none;
-  width: 19vw;
-  margin-left: 4vw; }
+  width: 30%;
+  margin-left: 3%; }
   .column-1-3:first-child {
     margin-left: 0; }
+
+.column-img {
+  display: inline-block;
+  max-width: 100%; }
 
 .column-box {
   display: inline-block;
   vertical-align: middle;
   width: 100%;
-  height: 250px;
+  height: 25vw;
   margin-bottom: 25px;
   padding: 0 25px;
-  background: -webkit-linear-gradient(top, #fff5f5, rgba(255, 189, 137, 0) 90%);
-  background: -moz-linear-gradient(bottom, #fff5f5, rgba(255, 189, 137, 0) 90%);
-  background: -o-linear-gradient(bottom, #fff5f5, rgba(255, 189, 137, 0) 90%);
-  background: linear-gradient(to bottom, #fff5f5, rgba(255, 189, 137, 0) 90%); }
+  background: snow; }
 
 .wrapper-carousel {
   max-width: 2000px;
