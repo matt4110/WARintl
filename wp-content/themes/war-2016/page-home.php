@@ -112,7 +112,7 @@ get_header(); ?>
 					<div style="padding:2%;" class="box-menu-split-text">
 						<h1>Civilian<br>First</h1>
 						<h1 class="medium">Responder</h1>
-						<p>Learn to recognize the signs of sex trafficking within your scope of influence</p>
+						<p>Learn to notice the signs of trafficking within your scope of influence</p>
 					</div>
 				</div>
 
