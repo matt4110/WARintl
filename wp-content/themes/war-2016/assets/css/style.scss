@@ -117,14 +117,18 @@ h3{
 }
 
 p{
-  @include font(1em, $black);
-  line-height: 1.8em;
-  letter-spacing: .07rem;
+  @include font(1rem, $gray);
+  line-height: 1.5em;
+  letter-spacing: .06rem;
 }
 
 .small-text{
-  @include font(.75rem, $gray);
+  @include font(1.2vw, $gray);
   line-height: 1.3rem;
+}
+
+.white-text{
+  @include font(1.15rem, $off-white);
 }
 
 .gold-heading{
@@ -475,6 +479,7 @@ button{
   clear: none;
   width: 30%;
   margin-left: 3%;
+  margin-top: 50px;
 
   &:first-child{
     margin-left: 0;
@@ -494,6 +499,7 @@ button{
   margin-bottom: 25px;
   padding: 0 25px;
   background: rgb(255,250,250);
+  border: 2px solid lighten($light-gold, 15%);
   //background: -webkit-linear-gradient(top, rgba(255,245,245,1), rgba(255,189,137,0) 99%);
   //background: -moz-linear-gradient(bottom, rgba(255,245,245,1), rgba(255,189,137,0) 99%);
   //background: -o-linear-gradient(bottom, rgba(255,245,245,1), rgba(255,189,137,0) 99%);
@@ -755,7 +761,12 @@ button{
 // 4.4 Post
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+img.alignright {float:right; margin:0 0 1em 1em}
+img.alignleft {float:left; margin:0 1em 1em 0}
+img.aligncenter {display: block; margin-left: auto; margin-right: auto}
+a img.alignright {float:right; margin:0 0 1em 1em}
+a img.alignleft {float:left; margin:0 1em 1em 0}
+a img.aligncenter {display: block; margin-left: auto; margin-right: auto}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 4.5 The Grid

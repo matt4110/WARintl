@@ -428,15 +428,19 @@ h3 {
   font-weight: bold; }
 
 p {
-  font-size: 1em;
-  color: #222;
-  line-height: 1.8em;
-  letter-spacing: .07rem; }
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.5em;
+  letter-spacing: .06rem; }
 
 .small-text {
-  font-size: 0.75rem;
+  font-size: 1.2vw;
   color: #444;
   line-height: 1.3rem; }
+
+.white-text {
+  font-size: 1.15rem;
+  color: #F5EDE0; }
 
 .gold-heading {
   text-align: center;
@@ -681,7 +685,8 @@ button {
   float: left;
   clear: none;
   width: 30%;
-  margin-left: 3%; }
+  margin-left: 3%;
+  margin-top: 50px; }
   .column-1-3:first-child {
     margin-left: 0; }
 
@@ -696,7 +701,8 @@ button {
   height: 25vw;
   margin-bottom: 25px;
   padding: 0 25px;
-  background: snow; }
+  background: snow;
+  border: 2px solid #f1dfc6; }
 
 .wrapper-carousel {
   max-width: 2000px;
@@ -857,6 +863,32 @@ button {
   line-height: .75rem;
   float: left;
   margin-top: 5px; }
+
+img.alignright {
+  float: right;
+  margin: 0 0 1em 1em; }
+
+img.alignleft {
+  float: left;
+  margin: 0 1em 1em 0; }
+
+img.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
+a img.alignright {
+  float: right;
+  margin: 0 0 1em 1em; }
+
+a img.alignleft {
+  float: left;
+  margin: 0 1em 1em 0; }
+
+a img.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
 
 .grid-1-12 {
   width: 8.33%; }
@@ -1102,6 +1134,12 @@ div .pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button:active {
   .standard-content {
     width: 85vw; }
 
+  .small-text {
+    font-size: 1.7vw; }
+
+  .column-heading {
+    font-size: 2.9vw; }
+
   /*////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   // 3.0 Modules ///////////////////////////////////////////////////////////////////////////////////////
@@ -1130,6 +1168,10 @@ div .pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button:active {
 
   .box-menu {
     width: 95%; }
+
+  .column-box {
+    height: 30vw;
+    padding: 0 10px; }
 
   /*////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1163,6 +1205,13 @@ div .pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button:active {
   ////////////////////////////////////////////////////////////////////////////////////////////////////*/
   .standard-content {
     width: 90vw; }
+
+  .small-text {
+    font-size: 3.5vw;
+    line-height: 3.5vw; }
+
+  .column-heading {
+    font-size: 3.5vw; }
 
   /*////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1215,6 +1264,10 @@ div .pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button:active {
       margin: 3px auto 0 auto;
       line-height: 1.15em; } }
 @media screen and (max-width: 750px) {
+  .column-box {
+    height: 57vw;
+    padding: 0 5px; }
+
   /*////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   // 4.0 Layout ////////////////////////////////////////////////////////////////////////////////////////

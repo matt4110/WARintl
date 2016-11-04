@@ -143,7 +143,7 @@ get_header(); ?>
 				<div class="row">
 					<img class="double-circle--left" src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/dbl-circle-left.png">
 					<img class="double-circle--right" src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/dbl-circle-right.png">
-					<p>Women At Risk, International (WAR Int'l) is a Michigan based, nonprofit organization, established to create circles of protection around at-risk women and children. Through culturally sensitive, value-added intervention projects and partnerships, we provide safe places to heal from abuse, trafficking, exploitation, and more. Our passion is to empower survivors to live and work with dignity and hope.<br><br>
+					<p class="white-text">Women At Risk, International (WAR Int'l) is a Michigan based, nonprofit organization, established to create circles of protection around at-risk women and children. Through culturally sensitive, value-added intervention projects and partnerships, we provide safe places to heal from abuse, trafficking, exploitation, and more. Our passion is to empower survivors to live and work with dignity and hope.<br><br>
 					Our programs and partnerships span the globe, reaching over 40 countries, including the United States. Each month, additional projects and partnerships are formed, increasing our ability to offer the rescued and at-risk a "hand-up" instead of a handout.</p>
 				</div>
 				<div class="clearfix"></div>
