@@ -109,6 +109,17 @@
 	padding: 20px;
 	width:100%;
 
+	&-sub{
+		font-size: .85rem;
+		background-color:darken($gray, 21%);
+		padding: 17px;
+
+		&:hover{
+			background-color: $off-white;
+			color: $gray;
+		}
+	}
+
 	&:hover{
 		background-color:$off-white;
 		color: $black;

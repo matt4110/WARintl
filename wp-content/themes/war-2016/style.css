@@ -1171,6 +1171,13 @@ div .pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button:active {
   .mobile-nav-li {
     padding: 20px;
     width: 100%; }
+    .mobile-nav-li-sub {
+      font-size: .85rem;
+      background-color: #0e0e0e;
+      padding: 17px; }
+      .mobile-nav-li-sub:hover {
+        background-color: #F5EDE0;
+        color: #444; }
     .mobile-nav-li:hover {
       background-color: #F5EDE0;
       color: #222; }
