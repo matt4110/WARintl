@@ -60,7 +60,7 @@
 					<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"/take-action/">Take Action</a>
 						<ul class="sub-nav">
 							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/understand-the-risks/">Understand the Risks</a></li>
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/events/">Upcoming Events</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/upcoming-events/">Upcoming Events</a></li>
 							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/host-a-party/">Host A Party</a></li>
 						</ul>
 					</li>

@@ -475,6 +475,19 @@ p {
   font-size: 2.25vw;
   color: #C19563; }
 
+.cta-header {
+  font-size: 5vw;
+  color: #F5EDE0;
+  font-weight: bold;
+  margin: 5px 0 15px; }
+
+.cta-link {
+  font-size: 2.5vw;
+  color: #F5EDE0;
+  text-align: center;
+  width: 100%;
+  display: block; }
+
 a {
   text-decoration: none;
   color: inherit;
@@ -508,6 +521,9 @@ input[type="submit"] {
 
 button {
   border: none; }
+
+img {
+  max-width: 100%; }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -648,6 +664,10 @@ button {
         font-size: 1.5vw; }
       .box-menu-split-text h1.medium {
         font-size: 2.2vw; }
+      .box-menu-split-text h1.programs {
+        font-size: 2.3vw;
+        padding: 5vw 0 0 0;
+        text-align: left; }
     .box-menu-split-text p {
       font-size: 1.2vw;
       display: block;
@@ -668,13 +688,13 @@ button {
   background-image: url("/wp-content/themes/war-2016/assets/images/red-box-pattern.jpg");
   background-repeat: repeat;
   width: 100%;
-  padding: 2%;
+  padding: 25px 2%;
   color: #F5EDE0; }
   .red-stripe-box--home {
     background-image: url("/wp-content/themes/war-2016/assets/images/red-box-pattern.jpg");
     background-repeat: repeat;
     width: 100%;
-    padding: 2%;
+    padding: 25px 2%;
     margin: 0 auto 20px auto; }
     .red-stripe-box--home p {
       color: #F5EDE0; }
@@ -768,6 +788,10 @@ button {
       right: 0;
       border-radius: 3px 0px 0px 3px; }
 
+.square-img {
+  width: 20vw;
+  height: 20vw; }
+
 #mission-box {
   background-color: #BA271D;
   box-shadow: 0 0 25px 10px #a4221a inset;
@@ -785,13 +809,6 @@ button {
   background-image: url(/wp-content/themes/war-2016/assets/images/filigree-pattern-black.png);
   background-repeat: repeat-x;
   line-height: .7em; }
-
-.cta {
-  background-color: #BA271D;
-  width: 100%;
-  box-shadow: 0 0 10% 10% #781913 inset; }
-  .cta h1 {
-    font-size: 2.5em; }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -927,13 +944,13 @@ a img.aligncenter {
   width: 30%; }
 
 .grid-1-3 {
-  width: 30%;
-  margin-left: 4.5%;
+  width: 20%;
+  margin-left: 15%;
   float: left;
   clear: none; }
 
 .grid-1-3:first-child {
-  margin-left: 0; }
+  margin-left: 5%; }
 
 .row {
   clear: both; }
