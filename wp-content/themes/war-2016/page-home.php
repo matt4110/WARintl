@@ -59,24 +59,31 @@ get_header(); ?>
 		<div class="row">
 				<div class="box-menu-item">
 					<div class="box-menu-image">
+						<a href="http://warchestboutique.com">
 						<img src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/box-store.jpg">
+						</a>
 					</div>
 					<div class="box-menu-split-text">
+						<a href="http://warchestboutique.com">
 						<h1>shop</h1>
 						<h1 class="small">with a</h1>
 						<h1>purpose</h1>
 						<p>Gifts of International Distinction</p>
+						</a>
 					</div>
-
 				</div>
 
 				<div class="box-menu-item">
 					<div class="box-menu-image">
+						<a href=<?php get_bloginfo('url'); ?>"/programs/us-training-center/">
 						<img src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/box-ustc.jpg">
+						</a>
 					</div>
 					<div class="box-menu-split-text">
+						<a href=<?php get_bloginfo('url'); ?>"/programs/us-training-center/">
 						<h1>U.S.<br>Training<br>Center</h1>
 						<p>Healing Hearts in the Homeland</p>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -84,22 +91,30 @@ get_header(); ?>
 			<div class="row">
 				<div class="box-menu-item">
 					<div class="box-menu-image">
+						<a href=<?php get_bloginfo('url'); ?>"/host-a-party/">
 						<img src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/box-party.jpg">
+						</a>
 					</div>
 					<div class="box-menu-split-text">
+						<a href=<?php get_bloginfo('url'); ?>"/host-a-party/">
 						<h1>Host A<br>Party</h1>
 						<img style="max-width: 100%; margin-bottom:0;" src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/icon-host-a-party.png">
 						<p style="text-align: center;">SAVE A LIFE</p>
+						</a>
 					</div>
 				</div>
 
 				<div class="box-menu-item">
 					<div class="box-menu-image">
+						<a href=<?php get_bloginfo('url'); ?>"/take-action/">
 						<img src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/box-get-involved.jpg">
+						</a>
 					</div>
 					<div style="padding:2%;" class="box-menu-split-text">
-						<h1>Get<br>Involved</h1>
+						<a href=<?php get_bloginfo('url'); ?>"/take-action/">
+						<h1>Take<br>Action</h1>
 						<p>Donate your time, talent, or treasure to help rescue, redeem, & empower</p>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -107,12 +122,16 @@ get_header(); ?>
 			<div class="row">
 				<div class="box-menu-item">
 					<div class="box-menu-image">
+						<a href=<?php get_bloginfo('url'); ?>"/programs/civilian-first-responder-cfr/">
 						<img src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/box-cfr.jpg">
+						</a>
 					</div>
 					<div style="padding:2%;" class="box-menu-split-text">
+						<a href=<?php get_bloginfo('url'); ?>"/programs/civilian-first-responder-cfr/">
 						<h1>Civilian<br>First</h1>
 						<h1 class="medium">Responder</h1>
 						<p>Learn to notice the signs of trafficking within your scope of influence</p>
+						</a>
 					</div>
 				</div>
 
