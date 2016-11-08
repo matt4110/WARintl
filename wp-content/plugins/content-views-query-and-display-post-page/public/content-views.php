@@ -21,7 +21,6 @@ class PT_Content_Views {
 	 * @var      string
 	 */
 	protected $plugin_slug = PT_CV_DOMAIN;
-
 	/**
 	 * Instance of this class.
 	 *
@@ -69,17 +68,6 @@ class PT_Content_Views {
 
 		// Custom hooks for both preview & frontend
 		PT_CV_Hooks::init();
-	}
-
-	/**
-	 * Return the plugin slug.
-	 *
-	 * @since    1.0.0
-	 *
-	 * @return    Plugin slug variable.
-	 */
-	public function get_plugin_slug() {
-		return $this->plugin_slug;
 	}
 
 	/**

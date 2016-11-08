@@ -617,10 +617,8 @@ if ( !class_exists( 'PT_CV_Functions' ) ) {
 				$pt_cv_glb = array();
 			}
 
-			$pt_cv_id = $view_id;
-			if ( !isset( $pt_cv_glb[ $pt_cv_id ] ) ) {
-				$pt_cv_glb[ $pt_cv_id ] = array();
-			}
+			$pt_cv_id				 = $view_id;
+			$pt_cv_glb[ $pt_cv_id ]	 = array();
 
 			$view_settings								 = array_map( 'esc_sql', $settings );
 			$pt_cv_glb[ $pt_cv_id ][ 'view_settings' ]	 = $view_settings;
@@ -1046,7 +1044,8 @@ if ( !class_exists( 'PT_CV_Functions' ) ) {
 				}
 			}
 
-			$args[ 'offset' ] = apply_filters( PT_CV_PREFIX_ . 'settings_args_offset', $offset );
+			$args[ 'offset' ]			 = apply_filters( PT_CV_PREFIX_ . 'settings_args_offset', $offset );
+			$args[ 'by_contentviews' ]	 = true;
 		}
 
 		/**

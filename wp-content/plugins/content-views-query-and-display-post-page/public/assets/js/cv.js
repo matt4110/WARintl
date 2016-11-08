@@ -1,4 +1,4 @@
-/*! content-views 09-2016 */
+/*! content-views 10-2016 */
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.

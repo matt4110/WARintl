@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Define values for input, select...
  *
@@ -16,6 +15,7 @@ if ( !class_exists( 'PT_CV_Values' ) ) {
 	 * @todo Define values for input, select...
 	 */
 	class PT_CV_Values {
+
 		/**
 		 * Get Post Types
 		 *
@@ -109,25 +109,6 @@ if ( !class_exists( 'PT_CV_Values' ) ) {
 		}
 
 		/**
-		 * Get taxonomies of Post type
-		 *
-		 * @param string $object Name of the post type, or a post object
-		 * @param string $output The type of output to return, either taxonomy 'names' or 'objects'
-		 *
-		 * @return array
-		 */
-		static function taxonomy_by_post_type( $object, $output = 'names' ) {
-			$data	 = get_object_taxonomies( $object, $output );
-			$result	 = array();
-
-			foreach ( (array) $data as $taxonomy ) {
-				$result[ $taxonomy ] = self::taxonomy_info( $taxonomy, 'singular_name' );
-			}
-
-			return $result;
-		}
-
-		/**
 		 * Get taxonomy information
 		 *
 		 * @param string $taxonomy The name of the taxonomy
@@ -186,18 +167,6 @@ if ( !class_exists( 'PT_CV_Values' ) ) {
 			}
 
 			return $result;
-		}
-
-		/**
-		 * Show Hide options
-		 *
-		 * @return array
-		 */
-		static function show_hide() {
-			return array(
-				'show'	 => __( 'Show', 'content-views-query-and-display-post-page' ),
-				'hide'	 => __( 'Hide', 'content-views-query-and-display-post-page' ),
-			);
 		}
 
 		/**
@@ -273,18 +242,6 @@ if ( !class_exists( 'PT_CV_Values' ) ) {
 				'author'	 => __( 'Author' ),
 				)
 			);
-		}
-
-		/**
-		 * Show WP author dropdown list by WP wp_dropdown_users functions
-		 *
-		 * @return array
-		 */
-		static function post_author( $name = 'author', $data = array() ) {
-			$field_name	 = PT_CV_PREFIX . $name;
-			$selected	 = isset( $data[ $field_name ] ) ? $data[ $field_name ] : '';
-
-			return wp_dropdown_users( array( 'name' => $field_name, 'selected' => $selected, 'class' => 'form-control', 'show_option_none' => sprintf( '- %s -', __( 'Select' ) ), 'echo' => false ) );
 		}
 
 		/**
@@ -455,25 +412,6 @@ if ( !class_exists( 'PT_CV_Values' ) ) {
 			}
 
 			$result = apply_filters( PT_CV_PREFIX_ . 'field_thumbnail_sizes', $result );
-
-			return $result;
-		}
-
-		/**
-		 * Tab Position
-		 *
-		 * @return array
-		 */
-		static function tab_position() {
-
-			$tab_position = array(
-				'top'	 => __( 'Top', 'content-views-query-and-display-post-page' ),
-				'left'	 => __( 'Left' ),
-				'bottom' => __( 'Bottom', 'content-views-query-and-display-post-page' ),
-				'right'	 => __( 'Right' ),
-			);
-
-			$result = apply_filters( PT_CV_PREFIX_ . 'tab_position', $tab_position );
 
 			return $result;
 		}

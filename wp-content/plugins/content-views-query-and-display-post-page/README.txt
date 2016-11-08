@@ -4,7 +4,7 @@ Donate link: https://www.contentviewspro.com/pricing/?utm_source=wporg&utm_mediu
 Tags: post, posts, page, pages, grid, author, category, categories, tag, responsive, title, thumbnail, content
 Requires at least: 3.3
 Tested up to: 4.6.1
-Stable tag: 1.9.1
+Stable tag: 1.9.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -115,6 +115,12 @@ If you are using "Your latest posts" as home page, you should paste this code `<
 
 
 == Changelog ==
+
+= 1.9.2 - October 24 2016 =
+* Fix: [Compatibility with FacetWP plugin] empty settings (View does not exist), missing posts in output when reload page after filtering by FacetWP search form
+* Revert force_balance_tags() for item HTML wrapper, to prevent broken output
+* Tweak: Remove unused functions
+* Tweak: Introduce filter "pt_cv_pagination_text" to customize pagination text
 
 = 1.9.1 - October 10 2016 =
 * Fix: XSS security flaw (a big thank to Tristan Madani)

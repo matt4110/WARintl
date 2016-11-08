@@ -242,7 +242,7 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 			do_action( PT_CV_PREFIX_ . 'item_extra_html', $post_id );
 			$html_item .= ob_get_clean();
 
-			$result = sprintf( '<div class="%s" %s>%s</div>', esc_attr( implode( ' ', $item_class ) ), cv_sanitize_html_data( $item_filter ), $html_item );
+			$result = sprintf( '<div class="%s" %s>%s</div>', esc_attr( implode( ' ', $item_class ) ), cv_sanitize_html_data( $item_filter ), force_balance_tags( $html_item ) );
 			return apply_filters( PT_CV_PREFIX_ . 'item_final_html', $result, $post_id );
 		}
 
@@ -395,7 +395,7 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 				$title = __( '(no title)', 'content-views-query-and-display-post-page' );
 			}
 
-			$title	 = apply_filters( PT_CV_PREFIX_ . 'field_title_result', $title, $fargs, $post->ID );
+			$title	 = apply_filters( PT_CV_PREFIX_ . 'field_title_result', $title, $fargs, $post );
 			$html	 = sprintf(
 				'<%1$s class="%2$s">%3$s</%1$s>', tag_escape( $tag ), esc_attr( $title_class ), self::_field_href( $post, $title )
 			);
@@ -742,18 +742,18 @@ if ( !class_exists( 'PT_CV_Html' ) ) {
 			);
 
 			PT_CV_Asset::localize_script(
-				array( 'content-views', 'bootstrap-admin' ), PT_CV_PREFIX_UPPER . 'PAGINATION', array(
-				'first'			 => apply_filters( PT_CV_PREFIX_ . 'pagination_first', '&laquo;' ),
-				'prev'			 => apply_filters( PT_CV_PREFIX_ . 'pagination_prev', '&lsaquo;' ),
-				'next'			 => apply_filters( PT_CV_PREFIX_ . 'pagination_next', '&rsaquo;' ),
-				'last'			 => apply_filters( PT_CV_PREFIX_ . 'pagination_last', '&raquo;' ),
-				'goto_first'	 => apply_filters( PT_CV_PREFIX_ . 'goto_first', __( 'Go to first page', 'content-views-query-and-display-post-page' ) ),
-				'goto_prev'		 => apply_filters( PT_CV_PREFIX_ . 'goto_prev', __( 'Go to previous page', 'content-views-query-and-display-post-page' ) ),
-				'goto_next'		 => apply_filters( PT_CV_PREFIX_ . 'goto_next', __( 'Go to next page', 'content-views-query-and-display-post-page' ) ),
-				'goto_last'		 => apply_filters( PT_CV_PREFIX_ . 'goto_last', __( 'Go to last page', 'content-views-query-and-display-post-page' ) ),
-				'current_page'	 => apply_filters( PT_CV_PREFIX_ . 'current_page', __( 'Current page is', 'content-views-query-and-display-post-page' ) ),
-				'goto_page'		 => apply_filters( PT_CV_PREFIX_ . 'goto_page', __( 'Go to page', 'content-views-query-and-display-post-page' ) ),
-				)
+				array( 'content-views', 'bootstrap-admin' ), PT_CV_PREFIX_UPPER . 'PAGINATION', apply_filters( PT_CV_PREFIX_ . 'pagination_text', array(
+				'first'			 => '&laquo;',
+				'prev'			 => '&lsaquo;',
+				'next'			 => '&rsaquo;',
+				'last'			 => '&raquo;',
+				'goto_first'	 => __( 'Go to first page', 'content-views-query-and-display-post-page' ),
+				'goto_prev'		 => __( 'Go to previous page', 'content-views-query-and-display-post-page' ),
+				'goto_next'		 => __( 'Go to next page', 'content-views-query-and-display-post-page' ),
+				'goto_last'		 => __( 'Go to last page', 'content-views-query-and-display-post-page' ),
+				'current_page'	 => __( 'Current page is', 'content-views-query-and-display-post-page' ),
+				'goto_page'		 => __( 'Go to page', 'content-views-query-and-display-post-page' ),
+				) )
 			);
 
 			// Load Pro scripts
