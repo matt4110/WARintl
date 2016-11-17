@@ -94,8 +94,7 @@ get_header(); ?>
 					</div>
 					<div style="padding:2%;" class="box-menu-split-text">
 						<a href=<?php get_bloginfo('url'); ?>"/programs/civilian-first-responder-cfr/">
-						<h1>Civilian<br>First</h1>
-						<h1 class="medium">Responder</h1>
+						<h1 class="medium">Civilian<br>First<br>Responder</h1>
 						<p>Learn to notice the signs of trafficking within your scope of influence</p>
 						</a>
 					</div>

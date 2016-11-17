@@ -25,9 +25,8 @@
 				</div>
 				<div class="footer-right">
 					<a href="http://instagram.com/the_war_chest_boutique/" target="_blank"><img class="footer-icon" src="/wp-content/themes/war-2016/assets/images/icon-instagram.png"></a>
-					<a href="http://pinterest.com" target="_blank"><img class="footer-icon" src="/wp-content/themes/war-2016/assets/images/icon-pinterest.png"></a>
+					<a href="https://www.pinterest.com/womenatriskintl/" target="_blank"><img class="footer-icon" src="/wp-content/themes/war-2016/assets/images/icon-pinterest.png"></a>
 					<a href="http://youtube.com/womenatrisk" target="_blank"><img class="footer-icon" src="/wp-content/themes/war-2016/assets/images/icon-youtube.png"></a>
-					<a href="http://twitter.com/WARpresident/" target="_blank"><img class="footer-icon" src="/wp-content/themes/war-2016/assets/images/icon-twitter.png"></a>
 					<a href="http://facebook.com/womenatrisk/" target="_blank"><img class="footer-icon" src="/wp-content/themes/war-2016/assets/images/icon-facebook.png"></a>
 				</div>
 				<div class="clearfix"></div>
@@ -50,6 +49,6 @@
 <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 <script type="text/javascript" src=<?php get_bloginfo( 'url' ); ?>"/wp-content/themes/war-2016/assets/js/slider.js"></script>
 <script type="text/javascript" src=<?php get_bloginfo( 'url' ); ?>"/wp-content/themes/war-2016/assets/js/scripts.js"></script>
-<!-- live reload --> <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+
 </body>
 </html>

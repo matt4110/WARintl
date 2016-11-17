@@ -14,20 +14,20 @@ get_header(); ?>
 					    <a href=""><h2>CFR</h2></a>
 					    <img class="square-img" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-grfirst.jpg">
 					    <p>Jan 13-14, 2017</p>
-					    <p>Grand Rapids First Assembly<br>2100 44th St<br>Wyoming, MI 49519</p>
+					    <p>GR First Assembly<br>2100 44th St<br>Wyoming, MI 49519</p>
 					</div>
 
 
 					<div class="grid-1-3">
-					    <a href=""><h2>CFR</h2></a>
-					    <img class="square-img" src="">
-					    <p>date here</p>
-					    <p>location here</p>
+					    <a href=<?php get_bloginfo('url'); ?>"/teamwar"><h2>Gazelle Girl</h2></a>
+					    <img class="square-img" src=<?php get_bloginfo('url'); ?>"/images/teamwar-square.jpg">
+					    <p>Feb 28, 2017</p>
+					    <p>Calder Plaza<br>Grand Rapids, MI 49503</p>
 					</div>
 
 
 					<div class="grid-1-3">
-					    <a href=""><h2>CFR</h2></a>
+					    <a href=""><h2>Circle Tour</h2></a>
 					    <img class="square-img" src="">
 					    <p>date here</p>
 					    <p>location here</p>
