@@ -30,7 +30,7 @@ Text Domain: twentysixteen
  //   3.5 Boxes
  //   3.6 Slider
  //   3.7 Image Grid
- //   3.8 Light Box
+ //   3.8 Call to Action
  //   3.9 Mission Statement
  //   3.10 Filigree
  //
@@ -167,18 +167,6 @@ p{
   @include font(2.25vw, $dark-gold);
 }
 
-.cta-header{
-  @include font(5vw, $off-white);
-  font-weight: bold;
-  margin: 5px 0 15px
-}
-
-.cta-link{
-  @include font(2.5vw, $off-white);
-  text-align: center;
-  width: 100%;
-  display: block;
-}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 2.3 Links
@@ -249,6 +237,7 @@ img{
 p img{
   border: 1px solid $light-gold;
 }
+
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -641,10 +630,31 @@ p img{
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-// 3.8 Light Box
+// 3.8 Call to Action
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+.cta-grid{
+  width: 15%; 
+  margin-left: 13.75%; 
+  float:left; 
+  clear:none;
+}
 
+.cta-header{
+  @include font(6.5vw, $off-white);
+  font-weight: bold;
+  margin: 5px 0 35px 13.75%;
+}
+
+.cta-link{
+  @include font(2.5vw, $light-gold);
+  text-align: center;
+  font-weight: bold;
+  width: 100%;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 20px;
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 3.9 Mission Statement

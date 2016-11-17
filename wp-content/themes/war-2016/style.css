@@ -475,19 +475,6 @@ p {
   font-size: 2.25vw;
   color: #C19563; }
 
-.cta-header {
-  font-size: 5vw;
-  color: #F5EDE0;
-  font-weight: bold;
-  margin: 5px 0 15px; }
-
-.cta-link {
-  font-size: 2.5vw;
-  color: #F5EDE0;
-  text-align: center;
-  width: 100%;
-  display: block; }
-
 a {
   text-decoration: none;
   color: inherit;
@@ -793,6 +780,28 @@ p img {
 
 .square-img {
   width: 20vw; }
+
+.cta-grid {
+  width: 15%;
+  margin-left: 13.75%;
+  float: left;
+  clear: none; }
+
+.cta-header {
+  font-size: 6.5vw;
+  color: #F5EDE0;
+  font-weight: bold;
+  margin: 5px 0 35px 13.75%; }
+
+.cta-link {
+  font-size: 2.5vw;
+  color: #E1BD89;
+  text-align: center;
+  font-weight: bold;
+  width: 100%;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 20px; }
 
 #mission-box {
   background-color: #BA271D;
