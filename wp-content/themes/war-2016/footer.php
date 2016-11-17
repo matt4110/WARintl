@@ -24,10 +24,10 @@
 					<p class="info"><a href=<?php get_bloginfo('url'); ?>"/about-us/board-of-reference">Board of Reference</a></p>
 				</div>
 				<div class="footer-right">
-					<a href="http://instagram.com/the_war_chest_boutique/" target="_blank"><img class="footer-icon" src="/wp-content/themes/war-2016/assets/images/icon-instagram.png"></a>
-					<a href="https://www.pinterest.com/womenatriskintl/" target="_blank"><img class="footer-icon" src="/wp-content/themes/war-2016/assets/images/icon-pinterest.png"></a>
-					<a href="http://youtube.com/womenatrisk" target="_blank"><img class="footer-icon" src="/wp-content/themes/war-2016/assets/images/icon-youtube.png"></a>
 					<a href="http://facebook.com/womenatrisk/" target="_blank"><img class="footer-icon" src="/wp-content/themes/war-2016/assets/images/icon-facebook.png"></a>
+					<a href="http://instagram.com/the_war_chest_boutique/" target="_blank"><img class="footer-icon" src="/wp-content/themes/war-2016/assets/images/icon-instagram.png"></a>
+					<a href="http://youtube.com/womenatrisk" target="_blank"><img class="footer-icon" src="/wp-content/themes/war-2016/assets/images/icon-youtube.png"></a>
+					<a href="https://www.pinterest.com/womenatriskintl/" target="_blank"><img class="footer-icon" src="/wp-content/themes/war-2016/assets/images/icon-pinterest.png"></a>
 				</div>
 				<div class="clearfix"></div>
 			</div>
