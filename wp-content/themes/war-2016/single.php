@@ -10,7 +10,7 @@
 get_header(); ?>
 
 <div id="primary" class="post-content">
-	<main id="main" class="site-main" role="main">
+	<main id="main-taco" class="site-main" role="main">
 		<div class="standard-content">
 			<?php
 			// Start the loop.
@@ -27,14 +27,14 @@ get_header(); ?>
 				if ( is_singular( 'attachment' ) ) {
 					// Parent post navigation.
 					the_post_navigation( array(
-						'prev_text' => _x( '<span class="meta-nav">Published in</span><span class="post-nav-title">%title</span>', 'Parent post link', 'twentysixteen' ),
+						'prev_text' => _x( '<span class="meta-nav">Published in</span><span class="post-title">%title</span>', 'Parent post link', 'twentysixteen' ),
 					) );
 				} elseif ( is_singular( 'post' ) ) {
 					// Previous/next post navigation.
 					the_post_navigation( array(
 						'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'twentysixteen' ) . '</span> ' .
 							'<span class="screen-reader-text">' . __( 'Next post:', 'twentysixteen' ) . '</span> ' .
-							'<span class="post-nav-title">%title</span>',
+							'<span class="post-title">%title</span>',
 						'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Previous', 'twentysixteen' ) . '</span> ' .
 							'<span class="screen-reader-text">' . __( 'Previous post:', 'twentysixteen' ) . '</span> ' .
 							'<span class="post-nav-title">%title</span>',
@@ -44,9 +44,9 @@ get_header(); ?>
 				// End of the loop.
 			endwhile;
 			?>
-
 		</div><!-- .standard-content -->
-
+		
+		<?php get_template_part( 'partials/take-action' );?> <!--#Call to Action Module-->
 	</main><!-- .site-main -->
 
 

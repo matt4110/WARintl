@@ -51,6 +51,5 @@
 
 			
 		?>
-		<?php get_template_part( 'partials/take-action' );?> <!--#Call to Action Module-->
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->
