@@ -4,11 +4,8 @@
 */
 //include bootstrap
 //get_template_part( 'partials/bootstrap' );?>
-<div class="filigree" style="margin-top:75px;">&nbsp;</div>
-<div class="red-stripe-box" style="margin-bottom: 75px;">
-	<!--<div class="row">
-		<h1 class="cta-header">Take Action</h1>
-	</div>-->
+<div class="filigree-white" style="margin-top:75px;">&nbsp;</div>
+<div class="white-stripe-box" style="margin-bottom: 75px;">
 	<div class="row">
 			<div class="cta-grid">
 				<a href="http://warinternational.org/donate"><img src="https://warinternational.org/wp-content/uploads/2016/09/take-action-donate.png"></a>
