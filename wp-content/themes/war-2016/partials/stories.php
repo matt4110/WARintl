@@ -17,8 +17,8 @@
 	$args = array( 'numberposts' => 99, 'post_type' => 'program', 'orderby'=>'title', 'order'=>'ASC', 'meta_key' => 'program_type', 'meta_value' =>$storyType);
 	$myposts = get_posts( $args );
 	if($myposts != null) {
-		echo '<div class = "row">';
-		echo '<div class = "col-md-2"></div><div class = "col-md-8">';
+		echo '<div class = "programs-container">';
+		echo '<div class = "col-md-3"></div><div class = "row">';
 		$i = 0;
 		foreach( $myposts as $post )
 		{
@@ -27,7 +27,7 @@
 			$mypostsCombo;
 			foreach( $myposts2 as $post2 )
 			{ ?>
-			<div class = "pull-left text-center" style = "text-align: center;"> 
+			<div class = "grid-1-3 text-center" style = "text-align: center;"> 
 				<a href="<?php echo get_post_permalink($post2->ID); ?>">
 				<?php $img_id = get_post_meta($post2->ID, 'picture', true);
 				$image_attributes = wp_get_attachment_image_src( $img_id ); // returns an array
@@ -39,17 +39,17 @@
 			}
 			$i++;
 			if (($i % 3) == 0) {
-				echo '</div><div class="col-md-2"></div>';
+				echo '</div><div class="col-md-3"></div>';
 				echo '</div>';
 				//If there are more than 6 programs create a hidden div to hold the excess
 				if ($i == 6) {
 					echo '<div id =  "hideStories" style="display:none;">';
 				}
-				echo '<div class = "row">';
-				echo '<div class = "col-md-2"></div><div class = "col-md-8">';
+				echo '<div class = "programs-container">';
+				echo '<div class = "col-md-3"></div><div class = "row">';
 			}
 		}
-		echo '</div><div class = "col-md-2"></div>';
+		echo '</div><div class = "col-md-3"></div>';
 		echo '</div>';
 		//Create endcap for hidden div
 		if ($i >= 7) {

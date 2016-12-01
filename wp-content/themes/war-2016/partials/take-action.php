@@ -13,9 +13,9 @@
 				<a class="cta-link" href="http://warinternational.org/donate">Donate</a>
 			</div>
 			<div class="cta-grid">
-				<a href="http://warinternational.org/get-involved"><img src="https://warinternational.org/wp-content/uploads/2016/09/take-action-volunteer.png"></a>
+				<a href="http://warinternational.org/take-action"><img src="https://warinternational.org/wp-content/uploads/2016/09/take-action-volunteer.png"></a>
 				</br>
-				<a class="cta-link" href="http://warinternational.org/get-involved">Volunteer</a>
+				<a class="cta-link" href="http://warinternational.org/take-action">Volunteer</a>
 			</div>
 			<div class="cta-grid" >
 				<a href="http://warchestboutique.com/"><img src="https://warinternational.org/wp-content/uploads/2016/09/take-action-shop.png"></a>

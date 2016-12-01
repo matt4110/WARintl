@@ -442,6 +442,10 @@ p {
   font-size: 1.15rem;
   color: #F5EDE0; }
 
+.small-white-text {
+  font-size: 0.8rem;
+  color: #F5EDE0; }
+
 .gold-heading {
   text-align: center;
   margin: 0;
@@ -474,6 +478,9 @@ p {
 .column-heading {
   font-size: 2.25vw;
   color: #C19563; }
+
+.centered {
+  text-align: center; }
 
 a {
   text-decoration: none;
@@ -674,6 +681,19 @@ p img {
   width: 500px;
   box-shadow: 0 0 50px 50px #781913 inset; }
 
+.red-box2 {
+  background-color: #BA271D;
+  width: 100px;
+  box-shadow: 0 0 25px 10px #8e1e16 inset;
+  height: 25%;
+  padding: 1.5%; }
+  .red-box2 h3 {
+    margin-top: 0;
+    margin-bottom: .5%; }
+  .red-box2 hr {
+    width: 85%;
+    margin-top: 1.5%; }
+
 .red-stripe-box {
   background-image: url("/wp-content/themes/war-2016/assets/images/red-box-pattern.jpg");
   background-repeat: repeat;
@@ -793,22 +813,23 @@ p img {
   margin-left: 13.75%;
   float: left;
   clear: none; }
+  .cta-grid .cta-link {
+    font-size: 2.5vw;
+    color: #E1BD89;
+    text-align: center;
+    font-weight: bold;
+    width: 100%;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 20px; }
+    .cta-grid .cta-link:hover {
+      color: #C19563; }
 
 .cta-header {
   font-size: 6.5vw;
   color: #F5EDE0;
   font-weight: bold;
   margin: 5px 0 35px 13.75%; }
-
-.cta-link {
-  font-size: 2.5vw;
-  color: #E1BD89;
-  text-align: center;
-  font-weight: bold;
-  width: 100%;
-  text-transform: uppercase;
-  display: block;
-  margin-top: 20px; }
 
 #mission-box {
   background-color: #BA271D;
@@ -848,7 +869,7 @@ p img {
   background-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent), url("/wp-content/themes/war-2016/assets/images/headerPattern.jpg"); }
 
 #seal {
-  width: 14%;
+  width: 12%;
   max-height: 200px;
   max-width: 200px;
   float: left; }
@@ -866,7 +887,7 @@ p img {
 
 #logo {
   position: relative;
-  top: 50px;
+  top: 40px;
   left: -15px; }
 
 #footer {
@@ -975,6 +996,12 @@ a img.aligncenter {
 
 .row {
   clear: both; }
+
+.programs-container {
+  clear: both;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto; }
 
 div [class$="-12"], div [class$="-10"] {
   float: left;
@@ -1222,6 +1249,9 @@ section #huge_it_videogallery {
   #donate {
     right: 50px; }
 
+  .programs-container {
+    width: 66%; }
+
   .about-home {
     width: 95%; }
 
@@ -1353,6 +1383,10 @@ section #huge_it_videogallery {
 
   .grid-1-3:first-child {
     margin-left: 3%; }
+
+  .programs-container {
+    width: 95%;
+    max-width: 100%; }
 
   .about-home p {
     float: none;

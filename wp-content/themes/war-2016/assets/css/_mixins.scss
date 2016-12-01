@@ -21,6 +21,11 @@
 	box-shadow: 0 0 $w / 10 $w / 10 darken($red, 15%) inset;
 }
 
+@mixin red-box2($w:100%){
+	background-color: $red;
+	width: $w;
+	box-shadow: 0 0 $w / 4 $w / 10 darken($red, 10%) inset;
+}
 
 @mixin red-stripe-box($w:100%){
 	background-image: url("/wp-content/themes/war-2016/assets/images/red-box-pattern.jpg");
