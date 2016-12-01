@@ -870,8 +870,8 @@ p img {
 
 #seal {
   width: 12%;
-  max-height: 200px;
-  max-width: 200px;
+  max-height: 150px;
+  max-width: 150px;
   float: left; }
 
 #donate {
