@@ -24,7 +24,7 @@ get_header(); ?>
 					<div>
 						<a href="<?php the_permalink(); ?>">
 						<?php $image =wp_get_attachment_url( get_post_thumbnail_id($post->ID) );  ?> 
-						<img class="alignleft" style="width: 30%;" src="<?php echo $image; ?>"></a>
+						<img class="alignleft" style="width: 20%;" src="<?php echo $image; ?>"></a>
 	
 						<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 						<?php the_excerpt(); ?>
