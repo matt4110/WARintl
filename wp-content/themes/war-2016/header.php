@@ -62,6 +62,8 @@
 							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/understand-the-risks/">Understand the Risks</a></li>
 							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/upcoming-events/">Upcoming Events</a></li>
 							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/host-a-party/">Host A Party</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/circle-tour/">Circle Tour</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/teamwar/">Team WAR</a></li>
 						</ul>
 					</li>
 					<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"/programs/">Programs</a>
@@ -110,6 +112,8 @@
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/understand-the-risks/">Understand the Risks</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/upcoming-events/">Upcoming Events</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/host-a-party/">Host a Party</a></li>
+						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/circle-tour/">Circle Tour</a></li>
+						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/teamwar/">Team WAR</a></li>
 					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/programs">PROGRAMS</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/sweetie/">Sweetie Updates</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/international-safehouses/">International Safehouses</a></li>

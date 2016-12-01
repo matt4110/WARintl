@@ -401,7 +401,7 @@ body {
 
 .standard-content {
   width: 66vw;
-  margin: 25px auto 50px auto; }
+  margin: 25px auto 75px auto; }
 
 .light-bg {
   box-shadow: 0 0 10vw 2vw #F5EDE0 inset;
@@ -892,7 +892,6 @@ p img {
 
 #footer {
   background-color: #eee;
-  margin-top: 75px;
   padding: 25px 50px 50px 50px;
   min-height: 50%; }
   #footer .info {
