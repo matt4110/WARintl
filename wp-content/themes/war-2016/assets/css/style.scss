@@ -240,7 +240,7 @@ img{
   max-width:100%;
 }
 
-p img{
+p img, .border, .entry-content img{
   border: 1px solid $light-gold;
 }
 
