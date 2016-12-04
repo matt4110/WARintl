@@ -46,10 +46,10 @@ get_header(); ?>
 			?>
 		</div><!-- .standard-content -->
 
-		<?php get_template_part( 'partials/take-action' );?> <!--#Call to Action Module-->
+		
 	</main><!-- .site-main -->
 
 
 </div><!-- .content-area -->
-
+<?php get_template_part( 'partials/take-action' );?> <!--#Call to Action Module-->
 <?php get_footer(); ?>

@@ -11,26 +11,26 @@ get_header(); ?>
 			<div class="standard-content">
 				<div class="row">
 					<div class="grid-1-3">
-					    <a href=""><h2>CFR</h2></a>
-					    <img class="square-img" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-grfirst.jpg">
+					    <a href=<?php get_bloginfo('url'); ?>"/cfr/"><h2>CFR</h2>
+					    <img class="square-img" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-grfirst.jpg"></a>
 					    <p>Jan 13-14, 2017</p>
 					    <p>GR First Assembly<br>2100 44th St<br>Wyoming, MI 49519</p>
 					</div>
 
 
 					<div class="grid-1-3">
-					    <a href=<?php get_bloginfo('url'); ?>"/teamwar"><h2>Gazelle Girl</h2></a>
-					    <img class="square-img" src=<?php get_bloginfo('url'); ?>"/images/teamwar-square.jpg">
+					    <a href=<?php get_bloginfo('url'); ?>"/teamwar"><h2>Gazelle Girl</h2>
+					    <img class="square-img" src=<?php get_bloginfo('url'); ?>"/images/teamwar-square.jpg"></a>
 					    <p>Feb 28, 2017</p>
 					    <p>Calder Plaza<br>Grand Rapids, MI 49503</p>
 					</div>
 
 
 					<div class="grid-1-3">
-					    <a href=""><h2>Circle Tour</h2></a>
-					    <img class="square-img" src="">
-					    <p>date here</p>
-					    <p>location here</p>
+					    <a href=<?php get_bloginfo('url'); ?>"/circle-tour/"><h2>Circle Tour</h2>
+					    <img class="square-img" src=""></a>
+					    <p>February 2017</p>
+					    <p>Thailand</p>
 					</div>
 				</div>
 

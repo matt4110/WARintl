@@ -5,7 +5,7 @@
 //include bootstrap
 //get_template_part( 'partials/bootstrap' );?>
 <div class="filigree-white" style="margin-top:75px;">&nbsp;</div>
-<div class="white-stripe-box" style="margin-bottom: 75px;">
+<div class="white-stripe-box">
 	<div class="row">
 			<div class="cta-grid">
 				<a href="http://warinternational.org/donate"><img src="https://warinternational.org/wp-content/uploads/2016/09/take-action-donate.png"></a>
@@ -25,3 +25,4 @@
 	</div>
 	<div class="clearfix"></div>
 </div>
+<div class="filigree-white">&nbsp;</div>
