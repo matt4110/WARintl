@@ -640,7 +640,8 @@ p img, .border, .entry-content img {
     flex-grow: 1;
     flex-basis: 57.5%; }
     .box-menu-image img {
-      max-width: 100%; }
+      max-width: 100%;
+      margin-bottom: -6px; }
   .box-menu-split-text {
     flex-grow: 1;
     flex-basis: 42.5%;

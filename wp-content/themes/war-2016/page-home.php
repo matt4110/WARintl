@@ -105,8 +105,10 @@ get_header(); ?>
 						<img src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/box-stories.jpg">
 					</div>
 					<div class="box-menu-split-text">
+						<a href=<?php get_bloginfo('url'); ?>"/random-story/">
 						<h1>Stories<br>of hope</h1>
 						<p>Learn how your purchase lifts lifes to dignity</p>
+						</a>
 					</div>
 				</div>
 			</div>

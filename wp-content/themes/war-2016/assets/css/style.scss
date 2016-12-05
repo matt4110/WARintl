@@ -426,6 +426,7 @@ p img, .border, .entry-content img{
     flex-basis: 57.5%;
     img{
       max-width: 100%;
+      margin-bottom: -6px; //This fixes the bottom alignment between img and text box, but sometimes it doesn't need it
     }
   }
 
