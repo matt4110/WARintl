@@ -29,9 +29,8 @@ get_template_part( 'partials/bootstrap' );?>
 			</div>
 			</br>
 			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12"><h2 class="text-center">Vocational Training</h2></div>
+				<div class="col-md-12 col-sm-12 col-xs-12"><h1 class="text-center">Vocational Training</h1></div>
 			</div>
-			</br>
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12"><p>Baking. Sewing. Jewelry-making. Cosmetology. Agriculture. These are just of few of the opportunities awaiting the women and men involved in our vocational training programs, where they are learning viable skills geared to the local culture and job market. Some of these programs operate from within safehouses; others take place in day programs or community centers, but all share a common goal of equipping and empowering survivors to support themselves, offering them the hope of a better life.</p></div>
 			</div>

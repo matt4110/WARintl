@@ -414,8 +414,9 @@ html {
 
 h1 {
   font-size: 3em;
-  color: #F5EDE0;
-  font-weight: bold; }
+  color: #C19563;
+  font-weight: bold;
+  margin: 0; }
 
 h2 {
   font-size: 2em;
@@ -424,6 +425,11 @@ h2 {
 
 h3 {
   font-size: 1.5em;
+  color: #C19563;
+  font-weight: bold; }
+
+h4 {
+  font-size: 1.75vw;
   color: #C19563;
   font-weight: bold; }
 

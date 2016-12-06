@@ -29,9 +29,8 @@ get_template_part( 'partials/bootstrap' );?>
 			</div>
 			</br>
 			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12"><h2 class="text-center">Medical Aid</h2></div>
+				<div class="col-md-12 col-sm-12 col-xs-12"><h1 class="text-center">Medical Aid</h1></div>
 			</div>
-			</br>
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12"><p>Where health and medical issues threaten to devastate and disempower, Women At Risk, International (WAR, Int'l) and its partners seek to make a difference. Our Medical Aid programs address a diverse array of problems, including acid attacks, disease, disability, and lack of clean water. Working within cultural boundaries and operating through partnerships and scholarships, WAR, Int'l reaches into lives and communities across the globe to offer hope and healing to those at risk.</p></div>
 			</div>

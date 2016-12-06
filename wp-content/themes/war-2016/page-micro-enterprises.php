@@ -29,9 +29,8 @@ get_template_part( 'partials/bootstrap' );?>
 			</div>
 			</br>
 			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12"><h2 class="text-center">Microenterprise</h2></div>
+				<div class="col-md-12 col-sm-12 col-xs-12"><h1 class="text-center">Microenterprise</h1></div>
 			</div>
-			</br>
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12"><p>One woman raises goats and sells the milk; another sells rainwater collected in a cistern. Two sisters operate a laundry business; a mother tailors exquisite garments from her home while her children play at her feet. Still others design greeting cards, sew handbags, or craft fine jewelry, working each day in the company of "sisters" or "brothers" who have shared their journey. These are the faces of the people in our micro-enterprise programs--businesses created to enable rescued and at-risk women and men to support themselves with dignity.</p></div>
 			</div>

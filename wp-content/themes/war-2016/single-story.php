@@ -19,7 +19,7 @@ get_template_part( 'partials/bootstrap' );?>
 			$programID = get_post_meta($post->ID, 'program', true);
 			?>
 			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12 text-center"><h1 style="color:black;"><?php echo the_title();?></h1></div>
+				<div class="col-md-12 col-sm-12 col-xs-12 text-center"><h1 style="color:black; margin:0.67em 0;"><?php echo the_title();?></h1></div>
 			</div>
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12 text-center"><?php echo get_the_title($programID);?></div>

@@ -103,8 +103,9 @@ html{
 }
 
 h1{
-  @include font(3em, $off-white);
+  @include font(3em, $dark-gold);
   font-weight: bold;
+  margin: 0;
 }
 
 h2{
@@ -114,6 +115,11 @@ h2{
 
 h3{
   @include font(1.5em, $dark-gold);
+  font-weight: bold;
+}
+
+h4{
+  @include font(1.75vw, $dark-gold);
   font-weight: bold;
 }
 
@@ -362,6 +368,7 @@ p img, .border, .entry-content img{
 .story-nav{
   padding-top: 50px;
 }
+
 .prev-posts{
   float: left;
   display: inline;

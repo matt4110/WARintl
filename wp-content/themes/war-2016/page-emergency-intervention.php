@@ -23,9 +23,8 @@ get_template_part( 'partials/bootstrap' );?>
 			</div>
 			</br>
 			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12"><h2 class="text-center">Emergency Intervention</h2></div>
+				<div class="col-md-12 col-sm-12 col-xs-12"><h1 class="text-center">Emergency Intervention</h1></div>
 			</div>
-			</br>
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12"><p>In a world in which order continues to pull toward chaos, intervention frequently takes on an urgency: an immediate rescue must take place, a pressing need must be met, critical aid must be given. Emergency Intervention programs make it possible for us to come to the aid of our partners on short notice in situations like these when the need for action, resources, or funds is paramount.</p></div>
 			</div>

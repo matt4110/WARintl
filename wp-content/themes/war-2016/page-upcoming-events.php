@@ -33,6 +33,7 @@ get_header(); ?>
 					    <p>Thailand</p>
 					</div>
 				</div>
+				<div class="clearfix">&nbsp;</div>
 
 				<?php echo do_shortcode("[Spider_Calendar id='2' theme='13' default='month' select='month,list,week,day,']"); ?>
 				

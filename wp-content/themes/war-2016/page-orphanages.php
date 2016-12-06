@@ -26,9 +26,8 @@ get_template_part( 'partials/bootstrap' );?>
 			</div>
 			</br>
 			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12"><h2 class="text-center">Orphans</h2></div>
+				<div class="col-md-12 col-sm-12 col-xs-12"><h1 class="text-center">Orphanages</h1></div>
 			</div>
-			</br>
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12"><p>All over the world, Women At Risk, International (WAR, Int'l) partners are answering the call to "care for the least of these," providing homes where orphaned, abandoned, and at-risk children are protected and nurtured. Whether caring for children without parents or sheltering children at risk of being sold or abused, each home provides a safe, loving environment where children can flourish.</p></div>
 			</div>

@@ -29,9 +29,8 @@ get_template_part( 'partials/bootstrap' );?>
 			</div>
 			</br>
 			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12"><h2 class="text-center">Domestic Safehouses</h2></div>
+				<div class="col-md-12 col-sm-12 col-xs-12"><h1 class="text-center">Domestic Safehouses</h1></div>
 			</div>
-			</br>
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12"><p>Because what makes a survivor feel safe varies widely from one culture to the next, safehouses in various countries often look quite different from one another. However, the function and goals are the same. Like their overseas counterparts, safehouses in the U.S. aim to provide a safe and secure environment for survivors to heal while empowering them to begin renewed lives of value, dignity, and purpose.</p></div>
 			</div>

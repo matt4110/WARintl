@@ -26,9 +26,8 @@ get_template_part( 'partials/bootstrap' );?>
 			</div>
 			</br>
 			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12"><h2 class="text-center">Education</h2></div>
+				<div class="col-md-12 col-sm-12 col-xs-12"><h1 class="text-center">Education</h1></div>
 			</div>
-			</br>
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12"><p>Whether lighting the fires of academic learning or preventing abuse through knowledge, education can make a powerful difference in the lives of at-risk adults, teens, and children. Some educational programs facilitate schools for children in at-risk communities, while others provide opportunities for vulnerable teens or rescued survivors to finish high school or go to college. Education also takes the form of preventative programs designed to increase awareness about risk, trafficking, and abuse.</p></div>
 			</div>

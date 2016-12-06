@@ -26,9 +26,9 @@ get_template_part( 'partials/bootstrap' );?>
 			</div>
 			</br>
 			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12"><h2 class="text-center">Outreach</h2></div>
+				<div class="col-md-12 col-sm-12 col-xs-12"><h1 class="text-center">Outreach</h1></div>
 			</div>
-			</br>
+
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12"><p>At the heart of outreach is a desire to speak into the lives of those at risk. Some efforts center on the adult entertainment industry; others strive to reach victims of trafficking or abuse; still others focus on prevention. Though their missions and methods vary, all of Women At Risk, International (WAR, Int'l)'s outreach partners share a passion for the wounded and a desire to see them set free and empowered.</p></div>
 			</div>

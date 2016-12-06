@@ -26,9 +26,8 @@ get_template_part( 'partials/bootstrap' );?>
 			</div>
 			</br>
 			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12"><h2 class="text-center">International Safehouses</h2></div>
+				<div class="col-md-12 col-sm-12 col-xs-12"><h1 class="text-center">International Safehouses</h1></div>
 			</div>
-			</br>
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12"><p>A safehouse is more than just a home; it is a place of healing, support, and liberation. A safehouse may provide shelter or it may function as a non-residential center, offering vocational training programs and other services within a safe and secure setting. Although our international partners vary from culture to culture in the methods they use, their hearts maintain the same goals and passion: to rescue, restore, and empower the at-risk and the wounded.</p></div>
 			<div class="row">
