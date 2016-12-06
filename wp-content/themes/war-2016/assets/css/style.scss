@@ -359,6 +359,23 @@ p img, .border, .entry-content img{
   z-index:10000000000000;
 }
 
+.story-nav{
+  padding-top: 50px;
+}
+.prev-posts{
+  float: left;
+  display: inline;
+  clear: none;
+  margin-left: 30vw;
+}
+
+.next-posts{
+  display: inline;
+  float: left;
+  clear: none;
+  margin-left: 10vw;
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 3.2 Forms
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -846,7 +863,17 @@ a img.aligncenter {display: block; margin-left: auto; margin-right: auto}
 .grid-10-12 {width: 83.33%;}
 .grid-11-12 {width: 91.66%;}
 
-.grid-1-3{width: 30%; margin-left: 5%; float:left; clear:none;}
+.grid-1-3{
+  width: 30%; 
+  margin-left: 5%; 
+  float:left; 
+  clear:none;
+
+  h2{
+    font-size: 3.5vw;
+  }
+
+}
 .grid-1-3:first-child{margin-left:0;}
 
 

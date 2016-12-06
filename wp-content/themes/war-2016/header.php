@@ -35,7 +35,7 @@
 				<ul class="horizontal-list-right no-margin">
 					<li class="horizontal-li--gold-border"><a href="http://store.warchestboutique.com">SHOP WITH A PURPOSE</a></li>
 					<li class="horizontal-li--gold-border"><a href=<?php get_bloginfo( 'url' ); ?>"/take-action/host-a-party">HOST A PARTY</a></li>
-					<li class="horizontal-li--gold-border"><a href=<?php get_bloginfo( 'url' ); ?>"/events">UPCOMING EVENTS</a></li>
+					<li class="horizontal-li--gold-border"><a href=<?php get_bloginfo( 'url' ); ?>"/upcoming-events">UPCOMING EVENTS</a></li>
 				</ul>
 				<div class="clearfix"></div>
 			</div>
@@ -104,7 +104,7 @@
 					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/about-us">ABOUT US</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/locations-hours/">Locations & Hours</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/contact-us/">Contact Us</a></li>
-						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/faq/">Faq</a></li>
+						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/faq/">FAQ</a></li>
 					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/news-media">NEWS & MEDIA</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/upcoming-events">Upcoming events</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/video-gallery">Video Gallery</a></li>
