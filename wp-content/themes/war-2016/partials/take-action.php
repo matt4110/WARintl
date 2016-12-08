@@ -10,12 +10,12 @@
 			<div class="cta-grid">
 				<a href="http://warinternational.org/donate"><img src="https://warinternational.org/wp-content/uploads/2016/09/take-action-donate.png"></a>
 				</br>
-				<a class="cta-link" href="http://warinternational.org/donate">Donate</a>
+				<a class="cta-link" href=<?php get_bloginfo('url'); ?>"/donate">Donate</a>
 			</div>
 			<div class="cta-grid">
 				<a href="http://warinternational.org/take-action"><img src="https://warinternational.org/wp-content/uploads/2016/09/take-action-volunteer.png"></a>
 				</br>
-				<a class="cta-link" href="http://warinternational.org/take-action">Volunteer</a>
+				<a class="cta-link" href=<?php get_bloginfo('url'); ?>"/take-action">Volunteer</a>
 			</div>
 			<div class="cta-grid" >
 				<a href="http://warchestboutique.com/"><img src="https://warinternational.org/wp-content/uploads/2016/09/take-action-shop.png"></a>

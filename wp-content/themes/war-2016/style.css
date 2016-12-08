@@ -904,6 +904,7 @@ p img, .border, .entry-content img {
   background-repeat: no-repeat; }
   #donate #donate-header {
     font-size: 1.2rem;
+    color: #F5EDE0;
     text-align: center;
     margin: 30px 18px 40px 18px; }
 
@@ -1069,7 +1070,8 @@ div [class$="-12"], div [class$="-10"] {
     font-size: 1em;
     text-align: center;
     line-height: 1rem;
-    font-weight: bold; }
+    font-weight: bold;
+    margin-top: 1rem; }
   .faq-top-box hr {
     width: 90%;
     margin-left: 5%;
@@ -1128,6 +1130,9 @@ div [class$="-12"], div [class$="-10"] {
 // 6.0 Plugins ///////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////*/
+.gform_wrapper .gfield_radio li label, .gform_wrapper .gfield_checkbox li label {
+  font-size: 1.25rem; }
+
 button.pt-cv-more.btn.btn-primary {
   background-color: #C19563; }
 

@@ -11,7 +11,7 @@ get_header(); ?>
 			<div class="standard-content">
 				<div class="row">
 					<div class="grid-1-3">
-					    <a href=<?php get_bloginfo('url'); ?>"/programs/civilian-first-responder-cfr/"><h2>CFR</h2>
+					    <a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder/"><h2>CFR</h2>
 					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-grfirst.jpg"></a>
 					    <p>Jan 13-14, 2017</p>
 					    <p>GR First Assembly<br>2100 44th St<br>Wyoming, MI 49519</p>
@@ -28,7 +28,7 @@ get_header(); ?>
 
 					<div class="grid-1-3">
 					    <a href=<?php get_bloginfo('url'); ?>"/circle-tour/"><h2>Circle Tour</h2>
-					    <img class="square-img border" src=""></a>
+					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/circle-tour.jpg"></a>
 					    <p>February 2017</p>
 					    <p>Thailand</p>
 					</div>
