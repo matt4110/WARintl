@@ -180,6 +180,11 @@ p{
 .centered{
   text-align: center;
 }
+
+.take-action-desc{
+  text-align: justify;
+  padding:7px;
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 2.3 Links
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -250,6 +255,9 @@ p img, .border, .entry-content img{
   border: 1px solid $light-gold;
 }
 
+.no-border{
+  border: none !important;
+}
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -540,38 +548,49 @@ p img, .border, .entry-content img{
 }
 
 //Column layout for boxes (Take Action)
-.column-1-3{
-  float: left;
-  clear: none;
-  width: 30%;
-  margin-left: 3%;
-  margin-top: 50px;
+.column-grid{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 
-  &:first-child{
-    margin-left: 0;
-  }
+.column-img, .column-box{
+  flex-basis: 30%;
+  float: none;
+  margin-right: 3%;
+  margin-bottom: 25px;
+
+}
+
+.column-img:first-child, .column-box:first-child{
+
 }
 
 .column-img{
-  display: inline-block;
-  max-width: 100%;
+  width:20vw;
+  height: 20vw;
 }
 
 .column-box{
-  display: inline-block;
-  vertical-align: middle;
-  width: 100%;
-  height: 25vw;
-  margin-bottom: 25px;
-  padding: 0 25px;
-  
+  padding: 20px 20px 0 20px;
   background: rgb(255,250,250);
-  //background-image: url("/wp-content/themes/war-2016/assets/images/white-box-pattern.jpg");
-  //background-repeat: repeat;
   border: 2px solid lighten($light-gold, 15%);
 }
 
+.column-box p{ text-align:justify;}
 
+.one-12{order:1;}
+.two-12{order:2;}
+.three-12{order:3;}
+.four-12{order:4;}
+.five-12{order:5;}
+.six-12{order:6;}
+.seven-12{order:7;}
+.eight-12{order:8;}
+.nine-12{order:9;}
+.ten-12{order:10;}
+.eleven-12{order:11;}
+.twelve-12{order:12;}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 3.6 Slider
@@ -897,6 +916,25 @@ div [class$="-12"], div [class$="-10"]{
   clear: none;
 }
 
+//layout for take-action pages
+
+.ta-header{
+
+  h1{
+    width:75%;
+    float: left;
+    text-align: center;
+  }
+
+  img{
+    float: left;
+    margin-left: 2.5%;
+    margin-top:-20px;
+    width:15%;
+    max-width: 200px;
+  }
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 4.6 Home
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1094,7 +1132,26 @@ div .pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button:active{
 // 6.3 Calendar
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#bigcalendar1{
+  width: 100% !important;
+}
 
+.thickbox-previewbigcalendar1{
+  font-size: 14px !important;
+  line-height: 1rem;
+}
+
+#cal_event p{
+  font-size: .6rem;
+}
+
+.pop_body div{
+  background-color: white !important;
+
+  div{
+    color: $gray !important;
+  }
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 6.4 Video Gallery
 //////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -181,10 +181,18 @@
 }
 
 //Column layout for boxes (Take Action)
+.column-img, .column-box{
+  flex-basis: 30%;
+  float: none;
+  margin-bottom: 25px;
+}
+
+//.four-12,.seven-12,.ten-12{
+//  margin-left: 0;
+//}
 
 .column-box{
-  height: 57vw;
-  padding: 0 5px;
+  padding: 3px;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
