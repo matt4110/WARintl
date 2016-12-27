@@ -14,8 +14,8 @@ get_header(); ?>
 
 			<!-- Begin Box Menu -->
 
-			<div class="row">
-				<div class="grid-1-3 red-box2">
+			<div class="column-grid">
+				<div class="red-box2">
 				    <a href=<?php get_bloginfo('url'); ?>"/international-safehouses">
 				    <h3 class="centered">International<br>Safehouses</h3></a>
 				    <hr>
@@ -23,7 +23,7 @@ get_header(); ?>
 				</div>
 
 
-				<div class="grid-1-3 red-box2">
+				<div class="red-box2">
 				    <a href=<?php get_bloginfo('url'); ?>"/domestic-safehouses">
 				    <h3 class="centered">Domestic<br>Safehouses</h3></a>
 				    <hr>
@@ -31,60 +31,54 @@ get_header(); ?>
 				</div>
 
 
-				<div class="grid-1-3 red-box2">
-				    <a href=<?php get_bloginfo('url'); ?>"/domestic-safehouses">
+				<div class="red-box2">
+				    <a href=<?php get_bloginfo('url'); ?>"/vocational-training">
 				    <h3 class="centered">Vocational<br>Training</h3></a>
 				    <hr>
 				    <p class="small-white-text">Equipping people so they have the economic freedom to break the chains of bondage</p>
 				</div>
-			</div>
-			<div class="clearfix">&nbsp;</div>
-
-			<div class="row">
-				<div class="grid-1-3 red-box2">
-				    <a href=<?php get_bloginfo('url'); ?>"/international-safehouses">
+			
+				<div class="red-box2">
+				    <a href=<?php get_bloginfo('url'); ?>"/micro-enterprises">
 				    <h3 class="centered">Micro<br>Enterprises</h3></a>
 				    <hr>
 				    <p class="small-white-text">Investing in peoples future, giving them a leg up to live a life of dignity</p>
 				</div>
 
 
-				<div class="grid-1-3 red-box2">
-				    <a href=<?php get_bloginfo('url'); ?>"/domestic-safehouses">
+				<div class="red-box2">
+				    <a href=<?php get_bloginfo('url'); ?>"/education">
 				    <h3 class="centered">Education</h3></a>
 				    <hr>
 				    <p class="small-white-text">Knowledge is power, and we want to empower people to give them a life of dignity</p>
 				</div>
 
 
-				<div class="grid-1-3 red-box2">
-				    <a href=<?php get_bloginfo('url'); ?>"/domestic-safehouses">
+				<div class="red-box2">
+				    <a href=<?php get_bloginfo('url'); ?>"/orphanages">
 				    <h3 class="centered">Orphanages</h3></a>
 				    <hr>
 				    <p class="small-white-text">True religion is taking care of the widows and orphans</p>
 				</div>
-			</div>
-			<div class="clearfix">&nbsp;</div>
-
-			<div class="row" style="margin-top: 25px;">
-				<div class="grid-1-3 red-box2">
-				    <a href=<?php get_bloginfo('url'); ?>"/international-safehouses">
+			
+				<div class="red-box2">
+				    <a href=<?php get_bloginfo('url'); ?>"/outreach">
 				    <h3 class="centered">Outreach</h3></a>
 				    <hr>
 				    <p class="small-white-text">Walking the red light districts to meet victims where there are, to help them out of a life of darkness</p>
 				</div>
 
 
-				<div class="grid-1-3 red-box2">
-				    <a href=<?php get_bloginfo('url'); ?>"/domestic-safehouses">
+				<div class="red-box2">
+				    <a href=<?php get_bloginfo('url'); ?>"/medical-aid">
 				    <h3 class="centered">Medical Aid</h3></a>
 				    <hr>
 				    <p class="small-white-text">A healthy body and mind are integral parts of healing and prevention</p>
 				</div>
 
 
-				<div class="grid-1-3 red-box2">
-				    <a href=<?php get_bloginfo('url'); ?>"/domestic-safehouses">
+				<div class="red-box2">
+				    <a href=<?php get_bloginfo('url'); ?>"/emergency-intervention">
 				    <h3 class="centered">Emergency<br>Intervention</h3></a>
 				    <hr>
 				    <p class="small-white-text">A quick reaction to help prevent someone from becoming a victim</p>
@@ -92,7 +86,7 @@ get_header(); ?>
 			</div>
 
 
-			<div class="clearfix">&nbsp;</div>
+			
 
 
 			</div><!-- .standard-content -->

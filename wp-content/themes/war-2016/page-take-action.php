@@ -31,12 +31,12 @@ get_header(); ?>
 				<img class="column-img two-12" src=<?php get_bloginfo('url'); ?>"/wp-content/uploads/2015/01/Talent-with-framing.png">
 
 				<div class="column-box five-12">
-					<h1 class="column-heading centered" ><a href=<?php get_bloginfo('url'); ?>"/join-our-professional-circle">Join our Professional Circle</a></h1>
+					<h1 class="column-heading centered" ><a href=<?php get_bloginfo('url'); ?>"/join-our-professional-circle">Join Our Professional Circle</a></h1>
 					<p class="small-text">Support WAR's programs and partners by advising our leaders. All people and professions are welcome!</p>
 				</div>
 
 				<div class="column-box eight-12">
-					<h1 class="column-heading centered" ><a href=<?php get_bloginfo('url'); ?>"/share-your-creative-skills">Share your creative skills</a></h1>
+					<h1 class="column-heading centered" ><a href=<?php get_bloginfo('url'); ?>"/share-your-creative-skills">Share Your Creative Skills</a></h1>
 					<p class="small-text">With your writing, photography, graphic arts, or unique talents, take action against injustice! Empower women through beauty & art!</p>
 				</div>
 
@@ -48,7 +48,7 @@ get_header(); ?>
 				<img class="column-img three-12" src=<?php get_bloginfo('url'); ?>"/wp-content/uploads/2015/01/Treasure-with-framing.png">
 
 				<div class="column-box six-12">
-					<h1 class="column-heading centered" ><a href=<?php get_bloginfo('url'); ?>"/donations">Give Items Old & New</a></h1>
+					<h1 class="column-heading centered" ><a href=<?php get_bloginfo('url'); ?>"/donations">Give Items <br>Old & New</a></h1>
 					<p class="small-text">Diapers, clothes, & crayons have the power to change a life! Learn how you can offer hope & healing!</p>
 				</div>
 

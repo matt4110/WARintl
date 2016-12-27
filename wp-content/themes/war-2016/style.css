@@ -488,9 +488,9 @@ p {
 .centered {
   text-align: center; }
 
-.take-action-desc {
+.take-action-desc, .get-involved-desc {
   text-align: justify;
-  padding: 7px; }
+  padding: 7px 100px 0 10px; }
 
 a {
   text-decoration: none;
@@ -668,8 +668,7 @@ p img, .border, .entry-content img {
     flex-grow: 1;
     flex-basis: 57.5%; }
     .box-menu-image img {
-      max-width: 100%;
-      margin-bottom: -6px; }
+      max-width: 100%; }
   .box-menu-split-text {
     flex-grow: 1;
     flex-basis: 42.5%;
@@ -712,10 +711,12 @@ p img, .border, .entry-content img {
 
 .red-box2 {
   background-color: #BA271D;
-  width: 100px;
-  box-shadow: 0 0 25px 10px #8e1e16 inset;
-  height: 25%;
-  padding: 1.5%; }
+  box-shadow: 0 0 25px 5px #8e1e16 inset;
+  flex-basis: 30%;
+  float: none;
+  margin-right: 3%;
+  margin-bottom: 25px;
+  padding: 20px 20px 0 20px; }
   .red-box2 h3 {
     margin-top: 0;
     margin-bottom: .5%; }
@@ -1074,16 +1075,18 @@ div [class$="-12"], div [class$="-10"] {
   float: left;
   clear: none; }
 
-.ta-header h1 {
-  width: 75%;
-  float: left;
-  text-align: center; }
-.ta-header img {
-  float: left;
-  margin-left: 2.5%;
-  margin-top: -20px;
-  width: 15%;
-  max-width: 200px; }
+.ta-header {
+  display: flex;
+  justify-content: center; }
+  .ta-header h1 {
+    float: left;
+    text-align: left;
+    padding-top: 15px; }
+  .ta-header img {
+    float: left;
+    margin-left: 15px;
+    width: 110px;
+    height: 110px; }
 
 .about-home {
   width: 85%;
@@ -1288,6 +1291,10 @@ section #huge_it_videogallery {
   .column-heading {
     font-size: 2.9vw; }
 
+  .take-action-desc, .get-involved-desc {
+    text-align: justify;
+    padding: 7px 100px 0 10px; }
+
   /*////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   // 3.0 Modules ///////////////////////////////////////////////////////////////////////////////////////
@@ -1352,6 +1359,11 @@ section #huge_it_videogallery {
   .programs-container {
     width: 66%; }
 
+  .ta-header h1 {
+    padding-top: 15px; }
+  .ta-header img {
+    margin-left: 15px; }
+
   .about-home {
     width: 95%; }
 
@@ -1383,6 +1395,10 @@ section #huge_it_videogallery {
 
   .column-heading {
     font-size: 3.5vw; }
+
+  .take-action-desc, .get-involved-desc {
+    text-align: justify;
+    padding: 7px 10px 0 10px; }
 
   /*////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1492,8 +1508,11 @@ section #huge_it_videogallery {
 
   .programs-container {
     width: 95%;
-    max-width: 100%; }
-
+    max-width: 100%; } }
+@media screen and (max-width: 750px) and (max-width: 550px) {
+  .ta-header img {
+    display: none; } }
+@media screen and (max-width: 750px) {
   .about-home p {
     float: none;
     width: 90%;
@@ -1541,6 +1560,10 @@ section #huge_it_videogallery {
 
   .column-heading {
     font-size: 8vw; }
+
+  .take-action-desc, .get-involved-desc {
+    text-align: left;
+    padding: 0 10px 0 10px; }
 
   /*////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////

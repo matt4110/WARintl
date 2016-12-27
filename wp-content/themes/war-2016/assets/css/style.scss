@@ -181,9 +181,9 @@ p{
   text-align: center;
 }
 
-.take-action-desc{
+.take-action-desc, .get-involved-desc{
   text-align: justify;
-  padding:7px;
+  padding:7px 100px 0 10px;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 2.3 Links
@@ -458,7 +458,7 @@ p img, .border, .entry-content img{
     flex-basis: 57.5%;
     img{
       max-width: 100%;
-      margin-bottom: -6px; //This fixes the bottom alignment between img and text box, but sometimes it doesn't need it
+      //margin-bottom: -6px; //This fixes the bottom alignment between img and text box, but sometimes it doesn't need it
     }
   }
 
@@ -514,15 +514,21 @@ p img, .border, .entry-content img{
 .red-box{
   @include red-box(500px);
 }
+
 .red-box2{
-  @include red-box2(100px);
-  height: 25%;
-  padding: 1.5%;
+  background-color: $red;
+  box-shadow: 0 0 25px 5px darken($red, 10%) inset;
+  flex-basis: 30%;
+  float: none;
+  margin-right: 3%;
+  margin-bottom: 25px;
+  padding: 20px 20px 0 20px;
 
   h3{margin-top:0; margin-bottom: .5%;}
 
   hr{width:85%; margin-top: 1.5%;}
 }
+
 
 .red-stripe-box{
   @include red-stripe-box(100%);
@@ -919,19 +925,21 @@ div [class$="-12"], div [class$="-10"]{
 //layout for take-action pages
 
 .ta-header{
+  display: flex;
+  justify-content: center;
 
   h1{
-    width:75%;
+    //width:75%;
     float: left;
-    text-align: center;
+    text-align: left;
+    padding-top: 15px;
   }
 
   img{
     float: left;
-    margin-left: 2.5%;
-    margin-top:-20px;
-    width:15%;
-    max-width: 200px;
+    margin-left: 15px;
+    width:110px;
+    height:110px;
   }
 }
 

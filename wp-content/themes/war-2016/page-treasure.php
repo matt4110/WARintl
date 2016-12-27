@@ -15,7 +15,7 @@ get_header(); ?>
 						<h1 class="post-title"><?php single_post_title(); ?></h1>
 						<img src="http://warinternational.org/wp-content/uploads/2015/01/Treasure-with-framing.png">
 					</header>
-					<div style="margin-bottom:50px;" class="clearfix">&nbsp;</div>
+					<div style="margin-bottom:10px;" class="clearfix">&nbsp;</div>
 
 				<?php
 				// Start the loop.
