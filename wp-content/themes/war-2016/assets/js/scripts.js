@@ -1,4 +1,4 @@
-$.noConflict();
+var $j = jQuery.noConflict();
 jQuery( document ).ready(function( $ ){
 
 
@@ -6,19 +6,19 @@ jQuery( document ).ready(function( $ ){
 //////////////////
 ////////////////// MOBILE MENU
 
-$( ".cross" ).hide();
-$( ".full-width-nav--mobile" ).hide();
-$( ".hamburger" ).click(function() {
-	$( ".full-width-nav--mobile" ).slideToggle( "slow", function() {
-		$( ".hamburger" ).hide();
-		$( ".cross" ).show();
+$j( ".cross" ).hide();
+$j( ".full-width-nav--mobile" ).hide();
+$j( ".hamburger" ).click(function() {
+	$j( ".full-width-nav--mobile" ).slideToggle( "slow", function() {
+		$j( ".hamburger" ).hide();
+		$j( ".cross" ).show();
 	});
 });
 
-$( ".cross" ).click(function() {
-	$( ".full-width-nav--mobile" ).slideToggle( "slow", function() {
-		$( ".cross" ).hide();
-		$( ".hamburger" ).show();
+$j( ".cross" ).click(function() {
+	$j( ".full-width-nav--mobile" ).slideToggle( "slow", function() {
+		$j( ".cross" ).hide();
+		$j( ".hamburger" ).show();
 	});
 });
 //////////////////
