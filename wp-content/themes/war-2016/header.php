@@ -8,7 +8,7 @@
  * @subpackage Twenty_Sixteen
  * @since Twenty Sixteen 1.0
  */
-
+get_template_part( 'partials/bootstrap' );
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
 <head>
@@ -32,7 +32,7 @@
 				<div id="donate">
 					<a href=<?php get_bloginfo( 'url' ); ?>"/donate/"><h1 id="donate-header">DONATE</h1></a>
 				</div>
-				<ul class="horizontal-list-right no-margin">
+				<ul class="horizontal-list-right no-margin garamond">
 					<li class="horizontal-li--gold-border"><a href="http://store.warchestboutique.com">SHOP WITH A PURPOSE</a></li>
 					<li class="horizontal-li--gold-border"><a href=<?php get_bloginfo( 'url' ); ?>"/take-action/host-a-party">HOST A PARTY</a></li>
 					<li class="horizontal-li--gold-border"><a href=<?php get_bloginfo( 'url' ); ?>"/upcoming-events">UPCOMING EVENTS</a></li>
@@ -41,7 +41,7 @@
 			</div>
 			<!-- Main Nav -->
 			<div id="desktop-menu">
-				<ul class="full-width-nav--black">
+				<ul class="full-width-nav--black garamond">
 					<!-- Desktop/Full Menu -->
 					<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"/home" >Home</a></li>
 					<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"/about-us/">About Us</a>

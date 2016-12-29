@@ -11,6 +11,9 @@ get_header(); ?>
 			<div class="standard-content">
 
 			<?php echo do_shortcode("[gravityform id='25' title='false' ajax='false']"); ?>
+			<br>
+			<hr>
+			<br>
 
 			<!-- Begin Box Menu -->
 
