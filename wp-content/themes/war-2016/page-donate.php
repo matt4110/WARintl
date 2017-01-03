@@ -10,10 +10,9 @@ get_header(); ?>
 		<main id="main" class="site-main" role="main">
 			<div class="standard-content">
 
-			<?php echo do_shortcode("[gravityform id='25' title='false' ajax='false']"); ?>
-			<br>
+			<?php echo do_shortcode("[gravityform id='25' title='false' description='false' ajax='false']"); ?>
 			<hr>
-			<br>
+			<br><br>
 
 			<!-- Begin Box Menu -->
 

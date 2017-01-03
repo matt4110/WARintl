@@ -11,82 +11,77 @@ get_header(); ?>
 
 
 
-				<div class="row">
-						<div class="grid-3-10">
-							<a href="#faq-programs">
+				<div class="column-grid-faq">
+						
+						<!--	<a href="#faq-programs"> -->
 								<div class="faq-top-box">
 									<div id="circle1">
 										<img src="/images/icon-programs.png">
 									</div>
 									<div class="faq-top-box-content">
-										<h1>Questions about Programs and Partners</h1>
+										<h1>Questions about<br> Programs and Partners</h1>
 										<hr>
 										<p>Learn more about programs that help and partnerships we develop.</p>
 									</div>
 								</div>
-							</a>
-						</div>
-						<div class="grid-3-10">
-							<a href="#faq-rescue">
+						<!--	</a> -->
+						
+						<!--	<a href="#faq-rescue"> -->
 								<div class="faq-top-box">
 									<div id="circle2">
 										<img src="/images/icon-rescue.png">
 									</div>
 									<div class="faq-top-box-content">
-										<h1>Questions about Trafficking and Rescue</h1>
+										<h1>Questions about<br> Trafficking and Rescue</h1>
 										<hr>
 										<p>Learn more about trafficking and how we help to rescue victims.</p>
 									</div>
 								</div>
-							</a>
-						</div>
-						<div class="grid-3-10">
-							<a href="#faq-products">
+						<!--	</a> -->
+						
+						<!--	<a href="#faq-products">  -->
 								<div class="faq-top-box">
 									<div id="circle3">
 										<img src="/images/icon-products.png">
 									</div>
 									<div class="faq-top-box-content">
-										<h1>Questions about Our Products</h1>
+										<h1>Questions about<br> Our Products</h1>
 										<hr>
 										<p>Learn more about our products and how they help change lives.</p>
 									</div>
 								</div>
-							</a>	
-						</div>
+						<!--	</a>	-->
+						
 					</div>
 
 					<!-- Bottom Row -->
-					<div class="row">
-						<div class="grid-margin-17">&nbsp;</div>
-						<div class="grid-3-10">
-							<a href="#faq-get-involved">
+					<div class="column-grid-faq">
+						
+						<!--	<a href="#faq-get-involved"> -->
 								<div class="faq-top-box">
 									<div id="circle4">
 										<img src="/images/icon-get-involved.png">
 									</div>
 									<div class="faq-top-box-content">
-										<h1>Questions about Getting Involved</h1>
+										<h1>Questions about<br> Getting Involved</h1>
 										<hr>
 										<p>Learn more about how you can get involved to help make a difference.</p>
 									</div>
 								</div>
-							</a>
-						</div>
-						<div class="grid-3-10">
-							<a href="#faq-organization">
+						<!--	</a> -->
+						
+						<!--	<a href="#faq-organization"> -->
 								<div class="faq-top-box">
 									<div id="circle5">
 										<img src="/images/icon-organization.png">
 									</div>
 									<div class="faq-top-box-content">
-										<h1>Questions about the Organization</h1>
+										<h1>Questions about<br> the Organization</h1>
 										<hr>
 										<p>Learn more about the history and organization of WAR, Intl.</p>
 									</div>
 								</div>
-							</a>
-						</div>
+						<!--	</a> -->
 					</div>
 
 					<br>

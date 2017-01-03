@@ -1,5 +1,148 @@
 <?php
+add_action( 'init', 'region_cpt' );
 
+function region_cpt() {
+
+register_post_type( 'region', array(
+  'labels' => array(
+    'name' => 'Regions',
+    'singular_name' => 'Region',
+   ),
+  'description' => 'Region custom content types.',
+  'public' => true,
+  'menu_position' => 25,
+  'supports' => array( 'title' )
+));
+}
+
+add_action( 'init', 'story_cpt' );
+
+function story_cpt() {
+
+register_post_type( 'story', array(
+  'labels' => array(
+    'name' => 'Stories',
+    'singular_name' => 'Story',
+   ),
+  'description' => 'Story custom content types.',
+  'public' => true,
+  'menu_position' => 15,
+  'supports' => array( 'title' )
+));
+}
+
+add_action( 'init', 'country_cpt' );
+
+function country_cpt() {
+
+register_post_type( 'country', array(
+  'labels' => array(
+    'name' => 'Countries',
+    'singular_name' => 'Country',
+   ),
+  'description' => 'Country custom content types.',
+  'public' => true,
+  'menu_position' => 16,
+  'supports' => array( 'title' )
+));
+}
+
+add_action( 'init', 'program_cpt' );
+
+function program_cpt() {
+
+register_post_type( 'program', array(
+  'labels' => array(
+    'name' => 'Programs',
+    'singular_name' => 'Program',
+   ),
+  'description' => 'Program custom content types.',
+  'public' => true,
+  'menu_position' => 17,
+  'supports' => array( 'title' )
+));
+}
+
+add_action( 'init', 'risk_cpt' );
+
+function risk_cpt() {
+
+register_post_type( 'risk', array(
+  'labels' => array(
+    'name' => 'Risks',
+    'singular_name' => 'Risk',
+   ),
+  'description' => 'Risk custom content types.',
+  'public' => true,
+  'menu_position' => 22,
+  'supports' => array( 'title' )
+));
+}
+
+add_action( 'init', 'risk_story_cpt' );
+
+function risk_story_cpt() {
+
+register_post_type( 'risk_story', array(
+  'labels' => array(
+    'name' => 'Risk Stories',
+    'singular_name' => 'Risk Story',
+   ),
+  'description' => 'Risk Story custom content types.',
+  'public' => true,
+  'menu_position' => 23,
+  'supports' => array( 'title', 'editor' )
+));
+}
+
+add_action( 'init', 'risk_cat_cpt' );
+
+function risk_cat_cpt() {
+
+register_post_type( 'risk_cat', array(
+  'labels' => array(
+    'name' => 'Risk Categories',
+    'singular_name' => 'Risk Category',
+   ),
+  'description' => 'Risk Category custom content types.',
+  'public' => true,
+  'menu_position' => 21,
+  'supports' => array( 'title' )
+));
+}
+
+add_action( 'init', 'sweetie_blog_cpt' );
+
+function sweetie_blog_cpt() {
+
+register_post_type( 'sweetie', array(
+  'labels' => array(
+    'name' => 'Sweetie Blogs',
+    'singular_name' => 'Sweetie Blog',
+   ),
+  'description' => 'Sweetie Blog custom content types.',
+  'public' => true,
+  'menu_position' => 20,
+  'supports' => array( 'title', 'editor', 'thumbnail' ),
+  'rewrite' => array('slug' => 'sweetie')
+));
+}
+
+add_action( 'init', 'resource_cpt' );
+
+function resource_cpt() {
+
+register_post_type( 'resource', array(
+  'labels' => array(
+    'name' => 'Resources',
+    'singular_name' => 'Resource',
+   ),
+  'description' => 'Resources',
+  'public' => true,
+  'menu_position' => 42,
+  'supports' => array( 'title' )
+));
+}
 
 add_action("gform_pre_submission_filter_25", "pre_submission_handler");
 function pre_submission_handler($form){

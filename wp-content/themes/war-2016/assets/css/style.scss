@@ -84,7 +84,7 @@ body{
 
 .standard-content{
   width:66vw;
-  margin:25px auto 75px auto;
+  margin:60px auto 75px auto;
 }
 
 .light-bg{
@@ -323,6 +323,10 @@ p img, .border, .entry-content img{
 
 }
 
+.horizontal-li--gold-border:hover,.horizontal-li--gold-border a:hover{
+  color:$light-gold;
+}
+
 //Main nav black bar
 .full-width-nav--black{
   background-color: #000;
@@ -348,7 +352,7 @@ p img, .border, .entry-content img{
 .hamburger{
   background:none;
   position:absolute;
-  top:150;
+  top:200;
   right:0;
   line-height:45px;
   padding:5px 15px 0px 15px;
@@ -364,7 +368,7 @@ p img, .border, .entry-content img{
 .cross{
   background:none;
   position:absolute;
-  top:150;
+  top:200;
   right:0;
   padding:16px 15px 0px 15px;
   color:#fff;
@@ -569,7 +573,6 @@ p img, .border, .entry-content img{
   float: none;
   margin-right: 3%;
   margin-bottom: 25px;
-
 }
 
 .column-img:first-child, .column-box:first-child{
@@ -751,7 +754,6 @@ p img, .border, .entry-content img{
     font-size: 1rem;
     line-height: .85rem;
     letter-spacing: .07rem;
-    font-weight: bold;
   }
 }
 
@@ -806,6 +808,7 @@ p img, .border, .entry-content img{
   background-repeat: no-repeat;
 
   #donate-header{
+    font-family: $garamond;
     font-size: 1.2rem;
     color: $off-white;
     text-align: center;
@@ -926,6 +929,27 @@ div [class$="-12"], div [class$="-10"]{
   clear: none;
 }
 
+.grid-3-10{width: 30%;}
+
+.grid-3-10{
+  margin-right: 5%;
+  margin-top: 50px;
+  float: left;
+}
+.grid-3-10:last-child{
+  margin-right: 0;
+}
+
+.grid-margin-17{
+  width: 17.5%;
+  float: left;
+  clear: none;
+}
+
+.grid-3-10 a{
+  text-decoration: none;
+}
+
 //layout for take-action pages
 
 .ta-header{
@@ -965,44 +989,33 @@ div [class$="-12"], div [class$="-10"]{
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 4.7 FAQ
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-
-.grid-3-10{width: 30%;}
-
-.grid-3-10{
-  margin-right: 5%;
-  margin-top: 50px;
-  float: left;
+.column-grid-faq{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-.grid-3-10:last-child{
-  margin-right: 0;
-}
-
-.grid-margin-17{
-  width: 17.5%;
-  float: left;
-  clear: none;
-}
-
-.grid-3-10 a{
-  text-decoration: none;
-}
-
 
 .faq-top-box{
-  max-width:100%;
-  height:200px;
-  padding: -70px 15px 15px 15px;
+  flex-basis: 30%;
+  margin-right: 3%;
+  margin-bottom: 50px;
+
+  padding: 0 15px;
   background: #fff;
   box-shadow: 0 0 15px darken($red, 15%) inset;
   background-color: $red;
 
+  &:last-child{
+    margin-right: none;
+  }
+
   h1{
     color: $off-white;
-    font-size: 1em;
+    font-size: 1rem;
     text-align: center;
-    line-height: 1rem;
+    line-height: 1.3rem;
     font-weight: bold;
-    margin-top: 1rem;
   }
 
   hr{
@@ -1024,8 +1037,8 @@ div [class$="-12"], div [class$="-10"]{
   }
 
   .faq-top-box-content{
-    position: relative;
-    top: -50px;
+    //position: relative;
+    //top: -25px;
   }
 
   #circle1, #circle2, #circle3, #circle4, #circle5{
@@ -1033,32 +1046,18 @@ div [class$="-12"], div [class$="-10"]{
     background-color: #222;
     width:75px;
     height:75px;
-    position: relative;
-    top: -40px;
-    left: 40%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: -40px;
   }
 
-  img{
-    display: block;
-    margin: auto auto;
-    position:relative;
-  }
+  img{display: block; margin: auto auto; position:relative;}
 
-  #circle1 img{
-    top: 23px;
-  }
-  #circle2 img{
-    top: 16px;
-  }
-  #circle3 img{
-    top: 20px;
-  }
-  #circle4 img{
-    top: 23px;
-  }
-  #circle5 img{
-    top: 15px;
-  }
+  #circle1 img{top: 23px;}
+  #circle2 img{top: 16px;}
+  #circle3 img{top: 20px;}
+  #circle4 img{top: 23px;}
+  #circle5 img{top: 15px;}
 
 }
 
@@ -1141,7 +1140,7 @@ div .pt-cv-filter-bar.btn-group.pt-cv-filter-bar.pull-left button:active{
 }
 
 .pt-cv-wrapper .btn{
-  font-size: 1.3vw;
+  font-size: 1.1vw;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
