@@ -15,11 +15,10 @@
 	PT_CV_ADMIN_PRO = PT_CV_ADMIN_PRO || { };
 	PT_CV_PUBLIC = PT_CV_PUBLIC || { };
 	ajaxurl = ajaxurl || { };
+	var _prefix = PT_CV_PUBLIC._prefix;
 
 	$.PT_CV_Admin_Pro = function ( options ) {
 		this.options = options;
-
-		var _prefix = this.options._prefix;
 
 		this._search_by_title();
 		this._colorpicker();
@@ -31,7 +30,7 @@
 		this._custom_trigger();
 		this._popover();
 		this._select2_for_font_families();
-		this._toggle_font_styles();
+		this._padding_margin();
 		this._sortable_params();
 		this._toggle_select_terms();
 		this._pagination_disable();
@@ -70,7 +69,7 @@
 		 * @returns {undefined}
 		 */
 		_search_by_title: function () {
-			var _prefix = this.options._prefix;
+
 			var _nonce = PT_CV_ADMIN_PRO._nonce;
 			var content_type = '[name="' + _prefix + 'content-type' + '"]';
 
@@ -97,7 +96,7 @@
 					data: data,
 					dataType: 'json'
 				} ).done( function ( response ) {
-					if ( response == -1 ) {
+					if ( response === -1 ) {
 						location.reload();
 					}
 
@@ -109,12 +108,21 @@
 			// Use "selectize" to search, select, remove, drag & drop
 			var fn_selectize = function ( $this ) {
 				$this.selectize( {
-					plugins: [ 'remove_button', 'drag_drop' ],
+					plugins: [ 'remove_button', 'drag_drop', 'restore_on_backspace' ],
 					delimiter: ',',
 					persist: false,
 					valueField: 'id',
 					labelField: 'title',
 					searchField: 'title',
+					createFilter: function ( input ) {
+						var match, regex;
+						regex = new RegExp( '\\d+' );
+						match = input.match( regex );
+						if ( match )
+							return !this.options.hasOwnProperty( match[0] );
+
+						return false;
+					},
 					create: true,
 					hideSelected: true,
 					closeAfterSelect: true,
@@ -151,21 +159,20 @@
 		 * WP Color picker
 		 */
 		_colorpicker: function () {
-			var _prefix = this.options._prefix;
+
 			if ( PT_CV_ADMIN_PRO.supported_version ) {
-				$( '.' + _prefix + 'color' ).pt_cv_wpColorPicker();
+				$( '.' + _prefix + 'color' ).wpColorPicker();
 			}
 		},
 		/**
 		 * Trigger for Preview
 		 */
 		_public_trigger: function () {
-			var _prefix = this.options._prefix;
+
 			var $self = this;
 
-			var $pt_cv_public_js_pro = new $.PT_CV_Public_Pro( { _autoload: 0 } );
+			var $pt_cv_public_js_pro = new cvp_js( { _autoload: 0 } );
 			$( 'body' ).bind( _prefix + 'admin-preview', function () {
-				$pt_cv_public_js_pro.reset_before();
 				$pt_cv_public_js_pro.reset_after();
 				$self._exclude_posts();
 				$self._dragdrop_posts();
@@ -174,7 +181,7 @@
 			} );
 		},
 		_dragdrop_posts: function () {
-			var _prefix = this.options._prefix;
+
 			var fn_sortable_posts_admin = function () {
 				if ( !( $( '[name="' + _prefix + 'advanced-settings[]"][value="order"]' ).is( ':checked' ) && $( '[name="' + _prefix + 'orderby"]' ).first().val() === 'dragdrop' ) ) {
 					return;
@@ -182,7 +189,7 @@
 
 				$( '.' + _prefix + 'page' ).not( ':hidden' ).sortable( { items: '.' + _prefix + 'content-item', update: function ( event, ui ) {
 						var $page = $( ui.item ).closest( '.' + _prefix + 'page' );
-						var cur_page = $page.attr( 'id' ).replace( _prefix + 'page-', '' );
+						var cur_page = $page.data( 'id' ).replace( _prefix + 'page-', '' );
 						var $fieldorderdd = $( '[name="' + _prefix + 'order-dragdrop-pids"]' ).first(),
 							sindex = $fieldorderdd.val(),
 							obj = sindex ? JSON.parse( sindex ) : { },
@@ -210,7 +217,7 @@
 		 * @returns {undefined}
 		 */
 		_custom_field: function () {
-			var _prefix = this.options._prefix;
+
 			var this_prefix = _prefix + 'ctf-filter-';
 
 			var ctf_table = $( '#' + _prefix + 'ctf-list' );
@@ -351,7 +358,7 @@
 		 * @returns {undefined}
 		 */
 		_datepicker: function () {
-			var _prefix = this.options._prefix;
+
 
 			$( '.' + _prefix + 'datepicker' ).datepicker( { changeMonth: true, changeYear: true } );
 		},
@@ -360,7 +367,7 @@
 		 * @returns {undefined}
 		 */
 		_custom_text_bg_color: function () {
-			var _prefix = this.options._prefix;
+
 
 			setTimeout( function () {
 				$( '.wp-color-result', '.' + _prefix + 'bg-color' ).attr( 'title', PT_CV_ADMIN_PRO.message.bgcolor );
@@ -371,7 +378,7 @@
 		 * @returns {undefined}
 		 */
 		_duplicate_view: function () {
-			var _prefix = this.options._prefix;
+
 
 			// If this is 'duplicate' action
 			var patt = /action=duplicate/g;
@@ -399,9 +406,6 @@
 		 * @returns {undefined}
 		 */
 		_custom_trigger: function () {
-			var $self = this;
-			var _prefix = $self.options._prefix;
-
 			// Toggle Order Advanced Settings box
 			var $order_advance_settings = $( '#' + _prefix + 'group-order #' + _prefix + 'group-advanced' );
 			$( '.pt-wrap' ).on( 'content-type-change', function ( e, content_type ) {
@@ -413,10 +417,13 @@
 				}
 			} );
 
-			// Toggle "Layout format" option
-			$( '.pt-wrap' ).on( 'toggle-layout-format', function ( e, formats ) {
-				formats.push( 'timeline' );
-				formats.push( 'glossary' );
+			// Toggle some settings of Shuffle Filter
+			$( '.pt-wrap' ).on( _prefix + 'multiple-taxonomies', function ( e, is_multi ) {
+				if ( is_multi ) {
+					$( '.' + _prefix + 'for-multi-taxo' ).show();
+				} else {
+					$( '.' + _prefix + 'for-multi-taxo' ).hide();
+				}
 			} );
 		},
 		/**
@@ -433,69 +440,12 @@
 		 * @returns {undefined}
 		 */
 		_select2_for_font_families: function () {
-			var _prefix = this.options._prefix;
 			$( 'select[name*="' + _prefix + 'font-family"]' ).select2( { dropdownCssClass: _prefix + 'font-family' } );
 		},
-		/**
-		 * Toggle font styles when change font family
-		 *
-		 * @returns {undefined}
-		 */
-		_toggle_font_styles: function () {
-			var _prefix = this.options._prefix;
-
-			// Get json data { name : styles } of fonts
-			var $fonts = PT_CV_ADMIN_PRO.fonts.google;
-			var $fonts_obj = $.parseJSON( $fonts );
-
-			// Toggle font styles when know font name
-			var _fn_this_toggle = function ( selected_font, this_object, manual_changed ) {
-
-				// Get font styles of selected font
-				var font_styles = [ ];
-				$.each( $fonts_obj, function ( name, styles ) {
-					if ( name === selected_font ) {
-						font_styles = styles;
-						return false;
-					}
-				} );
-
-				// Reset font styles if select Default font
-				if ( selected_font === '' ) {
-					font_styles = [ 'regular', 'italic', '600' ];
-				}
-
-				// Add default style to every font families
-				font_styles[font_styles.length] = '';
-
-				// Get font styles select box object
-				var $font_styles_obj = $( this_object ).closest( '.pt-form-group' ).next( '.pt-form-group' ).find( 'select' );
-
-				$font_styles_obj.find( 'option' ).each( function () {
-					// Show style which the selected font has
-					if ( $.inArray( $( this ).val(), font_styles ) >= 0 ) {
-						$( this ).show();
-					} else {
-						$( this ).hide();
-					}
-				} );
-
-				// Trigger select default option
-				if ( manual_changed ) {
-					$font_styles_obj.val( '' );
-				}
-
-			};
-
-			// Run on page load
-			$( 'select[name*="' + _prefix + 'font-family"]' ).each( function ( e ) {
-				_fn_this_toggle( $( this ).val(), this );
-			} );
-
-			// Run on change
-			$( 'select[name*="' + _prefix + 'font-family"]' ).on( 'change', function ( e ) {
-				_fn_this_toggle( e.val, this, 'changed' );
-			} );
+		_padding_margin: function () {
+			$( '<span />', { 'class': 'glyphicon glyphicon-remove-circle', 'style': 'position: absolute; cursor: pointer; top: 10px;', 'click': function () {
+					$( this ).parent().find( 'input' ).val( '' );
+				} } ).appendTo( '.cv-padding-margin' );
 		},
 		/**
 		 * Allow to sort Fields display, Meta fields
@@ -503,15 +453,13 @@
 		 * @returns {undefined}
 		 */
 		_sortable_params: function () {
-			var _prefix = this.options._prefix;
-
 			$( '.' + _prefix + 'field-display' ).sortable( { items: '.form-group:not(.' + _prefix + 'thumb-position)', update: function ( event, ui ) {
 					$( 'body' ).trigger( _prefix + 'preview-btn-toggle' );
 				} } );
 			$( '.' + _prefix + 'meta-fields-settings' ).sortable( { items: '.form-group', update: function ( event, ui ) {
 					$( 'body' ).trigger( _prefix + 'preview-btn-toggle' );
 				} } );
-			$( '#' + _prefix + 'content-ads' ).sortable( { items: '.form-group:gt(1)', update: function ( event, ui ) {
+			$( '#' + _prefix + 'content-ads' ).sortable( { items: '.' + _prefix + 'ad-item', update: function ( event, ui ) {
 				} } );
 		},
 		/**
@@ -519,7 +467,7 @@
 		 * @returns {undefined}
 		 */
 		_toggle_select_terms: function () {
-			var _prefix = this.options._prefix;
+
 			$( '.' + _prefix + 'term-quick-filter' ).click( function () {
 				$( this ).toggleClass( 'show' );
 			} );
@@ -530,7 +478,7 @@
 		 * @returns {undefined}
 		 */
 		_pagination_disable: function () {
-			var _prefix = this.options._prefix;
+
 			var pagination_style = '[name="' + _prefix + 'pagination-style' + '"]';
 			var pagination_enable = '[name="' + _prefix + 'enable-pagination' + '"]';
 
@@ -617,7 +565,7 @@
 		 * @returns {undefined}
 		 */
 		_shuffle_filter_constraint: function () {
-			var _prefix = this.options._prefix;
+
 
 			var $enable_shuffle = $( '[name="' + _prefix + 'enable-taxonomy-filter' + '"]' );
 			var fn_enable_disable = function ( valid ) {
@@ -645,7 +593,7 @@
 				}
 
 				// Only works with Grid
-				var expect_val = [ 'grid' ];
+				var expect_val = [ 'grid', 'pinterest', 'masonry' ];
 				fn_enable_disable( $.inArray( this_val, expect_val ) < 0 );
 			};
 
@@ -662,7 +610,7 @@
 				return;
 			}
 
-			var _prefix = this.options._prefix;
+
 
 			// Field settings
 			var $field_settings = $( '.' + _prefix + 'field-setting > .control-label' ).not( ':empty' );
@@ -711,7 +659,7 @@
 		 * @returns {undefined}
 		 */
 		_exclude_posts: function () {
-			var _prefix = this.options._prefix;
+
 
 			// Show button
 			$( '.' + _prefix + 'content-item' ).each( function () {
@@ -743,9 +691,6 @@
 	};
 
 	$( function () {
-		var _prefix = PT_CV_PUBLIC._prefix;
-
-		// Run at page load
-		new $.PT_CV_Admin_Pro( { _prefix: _prefix } );
+		new $.PT_CV_Admin_Pro();
 	} );
 }( jQuery ) );

@@ -15,6 +15,7 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 	 * @todo Utility functions
 	 */
 	class PT_CV_Functions_Pro {
+
 		/**
 		 * Check if current user has role to manage Views
 		 */
@@ -167,16 +168,10 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 		 * @return array
 		 */
 		public static function get_selected_terms( $taxonomies_to_get ) {
-
 			if ( empty( $taxonomies_to_get ) ) {
 				return array();
 			}
 
-			// Check if term as_heading
-			$view_settings	 = PT_CV_Functions::get_global_variable( 'view_settings' );
-			$term_as_heading = PT_CV_Functions_Pro::taxonomy_custom_setting_enable( $view_settings, 'taxonomy-term-info', 'as_heading' );
-
-			// Get query args
 			$query_args	 = PT_CV_Functions::get_global_variable( 'args' );
 			$terms_info	 = isset( $query_args[ 'tax_query' ] ) ? $query_args[ 'tax_query' ] : array();
 
@@ -188,37 +183,34 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 			// Get all terms of selected taxonomy
 			$terms_of_taxonomies = array();
 			foreach ( (array) $taxonomies_to_get as $taxonomy ) {
-				PT_CV_Values::term_of_taxonomy( $taxonomy, $terms_of_taxonomies );
+				PT_CV_Values::term_of_taxonomy( $taxonomy, $terms_of_taxonomies, array(), 'object' );
 			}
 
-			// If select some terms in one/some taxonomy
 			if ( $terms_info ) {
 				foreach ( $terms_info as $term_info ) {
-					// Current taxonomy
-					$taxonomy = $term_info[ 'taxonomy' ];
+					if ( !empty( $term_info[ 'terms' ] ) ) {
+						$taxonomy	 = $term_info[ 'taxonomy' ];
+						$all_terms	 = $terms_of_taxonomies[ $taxonomy ];
 
-					if ( is_array( $term_info[ 'terms' ] ) ) {
-						// If "NOT IN" this list
+						$compare = array();
 						if ( $term_info[ 'operator' ] == 'NOT IN' ) {
-							foreach ( $term_info[ 'terms' ] as $term_slug ) {
-								unset( $terms_of_taxonomies[ $taxonomy ][ $term_slug ] );
-							}
+							$compare = array_diff_key( $all_terms, array_flip( $term_info[ 'terms' ] ) );
 						} else {
-							$all_terms_of_taxo = $terms_of_taxonomies[ $taxonomy ];
-							unset( $terms_of_taxonomies[ $taxonomy ] );
-							foreach ( $term_info[ 'terms' ] as $idx => $term_slug ) {
-								// If term as_heading: get term slug if field = id for the first term only
-								if ( $term_as_heading && $term_info[ 'field' ] == 'id' && $idx == 0 ) {
-									$term		 = get_term( (int) $term_slug, $taxonomy );
-									$term_slug	 = $term->slug;
+							// Do not use array_intersect_key(), it requires another step to get terms in selected order
+							foreach ( $term_info[ 'terms' ] as $term_slug ) {
+								if ( !empty( $all_terms[ $term_slug ] ) ) {
+									$compare[ $term_slug ] = $all_terms[ $term_slug ];
 								}
-
-								$terms_of_taxonomies[ $taxonomy ][ $term_slug ] = $all_terms_of_taxo[ $term_slug ];
 							}
+						}
+
+						if ( $compare ) {
+							$terms_of_taxonomies[ $taxonomy ] = $compare;
 						}
 					}
 				}
 			}
+
 
 			// Reorder by order of taxonomies in $taxonomies_to_get
 			return PT_CV_Functions_Pro::_array_replace( array_flip( $taxonomies_to_get ), $terms_of_taxonomies );
@@ -249,59 +241,6 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 			}
 
 			return $result;
-		}
-
-		/**
-		 * Get column width (col-sm-*) for Small devices Tablets (>=768px)
-		 *
-		 * @param int $md_span
-		 *
-		 * 6 => 6
-		 * 4 => 6
-		 * 3 => 4
-		 * 2 => 3
-		 *
-		 * @return int
-		 */
-		static function get_sm_width( $md_span ) {
-
-			$view_settings	 = PT_CV_Functions::get_global_variable( 'view_settings' );
-			$device_cols	 = PT_CV_Functions_Pro::get_device_column( $view_settings, 'tablet' );
-
-			if ( $device_cols ) {
-				$md_span = (int) ( 12 / $device_cols );
-			} else {
-				// Always display an even number of items per row in smaller device (to remove gap/space in rows)
-				if ( $md_span < 6 ) {
-					$md_span++;
-					while ( $md_span < 12 && ( 12 % $md_span != 0 ) ) {
-						$md_span++;
-					}
-				}
-			}
-
-			return $md_span;
-		}
-
-		/**
-		 * Get column width (col-xs-*) for Extra small devices (<768px)
-		 *
-		 * @param int $md_span
-		 *
-		 * @return int
-		 */
-		static function get_xs_width( $md_span ) {
-
-			$view_settings	 = PT_CV_Functions::get_global_variable( 'view_settings' );
-			$device_cols	 = PT_CV_Functions_Pro::get_device_column( $view_settings );
-
-			if ( $device_cols ) {
-				$md_span = (int) ( 12 / $device_cols );
-			} else {
-				$md_span = 12;
-			}
-
-			return $md_span;
 		}
 
 		/**
@@ -353,7 +292,7 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 			$posts		 = array();
 			$query_obj	 = NULL;
 			$pagination	 = false; // Use theme pagination by default
-			$rebuild	 = false; // Use theme limit value by default
+			$rebuild	 = PT_CV_Functions::get_option_value( 'show_ads_anywhere' ); // Use theme limit value by default
 
 			$existed_params = array( 'id', 'posts', 'query_obj', 'pagination' );
 
@@ -380,83 +319,77 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 			}
 			/* End Backward compatible */
 
-			global $pt_cv_glb, $pt_cv_id;
-
-			if ( !isset( $pt_cv_glb ) ) {
-				$pt_cv_glb = array();
-			}
-
 			// View settings
 			$view_settings = PT_CV_Functions::view_get_settings( $id );
 
-			// Get content type & view type
-			$content_type	 = PT_CV_Functions::setting_value( PT_CV_PREFIX . 'content-type', $view_settings );
-			$view_type		 = PT_CV_Functions::setting_value( PT_CV_PREFIX . 'view-type', $view_settings );
+			if ( !$rebuild ) {
+				global $pt_cv_glb, $pt_cv_id;
 
-			// Set global variable
-			$pt_cv_id									 = $id;
-			$pt_cv_glb[ $pt_cv_id ][ 'view_settings' ]	 = $view_settings;
-			$pt_cv_glb[ $pt_cv_id ][ 'content_type' ]	 = $content_type;
-			$pt_cv_glb[ $pt_cv_id ][ 'view_type' ]		 = $view_type;
-			$pt_cv_glb[ $pt_cv_id ][ 'dargs' ]			 = apply_filters( PT_CV_PREFIX_ . 'all_display_settings', PT_CV_Functions::view_display_settings( $view_type ) );
+				if ( !isset( $pt_cv_glb ) ) {
+					$pt_cv_glb = array();
+				}
 
-			do_action( PT_CV_PREFIX_ . 'before_process_item' );
+				// Get content type & view type
+				$content_type	 = PT_CV_Functions::setting_value( PT_CV_PREFIX . 'content-type', $view_settings );
+				$view_type		 = PT_CV_Functions::setting_value( PT_CV_PREFIX . 'view-type', $view_settings );
 
-			// Store HTML output of each item
-			$content_items = array();
-			if ( $posts ) {
-				foreach ( $posts as $post ) {
-					if ( is_object( $post ) ) {
-						setup_postdata( $post );
+				// Set global variable
+				$pt_cv_id									 = $id;
+				$pt_cv_glb[ $pt_cv_id ][ 'view_settings' ]	 = $view_settings;
+				$pt_cv_glb[ $pt_cv_id ][ 'content_type' ]	 = $content_type;
+				$pt_cv_glb[ $pt_cv_id ][ 'view_type' ]		 = $view_type;
+
+				$dargs	 = $args	 = array();
+				$dargs	 = apply_filters( PT_CV_PREFIX_ . 'all_display_settings', PT_CV_Functions::view_display_settings( $view_type, $dargs ) );
+
+				PT_CV_Functions::view_get_pagination_settings( $dargs, $args, array() );
+				$pt_cv_glb[ $pt_cv_id ][ 'dargs' ] = $dargs;
+
+				do_action( PT_CV_PREFIX_ . 'before_process_item' );
+				$content_items = array();
+				if ( $posts ) {
+					foreach ( $posts as $post ) {
+						if ( is_object( $post ) ) {
+							setup_postdata( $post );
+							// Output HTML for this item
+							$content_items[ $post->ID ] = PT_CV_Html::view_type_output( $view_type, $post );
+						}
+					}
+				} else {
+					// The Loop
+					while ( $query_obj ? $query_obj->have_posts() : have_posts() ) : $query_obj ? $query_obj->the_post() : the_post();
+						global $post;
+
 						// Output HTML for this item
 						$content_items[ $post->ID ] = PT_CV_Html::view_type_output( $view_type, $post );
-					}
+					endwhile;
 				}
+
+				do_action( PT_CV_PREFIX_ . 'after_process_item' );
+
+				// Filter array of items
+				$content_items = apply_filters( PT_CV_PREFIX_ . 'content_items', $content_items, $view_type );
+
+				// Wrap items to a wrapper
+				$view_html = PT_CV_Html::content_items_wrap( $content_items, 1, count( $content_items ), $id );
+
+				// Clear to prevent the element to shift up in the remaining space
+				$view_html .= '<div style="clear: both;"></div>';
+
+				// Show pagination
+				$view_html .= $pagination ? self::paginate_links() : '';
 			} else {
-				// Rebuild query
+				// Rebuild whole output with custom pagination in View
 				global $wp_query;
-				$rebuild = $rebuild && isset( $wp_query->query_vars );
-				if ( $rebuild ) {
-					$query_vars = $wp_query->query_vars;
+				$wp_query->query_vars[ 'post_status' ]		 = 'publish';
+				$view_settings[ PT_CV_PREFIX . 'rebuild' ]	 = $wp_query->query_vars;
+				$view_settings[ PT_CV_PREFIX . 'limit' ]	 = '-1';
 
-					// If pagination is enabled
-					if ( PT_CV_Functions::setting_value( PT_CV_PREFIX . 'enable-pagination', $view_settings ) ) {
-						$query_vars[ 'posts_per_page' ]	 = (int) PT_CV_Functions::setting_value( PT_CV_PREFIX . 'pagination-items-per-page', $view_settings );
-						$pagination						 = true;
-					}
-
-					$query_obj = new WP_Query( $query_vars );
-				}
-
-				// The Loop
-				while ( $query_obj ? $query_obj->have_posts() : have_posts() ) : $query_obj ? $query_obj->the_post() : the_post();
-					global $post;
-
-					// Output HTML for this item
-					$content_items[ $post->ID ] = PT_CV_Html::view_type_output( $view_type, $post );
-				endwhile;
-
-				// Reset query
-				if ( $rebuild ) {
-					PT_CV_Functions::reset_query();
-				}
+				// Show View output
+				$view_html = PT_CV_Functions::view_process_settings( $id, $view_settings );
 			}
 
-			do_action( PT_CV_PREFIX_ . 'after_process_item' );
-
-			// Filter array of items
-			$content_items = apply_filters( PT_CV_PREFIX_ . 'content_items', $content_items, $view_type );
-
-			// Wrap items to a wrapper
-			$html = PT_CV_Html::content_items_wrap( $content_items, 1, count( $content_items ), $id );
-
-			// Clear to prevent the element to shift up in the remaining space
-			$html .= '<div style="clear: both;"></div>';
-
-			// Show pagination
-			$pagination_html = $pagination ? self::paginate_links() : '';
-
-			return PT_CV_Functions::view_final_output( $html . $pagination_html );
+			return PT_CV_Functions::view_final_output( $view_html );
 		}
 
 		/**
@@ -537,34 +470,34 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 			if ( in_array( 'date', $advanced_settings ) ) {
 				$date_fields = PT_CV_Functions::settings_values_by_prefix( PT_CV_PREFIX . 'post_date_' );
 				if ( $date_fields ) {
-					// Get filter value
+					$current_time	 = current_time( 'timestamp' );
+					$this_year		 = date( 'Y', $current_time );
+					$this_month		 = date( 'n', $current_time );
+
 					$date_value = isset( $date_fields[ 'value' ] ) ? $date_fields[ 'value' ] : '';
 					if ( $date_value ) {
 						$date_query = array();
 
 						switch ( $date_value ) {
 							case 'today':
-								$date		 = getdate();
-								$date_query	 = array(
-									'year'	 => $date[ 'year' ],
-									'month'	 => $date[ 'mon' ],
-									'day'	 => $date[ 'mday' ],
+								$date_query = array(
+									'year'	 => $this_year,
+									'month'	 => $this_month,
+									'day'	 => date( 'j', $current_time ),
 								);
 								break;
 
 							case 'from_today':
-								$date		 = getdate();
-								$date_query	 = array(
-									'year'		 => $date[ 'year' ],
-									'month'		 => $date[ 'mon' ],
-									'day'		 => $date[ 'mday' ],
+								$date_query = array(
+									'year'		 => $this_year,
+									'month'		 => $this_month,
+									'day'		 => date( 'j', $current_time ),
 									'compare'	 => '>=',
 								);
 								break;
 
 							case 'yesterday':
-								$today		 = date( 'm/d/Y' );
-								$yesterday	 = date( 'm/d/Y', strtotime( '-1 day', strtotime( $today ) ) );
+								$yesterday	 = date( 'Y-m-d', strtotime( '-1 day', $current_time ) );
 								$date		 = date_parse( $yesterday );
 
 								$date_query = array(
@@ -576,21 +509,21 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 
 							case 'this_week':
 								$date_query = array(
-									'year'	 => date( 'Y' ),
-									'week'	 => date( 'W' ),
+									'year'	 => $this_year,
+									'week'	 => date( 'W', $current_time ),
 								);
 								break;
 
 							case 'this_month':
 								$date_query = array(
-									'year'	 => date( 'Y' ),
-									'month'	 => date( 'n' ),
+									'year'	 => $this_year,
+									'month'	 => $this_month,
 								);
 								break;
 
 							case 'this_year':
 								$date_query = array(
-									'year' => date( 'Y' ),
+									'year' => $this_year,
 								);
 								break;
 
@@ -604,10 +537,9 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 								);
 								break;
 
-							// Custom date
 							case 'custom_date':
-								if ( trim( $date_fields[ 'custom_date' ] ) != '' ) {
-									$date = date_parse( $date_fields[ 'custom_date' ] );
+								if ( $cus_date = sanitize_text_field( $date_fields[ 'custom_date' ] ) ) {
+									$date = date_parse( $cus_date );
 									if ( $date ) {
 										$date_query = array(
 											'year'	 => $date[ 'year' ],
@@ -618,13 +550,24 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 								}
 								break;
 
+							case 'custom_year':
+								if ( $cus_year = sanitize_text_field( $date_fields[ 'custom_year' ] ) ) {
+									$year = intval( $cus_year );
+									if ( $year ) {
+										$date_query = array(
+											'year' => $year,
+										);
+									}
+								}
+								break;
+
 							// Custom From - To
 							case 'custom_time':
-								$today = date( 'm/d/Y' );
-								if ( trim( $date_fields[ 'from' ] ) == '' ) {
+								$today = date( 'Y-m-d', $current_time );
+								if ( trim( $date_fields[ 'from' ] ) === '' ) {
 									$date_fields[ 'from' ] = $today;
 								}
-								if ( trim( $date_fields[ 'to' ] ) == '' ) {
+								if ( trim( $date_fields[ 'to' ] ) === '' ) {
 									$date_fields[ 'to' ] = $today;
 								}
 
@@ -660,9 +603,10 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 		/**
 		 * Check dependences before do action
 		 *
-		 * @param string $key Key of feature
+		 * @param string $key The feature
+		 * @param bool $get_dependence Get instead of check
 		 */
-		static function check_dependences( $key ) {
+		static function check_dependences( $key, $get_dependence = false ) {
 			if ( !$key ) {
 				return true;
 			}
@@ -671,18 +615,14 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 			$view_type	 = PT_CV_Functions::get_global_variable( 'view_type' );
 
 			// Shuffle filter
-			if ( $key == 'taxonomy-filter' && in_array( $view_type, array( 'grid' ) ) ) {
-				return true;
-			}
-
-			// Animation - content hover
-			if ( $key == 'content-hover' ) {
-				return true;
-			}
-
-			// Same height
-			if ( $key == 'same-height' && $view_type == 'grid' ) {
-				return true;
+			if ( $key == 'taxonomy-filter' ) {
+				$view_settings		 = PT_CV_Functions::get_global_variable( 'view_settings' );
+				$advanced_settings	 = (array) PT_CV_Functions::setting_value( PT_CV_PREFIX . 'advanced-settings', $view_settings );
+				if ( in_array( 'taxonomy', $advanced_settings ) && !empty( $view_settings[ PT_CV_PREFIX . 'taxonomy' ] ) ) {
+					return true;
+				} else {
+					return false;
+				}
 			}
 
 			// Read more - text link
@@ -691,8 +631,14 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 			}
 
 			// special-field
-			if ( $key === 'special-field' && in_array( $view_type, array( 'grid', 'pinterest', 'masonry', 'one_others' ) ) ) {
-				return true;
+			if ( $key === 'special-field' ) {
+				$arr = array( 'timeline' );
+
+				if ( $get_dependence ) {
+					return $arr;
+				} else {
+					return !in_array( $view_type, $arr );
+				}
 			}
 
 			return false;
@@ -702,32 +648,28 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 		 * Check if animation - show Content on hover is activated and ready to use
 		 */
 		static function animate_activated_content_hover() {
-			// Return if processed
 			$hover_enable = PT_CV_Functions::get_global_variable( 'content_hover_enable' );
 			if ( isset( $hover_enable ) ) {
 				return $hover_enable;
 			}
 
-			// Get Animation settings
 			$animation = PT_CV_Functions::get_global_variable( 'animation' );
 			if ( !isset( $animation ) ) {
 				$animation = PT_CV_Functions::settings_values_by_prefix( PT_CV_PREFIX . 'anm-' );
 				PT_CV_Functions::set_global_variable( 'animation', $animation );
 			}
 
-			$hover_enable = isset( $animation[ 'content-hover' ] ) && PT_CV_Functions_Pro::check_dependences( 'content-hover' );
+			$hover_enable = !empty( $animation[ 'overlay-enable' ] ) ? $animation[ 'overlay-enable' ] : false;
+
+			if ( PT_CV_Functions_Pro::is_mobile() && !empty( $animation[ 'disable-onmobile' ] ) ) {
+				$hover_enable = false;
+			}
 
 			if ( $hover_enable ) {
 				// Show ERROR
 				$dargs = PT_CV_Functions::get_global_variable( 'dargs' );
 				if ( !in_array( 'thumbnail', $dargs[ 'fields' ] ) ) {
 					die( PT_CV_Functions::debug_output( 'thumbnail_not_selected', __( 'Please enable showing thumbnail', 'content-views-pro' ) ) );
-				}
-
-				// Disable on mobile devices
-				$disable_onmobile = PT_CV_Functions::setting_value( PT_CV_PREFIX . 'anm-disable-onmobile' );
-				if ( $disable_onmobile && PT_CV_Functions_Pro::is_mobile() ) {
-					$hover_enable = false;
 				}
 			}
 
@@ -743,54 +685,7 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 		 * @return string
 		 */
 		static function date_human( $date ) {
-			return sprintf( __( '%s ago' ), human_time_diff( $date, current_time( 'timestamp' ) ) );
-		}
-
-		/**
-		 * Try to convert an attachment URL into a post ID.
-		 *
-		 * @global wpdb $wpdb WordPress database access abstraction object.
-		 *
-		 * @param string $url The URL to resolve.
-		 * @return int The found post ID.
-		 */
-		static function attachment_url_to_postid( $url ) {
-			global $wpdb;
-
-			$dir	 = wp_upload_dir();
-			$path	 = ltrim( $url, $dir[ 'baseurl' ] . '/' );
-
-			$sql	 = $wpdb->prepare(
-				"SELECT post_id FROM $wpdb->postmeta WHERE meta_key = '_wp_attached_file' AND meta_value = %s", $path
-			);
-			$post_id = $wpdb->get_var( $sql );
-			if ( !empty( $post_id ) ) {
-				return (int) $post_id;
-			}
-		}
-
-		/**
-		 * Get attachment ID from attachment URL
-		 *
-		 * @param string $url
-		 * @return int
-		 */
-		static function get_attachment_id_by_url( $url ) {
-			$dir = wp_upload_dir();
-
-			// Strip baseurl
-			if ( 0 === strpos( $url, $dir[ 'baseurl' ] . '/' ) ) {
-				$url = substr( $url, strlen( $dir[ 'baseurl' ] . '/' ) );
-			}
-
-			// Get original url (without width, height)
-			$matches = array();
-			if ( preg_match( '/^(.*)(\-\d*x\d*)(\.\w{1,})/i', $url, $matches ) ) {
-				$url = $dir[ 'baseurl' ] . '/' . $matches[ 1 ] . $matches[ 3 ];
-			}
-			$post_id = self::attachment_url_to_postid( $url );
-
-			return (int) $post_id;
+			return sprintf( __( '%s ago', 'content-views-pro' ), human_time_diff( $date, current_time( 'timestamp' ) ) );
 		}
 
 		/**
@@ -815,14 +710,16 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 			// Regenerate image
 			$force_regenerate = PT_CV_Functions::setting_value( PT_CV_PREFIX . 'field-thumbnail-regenerate' );
 			if ( !$force_regenerate ) {
-				$path_info	 = pathinfo( $path );
-				$ext		 = $path_info[ 'extension' ];
-				$rel_path	 = str_replace( array( $upload_dir, ".$ext" ), '', $path );
-				$suffix		 = "{$width}x{$height}";
+				$path_info = pathinfo( $path );
+				if ( !empty( $path_info[ 'extension' ] ) ) {
+					$ext		 = $path_info[ 'extension' ];
+					$rel_path	 = str_replace( array( $upload_dir, ".$ext" ), '', $path );
+					$suffix		 = "{$width}x{$height}";
 
-				// If custom image exists => do nothing
-				if ( file_exists( "{$upload_dir}{$rel_path}-{$suffix}.{$ext}" ) ) {
-					return "{$upload_url}{$rel_path}-{$suffix}.{$ext}";
+					// If custom image exists => do nothing
+					if ( file_exists( "{$upload_dir}{$rel_path}-{$suffix}.{$ext}" ) ) {
+						return "{$upload_url}{$rel_path}-{$suffix}.{$ext}";
+					}
 				}
 			}
 
@@ -882,73 +779,14 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 		}
 
 		/**
-		 * Get number of items per row for Mobile, Tablet
-		 *
-		 * @param array $view_settings
-		 * @param string $device
-		 * @param int $default
-		 * @return int
-		 */
-		static function get_device_column( $view_settings, $device = 'mobile', $default = 0 ) {
-			$device_cols = $default;
-
-			if ( !class_exists( 'Mobile_Detect_CV' ) ) {
-				return $device_cols;
-			}
-
-			$detect		 = new Mobile_Detect_CV();
-			$mobile_cols = (int) PT_CV_Functions::setting_value( PT_CV_PREFIX . 'resp-number-columns', $view_settings, 1 );
-			$tablet_cols = (int) PT_CV_Functions::setting_value( PT_CV_PREFIX . 'resp-tablet-number-columns', $view_settings, 2 );
-
-			// Set default value
-			if ( !$mobile_cols ) {
-				$mobile_cols = 1;
-			}
-			if ( !$tablet_cols ) {
-				$tablet_cols = 2;
-			}
-
-			if ( $device == 'mobile' ) {
-				$device_cols = $mobile_cols;
-			} else if ( $device == 'tablet' ) {
-				$device_cols = $tablet_cols;
-			} else if ( $device == 'all' ) {
-				// For mobile devices
-				if ( self::is_mobile() ) {
-					$device_cols = $mobile_cols;
-				}
-
-				// For tablet devices
-				if ( $detect->isTablet() ) {
-					$device_cols = $tablet_cols;
-				}
-			}
-
-			return $device_cols;
-		}
-
-		/**
 		 * Get heading word for Shuffle filter list
 		 *
-		 * @global type $pt_cv_glb
-		 * @global type $pt_cv_id
 		 * @return type
 		 */
-		static function shuffle_filter_heading_word( $idx = 0 ) {
-
-			if ( !$idx && isset( $_SESSION ) ) {
-				unset( $_SESSION[ PT_CV_PREFIX . 'shuffle-heading' ] );
-			}
-
-			if ( !isset( $_SESSION[ PT_CV_PREFIX . 'shuffle-heading' ] ) ) {
-				$heading_word									 = PT_CV_Functions::setting_value( PT_CV_PREFIX . 'taxonomy-filter-heading-word' );
-				$words											 = explode( ',', $heading_word );
-				$_SESSION[ PT_CV_PREFIX . 'shuffle-heading' ]	 = $words;
-			} else {
-				$words = $_SESSION[ PT_CV_PREFIX . 'shuffle-heading' ];
-			}
-
-			$all_text = !empty( $words[ $idx ] ) ? $words[ $idx ] : __( 'All' );
+		static function shuffle_filter_group_setting( $idx = 0, $setting = 'heading-word' ) {
+			$heading_word	 = PT_CV_Functions::setting_value( PT_CV_PREFIX . 'taxonomy-filter-' . $setting );
+			$words			 = explode( ',', $heading_word );
+			$all_text		 = !empty( $words[ $idx ] ) ? sanitize_text_field( $words[ $idx ] ) : ($setting === 'heading-word' ? __( 'All', 'content-views-pro' ) : 'and');
 
 			return $all_text;
 		}
@@ -960,6 +798,11 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 		static function is_mobile() {
 			$detect = new Mobile_Detect_CV();
 			return $detect->isMobile() && !$detect->isTablet();
+		}
+
+		static function is_mobile_tablet() {
+			$detect = new Mobile_Detect_CV();
+			return $detect->isMobile() || $detect->isTablet();
 		}
 
 		/**
@@ -1005,12 +848,14 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 			// Validate request
 			check_ajax_referer( PT_CV_PREFIX_ . 'ajax_nonce', 'ajax_nonce' );
 
-			// Extract post data
-			parse_str( $_POST[ 'data' ] );
+			if ( !empty( $_POST[ 'data' ] ) ) {
+				// Extract post data
+				parse_str( $_POST[ 'data' ] );
 
-			// Show View output
-			$posts = self::search_by_title( $search_title, $post_type );
-			echo json_encode( $posts );
+				// Show View output
+				$posts = self::search_by_title( $search_title, $post_type );
+				echo json_encode( $posts );
+			}
 
 			// Must exit
 			die;
@@ -1025,10 +870,10 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 		 */
 		static function search_by_title( $search_title, $post_type ) {
 			$args = array(
-				'post_type'			 => $post_type,
+				'post_type'			 => esc_sql( $post_type ),
 				'posts_per_page'	 => -1,
-				'cvp_search_title'	 => $search_title,
-				'post_status'		 => ($post_type === 'attachment') ? 'any' : 'publish',
+				'cvp_search_title'	 => esc_sql( $search_title ),
+				'post_status'		 => in_array( $post_type, array( 'attachment', 'any' ) ) ? array( 'publish', 'inherit' ) : 'publish',
 			);
 
 			// Add filter to search posts by Title
@@ -1103,7 +948,7 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 		 */
 		static function resize_image_by_url( $img, $dimensions ) {
 			// If select "Custom size" for thumbnail
-			if ( PT_CV_Functions::setting_value( PT_CV_PREFIX . 'field-thumbnail-size' ) === PT_CV_PREFIX . 'custom' ) {
+			if ( PT_CV_Functions::setting_value( PT_CV_PREFIX . 'field-thumbnail-size' ) === PT_CV_PREFIX . 'custom' || PT_CV_Functions::get_global_variable( 'image_sizes_others' ) ) {
 				// Get $attachment_id
 				$original_img	 = preg_replace( '/-\d+x\d+/', '', $img ); // Remove widthxheight in image URL
 				$attachment_id	 = self::get_image_id_by_url( $original_img );
@@ -1146,6 +991,9 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 			if ( function_exists( 'pmpro_has_membership_access' ) ) {
 				return 'Paid Memberships Pro';
 			}
+			if ( function_exists( 'mm_access_decision' ) ) {
+				return 'MemberMouse';
+			}
 
 			return false;
 		}
@@ -1185,7 +1033,10 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 		 * [ post1: [service1:'count1', service2:'count2'],... ]
 		 */
 		static function ajax_callback_share_count() {
-			if ( !isset( $_POST[ 'posts' ] ) || !isset( $_POST[ 'services' ] ) ) {
+			// Validate request
+			check_ajax_referer( PT_CV_PREFIX_ . 'ajax_nonce', 'ajax_nonce' );
+
+			if ( !isset( $_POST[ 'posts' ], $_POST[ 'services' ] ) ) {
 				die;
 			}
 
@@ -1193,16 +1044,21 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 			$services	 = (array) $_POST[ 'services' ];
 
 			foreach ( (array) $_POST[ 'posts' ] as $id ) {
+				$id				 = absint( $id );
 				$result[ $id ]	 = array();
-				$buttons		 = array( 'url' => get_permalink( $id ), ) + array_flip( $services );
-				$social_counts	 = new PT_CV_Social_Share_Count( $buttons );
+				$url			 = get_permalink( $id );
+				if ( $url ) {
+					$buttons		 = array( 'url' => $url ) + array_flip( $services );
+					$social_counts	 = new PT_CV_Social_Share_Count( $buttons );
 
-				if ( $social_counts ) {
-					foreach ( $services as $button ) {
-						if ( !isset( $social_counts->socialCounts[ $button ] ) ) {
-							continue;
+					if ( $social_counts ) {
+						foreach ( $services as $button ) {
+							$number = 0;
+							if ( !empty( $social_counts->socialCounts[ $button ] ) ) {
+								$number = $social_counts->socialCounts[ $button ];
+							}
+							$result[ $id ][ $button ] = sprintf( '<span class="%s">%s</span>', PT_CV_PREFIX . 'social-badge', esc_html( $number ) );
 						}
-						$result[ $id ][ $button ] = sprintf( '<span class="%s">%s</span>', PT_CV_PREFIX . 'social-badge', $social_counts->socialCounts[ $button ] );
 					}
 				}
 			}
@@ -1223,7 +1079,10 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 		 * @return array
 		 */
 		static function array_insert( $args, $position, $insert ) {
-			return array_slice( $args, 0, $position, true ) + $insert + array_slice( $args, $position, null, true );
+			if ( $position >= 0 ) {
+				return array_slice( $args, 0, $position, true ) + $insert + array_slice( $args, $position, null, true );
+			}
+			return $args;
 		}
 
 		/**
@@ -1248,6 +1107,20 @@ if ( !class_exists( 'PT_CV_Functions_Pro' ) ) {
 			}
 
 			return $args;
+		}
+
+		static function is_pin_mas() {
+			$view_type = PT_CV_Functions::get_global_variable( 'view_type' );
+			return ( $view_type === 'pinterest' || $view_type === 'masonry' ) ? $view_type : false;
+		}
+
+		static function is_column_layout() {
+			$view_type = PT_CV_Functions::get_global_variable( 'view_type' );
+			return in_array( $view_type, array( 'grid', 'glossary', 'one_others' ) );
+		}
+
+		static function shuffle_filter_key( $term ) {
+			return $term->taxonomy . '-' . $term->term_id;
 		}
 
 	}

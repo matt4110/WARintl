@@ -13,78 +13,80 @@ get_header(); ?>
 
 				<div class="column-grid-faq">
 						
-						<!--	<a href="#faq-programs"> -->
-								<div class="faq-top-box">
-									<div id="circle1">
-										<img src="/images/icon-programs.png">
-									</div>
-									<div class="faq-top-box-content">
-										<h1>Questions about<br> Programs and Partners</h1>
-										<hr>
-										<p>Learn more about programs that help and partnerships we develop.</p>
-									</div>
-								</div>
-						<!--	</a> -->
+					<div class="faq-top-box">
+						<a href="#faq-programs">
+						<div id="circle1">
+							<img src="/images/icon-programs.png">
+						</div>
+						<div class="faq-top-box-content">
+							<h1>Questions about<br> Programs and Partners</h1>
+							<hr>
+							<p>Learn more about programs that help and partnerships we develop.</p>
+						</div>
+						</a>
+					</div>						
+				
+					<div class="faq-top-box">
+						<a href="#faq-rescue"> 
+						<div id="circle2">
+							<img src="/images/icon-rescue.png">
+						</div>
+						<div class="faq-top-box-content">
+							<h1>Questions about<br> Trafficking and Rescue</h1>
+							<hr>
+							<p>Learn more about trafficking and how we help to rescue victims.</p>
+						</div>
+						</a>
+					</div>
+				
+			
+					<div class="faq-top-box">
+						<a href="#faq-products">
+						<div id="circle3">
+							<img src="/images/icon-products.png">
+						</div>
+						<div class="faq-top-box-content">
+							<h1>Questions about<br> Our Products</h1>
+							<hr>
+							<p>Learn more about our products and how they help change lives.</p>
+						</div>
+						</a>
+					</div>
 						
-						<!--	<a href="#faq-rescue"> -->
-								<div class="faq-top-box">
-									<div id="circle2">
-										<img src="/images/icon-rescue.png">
-									</div>
-									<div class="faq-top-box-content">
-										<h1>Questions about<br> Trafficking and Rescue</h1>
-										<hr>
-										<p>Learn more about trafficking and how we help to rescue victims.</p>
-									</div>
-								</div>
-						<!--	</a> -->
-						
-						<!--	<a href="#faq-products">  -->
-								<div class="faq-top-box">
-									<div id="circle3">
-										<img src="/images/icon-products.png">
-									</div>
-									<div class="faq-top-box-content">
-										<h1>Questions about<br> Our Products</h1>
-										<hr>
-										<p>Learn more about our products and how they help change lives.</p>
-									</div>
-								</div>
-						<!--	</a>	-->
-						
+				</div>
+
+				<!-- Bottom Row -->
+				<div class="column-grid-faq">
+					
+					<div class="faq-top-box">
+						<a href="#faq-get-involved">
+						<div id="circle4">
+							<img src="/images/icon-get-involved.png">
+						</div>
+						<div class="faq-top-box-content">
+							<h1>Questions about<br> Getting Involved</h1>
+							<hr>
+							<p>Learn more about how you can get involved to help make a difference.</p>
+						</div>
+						</a>
+					</div>						
+
+					<div class="faq-top-box">
+						<a href="#faq-organization">
+						<div id="circle5">
+							<img src="/images/icon-organization.png">
+						</div>
+						<div class="faq-top-box-content">
+							<h1>Questions about<br> the Organization</h1>
+							<hr>
+							<p>Learn more about the history and organization of WAR, Intl.</p>
+						</div>
+						</a>
 					</div>
 
-					<!-- Bottom Row -->
-					<div class="column-grid-faq">
-						
-						<!--	<a href="#faq-get-involved"> -->
-								<div class="faq-top-box">
-									<div id="circle4">
-										<img src="/images/icon-get-involved.png">
-									</div>
-									<div class="faq-top-box-content">
-										<h1>Questions about<br> Getting Involved</h1>
-										<hr>
-										<p>Learn more about how you can get involved to help make a difference.</p>
-									</div>
-								</div>
-						<!--	</a> -->
-						
-						<!--	<a href="#faq-organization"> -->
-								<div class="faq-top-box">
-									<div id="circle5">
-										<img src="/images/icon-organization.png">
-									</div>
-									<div class="faq-top-box-content">
-										<h1>Questions about<br> the Organization</h1>
-										<hr>
-										<p>Learn more about the history and organization of WAR, Intl.</p>
-									</div>
-								</div>
-						<!--	</a> -->
-					</div>
+				</div>
 
-					<br>
+				<br>
 				<div class="row" style="padding-top:50px;">	
 						<h2 id="faq-programs">Questions about our Programs & Partners</h2>
 						<ol>

@@ -29,13 +29,14 @@
 					<a href="http://youtube.com/womenatrisk" target="_blank"><img class="footer-icon" src="/wp-content/themes/war-2016/assets/images/icon-youtube.png"></a>
 					<a href="https://www.pinterest.com/womenatriskintl/" target="_blank"><img class="footer-icon" src="/wp-content/themes/war-2016/assets/images/icon-pinterest.png"></a>
 				</div>
-				<div class="clearfix"></div>
+				<br>
+				<div class="footer-right" id="ecfa">
+					<p id="ecfa-text">WAR, Int'l is certified with the ECFA, an accreditation agency dedicated to both providing financial accountability and upholding financial integrity. <a href="http://www.ecfa.org">www.ecfa.org</a></p>
+					<img id="ecfa-icon" src="/wp-content/themes/war-2016/assets/images/ECFA.png">
+				</div>
+				<div class="clearfix">&nbsp;</div>
 			</div>
-			<div class="footer-left" id="ecfa">
-				<img id="ecfa-icon" src="/wp-content/themes/war-2016/assets/images/ECFA.png">
-				<p id="ecfa-text">WAR, Int'l is certified with the ECFA, an accreditation agency dedicated to both providing financial accountability and upholding financial integrity. <a href="http://www.ecfa.org">www.ecfa.org</a></p>
-			</div>
-			<div class="clearfix"></div>
+			
 
 			
 

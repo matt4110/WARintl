@@ -55,7 +55,7 @@
 		//Create endcap for hidden div
 		if ($i >= 7) {
 			echo '</div>';
-			echo '<div class = "text-center" style = "text-align: center; margin-top:20px;">';
+			echo '<div class = "text-center" style = "text-align: center; margin-top:50px;">';
 			echo '<a href="javascript:toggle(';
 			echo "'hidePrograms')";
 			echo '">Show/Hide More Programs</a></div>';

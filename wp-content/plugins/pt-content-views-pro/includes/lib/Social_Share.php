@@ -29,7 +29,7 @@ class PT_CV_Social_Share_Count {
 
 			if ( array_key_exists( 'facebook', $options ) ) {
 				$this->getFacebookShares();
-//				$this->getFacebookLikes();
+				#$this->getFacebookLikes();
 			}
 
 			if ( array_key_exists( 'twitter', $options ) ) {
@@ -54,7 +54,6 @@ class PT_CV_Social_Share_Count {
 		} elseif ( is_string( $options ) && $options != '' ) {
 			$this->shareUrl = $options;
 
-			// Get all Social Network share counts
 			$this->getFacebookShares();
 			$this->getFacebookLikes();
 			$this->getTwitterShares();
@@ -67,24 +66,51 @@ class PT_CV_Social_Share_Count {
 		}
 	}
 
-	public function getFacebookShares() {
-		$api	 = @file_get_contents( 'http://graph.facebook.com/?id=' . $this->shareUrl );
-		$count	 = json_decode( $api );
-		if ( isset( $count->shares ) && $count->shares != '0' ) {
-			$this->facebookShareCount = $count->shares;
+	static function _cache( $url, $value = null ) {
+		$uid = 'cvp_sharecount_' . md5( $url );
+		if ( $value ) {
+			set_transient( $uid, $value, 2 * HOUR_IN_SECONDS );
+		} else {
+			return get_transient( $uid );
 		}
-		$this->socialCounts[ 'facebook' ] = $this->facebookShareCount;
-		return $this->facebookShareCount;
+	}
+
+	static function _get_response( $url, $decode = true, $service = '' ) {
+		$cached = self::_cache( $url );
+		if ( $cached ) {
+			return $cached;
+		}
+
+		$response = wp_remote_get( $url );
+		if ( is_array( $response ) ) {
+			$body = $response[ 'body' ];
+
+			if ( $service === 'pinterest' ) {
+				$body = preg_replace( '/^receiveCount\((.*)\)$/', '\\1', $body );
+			}
+
+			$result = $decode ? json_decode( $body ) : $body;
+
+			self::_cache( $url, $result );
+
+			return $result;
+		} else {
+			return false;
+		}
+	}
+
+	public function getFacebookShares() {
+		$count = self::_get_response( 'http://graph.facebook.com/?id=' . $this->shareUrl );
+		if ( isset( $count->share->share_count ) ) {
+			$this->socialCounts[ 'facebook' ] = $count->share->share_count;
+		}
 	}
 
 	public function getFacebookLikes() {
-		$api	 = @file_get_contents( 'http://graph.facebook.com/?id=' . $this->shareUrl );
-		$count	 = json_decode( $api );
-		if ( isset( $count->likes ) && $count->likes != '0' ) {
-			$this->facebookLikeCount = $count->likes;
+		$count = self::_get_response( 'http://graph.facebook.com/?id=' . $this->shareUrl );
+		if ( isset( $count->likes ) ) {
+			$this->socialCounts[ 'facebooklikes' ] = $count->likes;
 		}
-		$this->socialCounts[ 'facebooklikes' ] = $this->facebookLikeCount;
-		return $this->facebookLikeCount;
 	}
 
 	public function getTwitterShares() {
@@ -92,13 +118,10 @@ class PT_CV_Social_Share_Count {
 		 * @since 3.6
 		 */
 		$from	 = 'Twitter share count provided by NewShareCounts.com';
-		$api	 = @file_get_contents( 'http://public.newsharecounts.com/count.json?from=' . $from . '&url=' . $this->shareUrl );
-		$count	 = json_decode( $api );
-		if ( isset( $count->count ) && $count->count != '0' ) {
-			$this->twitterShareCount = $count->count;
+		$count	 = self::_get_response( 'http://public.newsharecounts.com/count.json?from=' . $from . '&url=' . $this->shareUrl );
+		if ( isset( $count->count ) ) {
+			$this->socialCounts[ 'twitter' ] = $count->count;
 		}
-		$this->socialCounts[ 'twitter' ] = $this->twitterShareCount;
-		return $this->twitterShareCount;
 
 		/**
 		 * Twitter removed Count API since 2015 Oct.
@@ -107,7 +130,7 @@ class PT_CV_Social_Share_Count {
 		/*
 		  $api	 = @file_get_contents( 'https://cdn.api.twitter.com/1/urls/count.json?url=' . $this->shareUrl );
 		  $count	 = json_decode( $api );
-		  if ( isset( $count->count ) && $count->count != '0' ) {
+		  if ( isset( $count->count )  ) {
 		  $this->twitterShareCount = $count->count;
 		  }
 		  $this->socialCounts[ 'twitter' ] = $this->twitterShareCount;
@@ -116,64 +139,54 @@ class PT_CV_Social_Share_Count {
 	}
 
 	public function getBufferShares() {
-		$api	 = @file_get_contents( 'https://api.bufferapp.com/1/links/shares.json?url=' . $this->shareUrl );
-		$count	 = json_decode( $api );
+		$count = self::_get_response( 'https://api.bufferapp.com/1/links/shares.json?url=' . $this->shareUrl );
 		if ( isset( $count->shares ) && $count->shares != '0' ) {
-			$this->bufferShareCount = $count->shares;
+			$this->socialCounts[ 'buffer' ] = $count->shares;
 		}
-		$this->socialCounts[ 'buffer' ] = $this->bufferShareCount;
-		return $this->bufferShareCount;
 	}
 
 	public function getPinterestShares() {
-		$api	 = @file_get_contents( 'http://api.pinterest.com/v1/urls/count.json?callback%20&url=' . $this->shareUrl );
-		$body	 = preg_replace( '/^receiveCount\((.*)\)$/', '\\1', $api );
-		$count	 = json_decode( $body );
-		if ( isset( $count->count ) && $count->count != '0' ) {
-			$this->pinterestShareCount = $count->count;
+		$count = self::_get_response( 'http://api.pinterest.com/v1/urls/count.json?callback%20&url=' . $this->shareUrl, true, 'pinterest' );
+		if ( isset( $count->count ) ) {
+			$this->socialCounts[ 'pinterest' ] = $count->count;
 		}
-		$this->socialCounts[ 'pinterest' ] = $this->pinterestShareCount;
-		return $this->pinterestShareCount;
 	}
 
 	public function getLinkedInShares() {
-		$api	 = @file_get_contents( 'https://www.linkedin.com/countserv/count/share?url=' . $this->shareUrl . '&format=json' );
-		$count	 = json_decode( $api );
-		if ( isset( $count->count ) && $count->count != '0' ) {
-			$this->linkedInShareCount = $count->count;
+		$count = self::_get_response( 'https://www.linkedin.com/countserv/count/share?url=' . $this->shareUrl . '&format=json' );
+		if ( isset( $count->count ) ) {
+			$this->socialCounts[ 'linkedin' ] = $count->count;
 		}
-		$this->socialCounts[ 'linkedin' ] = $this->linkedInShareCount;
-		return $this->linkedInShareCount;
 	}
 
 	public function getGooglePlusOnes() {
-
+		$plus_count = 0;
 		if ( function_exists( 'curl_version' ) ) {
-			$curl						 = curl_init();
+			$curl			 = curl_init();
 			curl_setopt( $curl, CURLOPT_URL, "https://clients6.google.com/rpc" );
 			curl_setopt( $curl, CURLOPT_POST, 1 );
 			curl_setopt( $curl, CURLOPT_POSTFIELDS, '[{"method":"pos.plusones.get","id":"p","params":{"nolog":true,"id":"' . $this->shareUrl . '","source":"widget","userId":"@viewer","groupId":"@self"},"jsonrpc":"2.0","key":"p","apiVersion":"v1"}]' );
 			curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
 			curl_setopt( $curl, CURLOPT_HTTPHEADER, array( 'Content-type: application/json' ) );
-			$curl_results				 = curl_exec( $curl );
+			$curl_results	 = curl_exec( $curl );
 			curl_close( $curl );
-			$json						 = json_decode( $curl_results, true );
-			$this->googlePlusOnesCount	 = intval( $json[ 0 ][ 'result' ][ 'metadata' ][ 'globalCounts' ][ 'count' ] );
+			$json			 = json_decode( $curl_results, true );
+			$plus_count		 = intval( $json[ 0 ][ 'result' ][ 'metadata' ][ 'globalCounts' ][ 'count' ] );
 		} else {
-			$content = @file_get_contents( "https://plusone.google.com/u/0/_/+1/fastbutton?url=" . urlencode( $_GET[ 'url' ] ) . "&count=true" );
-			$doc	 = new DOMdocument();
+			$content = self::_get_response( "https://plusone.google.com/u/0/_/+1/fastbutton?url=" . urlencode( $this->shareUrl ) . "&count=true", false );
+
+			$doc = new DOMdocument();
 			libxml_use_internal_errors( true );
 			$doc->loadHTML( $content );
 			$doc->saveHTML();
-			$num	 = $doc->getElementById( 'aggregateCount' )->textContent;
+			$num = $doc->getElementById( 'aggregateCount' )->textContent;
 
 			if ( $num ) {
-				$this->googlePlusOnesCount = intval( $num );
+				$plus_count = intval( $num );
 			}
 		}
 
-		$this->socialCounts[ 'googleplus' ] = $this->googlePlusOnesCount;
-		return $this->googlePlusOnesCount;
+		$this->socialCounts[ 'googleplus' ] = $plus_count;
 	}
 
 }

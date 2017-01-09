@@ -114,15 +114,20 @@ class PT_Content_Views_Pro {
 	 * @since    1.0.0
 	 */
 	public function load_plugin_textdomain() {
-		$domain	 = 'content-views-pro';
 		// WPLANG is no longer needed since 4.0
-		$locale	 = get_locale();
+		$locale = get_locale();
 
-		// Load mo file from sub-folder /languages of this plugin
-		load_plugin_textdomain( $domain, FALSE, dirname( plugin_basename( PT_CV_FILE ) ) . '/languages/' );
+		$old_lang_file	 = WP_LANG_DIR . "/content-views-pro/content-views-pro-{$locale}.mo";
+		$lang_pack		 = WP_LANG_DIR . "/plugins/content-views-pro-{$locale}.mo";
+		$plugin_lang_dir = dirname( plugin_basename( PT_CV_FILE_PRO ) ) . '/languages/';
 
-		// Load mo file from wp-content/languages/content-views-pro/
-		load_textdomain( $domain, WP_LANG_DIR . "/{$domain}/{$domain}-{$locale}.mo" );
+		if ( file_exists( $old_lang_file ) ) {
+			load_textdomain( 'content-views-pro', $old_lang_file );
+		} elseif ( file_exists( $lang_pack ) ) {
+			load_textdomain( 'content-views-pro', $lang_pack );
+		} else {
+			load_plugin_textdomain( 'content-views-pro', FALSE, $plugin_lang_dir );
+		}
 	}
 
 	/**
@@ -168,9 +173,10 @@ class PT_Content_Views_Pro {
 		}
 
 		// Print View JS if it is not printed before
-		if ( !empty( $_SESSION[ PT_CV_PREFIX . 'view-css' ] ) ) {
-			foreach ( (array) $_SESSION[ PT_CV_PREFIX . 'view-css' ] as $css ) {
-				print $css;
+		global $cvp_view_css;
+		if ( !empty( $cvp_view_css ) ) {
+			foreach ( (array) $cvp_view_css as $css ) {
+				print apply_filters( PT_CV_PREFIX_ . 'delayed_css', $css );
 			}
 		}
 	}

@@ -17,3 +17,7 @@ define( 'PT_CV_OPTION_VERSION_PRO', 'pt_cv_' . 'version_pro' );
 
 // View type directory (HTML + CSS + JS)
 define( 'PT_CV_VIEW_TYPE_OUTPUT_PRO', PT_CV_PATH_PRO . 'public/templates/' );
+
+define( 'CVP_ENCODING', 'UTF-8' );
+
+define( 'CVP_REPLAYOUT', 'cvp-replayout' );

@@ -36,8 +36,9 @@ if ( !class_exists( 'PT_CV_ACF' ) ) {
 				return '';
 			}
 
-			switch ( $type ) {
+			$separator = apply_filters( PT_CV_PREFIX_ . 'ctf_multi_val_separator', ', ' );
 
+			switch ( $type ) {
 				// Custom function
 				case 'select':
 				case 'checkbox':
@@ -46,7 +47,7 @@ if ( !class_exists( 'PT_CV_ACF' ) ) {
 					foreach ( (array) $value as $key ) {
 						$result[] = isset( $field_object[ 'choices' ][ $key ] ) ? $field_object[ 'choices' ][ $key ] : '';
 					}
-					$value = implode( ', ', $result );
+					$value = implode( $separator, $result );
 
 					break;
 
@@ -73,6 +74,15 @@ if ( !class_exists( 'PT_CV_ACF' ) ) {
 				case 'page_link':
 					$value = sprintf( '<a href="%s" target="_blank">%s</a>', esc_url( $value ), __( 'Click here', 'content-views-pro' ) );
 
+					break;
+
+				case 'post_object':
+					$result = array();
+					foreach ( (array) $value as $post_object ) {
+						$output		 = sprintf( '<a href="%s" target="_blank">%s</a>', get_permalink( $post_object->ID ), get_the_post_thumbnail( $post_object->ID ) . get_the_title( $post_object->ID ) );
+						$result[]	 = apply_filters( PT_CV_PREFIX_ . 'acf_post_object_output', $output, $post_object );
+					}
+					$value = implode( $separator, $result );
 					break;
 
 				// Custom output from file
@@ -103,11 +113,7 @@ if ( !class_exists( 'PT_CV_ACF' ) ) {
 		 * @return string
 		 */
 		static function date_js_to_php( $date ) {
-			$cyear	 = str_replace( 'yy', 'Y', $date );
-			$cmonth	 = str_replace( 'mm', 'm', $cyear );
-			$cday	 = str_replace( 'dd', 'd', $cmonth );
-
-			return $cday;
+			return str_replace( array( 'yy', 'mm', 'dd' ), array( 'Y', 'm', 'd' ), $date );
 		}
 
 	}

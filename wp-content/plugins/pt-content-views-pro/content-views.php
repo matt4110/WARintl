@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package   PT_Content_Views_Pro
  * @author    PT Guy <http://www.contentviewspro.com/>
@@ -11,7 +10,7 @@
  * Plugin Name:       Content Views Pro
  * Plugin URI:        http://www.contentviewspro.com/
  * Description:       Premium addon of plugin "Content Views" (free on wordpress.org)
- * Version:           3.7
+ * Version:           4.2
  * Author:            PT Guy
  * Author URI:        http://www.contentviewspro.com/
  * Text Domain:       content-views-pro
@@ -20,21 +19,21 @@
  * Domain Path:       /languages
  * GitHub Plugin URI: https://github.com/<owner>/<repo>
  */
-// If this file is called directly, abort.
-if ( !defined( 'WPINC' ) ) {
+// Exit if accessed directly
+if ( !defined( 'ABSPATH' ) ) {
 	die;
 }
 
 // Define Constant
-define( 'PT_CV_VERSION_PRO', '3.7' );
-define( 'PT_CV_REQUIRE_FREE', '1.8.4' );
+define( 'PT_CV_VERSION_PRO', '4.2' );
+define( 'PT_CV_REQUIRE_FREE', '1.9.3.1' );
 define( 'PT_CV_FILE_PRO', __FILE__ );
 define( 'PT_CV_PATH_PRO', plugin_dir_path( __FILE__ ) );
 include_once( PT_CV_PATH_PRO . 'includes/defines.php' );
 include_once( PT_CV_PATH_PRO . 'includes/plugin.php' );
 
 // Include the TGM_FCVP_Plugin_Activation class.
-require_once dirname( __FILE__ ) . '/class-tgm-plugin-activation.php';
+include_once dirname( __FILE__ ) . '/class-tgm-plugin-activation.php';
 add_action( 'tgmpa_fcvp_register', 'cvp_register_required_plugins' );
 function cvp_register_required_plugins() {
 	$plugins = array(
@@ -86,13 +85,17 @@ if ( class_exists( 'PT_Content_Views' ) ) {
 	include_once( PT_CV_PATH_PRO . 'includes/html-viewtype.php' );
 	include_once( PT_CV_PATH_PRO . 'includes/html.php' );
 	include_once( PT_CV_PATH_PRO . 'includes/settings.php' );
+	include_once( PT_CV_PATH_PRO . 'includes/shortcodes.php' );
+	include_once( PT_CV_PATH_PRO . 'includes/troubleshoot.php' );
 	include_once( PT_CV_PATH_PRO . 'includes/update.php' );
 	include_once( PT_CV_PATH_PRO . 'includes/values.php' );
+	include_once( PT_CV_PATH_PRO . 'includes/replace.php' );
 	include_once( PT_CV_PATH_PRO . 'includes/support/woocommerce.php' );
 	include_once( PT_CV_PATH_PRO . 'includes/support/acf.php' );
 	include_once( PT_CV_PATH_PRO . 'includes/support/custom-field.php' );
 	include_once( PT_CV_PATH_PRO . 'includes/support/um.php' );
-	include_once( PT_CV_PATH_PRO . 'includes/support/anti-lazy-load.php' );
+	include_once( PT_CV_PATH_PRO . 'includes/support/pll.php' );
+	include_once( PT_CV_PATH_PRO . 'includes/support/tribe-event.php' );
 	include_once( PT_CV_PATH_PRO . 'includes/lib/Mobile_Detect.php' );
 	include_once( PT_CV_PATH_PRO . 'includes/lib/Social_Share.php' );
 
@@ -110,7 +113,7 @@ if ( class_exists( 'PT_Content_Views' ) ) {
 		cvp_load( 'PT_Content_Views_Pro_Admin', 'get_instance' );
 
 		// Update management
-		require_once( 'wp-updates-plugin.php' );
+		include_once( 'wp-updates-plugin.php' );
 		$plugin_update_path	 = 'http://update.contentviewspro.com/';
 		$plugin_path		 = plugin_basename( __FILE__ );
 		$license_key		 = PT_CV_Functions::get_option_value( 'license_key' );

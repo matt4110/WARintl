@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Form, option group, option name, option fields
  *
@@ -15,6 +14,7 @@ if ( !class_exists( 'PT_CV_Plugin_Pro' ) ) {
 	 * @name PT_CV_Plugin_Pro
 	 */
 	class PT_CV_Plugin_Pro {
+
 		/**
 		 * Add custom filters/actions
 		 */
@@ -27,8 +27,6 @@ if ( !class_exists( 'PT_CV_Plugin_Pro' ) ) {
 			// Add current class to list of class to looking for callback function for a setting option
 			add_filter( PT_CV_PREFIX_ . 'defined_in_class', array( __CLASS__, 'filter_defined_in_class' ) );
 			add_filter( PT_CV_PREFIX_ . 'settings_page_field_sanitize', array( __CLASS__, 'filter_settings_page_field_sanitize' ), 10, 2 );
-			// Actions
-			add_action( PT_CV_PREFIX_ . 'settings_page', array( __CLASS__, 'action_settings_page' ) );
 		}
 
 		/**
@@ -68,8 +66,18 @@ if ( !class_exists( 'PT_CV_Plugin_Pro' ) ) {
 		 */
 		public static function filter_frontend_assets_fields( $args ) {
 			$args[] = array(
-				'id'	 => 'custom_css',
-				'title'	 => __( 'Custom code', 'content-views-pro' ),
+				'id'	 => 'license_key',
+				'title'	 => __( 'License key', 'content-views-pro' ),
+			);
+
+			$args[] = array(
+				'id'	 => 'access_role',
+				'title'	 => __( 'User role', 'content-views-pro' ),
+			);
+
+			$args[] = array(
+				'id'	 => 'troubleshoot_problems',
+				'title'	 => __( 'Troubleshooting', 'content-views-pro' ),
 			);
 
 			$args[] = array(
@@ -83,8 +91,13 @@ if ( !class_exists( 'PT_CV_Plugin_Pro' ) ) {
 			);
 
 			$args[] = array(
-				'id'	 => 'show_content_ads',
+				'id'	 => 'show_ads_anywhere',
 				'title'	 => '',
+			);
+
+			$args[] = array(
+				'id'	 => 'custom_css',
+				'title'	 => __( 'Custom code', 'content-views-pro' ),
 			);
 
 			return $args;
@@ -98,10 +111,13 @@ if ( !class_exists( 'PT_CV_Plugin_Pro' ) ) {
 		 * @return array
 		 */
 		public static function filter_defined_in_class( $args ) {
-			$args[ 'custom_css' ]		 = __CLASS__;
-			$args[ 'hide_edit_view' ]	 = __CLASS__;
-			$args[ 'show_edit_post' ]	 = __CLASS__;
-			$args[ 'show_content_ads' ]	 = __CLASS__;
+			$args[ 'custom_css' ]			 = __CLASS__;
+			$args[ 'troubleshoot_problems' ] = __CLASS__;
+			$args[ 'hide_edit_view' ]		 = __CLASS__;
+			$args[ 'show_edit_post' ]		 = __CLASS__;
+			$args[ 'show_ads_anywhere' ]	 = __CLASS__;
+			$args[ 'access_role' ]			 = __CLASS__;
+			$args[ 'license_key' ]			 = __CLASS__;
 
 			return $args;
 		}
@@ -139,31 +155,6 @@ if ( !class_exists( 'PT_CV_Plugin_Pro' ) ) {
 		}
 
 		/**
-		 * Add more options to Form in Settings page
-		 */
-		public static function action_settings_page() {
-			// Accessibility Section
-			self::_add_setting_section(
-				'setting_access', array(
-				array(
-					'id'	 => 'access_role',
-					'title'	 => '<strong>' . __( 'User role', 'content-views-pro' ) . '</strong>',
-				),
-				)
-			);
-
-			// Account Section
-			self::_add_setting_section(
-				'setting_account', array(
-				array(
-					'id'	 => 'license_key',
-					'title'	 => '<strong>' . __( 'License key', 'content-views-pro' ) . '</strong>',
-				),
-				)
-			);
-		}
-
-		/**
 		 * Show Edit view button
 		 */
 		public static function field_callback_hide_edit_view() {
@@ -185,11 +176,11 @@ if ( !class_exists( 'PT_CV_Plugin_Pro' ) ) {
 			);
 		}
 
-		public static function field_callback_show_content_ads() {
-			$field_name = 'show_content_ads';
+		public static function field_callback_show_ads_anywhere() {
+			$field_name = 'show_ads_anywhere';
 
 			PT_CV_Plugin::_field_print(
-				$field_name, 'checkbox', sprintf( __( "Show %s tab in each View dashboard", PT_CV_DOMAIN_PRO ), sprintf( '<code>%s</code>', __( 'Content Ads', 'content-views-pro' ) ) ), __( 'To show your Ads (Google Adsense, banner...) in output', PT_CV_DOMAIN_PRO )
+				$field_name, 'checkbox', __( 'Show advertisements (existed in View) when using View to replace theme layout', PT_CV_DOMAIN_PRO ), __( 'These ads will be shown on your homepage, blog page... or anywhere you replaced layout by CVPro', PT_CV_DOMAIN_PRO )
 			);
 		}
 
@@ -215,7 +206,13 @@ if ( !class_exists( 'PT_CV_Plugin_Pro' ) ) {
 		public static function field_callback_license_key() {
 			$field_name = 'license_key';
 
-			PT_CV_Plugin::_field_print( $field_name, 'text', '', __( 'To update new version, please enter your license key', 'content-views-pro' ) );
+			if ( !get_option( 'pt_cv_pro_activate' ) ) {
+				$text = __( 'To update new version, please enter your license key', 'content-views-pro' );
+			} else {
+				$text = sprintf( '<a href="//www.contentviewspro.com/license-key-info/?license_key=%s" target="_blank" style="color:#ff5a5f;font-weight:600;text-decoration:underline">License Details</a>', urlencode( PT_CV_Functions::get_option_value( 'license_key' ) ) );
+			}
+
+			PT_CV_Plugin::_field_print( $field_name, 'text', '', $text );
 		}
 
 		/**
@@ -224,6 +221,14 @@ if ( !class_exists( 'PT_CV_Plugin_Pro' ) ) {
 		public static function field_callback_custom_css() {
 			self::_field_print_textarea( 'custom_css', '', __( 'Custom CSS', 'content-views-pro' ) );
 			self::_field_print_textarea( 'custom_js', '', __( 'Custom JS', 'content-views-pro' ) );
+		}
+
+		public static function field_callback_troubleshoot_problems() {
+			$field_name = 'fb_share_wrong_image';
+
+			PT_CV_Plugin::_field_print(
+				$field_name, 'checkbox', __( 'Facebook share shows wrong image', 'content-views-pro' ), __( 'You may also reload the Facebook Share page to clear cached data', 'content-views-pro' )
+			);
 		}
 
 		/**
@@ -243,20 +248,6 @@ if ( !class_exists( 'PT_CV_Plugin_Pro' ) ) {
 		}
 
 		/**
-		 * Print the text for User role Section
-		 */
-		public static function section_callback_setting_access() {
-
-		}
-
-		/**
-		 * Print the text for Account Section
-		 */
-		public static function section_callback_setting_account() {
-
-		}
-
-		/**
 		 * Display Textarea field
 		 *
 		 * @param string $field_name
@@ -272,6 +263,7 @@ if ( !class_exists( 'PT_CV_Plugin_Pro' ) ) {
 
 			$field_id = esc_attr( $field_name );
 
+			// don't use esc_textarea for $field_value
 			echo sprintf( '<textarea id="%1$s" name="%2$s[%1$s]" rows="6" placeholder="%4$s">%3$s</textarea> ', $field_id, PT_CV_OPTION_NAME, $field_value, $placeholder );
 
 			// Show description

@@ -1,5 +1,4 @@
 <?php
-
 if ( !class_exists( 'CVPro_AutoUpdate' ) ) {
 
 	class CVPro_AutoUpdate {
@@ -36,7 +35,7 @@ if ( !class_exists( 'CVPro_AutoUpdate' ) ) {
 
 			$request_args = array(
 				'slug'		 => $this->plugin_slug,
-				'version'	 => $transient->checked[ $this->plugin_path ]
+				'version'	 => isset( $transient->checked[ $this->plugin_path ] ) ? $transient->checked[ $this->plugin_path ] : PT_CV_VERSION_PRO
 			);
 
 			$request_string	 = $this->prepare_request( 'update_check', $request_args );
@@ -69,15 +68,14 @@ if ( !class_exists( 'CVPro_AutoUpdate' ) ) {
 				return $def;
 			}
 
-			$plugin_info	 = get_site_transient( 'update_plugins' );
+			$transient		 = get_site_transient( 'update_plugins' );
 			$request_args	 = array(
 				'slug'		 => $this->plugin_slug,
-				'version'	 => ( isset( $plugin_info->checked ) ) ? $plugin_info->checked[ $this->plugin_path ] : 0 // Current version
+				'version'	 => isset( $transient->checked[ $this->plugin_path ] ) ? $transient->checked[ $this->plugin_path ] : PT_CV_VERSION_PRO
 			);
 
-			$request_string = $this->prepare_request( $action, $request_args );
-
-			$raw_response = wp_remote_post( $this->api_url, $request_string );
+			$request_string	 = $this->prepare_request( $action, $request_args );
+			$raw_response	 = wp_remote_post( $this->api_url, $request_string );
 
 			if ( is_wp_error( $raw_response ) ) {
 				$res = new WP_Error( 'plugins_api_failed', __( 'An unknown error occurred' ), $raw_response->get_error_message() );
@@ -101,6 +99,7 @@ if ( !class_exists( 'CVPro_AutoUpdate' ) ) {
 					'request'		 => serialize( $args ),
 					'site_url'		 => base64_encode( home_url() ),
 				),
+				'decompress' => false,
 				'user-agent' => 'WordPress/' . $wp_version . '; ' . home_url()
 			);
 		}

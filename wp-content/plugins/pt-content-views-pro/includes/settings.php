@@ -15,6 +15,7 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 	 * @todo Define settings for options
 	 */
 	class PT_CV_Settings_Pro {
+
 		/**
 		 * Advanced Order by options
 		 *
@@ -300,10 +301,28 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 		 */
 		static function view_type_settings_timeline() {
 
-			//$prefix = 'timeline-';
+			$prefix = 'timeline-';
 
 			$result = array(
-				PT_CV_Settings::setting_no_option(),
+				array(
+					'label'			 => array(
+						'text' => '',
+					),
+					'extra_setting'	 => array(
+						'params' => array(
+							'width' => 12,
+						),
+					),
+					'params'		 => array(
+						array(
+							'type'		 => 'checkbox',
+							'name'		 => $prefix . 'long-distance',
+							'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Show posts separately to ensure they are displayed in correct order', 'content-views-pro' ) ),
+							'std'		 => '',
+							'desc'		 => __( 'Check this option if showing full post content, or height of thumbnails are not equal', 'content-views-pro' ),
+						),
+					),
+				),
 			);
 
 			$result = apply_filters( PT_CV_PREFIX_ . 'view_type_settings_timeline', $result );
@@ -321,7 +340,6 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 			$prefix = 'glossary-';
 
 			$result = array(
-				// Number of columns
 				array(
 					'label'	 => array(
 						'text' => __( 'Items per row', 'content-views-query-and-display-post-page' ),
@@ -332,37 +350,6 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 							'name'			 => $prefix . 'number-columns',
 							'std'			 => '3',
 							'append_text'	 => '1 &rarr; 12',
-						),
-					),
-				),
-				array(
-					'label'	 => array(
-						'text' => __( 'View style', 'content-views-pro' ),
-					),
-					'params' => array(
-						array(
-							'type'	 => 'group',
-							'params' => array(
-								// Display only index
-								array(
-									'label'			 => array(
-										'text' => '',
-									),
-									'extra_setting'	 => array(
-										'params' => array(
-											'width' => 12,
-										),
-									),
-									'params'		 => array(
-										array(
-											'type'		 => 'checkbox',
-											'name'		 => $prefix . 'index-only',
-											'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Show only glossary index', 'content-views-pro' ) ),
-											'std'		 => '',
-										),
-									),
-								),
-							),
 						),
 					),
 				),
@@ -406,12 +393,32 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 							),
 							self::field_settings_font(
 								array(
-									'label'		 => __( 'Shuffle-filter options', 'content-views-pro' ),
+									'label'		 => __( 'Shuffle filters', 'content-views-pro' ),
 									'name'		 => 'filter-bar',
 									'depend'	 => array( 'enable-taxonomy-filter' ),
 									'font-size'	 => '',
 									'color'		 => '',
+									'bgcolor'	 => '',
+								)
+							),
+							self::field_settings_font(
+								array(
+									'label'		 => sprintf( '%s (%s)', __( 'Shuffle filters', 'content-views-pro' ), __( 'active', 'content-views-pro' ) ),
+									'name'		 => 'filter-bar-active',
+									'depend'	 => array( 'enable-taxonomy-filter' ),
+									'font-size'	 => '',
+									'color'		 => '#fff',
 									'bgcolor'	 => '#00aeef',
+								)
+							),
+							self::field_settings_font(
+								array(
+									'label'			 => sprintf( '%s (%s)', __( 'Shuffle filters', 'content-views-pro' ), __( 'heading', 'content-views-pro' ) ),
+									'name'			 => 'filter-bar-heading',
+									'depend_multi'	 => array( array( 'enable-taxonomy-filter' ), array( 'taxonomy-filter-type', 'group_by_taxonomy' ) ),
+									'font-size'		 => '',
+									'color'			 => '#fff',
+									'bgcolor'		 => '#00aeef',
 								)
 							),
 							self::field_settings_font(
@@ -430,6 +437,7 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 								'name'		 => 'title',
 								'font-size'	 => '',
 								'color'		 => '',
+								'bgcolor'	 => '',
 								), $prefix2
 							),
 							self::field_settings_font(
@@ -437,9 +445,9 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 								'label'		 => sprintf( '%s (%s)', __( 'Title' ), __( 'on hover', 'content-views-pro' ) ),
 								'name'		 => 'title-hover',
 								'depend'	 => array( 'title' ),
-								'skip_all'	 => 1,
+								'font-size'	 => '',
 								'color'		 => '',
-								'decoration' => '',
+								'bgcolor'	 => '',
 								), $prefix2
 							),
 							self::field_settings_font(
@@ -457,22 +465,41 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 									'name'		 => 'carousel-caption',
 									'depend'	 => array( 'view-type', 'scrollable' ),
 									'skip_all'	 => 1,
-									'bgcolor'	 => 'rgba(51,51,51,.8)',
+									'bgcolor'	 => 'rgba(51,51,51,.6)',
 								)
 							),
 							self::field_settings_font(
 								array(
-									'label'		 => __( 'Hover animation', 'content-views-pro' ),
+									'label'		 => __( 'Overlay', 'content-views-pro' ),
 									'name'		 => 'mask',
-									'depend'	 => array( 'anm-content-hover' ),
+									'depend'	 => array( 'anm-overlay-enable', '', '!=' ),
 									'skip_all'	 => 1,
-									'bgcolor'	 => 'rgba(51,51,51,.8)',
+									'bgcolor'	 => 'rgba(51,51,51,.6)',
+								)
+							),
+							self::field_settings_font(
+								array(
+									'label'		 => '',
+									'name'		 => 'mask-text',
+									'depend'	 => array( 'anm-overlay-enable', '', '!=' ),
+									'skip_all'	 => 1,
+									'color'		 => '#fff',
 								)
 							),
 							self::field_settings_font(
 								array(
 									'label'		 => __( 'Read More', 'content-views-query-and-display-post-page' ),
 									'name'		 => 'readmore',
+									'depend'	 => array( 'field-excerpt-readmore' ),
+									'font-size'	 => '',
+									'color'		 => '#ffffff',
+									'bgcolor'	 => '#00aeef',
+								)
+							),
+							self::field_settings_font(
+								array(
+									'label'		 => sprintf( '%s (%s)', __( 'Read More', 'content-views-query-and-display-post-page' ), __( 'on hover', 'content-views-pro' ) ),
+									'name'		 => 'readmore:hover',
 									'depend'	 => array( 'field-excerpt-readmore' ),
 									'font-size'	 => '',
 									'color'		 => '#ffffff',
@@ -500,7 +527,7 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 									'label'		 => __( 'Taxonomy as output', 'content-views-pro' ),
 									'name'		 => 'tao',
 									'depend'	 => array( 'taxonomy-term-info', 'as_output' ),
-									'font-size'	 => '20',
+									'font-size'	 => '',
 									'color'		 => '',
 									'bgcolor'	 => '',
 								)
@@ -510,8 +537,8 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 									'label'		 => __( 'Taxonomy in special place', 'content-views-pro' ),
 									'name'		 => 'specialp',
 									'depend'	 => array( 'meta-fields-taxonomy-special-place' ),
-									'font-size'	 => '13',
-									'font-style' => '600',
+									'font-size'	 => '',
+									'font-style' => '',
 									'color'		 => '#fff',
 									'bgcolor'	 => '#CC3333',
 								)
@@ -555,22 +582,6 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 									'bgcolor'	 => '#ff5a5f',
 								)
 							),
-							array(
-								'label'			 => array(
-									'text' => '',
-								),
-								'extra_setting'	 => array(
-									'params' => array(
-										'width' => 12,
-									),
-								),
-								'params'		 => array(
-									array(
-										'type'		 => 'html',
-										'content'	 => sprintf( '<p class="text-muted" style="padding-left: 5px;">%s</p>', __( 'Font weight (100 &rarr; 900): Defines from thin to thick characters. 400 is the same as normal, 700 is the same as bold', 'content-views-pro' ) ),
-									),
-								),
-							),
 						),
 					),
 				),
@@ -608,11 +619,12 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 							// Color
 							isset( $args[ 'color' ] ) ? array(
 								'label'			 => array(
-									'text' => __( 'Color', 'content-views-pro' ),
+									'text' => '',
 								),
 								'extra_setting'	 => array(
 									'params' => array(
-										'width' => $setting_width,
+										'width'			 => $setting_width,
+										'group-class'	 => PT_CV_PREFIX . 'text-color',
 									),
 								),
 								'params'		 => array(
@@ -633,8 +645,8 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 								),
 								'extra_setting'	 => array(
 									'params' => array(
-										'width'		 => 12,
-										'wrap-class' => PT_CV_PREFIX . 'bg-color',
+										'width'			 => 12,
+										'group-class'	 => PT_CV_PREFIX . 'bg-color',
 									),
 								),
 								'params'		 => array(
@@ -651,11 +663,12 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 							// Font family
 							!isset( $args[ 'skip_all' ] ) ? array(
 								'label'			 => array(
-									'text' => __( 'Font family', 'content-views-pro' ),
+									'text' => '',
 								),
 								'extra_setting'	 => array(
 									'params' => array(
-										'width' => $setting_width,
+										'width'			 => $setting_width,
+										'group-class'	 => PT_CV_PREFIX . 'font-family',
 									),
 								),
 								'params'		 => array(
@@ -668,33 +681,34 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 									),
 								),
 								) : '',
-							// Font style
 							!isset( $args[ 'skip_all' ] ) ? array(
 								'label'			 => array(
-									'text' => __( 'Font style', 'content-views-pro' ),
+									'text' => '',
 								),
 								'extra_setting'	 => array(
 									'params' => array(
-										'width' => $setting_width,
+										'width'			 => $setting_width,
+										'group-class'	 => PT_CV_PREFIX . 'font-family-text',
 									),
 								),
 								'params'		 => array(
 									array(
-										'type'		 => 'select',
-										'name'		 => 'font-style-' . $args[ 'name' ],
-										'options'	 => PT_CV_Values_Pro::font_styles(),
-										'std'		 => !empty( $args[ 'font-style' ] ) ? $args[ 'font-style' ] : apply_filters( PT_CV_PREFIX_ . 'settings_font_style_default', '' ),
+										'type'	 => 'text',
+										'name'	 => 'font-family-text-' . $args[ 'name' ],
+										'std'	 => '',
 									),
 								),
+								'dependence'	 => array( 'font-family-' . $args[ 'name' ], 'custom-font' ),
 								) : '',
 							// Font size
 							!isset( $args[ 'skip_all' ] ) ? array(
 								'label'			 => array(
-									'text' => __( 'Font size', 'content-views-pro' ),
+									'text' => '',
 								),
 								'extra_setting'	 => array(
 									'params' => array(
-										'width' => $setting_width,
+										'width'			 => $setting_width,
+										'group-class'	 => PT_CV_PREFIX . 'font-size',
 									),
 								),
 								'params'		 => array(
@@ -707,22 +721,126 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 									),
 								),
 								) : '',
-							// Decoration
-							isset( $args[ 'decoration' ] ) ? array(
+							// Font weight
+							!isset( $args[ 'skip_all' ] ) ? array(
 								'label'			 => array(
-									'text' => __( 'Decoration', 'content-views-pro' ),
+									'text' => '',
 								),
 								'extra_setting'	 => array(
 									'params' => array(
-										'width' => $setting_width,
+										'width'			 => $setting_width,
+										'group-class'	 => PT_CV_PREFIX . 'style-toggle',
+										'wrap-class'	 => 'data-toggle-buttons',
+									),
+								),
+								'params'		 => array(
+									array(
+										'type'		 => 'checkbox',
+										'name'		 => 'font-weight-' . $args[ 'name' ],
+										'options'	 => PT_CV_Values::yes_no( 'bold', '<span class="dashicons dashicons-editor-bold"></span>' ),
+										'std'		 => '',
+									),
+								),
+								) : '',
+							// Font style
+							!isset( $args[ 'skip_all' ] ) ? array(
+								'label'			 => array(
+									'text' => '',
+								),
+								'extra_setting'	 => array(
+									'params' => array(
+										'width'			 => $setting_width,
+										'group-class'	 => PT_CV_PREFIX . 'style-toggle',
+										'wrap-class'	 => 'data-toggle-buttons',
+									),
+								),
+								'params'		 => array(
+									array(
+										'type'		 => 'checkbox',
+										'name'		 => 'font-style-' . $args[ 'name' ],
+										'options'	 => PT_CV_Values::yes_no( 'italic', '<span class="dashicons dashicons-editor-italic"></span>' ),
+										'std'		 => '',
+									),
+								),
+								) : '',
+							// Decoration
+							!isset( $args[ 'skip_all' ] ) ? array(
+								'label'			 => array(
+									'text' => '',
+								),
+								'extra_setting'	 => array(
+									'params' => array(
+										'width'			 => $setting_width,
+										'group-class'	 => PT_CV_PREFIX . 'style-toggle',
+										'wrap-class'	 => 'data-toggle-buttons',
+									),
+								),
+								'params'		 => array(
+									array(
+										'type'		 => 'checkbox',
+										'name'		 => 'font-decoration-' . $args[ 'name' ],
+										'options'	 => PT_CV_Values::yes_no( 'underline', '<span class="dashicons dashicons-editor-underline"></span>' ),
+										'std'		 => '',
+									),
+								),
+								) : '',
+							// Text transform
+							!isset( $args[ 'skip_all' ] ) ? array(
+								'label'			 => array(
+									'text' => '',
+								),
+								'extra_setting'	 => array(
+									'params' => array(
+										'width'			 => $setting_width,
+										'group-class'	 => PT_CV_PREFIX . 'transform',
 									),
 								),
 								'params'		 => array(
 									array(
 										'type'		 => 'select',
-										'name'		 => 'font-decoration-' . $args[ 'name' ],
-										'options'	 => PT_CV_Values_Pro::font_decoration(),
+										'name'		 => 'font-transform-' . $args[ 'name' ],
+										'options'	 => PT_CV_Values_Pro::text_transform(),
 										'std'		 => '',
+									),
+								),
+								) : '',
+							// Line height
+							!isset( $args[ 'skip_all' ] ) ? array(
+								'label'			 => array(
+									'text' => '',
+								),
+								'extra_setting'	 => array(
+									'params' => array(
+										'width'			 => $setting_width,
+										'group-class'	 => PT_CV_PREFIX . 'numfield',
+									),
+								),
+								'params'		 => array(
+									array(
+										'type'			 => 'text',
+										'name'			 => 'font-lineheight-' . $args[ 'name' ],
+										'std'			 => '',
+										'prepend_text'	 => sprintf( '<span class="input-group-addon">%s</span>', __( 'Line height', 'content-views-pro' ) ),
+									),
+								),
+								) : '',
+							// Letter spacing
+							!isset( $args[ 'skip_all' ] ) ? array(
+								'label'			 => array(
+									'text' => '',
+								),
+								'extra_setting'	 => array(
+									'params' => array(
+										'width'			 => $setting_width,
+										'group-class'	 => PT_CV_PREFIX . 'numfield',
+									),
+								),
+								'params'		 => array(
+									array(
+										'type'			 => 'text',
+										'name'			 => 'font-letterspacing-' . $args[ 'name' ],
+										'std'			 => '',
+										'prepend_text'	 => sprintf( '<span class="input-group-addon">%s</span>', __( 'Letter spacing', 'content-views-pro' ) ),
 									),
 								),
 								) : '',
@@ -733,9 +851,13 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 
 			// Dependence
 			if ( !isset( $args[ 'skip_depend' ] ) ) {
-				$result[ 'dependence' ] = array(
-					$prefix2 . (!empty( $args[ 'depend' ][ 0 ] ) ? $args[ 'depend' ][ 0 ] : $args[ 'name' ] ), !empty( $args[ 'depend' ][ 1 ] ) ? $args[ 'depend' ][ 1 ] : 'yes', !empty( $args[ 'depend' ][ 2 ] ) ? $args[ 'depend' ][ 2 ] : '=',
-				);
+				if ( isset( $args[ 'depend_multi' ] ) ) {
+					$result[ 'dependence' ] = $args[ 'depend_multi' ];
+				} else {
+					$result[ 'dependence' ] = array(
+						$prefix2 . (!empty( $args[ 'depend' ][ 0 ] ) ? $args[ 'depend' ][ 0 ] : $args[ 'name' ] ), isset( $args[ 'depend' ][ 1 ] ) ? $args[ 'depend' ][ 1 ] : 'yes', !empty( $args[ 'depend' ][ 2 ] ) ? $args[ 'depend' ][ 2 ] : '=',
+					);
+				}
 			}
 
 			return $result;
@@ -751,16 +873,20 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 			switch ( $setting ) {
 				case 'view':
 					$result = array(
-						'label'	 => array(
-							'text' => __( 'View style', 'content-views-pro' ),
+						'label'			 => array(
+							'text' => '',
 						),
-						'params' => array(
+						'extra_setting'	 => array(
+							'params' => array(
+								'width'			 => 12,
+								'group-class'	 => PT_CV_PREFIX . 'fbold',
+							),
+						),
+						'params'		 => array(
 							array(
 								'type'	 => 'group',
 								'params' => array(
-									self::_text_align_settings(),
-									self::_text_direction_settings(),
-									self::_padding_margin_settings( 'margin-value-', __( 'Margin', 'content-views-pro' ) ),
+									self::_padding_margin_settings( 'margin-value-', __( 'Space around View', 'content-views-pro' ) ),
 								),
 							),
 						),
@@ -769,30 +895,38 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 
 				case 'item':
 					$result = array(
-						'label'	 => array(
-							'text' => __( 'Item style', 'content-views-pro' ),
+						'label'			 => array(
+							'text' => '',
 						),
-						'params' => array(
+						'extra_setting'	 => array(
+							'params' => array(
+								'width'			 => 12,
+								'group-class'	 => PT_CV_PREFIX . 'fbold',
+							),
+						),
+						'params'		 => array(
 							array(
 								'type'	 => 'group',
 								'params' => array(
-									self::_padding_margin_settings( 'item-margin-value-', __( 'Margin', 'content-views-pro' ), array( 'bottom' ) ),
-									self::_padding_margin_settings( 'item-padding-value-', __( 'Padding', 'content-views-pro' ) ),
+									self::_padding_margin_settings( 'item-padding-value-', __( 'Space around content (Padding)', 'content-views-pro' ) ),
+									self::_padding_margin_settings( 'item-margin-value-', __( 'Space around item (Margin)', 'content-views-pro' ) ),
 								),
 							),
 						),
 					);
 					break;
 
-				case 'button':
+				case 'common':
 					$result = array(
 						'label'	 => array(
-							'text' => __( 'Button style', 'content-views-pro' ),
+							'text' => __( 'Common style', 'content-views-pro' ),
 						),
 						'params' => array(
 							array(
 								'type'	 => 'group',
 								'params' => array(
+									self::_text_align_settings(),
+									self::_text_direction_settings(),
 									self::_button_border_radius(),
 								),
 							),
@@ -814,115 +948,136 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 			$prefix = 'anm-';
 
 			$result = array(
-				// Show content on hover
 				array(
 					'label'	 => array(
-						'text' => __( 'Hover animation', 'content-views-pro' ),
+						'text' => __( 'Overlay thumbnail with text', 'content-views-pro' ),
 					),
 					'params' => array(
 						array(
-							'type'		 => 'checkbox',
-							'name'		 => $prefix . 'content-hover',
-							'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Show other fields when mouse over thumbnail, with animation:', 'content-views-pro' ) ),
+							'type'		 => 'radio',
+							'name'		 => $prefix . 'overlay-enable',
+							'options'	 => array( '' => __( 'None' ), 'always' => __( 'Always', 'content-views-pro' ), 'onhover' => __( 'On hover', 'content-views-pro' ), ),
 							'std'		 => '',
 						),
 					),
 				),
 				array(
-					'label'	 => array(
+					'label'			 => array(
 						'text' => '',
 					),
-					'params' => array(
+					'extra_setting'	 => array(
+						'params' => array(
+							'width' => 12,
+						),
+					),
+					'params'		 => array(
 						array(
 							'type'	 => 'group',
 							'params' => array(
-								// Animation on hover
 								array(
 									'label'			 => array(
 										'text' => '',
 									),
 									'extra_setting'	 => array(
 										'params' => array(
-											'width' => 12,
+											'wrap-class' => PT_CV_PREFIX . 'w200',
 										),
 									),
 									'params'		 => array(
 										array(
-											'type'		 => 'radio',
+											'type'		 => 'select',
 											'name'		 => $prefix . 'content-animation',
 											'options'	 => PT_CV_Values_Pro::content_animation(),
 											'std'		 => PT_CV_Functions::array_get_first_key( PT_CV_Values_Pro::content_animation() ),
+											'desc'		 => __( 'Hover effect', 'content-views-pro' ),
 										),
 									),
-									'dependence'	 => array( $prefix . 'content-hover', 'yes' ),
 								),
-								// Margin top for first field
 								array(
-									'label'			 => array(
+									'label'	 => array(
 										'text' => '',
 									),
-									'extra_setting'	 => array(
-										'params' => array(
-											'width' => 12,
-										),
-									),
-									'params'		 => array(
-										array(
-											'type'			 => 'number',
-											'name'			 => $prefix . 'ff-margin-top',
-											'std'			 => '0',
-											'append_text'	 => 'px',
-											'desc'			 => __( 'Top margin in hover box', 'content-views-pro' ),
-											'popover'		 => sprintf( "<img src='%s'>", plugins_url( 'admin/assets/images/popover/hover-top-margin.png', PT_CV_FILE_PRO ) ),
-											'popover_place'	 => 'top',
-										),
-									),
-									'dependence'	 => array( $prefix . 'content-hover', 'yes' ),
-								),
-								// Title always shows
-								array(
-									'label'			 => array(
-										'text' => '',
-									),
-									'extra_setting'	 => array(
-										'params' => array(
-											'width' => 12,
-										),
-									),
-									'params'		 => array(
+									'params' => array(
 										array(
 											'type'		 => 'checkbox',
 											'name'		 => $prefix . 'exclude-title',
-											'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Title is always visible without hover', 'content-views-pro' ) ),
+											'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Title is always visible', 'content-views-pro' ) ),
 											'std'		 => '',
 										),
 									),
-									'dependence'	 => array( $prefix . 'content-hover', 'yes' ),
-								),
-								// Disable on mobile
-								array(
-									'label'			 => array(
-										'text' => '',
-									),
-									'extra_setting'	 => array(
-										'params' => array(
-											'width' => 12,
-										),
-									),
-									'params'		 => array(
-										array(
-											'type'		 => 'checkbox',
-											'name'		 => $prefix . 'disable-onmobile',
-											'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Disable this feature on mobile devices', 'content-views-pro' ) ),
-											'std'		 => '',
-											'desc'		 => __( 'Sometimes it is more convenient to show all fields directly', 'content-views-pro' ),
-										),
-									),
-									'dependence'	 => array( $prefix . 'content-hover', 'yes' ),
 								),
 							),
 						),
 					),
+					'dependence'	 => array( $prefix . 'overlay-enable', 'onhover' ),
+				),
+				array(
+					'label'			 => array(
+						'text' => '',
+					),
+					'extra_setting'	 => array(
+						'params' => array(
+							'width' => 12,
+						),
+					),
+					'params'		 => array(
+						array(
+							'type'	 => 'group',
+							'params' => array(
+								array(
+									'label'	 => array(
+										'text' => '',
+									),
+									'params' => array(
+										array(
+											'type'		 => 'checkbox',
+											'name'		 => $prefix . 'box-clickable',
+											'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Open post on click the overlay', 'content-views-pro' ) ),
+											'std'		 => '',
+										),
+									),
+								),
+								array(
+									'label'	 => array(
+										'text' => '',
+									),
+									'params' => array(
+										array(
+											'type'		 => 'checkbox',
+											'name'		 => $prefix . 'disable-onmobile',
+											'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Disable overlay on small screens (less than 481 pixels)', 'content-views-pro' ) ),
+											'std'		 => '',
+											'desc'		 => __( 'Check this option if you have long content', 'content-views-pro' ),
+										),
+									),
+								),
+							),
+						),
+					),
+					'dependence'	 => array( $prefix . 'overlay-enable', '', '!=' ),
+				),
+				array(
+					'label'			 => array(
+						'text' => __( 'Overlay position', 'content-views-pro' ),
+					),
+					'extra_setting'	 => array(
+						'params' => array(
+							'wrap-class' => PT_CV_PREFIX . 'w200',
+						),
+					),
+					'params'		 => array(
+						array(
+							'type'		 => 'select',
+							'name'		 => $prefix . 'overlay-position',
+							'options'	 => array(
+								'top'	 => __( 'Top', 'content-views-pro' ),
+								''		 => __( 'Middle', 'content-views-pro' ),
+								'bottom' => __( 'Bottom', 'content-views-pro' ),
+							),
+							'std'		 => '',
+						),
+					),
+					'dependence'	 => array( $prefix . 'overlay-enable', '', '!=' ),
 				),
 			);
 
@@ -930,24 +1085,29 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 		}
 
 		/**
-		 * Content Ads setting options
+		 * Advertisement setting options
 		 */
 		static function content_ads_settings( $prefix ) {
 			$this_enable = $prefix . 'enable';
 			$ads_list	 = array();
 			for ( $i = 0; $i < 10; $i++ ) {
 				$ads_list[] = array(
-					'label'		 => array(
+					'label'			 => array(
 						'text' => '',
 					),
-					'params'	 => array(
+					'extra_setting'	 => array(
+						'params' => array(
+							'group-class' => PT_CV_PREFIX . 'ad-item',
+						),
+					),
+					'params'		 => array(
 						array(
 							'type'	 => 'textarea',
 							'name'	 => $prefix . 'content' . $i,
 							'std'	 => '',
 						),
 					),
-					'dependence' => array( $this_enable, 'yes' ),
+					'dependence'	 => array( $this_enable, 'yes' ),
 				);
 			}
 
@@ -971,9 +1131,63 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 							'name'		 => $this_enable,
 							'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Show ads in output', PT_CV_DOMAIN_PRO ) ),
 							'std'		 => '',
-							'desc'		 => __( 'Ads are shown randomly. Drag & drop to change their positions (in relation to each other) in output', PT_CV_DOMAIN_PRO ),
+							'desc'		 => __( 'Ads are shown in order of appearance. Drag & drop ads to change their positions (in relation to each other)', PT_CV_DOMAIN_PRO ),
 						),
 					),
+				),
+				array(
+					'label'		 => array(
+						'text' => __( 'Ads positions', PT_CV_DOMAIN_PRO ),
+					),
+					'params'	 => array(
+						array(
+							'type'	 => 'group',
+							'params' => array(
+								array(
+									'label'			 => array(
+										'text' => '',
+									),
+									'extra_setting'	 => array(
+										'params' => array(
+											'width' => 12,
+										),
+									),
+									'params'		 => array(
+										array(
+											'type'		 => 'radio',
+											'name'		 => $prefix . 'position',
+											'options'	 => array(
+												''		 => __( 'Random', 'content-views-pro' ),
+												'manual' => __( 'Manual', 'content-views-pro' ),
+											),
+											'std'		 => '',
+										),
+									),
+								),
+								array(
+									'label'			 => array(
+										'text' => '',
+									),
+									'extra_setting'	 => array(
+										'params' => array(
+											'width'		 => 12,
+											'wrap-class' => PT_CV_PREFIX . 'w200',
+										),
+									),
+									'params'		 => array(
+										array(
+											'type'	 => 'text',
+											'name'	 => $prefix . 'position-manual',
+											'std'	 => '',
+											'desc'	 => __( 'Set positions (numeric values, separate by comma, in increasing order) to show ads on each page', 'content-views-pro' ),
+										),
+									),
+									'dependence'	 => array( $prefix . 'position', 'manual' ),
+								),
+							),
+						),
+					),
+					'dependence' => array( $this_enable, 'yes' ),
 				),
 				/**
 				  array(
@@ -998,6 +1212,21 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 				  ),
 				 *
 				 */
+				array(
+					'label'		 => array(
+						'text' => __( 'Execute shortcode', 'content-views-pro' ),
+					),
+					'params'	 => array(
+						array(
+							'type'		 => 'checkbox',
+							'name'		 => $prefix . 'enable-shortcode',
+							'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Yes', 'content-views-query-and-display-post-page' ) ),
+							'std'		 => '',
+							'desc'		 => __( 'Check this option if ad content is shortcode', 'content-views-pro' ),
+						),
+					),
+					'dependence' => array( $this_enable, 'yes' ),
+				),
 				array(
 					'label'			 => array(
 						'text' => '',
@@ -1045,26 +1274,31 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 		 *
 		 * @return array
 		 */
-		static function _padding_margin_settings( $prefix, $text, $options = '' ) {
+		static function _padding_margin_settings( $prefix, $text, $options = '', $desc = '' ) {
 			$settings	 = array();
-			$options	 = is_array( $options ) ? $options : array( 'top', 'left', 'bottom', 'right' );
-			$icons		 = array( 'top' => 'up', 'left' => 'left', 'bottom' => 'down', 'right' => 'right' );
+			$options	 = is_array( $options ) ? $options : array( 'top', 'right', 'left', 'bottom' );
 
 			foreach ( $options as $option ) {
 				$label = ucfirst( $option );
 
 				$settings[] = array(
-					'label'	 => array(
-						'text' => $label,
+					'label'			 => array(
+						'text' => '',
 					),
-					'params' => array(
+					'extra_setting'	 => array(
+						'params' => array(
+							'width' => 12,
+						),
+					),
+					'params'		 => array(
 						array(
 							'type'			 => 'number',
 							'name'			 => $prefix . $option,
 							'std'			 => '',
-							'prepend_text'	 => sprintf( '<span class="input-group-addon glyphicon glyphicon-arrow-%s" title="%s"></span>', $icons[ strtolower( $option ) ], $label ),
+							'prepend_text'	 => sprintf( '<span class="input-group-addon">%s</span>', ucfirst( $label ) ),
 							'append_text'	 => 'px',
-							'min'			 => '-500',
+							'desc'			 => !empty( $desc ) ? $desc : '',
+							'min'			 => '0',
 						),
 					),
 				);
@@ -1076,7 +1310,7 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 				),
 				'extra_setting'	 => array(
 					'params' => array(
-						'wrap-class' => 'form-inline',
+						'wrap-class' => 'cv-padding-margin',
 					),
 				),
 				'params'		 => array(
@@ -1184,7 +1418,7 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 								'type'		 => 'radio',
 								'name'		 => $prefix . 'value',
 								'options'	 => PT_CV_Values_Pro::post_date(),
-								'std'		 => PT_CV_Functions::array_get_first_key( PT_CV_Values_Pro::post_date() ),
+								'std'		 => 'today',
 							),
 						),
 					),
@@ -1216,6 +1450,24 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 											),
 										),
 										'dependence'	 => array( $prefix . 'value', 'custom_date' ),
+									),
+									array(
+										'label'			 => array(
+											'text' => __( 'Select year', 'content-views-pro' ),
+										),
+										'extra_setting'	 => array(
+											'params' => array(
+												'wrap-class' => PT_CV_PREFIX . 'w200',
+											),
+										),
+										'params'		 => array(
+											array(
+												'type'	 => 'number',
+												'name'	 => $prefix . 'custom_year',
+												'std'	 => current_time( 'Y' ),
+											),
+										),
+										'dependence'	 => array( $prefix . 'value', 'custom_year' ),
 									),
 									// Custom Time (From - To)
 									array(
@@ -1378,7 +1630,7 @@ if ( !class_exists( 'PT_CV_Settings_Pro' ) ) {
 
 					// Comparison operator
 					$ctf_operator = array(
-						'NOW_FUTURE'	 => 'Today & Future',
+						'NOW_FUTURE'	 => 'Now & Future',
 						'IN_PAST'		 => 'In the past',
 						'='				 => 'Equal ( = )',
 						'!='			 => 'Differ ( != )',

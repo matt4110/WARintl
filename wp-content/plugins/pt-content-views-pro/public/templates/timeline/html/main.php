@@ -18,69 +18,66 @@ if ( $layout == '2-col' && !isset( $dargs[ 'field-settings' ][ 'thumbnail' ] ) )
 }
 ?>
 
-<div class="<?php echo esc_attr( PT_CV_PREFIX . 'tl-content' ); ?>">
-	<div class="<?php echo esc_attr( PT_CV_PREFIX . 'tl-avatar' ); ?>">
-		<?php
-		// Get Meta fields
-		$meta_fields = isset( $fields_html[ 'meta-fields' ] ) ? $fields_html[ 'meta-fields' ] : array();
-
-		// Author
-		$author	 = isset( $meta_fields[ 'author' ] ) ? $meta_fields[ 'author' ] : '';
-		echo $author;
-		?>
-		<div class="<?php echo esc_attr( PT_CV_PREFIX . 'tl-heading' ); ?>">
-			<?php
-			// Tile
-			$title	 = isset( $fields_html[ 'title' ] ) ? $fields_html[ 'title' ] : '';
-			echo $title;
-			unset( $fields_html[ 'title' ] );
-
-			// Date
-			$date		 = isset( $meta_fields[ 'date' ] ) ? $meta_fields[ 'date' ] : '';
-			echo $date;
-			?>
-		</div>
-
-	</div>
+<div class="<?php echo esc_attr( PT_CV_PREFIX . 'tl-avatar' ); ?>">
 	<?php
-	$content	 = isset( $fields_html[ 'content' ] ) ? $fields_html[ 'content' ] : '';
-	// Append social buttons
-	$content .= isset( $fields_html[ 'social-buttons' ] ) ? $fields_html[ 'social-buttons' ] : '';
-	$thumbnail	 = isset( $fields_html[ 'thumbnail' ] ) ? $fields_html[ 'thumbnail' ] : '';
+	// Get Meta fields
+	$meta_fields = isset( $fields_html[ 'meta-fields' ] ) ? $fields_html[ 'meta-fields' ] : array();
 
-	if ( !empty( $content ) || !empty( $thumbnail ) ) {
-		switch ( $layout ) {
-			case '1-col':
-				$fields_name	 = array_keys( $fields_html );
-				$content_idx	 = array_search( 'content', $fields_name );
-				$thumbnail_idx	 = array_search( 'thumbnail', $fields_name );
+	// Author
+	$author	 = isset( $meta_fields[ 'author' ] ) ? $meta_fields[ 'author' ] : '';
+	echo $author;
+	?>
+	<div class="<?php echo esc_attr( PT_CV_PREFIX . 'tl-heading' ); ?>">
+		<?php
+		// Tile
+		$title	 = isset( $fields_html[ 'title' ] ) ? $fields_html[ 'title' ] : '';
+		echo $title;
+		unset( $fields_html[ 'title' ] );
 
-				if ( $thumbnail_idx !== false ) {
-					$html[ $thumbnail_idx ] = $thumbnail;
-				}
-				if ( $content_idx !== false ) {
-					$html[ $content_idx ] = $content;
-				}
+		// Date
+		$date	 = isset( $meta_fields[ 'date' ] ) ? $meta_fields[ 'date' ] : '';
+		echo $date;
+		?>
+	</div>
 
-				// Sort by keys, to show in right order
-				ksort( $html );
+</div>
+<?php
+$content = isset( $fields_html[ 'content' ] ) ? $fields_html[ 'content' ] : '';
+$content .= isset( $fields_html[ 'social-buttons' ] ) ? $fields_html[ 'social-buttons' ] : '';
 
-				break;
-			case '2-col':
-				$html[]	 = $thumbnail;
-				$html[]	 = $content;
+$thumbnail = isset( $fields_html[ 'thumbnail' ] ) ? $fields_html[ 'thumbnail' ] : '';
+if ( !empty( $content ) || !empty( $thumbnail ) ) {
+	switch ( $layout ) {
+		case '1-col':
+			$fields_name	 = array_keys( $fields_html );
+			$content_idx	 = array_search( 'content', $fields_name );
+			$thumbnail_idx	 = array_search( 'thumbnail', $fields_name );
 
-				break;
-		}
+			if ( $thumbnail_idx !== false ) {
+				$html[ $thumbnail_idx ] = $thumbnail;
+			}
+			if ( $content_idx !== false ) {
+				$html[ $content_idx ] = $content;
+			}
 
-		echo implode( "\n", $html );
+			// Sort by keys, to show in right order
+			ksort( $html );
+
+			break;
+		case '2-col':
+			$html[]	 = $thumbnail;
+			$html[]	 = $content;
+
+			break;
 	}
 
-	unset( $fields_html[ 'content' ] );
-	unset( $fields_html[ 'social-buttons' ] );
-	unset( $fields_html[ 'thumbnail' ] );
-	?>
-</div>
+	echo implode( "\n", $html );
+}
+
+unset( $fields_html[ 'content' ] );
+unset( $fields_html[ 'social-buttons' ] );
+unset( $fields_html[ 'thumbnail' ] );
+?>
 <?php
 if ( $meta_fields ) {
 	// Unset author, date in array

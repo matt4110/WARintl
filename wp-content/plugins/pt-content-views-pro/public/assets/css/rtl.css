@@ -1,46 +1,25 @@
 /**
- * Right-to-Left Language Support
- *
- * @package   PT_Content_Views_Pro
- * @author    PT Guy <http://www.contentviewspro.com/>
- * @license   GPL-2.0+
- * @link      http://www.contentviewspro.com/
- * @copyright 2014 PT Guy
+ * Contains CSS which can't connect to .pt-cv-rtl
  */
 
-.pt-cv-view {
-	direction:    rtl;
-	unicode-bidi: embed;
-}
-
-.pt-cv-view .pt-cv-carousel-caption {
-	left:       15px;
-}
-
-.text-left.pt-cv-pagination-wrapper {
-	text-align: right;
-}
-
-.pt-cv-more {
+.pt-cv-gls-menu, .pt-cv-gls-menu li {
 	float: right !important;
 }
 
-.pt-cv-view .product .amount {
-	float: right;
+.pt-cv-filter-bar, .btn-group.pt-cv-filter-bar, .pt-cv-filter-operator label {
+	float: right !important;
 }
 
-.pt-cv-view .add_to_cart_button {
-	float: left;
+.breadcrumb.pt-cv-filter-bar>li, .pt-cv-filter-option {
+	float: right !important;
 }
 
-.pt-cv-pinterest .pt-cv-content-item {
-	float: right;
+.pt-cv-filter-group li {
+	clear: both;
 }
 
-.pt-cv-view + .pagination {
-	float: right;
-}
-
-.pt-cv-readmore.btn-link {
-	padding-right: 0;
+.breadcrumb.pt-cv-filter-bar li:first-child:before {
+    content: "/\00a0";
+    padding: 0 5px;
+    color: #ccc;
 }

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Define values for input, select...
  *
@@ -16,6 +15,7 @@ if ( !class_exists( 'PT_CV_Values_Pro' ) ) {
 	 * @todo Define values for input, select...
 	 */
 	class PT_CV_Values_Pro {
+
 		/**
 		 * Get Bootstrap styles for thumbnail
 		 */
@@ -46,6 +46,7 @@ if ( !class_exists( 'PT_CV_Values_Pro' ) ) {
 		 * Style color for button
 		 *
 		 * @param array $text
+		 * @deprecated since version 2.0
 		 *
 		 * @return array
 		 */
@@ -73,6 +74,7 @@ if ( !class_exists( 'PT_CV_Values_Pro' ) ) {
 				'best_selling_products'	 => __( 'Best selling products', 'content-views-pro' ),
 				'featured_products'		 => __( 'Featured products', 'content-views-pro' ),
 				'top_rated_products'	 => __( 'Top rated products', 'content-views-pro' ),
+				'out_of_stock'			 => __( 'Out of stock products', 'content-views-pro' ),
 				''						 => __( 'None of above (use other settings below)', 'content-views-pro' ),
 			);
 
@@ -123,45 +125,12 @@ if ( !class_exists( 'PT_CV_Values_Pro' ) ) {
 			$fonts_data		 = PT_CV_Functions_Pro::get_google_fonts();
 			$font_families	 = array_keys( $fonts_data );
 
-			$result			 = array();
-			$result[ '' ]	 = __( '- Default font -', 'content-views-pro' );
+			$result					 = array();
+			$result[ '' ]			 = __( '- Default font -', 'content-views-pro' );
+			$result[ 'custom-font' ] = __( 'Custom font', 'content-views-pro' );
 
 			foreach ( $font_families as $font ) {
 				$result[ $font ] = $font;
-			}
-
-			return $result;
-		}
-
-		/**
-		 * Font styles
-		 *
-		 * @return array
-		 */
-		static function font_styles() {
-			$styles = array( '100', '100italic', '200', '200italic', '300', '300italic', 'regular', 'italic', '500', '500italic', '600', '600italic', '700', '700italic', '800', '800italic', '900', '900italic' );
-
-			$result			 = array();
-			$result[ '' ]	 = __( '- Default weight, style -', 'content-views-pro' );
-
-			foreach ( $styles as $style ) {
-				$result[ $style ] = ($style === 'regular') ? 'normal' : $style;
-			}
-
-			return $result;
-		}
-
-		static function font_decoration() {
-			$styles = array(
-				'none'		 => __( 'None' ),
-				'underline'	 => __( 'Underline', 'content-views-pro' ),
-			);
-
-			$result			 = array();
-			$result[ '' ]	 = __( '- Default decoration -', 'content-views-pro' );
-
-			foreach ( $styles as $style ) {
-				$result[ $style ] = $style;
 			}
 
 			return $result;
@@ -201,7 +170,7 @@ if ( !class_exists( 'PT_CV_Values_Pro' ) ) {
 				'btn-group'			 => PT_CV_Html_Pro::filter_html_btn_group( $class, $items ),
 				'vertical-dropdown'	 => PT_CV_Html_Pro::filter_html_vertical_dropdown( $class, $items ),
 				'breadcrumb'		 => PT_CV_Html_Pro::filter_html_breadcrumb( $class, $items ),
-				'group_by_taxonomy'	 => __( 'Group options by Taxonomy (recommended when multiple taxonomies are selected)', 'content-views-pro' ),
+				'group_by_taxonomy'	 => __( 'Group by Taxonomy', 'content-views-pro' ),
 			);
 
 			return $result;
@@ -263,15 +232,16 @@ if ( !class_exists( 'PT_CV_Values_Pro' ) ) {
 		static function post_date() {
 			$result = array(
 				'today'			 => __( 'Today' ),
-				'custom_date'	 => __( 'Custom date', 'content-views-pro' ),
-				'from_today'	 => __( 'Today and future', 'content-views-pro' ),
-				'custom_time'	 => __( 'Custom time (from &rarr; to)', 'content-views-pro' ),
-				'yesterday'		 => __( 'Yesterday', 'content-views-pro' ),
 				'week_ago'		 => __( '1 week ago (to today)', 'content-views-pro' ),
-				'this_week'		 => __( 'This week', 'content-views-pro' ),
+				'from_today'	 => __( 'Today and future', 'content-views-pro' ),
 				'month_ago'		 => __( '1 month ago (to today)', 'content-views-pro' ),
-				'this_month'	 => __( 'This month', 'content-views-pro' ),
+				'yesterday'		 => __( 'Yesterday', 'content-views-pro' ),
 				'year_ago'		 => __( '1 year ago (to today)', 'content-views-pro' ),
+				'custom_date'	 => __( 'Custom date', 'content-views-pro' ),
+				'this_week'		 => __( 'This week', 'content-views-pro' ),
+				'custom_time'	 => __( 'Custom time (from &rarr; to)', 'content-views-pro' ),
+				'this_month'	 => __( 'This month', 'content-views-pro' ),
+				'custom_year'	 => __( 'Custom year', 'content-views-pro' ),
 				'this_year'		 => __( 'This year', 'content-views-pro' ),
 			);
 
@@ -327,6 +297,7 @@ if ( !class_exists( 'PT_CV_Values_Pro' ) ) {
 				'CHAR'		 => __( 'Text', 'content-views-pro' ),
 				'NUMERIC'	 => __( 'Number', 'content-views-pro' ),
 				'DATE'		 => __( 'Date' ),
+				'DATETIME'	 => __( 'Date Time' ),
 				'BINARY'	 => __( 'True/False', 'content-views-pro' ),
 			);
 
@@ -423,11 +394,14 @@ if ( !class_exists( 'PT_CV_Values_Pro' ) ) {
 		 */
 		static function one_others_fields() {
 			$result = array(
-				'thumbnail'		 => __( 'Thumbnail' ),
-				'title'			 => __( 'Title' ),
-				'meta-fields'	 => __( 'Date' ),
-				'content'		 => __( 'Excerpt' ),
-				'readmore'		 => __( 'Read More', 'content-views-query-and-display-post-page' ),
+				'thumbnail'				 => __( 'Thumbnail' ),
+				'title'					 => __( 'Title' ),
+				'meta-fields'			 => __( 'Date' ),
+				'meta-fields-taxonomy'	 => __( 'Taxonomy', 'content-views-query-and-display-post-page' ),
+				'full-content'			 => __( 'Full Content' ),
+				'content'				 => __( 'Excerpt' ),
+				'readmore'				 => __( 'Read More', 'content-views-query-and-display-post-page' ),
+				'custom-fields'			 => __( 'Custom Fields' ),
 			);
 
 			return $result;
@@ -455,11 +429,32 @@ if ( !class_exists( 'PT_CV_Values_Pro' ) ) {
 			return $result;
 		}
 
+		static function mtf_date_formats() {
+			$result = array(
+				''				 => __( 'Default', 'content-views-pro' ),
+				'time_ago'		 => __( 'Time ago', 'content-views-pro' ),
+				'custom_format'	 => __( 'Custom', 'content-views-pro' ),
+			);
+
+			return $result;
+		}
+
 		static function manual_excerpt_settings() {
 			$result = array(
-				'yes'	 => __( 'Show it (but trim its length, format it... like generated excerpt)', 'content-views-pro' ),
-				'origin' => __( 'Show its original content', 'content-views-pro' ),
-				''		 => __( 'Ignore it', 'content-views-pro' ),
+				'yes'	 => __( 'Use manual excerpt (but trim its length, format it... like generated excerpt)', 'content-views-pro' ),
+				'origin' => __( 'Use manual excerpt (without modifying)', 'content-views-pro' ),
+				''		 => __( 'Ignore manual excerpt', 'content-views-pro' ),
+			);
+
+			return $result;
+		}
+
+		static function text_transform() {
+			$result = array(
+				''			 => __( '- Transform - ', 'content-views-pro' ),
+				'capitalize' => __( 'Capitalize', 'content-views-pro' ),
+				'uppercase'	 => __( 'UPPERCASE', 'content-views-pro' ),
+				'lowercase'	 => __( 'lowercase', 'content-views-pro' ),
 			);
 
 			return $result;

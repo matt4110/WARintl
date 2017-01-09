@@ -9,7 +9,7 @@
  * @link      http://www.contentviewspro.com/
  * @copyright 2014 PT Guy
  */
-class PT_Content_Views_Pro_Admin {
+class PT_Content_Views_Pro_Admin extends PT_Content_Views_Admin {
 
 	/**
 	 * Instance of this class.
@@ -34,6 +34,8 @@ class PT_Content_Views_Pro_Admin {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ), 12 );
 		add_action( 'admin_print_styles', array( $this, 'admin_print_styles' ), 12 );
 
+		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
+
 		// Filter Setting options
 		add_filter( PT_CV_PREFIX_ . 'view_version', array( $this, 'filter_view_version' ) );
 		add_filter( PT_CV_PREFIX_ . 'view_row_actions', array( $this, 'filter_view_row_actions' ), 10, 2 );
@@ -42,7 +44,6 @@ class PT_Content_Views_Pro_Admin {
 		add_filter( PT_CV_PREFIX_ . 'custom_filters', array( $this, 'filter_custom_filters' ) );
 		add_filter( PT_CV_PREFIX_ . 'setting_post_in', array( $this, 'filter_setting_post_in' ) );
 		add_filter( PT_CV_PREFIX_ . 'setting_post_not_in', array( $this, 'filter_setting_post_not_in' ) );
-		add_filter( PT_CV_PREFIX_ . 'include_extra_settings', array( $this, 'filter_include_extra_settings' ) );
 		add_filter( PT_CV_PREFIX_ . 'exclude_extra_settings', array( $this, 'filter_exclude_extra_settings' ) );
 		add_filter( PT_CV_PREFIX_ . 'post_parent_settings', array( $this, 'filter_post_parent_settings' ) );
 		add_filter( PT_CV_PREFIX_ . 'after_limit_option', array( $this, 'filter_after_limit_option' ) );
@@ -79,7 +80,6 @@ class PT_Content_Views_Pro_Admin {
 		add_filter( PT_CV_PREFIX_ . 'taxonomies_custom_settings', array( $this, 'filter_taxonomies_custom_settings' ) );
 		add_filter( PT_CV_PREFIX_ . 'searchby_keyword_desc', array( $this, 'filter_searchby_keyword_desc' ) );
 		add_filter( PT_CV_PREFIX_ . 'author_settings', array( $this, 'filter_author_settings' ) );
-		add_filter( PT_CV_PREFIX_ . 'responsive_settings', array( $this, 'filter_responsive_settings' ) );
 		add_filter( PT_CV_PREFIX_ . 'viewtype_setting', array( $this, 'filter_viewtype_setting' ) );
 		add_filter( PT_CV_PREFIX_ . 'contenttype_setting', array( $this, 'filter_contenttype_setting' ) );
 
@@ -139,14 +139,8 @@ class PT_Content_Views_Pro_Admin {
 			// Main admin style
 			PT_CV_Asset::enqueue(
 				'admin', 'style', array(
-				'src' => plugins_url( 'assets/css/admin.css', __FILE__ ),
-				), PT_CV_PREFIX_PRO
-			);
-
-			// Color picker with Opacity
-			PT_CV_Asset::enqueue(
-				'color-picker', 'style', array(
-				'src' => plugins_url( 'assets/css/color-picker.css', __FILE__ ),
+				'src'	 => plugins_url( 'assets/css/admin.css', __FILE__ ),
+				'ver'	 => PT_CV_VERSION_PRO,
 				), PT_CV_PREFIX_PRO
 			);
 
@@ -176,6 +170,7 @@ class PT_Content_Views_Pro_Admin {
 			PT_CV_Asset::enqueue(
 				'admin', 'script', array(
 				'src'	 => plugins_url( 'assets/js/admin.js', __FILE__ ),
+				'ver'	 => PT_CV_VERSION_PRO,
 				'deps'	 => array( 'jquery' ),
 				), PT_CV_PREFIX_PRO
 			);
@@ -198,6 +193,7 @@ class PT_Content_Views_Pro_Admin {
 						'CHAR'		 => array( '=', 'IN', 'NOT IN', 'LIKE', 'NOT LIKE', 'EXISTS', 'NOT EXISTS' ),
 						'NUMERIC'	 => array( '=', '!=', '>', '>=', '<', '<=', 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN', 'EXISTS', 'NOT EXISTS' ),
 						'DATE'		 => array( 'NOW_FUTURE', 'IN_PAST', '=', '!=', '>', '>=', '<', '<=', 'BETWEEN', 'NOT BETWEEN', 'EXISTS', 'NOT EXISTS' ),
+						'DATETIME'	 => array( 'NOW_FUTURE', 'IN_PAST', '=', '!=', '>', '>=', '<', '<=', 'BETWEEN', 'NOT BETWEEN', 'EXISTS', 'NOT EXISTS' ),
 						'BINARY'	 => array( '=', '!=', 'EXISTS', 'NOT EXISTS' ),
 					)
 				),
@@ -209,7 +205,9 @@ class PT_Content_Views_Pro_Admin {
 			// Color picker with Opacity
 			PT_CV_Asset::enqueue(
 				'color-picker', 'script', array(
-				'src' => plugins_url( 'assets/js/color-picker.js', __FILE__ ),
+				'src'	 => plugins_url( 'assets/js/color-picker.js', __FILE__ ),
+				'ver'	 => PT_CV_VERSION_PRO,
+				'deps'	 => array( 'wp-color-picker' ),
 				), PT_CV_PREFIX_PRO
 			);
 
@@ -249,13 +247,27 @@ class PT_Content_Views_Pro_Admin {
 		if ( is_object( $screen ) && strpos( $screen->id, PT_CV_DOMAIN ) !== false ) {
 
 			// Datepicker
-			wp_enqueue_style( 'jquery-ui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css' );
+			wp_enqueue_style( 'jquery-ui', '//ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css' );
 
 			// For Google Font
 			echo "<style>\n";
 			echo PT_CV_Functions_Pro::get_google_fonts_background_position();
 			echo "\n</style>";
 		}
+	}
+
+	public function add_plugin_admin_menu() {
+		$cv_admin	 = PT_Content_Views_Admin::get_instance();
+		$user_role	 = current_user_can( 'administrator' ) ? 'administrator' : PT_CV_Functions::get_option_value( 'access_role', 'administrator' );
+		$page		 = __( 'Replace Layout', 'content-views-pro' );
+
+		$cv_admin->plugin_sub_screen_hook_suffix[] = PT_CV_Functions::menu_add_sub(
+				$cv_admin->plugin_slug, $page, $page, $user_role, 'replayout', __CLASS__
+		);
+	}
+
+	public static function display_sub_page_replayout() {
+		include_once( 'includes/replayout.php' );
 	}
 
 	/**
@@ -390,49 +402,6 @@ class PT_Content_Views_Pro_Admin {
 	}
 
 	/**
-	 * Add options for Include setting
-	 *
-	 * @param array $args
-	 */
-	public function filter_include_extra_settings( $args ) {
-		$args = array(
-			'label'	 => array(
-				'text' => '',
-			),
-			'params' => array(
-				array(
-					'type'	 => 'group',
-					'params' => array(
-						// Include current post
-						array(
-							'label'			 => array(
-								'text' => '',
-							),
-							'extra_setting'	 => array(
-								'params' => array(
-									'width'		 => 12,
-									'wrap-class' => PT_CV_PREFIX . 'append-options',
-								),
-							),
-							'params'		 => array(
-								array(
-									'type'		 => 'checkbox',
-									'name'		 => 'include-current',
-									'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Include current post', 'content-views-pro' ) ),
-									'std'		 => '',
-									'desc'		 => __( 'Useful to show more info of current post in its page. Should not be checked in other cases', 'content-views-pro' ),
-								),
-							),
-						),
-					),
-				),
-			),
-		);
-
-		return $args;
-	}
-
-	/**
 	 * Add options for Exclude setting
 	 *
 	 * @param array $args
@@ -490,7 +459,6 @@ class PT_Content_Views_Pro_Admin {
 				array(
 					'type'	 => 'group',
 					'params' => array(
-						// Auto get current page
 						array(
 							'label'			 => array(
 								'text' => '',
@@ -502,8 +470,10 @@ class PT_Content_Views_Pro_Admin {
 							),
 							'params'		 => array(
 								array(
-									'type'		 => 'html',
-									'content'	 => sprintf( '<p style="margin-bottom:0">%s:</p>', __( 'Or use current page, and', 'content-views-pro' ) ),
+									'type'		 => 'checkbox',
+									'name'		 => 'post_parent-current',
+									'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Use current page as base/parent page then', 'content-views-pro' ) ),
+									'std'		 => '',
 								),
 							),
 						),
@@ -524,23 +494,7 @@ class PT_Content_Views_Pro_Admin {
 									'std'		 => '',
 								),
 							),
-						),
-						// Show what from parent page
-						array(
-							'label'			 => array(
-								'text' => '',
-							),
-							'extra_setting'	 => array(
-								'params' => array(
-									'width' => 12,
-								),
-							),
-							'params'		 => array(
-								array(
-									'type'		 => 'html',
-									'content'	 => sprintf( '<p style="margin-bottom:0">%s</p>', __( 'What information of Parent page to show?', 'content-views-pro' ) ),
-								),
-							),
+							'dependence'	 => array( 'post_parent-current', 'yes' ),
 						),
 						array(
 							'label'			 => array(
@@ -553,12 +507,46 @@ class PT_Content_Views_Pro_Admin {
 							),
 							'params'		 => array(
 								array(
-									'type'		 => 'select',
-									'name'		 => 'post_parent-auto-info',
-									'options'	 => PT_CV_Values_Pro::parent_page_info(),
-									'std'		 => '',
+									'type'	 => 'group',
+									'params' => array(
+										array(
+											'label'			 => array(
+												'text' => '',
+											),
+											'extra_setting'	 => array(
+												'params' => array(
+													'width' => 12,
+												),
+											),
+											'params'		 => array(
+												array(
+													'type'		 => 'html',
+													'content'	 => sprintf( '<p style="margin-bottom:0">%s</p>', __( 'Show this information of Parent page:', 'content-views-pro' ) ),
+												),
+											),
+										),
+										array(
+											'label'			 => array(
+												'text' => '',
+											),
+											'extra_setting'	 => array(
+												'params' => array(
+													'width' => 12,
+												),
+											),
+											'params'		 => array(
+												array(
+													'type'		 => 'select',
+													'name'		 => 'post_parent-auto-info',
+													'options'	 => PT_CV_Values_Pro::parent_page_info(),
+													'std'		 => '',
+												),
+											),
+										),
+									),
 								),
 							),
+							'dependence'	 => array( array( 'post_parent', '', '!=' ), array( 'post_parent-current', 'yes' ) ),
 						),
 					),
 				),
@@ -663,10 +651,10 @@ class PT_Content_Views_Pro_Admin {
 							'params'		 => array(
 								array(
 									'type'		 => 'html',
-									'content'	 => sprintf( '<p class="text-danger">%s</p>', __( "We're sorry, you can't drag & drop posts with current View type", 'content-views-pro' ) ),
+									'content'	 => sprintf( '<p class="text-muted">%s</p>', __( "Only supports (Ajax) Numbered pagination and Normal pagination", 'content-views-pro' ) ),
 								),
 							),
-							'dependence'	 => array( 'view-type', array_slice( array_keys( PT_CV_Values::view_type() ), 3 ) ),
+							'dependence'	 => array( 'enable-pagination', 'yes' ),
 						),
 						array(
 							'label'			 => array(
@@ -679,29 +667,11 @@ class PT_Content_Views_Pro_Admin {
 							),
 							'params'		 => array(
 								array(
-									'type'	 => 'group',
-									'params' => array(
-										array(
-											'label'			 => array(
-												'text' => '',
-											),
-											'extra_setting'	 => array(
-												'params' => array(
-													'width' => 12,
-												),
-											),
-											'params'		 => array(
-												array(
-													'type'		 => 'html',
-													'content'	 => sprintf( '<p class="text-danger">%s</p>', __( "We're sorry, order by drag & drop will not work with current Pagination type", 'content-views-pro' ) ),
-												),
-											),
-											'dependence'	 => array( 'pagination-style', array( 'infinite', 'loadmore' ) ),
-										),
-									),
+									'type'		 => 'html',
+									'content'	 => sprintf( '<p class="text-danger">%s</p>', __( "We're sorry, you can't drag & drop posts with current View type", 'content-views-pro' ) ),
 								),
 							),
-							'dependence'	 => array( 'pagination-type', 'normal', '!=' ),
+							'dependence'	 => array( 'view-type', array_slice( array_keys( PT_CV_Values::view_type() ), 3 ) ),
 						),
 					),
 				),
@@ -788,6 +758,23 @@ class PT_Content_Views_Pro_Admin {
 					),
 				),
 			),
+			array(
+				'label'		 => array(
+					'text' => __( 'MySQL Date format' ),
+				),
+				'params'	 => array(
+					array(
+						'type'	 => 'text',
+						'name'	 => $prefix . 'date-format',
+						'std'	 => '',
+						'desc'	 => __( 'If sorting result is incorrect, please specify date format of field value' ) . '. ' . __( 'Please check', 'content-views-pro' ) . ' <a target="_blank" href="http://docs.contentviewspro.com/specify-date-format-for-sorting-custom-field/">this document</a>',
+					),
+				),
+				'dependence' => array( $prefix . 'type', array( 'DATE', 'DATETIME' ) ),
+			),
+			array_merge( PT_CV_Settings::get_cvpro( __( 'Technically, sorting by a custom field can eliminate posts from result.<br> Please change field key if there are missing posts in result', 'content-views-pro' ), 12, null, true ), array(
+				'dependence' => array( $prefix . 'key', '', '!=' ),
+			) ),
 		);
 
 		return $args;
@@ -850,10 +837,10 @@ class PT_Content_Views_Pro_Admin {
 	 * @param type $args
 	 */
 	public function filter_view_type_settings_grid( $args ) {
-		$prefix = 'grid-';
+		$prefix		 = 'grid-';
+		$settings	 = array();
 
-		// Line up fields
-		$lineup = array(
+		$settings[] = array(
 			'label'			 => array(
 				'text' => '',
 			),
@@ -867,11 +854,49 @@ class PT_Content_Views_Pro_Admin {
 				array(
 					'type'		 => 'checkbox',
 					'name'		 => $prefix . 'same-height',
-					'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Line up fields (Title, Content...) across items', 'content-views-pro' ) ),
+					'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Line up fields across items', 'content-views-pro' ) ),
 					'std'		 => '',
 					'popover'	 => sprintf( "<img src='%s'>", plugins_url( 'assets/images/popover/grid-lineup.png', __FILE__ ) ),
 				),
 			),
+		);
+
+		$settings[] = array(
+			'label'			 => array(
+				'text' => '',
+			),
+			'extra_setting'	 => array(
+				'params' => array(
+					'wrap-class' => 'has-popover',
+					'width'		 => 12,
+				),
+			),
+			'params'		 => array(
+				array(
+					'type'		 => 'checkbox',
+					'name'		 => 'post-border',
+					'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Add border between posts', 'content-views-pro' ) ),
+					'std'		 => '',
+				),
+			),
+		);
+
+		$settings[] = array(
+			'label'			 => array(
+				'text' => '',
+			),
+			'extra_setting'	 => array(
+				'params' => array(
+					'width' => 12,
+				),
+			),
+			'params'		 => array(
+				array(
+					'type'		 => 'html',
+					'content'	 => sprintf( '<p class="text-muted" style="margin-top: -10px">%s</p>', __( 'If border is discontinuous, please enable above setting', 'content-views-pro' ) ),
+				),
+			),
+			'dependence'	 => array( 'post-border', 'yes' ),
 		);
 
 		$args[] = array(
@@ -881,9 +906,7 @@ class PT_Content_Views_Pro_Admin {
 			'params' => array(
 				array(
 					'type'	 => 'group',
-					'params' => array(
-						$lineup
-					),
+					'params' => $settings,
 				),
 			),
 		);
@@ -947,68 +970,111 @@ class PT_Content_Views_Pro_Admin {
 					),
 				),
 			),
-			// (Navigation) Controls
 			array(
 				'label'	 => array(
-					'text' => __( 'Navigation' ),
+					'text' => __( 'View style', 'content-views-pro' ),
 				),
 				'params' => array(
 					array(
-						'type'		 => 'checkbox',
-						'name'		 => $prefix . 'navigation',
-						'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Enable' ) ),
-						'std'		 => 'yes',
+						'type'	 => 'group',
+						'params' => array(
+							array(
+								'label'			 => array(
+									'text' => '',
+								),
+								'extra_setting'	 => array(
+									'params' => array(
+										'width' => 12,
+									),
+								),
+								'params'		 => array(
+									array(
+										'type'		 => 'checkbox',
+										'name'		 => $prefix . 'navigation',
+										'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Show Next/Prev button' ) ),
+										'std'		 => 'yes',
+									),
+								),
+							),
+							array(
+								'label'			 => array(
+									'text' => '',
+								),
+								'extra_setting'	 => array(
+									'params' => array(
+										'width' => 12,
+									),
+								),
+								'params'		 => array(
+									array(
+										'type'		 => 'checkbox',
+										'name'		 => $prefix . 'indicator',
+										'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Show circle indicators' ) ),
+										'std'		 => 'yes',
+									),
+								),
+							),
+							array(
+								'label'			 => array(
+									'text' => '',
+								),
+								'extra_setting'	 => array(
+									'params' => array(
+										'width' => 12,
+									),
+								),
+								'params'		 => array(
+									array(
+										'type'		 => 'checkbox',
+										'name'		 => $prefix . 'auto-cycle',
+										'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Automatic cycle' ) ),
+										'std'		 => 'yes',
+									),
+								),
+							),
+							array(
+								'label'			 => array(
+									'text' => '',
+								),
+								'extra_setting'	 => array(
+									'params' => array(
+										'width'		 => 12,
+										'wrap-class' => PT_CV_PREFIX . 'w200',
+									),
+								),
+								'params'		 => array(
+									array(
+										'type'	 => 'number',
+										'name'	 => $prefix . 'interval',
+										'std'	 => '5',
+										'min'	 => '1',
+										'desc'	 => __( 'Seconds to delay between cycles', 'content-views-pro' ),
+									),
+								),
+								'dependence'	 => array( $prefix . 'auto-cycle', 'yes' ),
+							),
+							array(
+								'label'			 => array(
+									'text' => '',
+								),
+								'extra_setting'	 => array(
+									'params' => array(
+										'width' => 12,
+									),
+								),
+								'params'		 => array(
+									array(
+										'type'		 => 'checkbox',
+										'name'		 => $prefix . 'nocaption',
+										'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Show caption below thumbnail on small screens (less than 481 pixels)' ) ),
+										'std'		 => '',
+										'desc'		 => __( 'Check this option if you have long content', 'content-views-pro' ),
+									),
+								),
+							),
+						),
 					),
 				),
-			),
-			// Indicators
-			array(
-				'label'	 => array(
-					'text' => __( 'Indicator', 'content-views-pro' ),
-				),
-				'params' => array(
-					array(
-						'type'		 => 'checkbox',
-						'name'		 => $prefix . 'indicator',
-						'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Enable' ) ),
-						'std'		 => 'yes',
-					),
-				),
-			),
-			// Automatical cycle
-			array(
-				'label'	 => array(
-					'text' => __( 'Automatic cycle', 'content-views-pro' ),
-				),
-				'params' => array(
-					array(
-						'type'		 => 'checkbox',
-						'name'		 => $prefix . 'auto-cycle',
-						'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Enable' ) ),
-						'std'		 => 'yes',
-					),
-				),
-			),
-			// Interval
-			array(
-				'label'			 => array(
-					'text' => __( 'Interval', 'content-views-pro' ),
-				),
-				'extra_setting'	 => array(
-					'params' => array(
-						'wrap-class' => PT_CV_PREFIX . 'w200',
-					),
-				),
-				'params'		 => array(
-					array(
-						'type'	 => 'number',
-						'name'	 => $prefix . 'interval',
-						'std'	 => '5',
-						'min'	 => '1',
-						'desc'	 => __( 'The number of seconds to delay between cycles', 'content-views-pro' ),
-					),
-				),
-				'dependence'	 => array( $prefix . 'auto-cycle', 'yes' ),
 			),
 		);
 
@@ -1254,7 +1320,7 @@ class PT_Content_Views_Pro_Admin {
 				'params'	 => array(
 					array(
 						'type'		 => 'html',
-						'content'	 => sprintf( '<p class="text-muted" style="padding-left: 5px;">%s</p>', __( "If output images are not same size, please decrease above size (because it is bigger than full size of smallest image)", 'content-views-pro' ) ),
+						'content'	 => sprintf( '<p class="text-muted" style="padding-left:5px;color:#ff5a5f">%s</p>', __( 'It takes time and resources to generating new images. Please limit number of posts, or enable pagination.', 'content-views-pro' ) ) . sprintf( '<p class="text-muted" style="padding-left: 5px;">%s.</p>', __( 'If output images are not same size, please decrease above values', 'content-views-pro' ) ),
 					),
 				),
 				'dependence' => array( $prefix . 'thumbnail-size', PT_CV_PREFIX . 'custom' ),
@@ -1286,6 +1352,7 @@ class PT_Content_Views_Pro_Admin {
 										'name'		 => $prefix . 'thumbnail-same-width',
 										'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Resize to the same width', 'content-views-pro' ) ),
 										'std'		 => '',
+										'desc'		 => __( 'Only check this option if thumbnails are not same width', 'content-views-pro' ),
 									),
 								),
 							),
@@ -1306,7 +1373,7 @@ class PT_Content_Views_Pro_Admin {
 										'name'		 => $prefix . 'thumbnail-same-height',
 										'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Resize to the same height', 'content-views-pro' ) ),
 										'std'		 => '',
-										'desc'		 => __( 'Uncheck this option if thumbnail is distorted', 'content-views-pro' ),
+										'desc'		 => __( 'Uncheck this option if thumbnails are stretched', 'content-views-pro' ),
 									),
 								),
 							),
@@ -1330,13 +1397,12 @@ class PT_Content_Views_Pro_Admin {
 										'desc'		 => __( 'Check this option if thumbnail is outdated', 'content-views-pro' ),
 									),
 								),
-								'dependence'	 => array( $prefix . 'thumbnail-size', PT_CV_PREFIX . 'custom' ),
+								'dependence'	 => array( array( $prefix . 'thumbnail-size', PT_CV_PREFIX . 'custom' ), array( 'view-type', 'one_others' ) ),
 							),
 						),
 					),
 				),
 			),
-			// Style
 			array(
 				'label'	 => array(
 					'text' => __( 'Style', 'content-views-query-and-display-post-page' ),
@@ -1350,7 +1416,6 @@ class PT_Content_Views_Pro_Admin {
 					),
 				),
 			),
-			// Custom border radius
 			array(
 				'label'			 => array(
 					'text' => __( 'Border radius', 'content-views-pro' ),
@@ -1370,18 +1435,102 @@ class PT_Content_Views_Pro_Admin {
 				),
 				'dependence'	 => array( $prefix . 'thumbnail-style', 'img-rounded' ),
 			),
-			// Style
 			array(
 				'label'	 => array(
 					'text' => __( 'Substitute', 'content-views-pro' ),
 				),
 				'params' => array(
 					array(
-						'type'		 => 'select',
-						'name'		 => $prefix . 'thumbnail-auto',
-						'options'	 => PT_CV_Values_Pro::auto_thumbnail(),
-						'std'		 => PT_CV_Functions::array_get_first_key( PT_CV_Values_Pro::auto_thumbnail() ),
-						'desc'		 => sprintf( __( 'If thumbnail is not found, CVPro will extract image or video/audio (%s) in post content. Which do you want to show?', 'content-views-pro' ), 'Youtube, Vimeo, Dailymotion, Soundcloud' ),
+						'type'	 => 'group',
+						'params' => array(
+							array(
+								'label'			 => array(
+									'text' => '',
+								),
+								'extra_setting'	 => array(
+									'params' => array(
+										'width' => 12,
+									),
+								),
+								'params'		 => array(
+									array(
+										'type'		 => 'html',
+										'content'	 => sprintf( '<p style="margin-bottom:0;padding-top:5px">%s:</p>', __( 'Show below thing (which is extracted from post content)', 'content-views-pro' ) ),
+									),
+								),
+							),
+							array(
+								'label'			 => array(
+									'text' => '',
+								),
+								'extra_setting'	 => array(
+									'params' => array(
+										'width' => 12,
+									),
+								),
+								'params'		 => array(
+									array(
+										'type'		 => 'select',
+										'name'		 => $prefix . 'thumbnail-auto',
+										'options'	 => PT_CV_Values_Pro::auto_thumbnail(),
+										'std'		 => 'image',
+									),
+								),
+							),
+							array(
+								'label'			 => array(
+									'text' => '',
+								),
+								'extra_setting'	 => array(
+									'params' => array(
+										'width' => 12,
+									),
+								),
+								'params'		 => array(
+									array(
+										'type'		 => 'radio',
+										'name'		 => $prefix . 'thumbnail-role',
+										'options'	 => array(
+											''				 => __( 'if no featured image found', 'content-views-pro' ),
+											'replacement'	 => __( 'even featured image was found', 'content-views-pro' ),
+										),
+										'std'		 => '',
+									),
+								),
+							),
+							array(
+								'label'			 => array(
+									'text' => '',
+								),
+								'extra_setting'	 => array(
+									'params' => array(
+										'width' => 12,
+									),
+								),
+								'params'		 => array(
+									array(
+										'type'		 => 'checkbox',
+										'name'		 => $prefix . 'thumbnail-nodefault',
+										'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Do not show default image' ) ),
+										'std'		 => '',
+									),
+								),
+							),
+						),
+					),
+				),
+			),
+			array(
+				'label'	 => array(
+					'text' => __( 'Lazy load', 'content-views-pro' ),
+				),
+				'params' => array(
+					array(
+						'type'		 => 'checkbox',
+						'name'		 => $prefix . 'thumbnail-lazyload',
+						'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Enable' ) ),
+						'std'		 => '',
+						'desc'		 => __( 'Defer loading of image, iframe to improve performance' ),
 					),
 				),
 			),
@@ -1543,6 +1692,20 @@ class PT_Content_Views_Pro_Admin {
 
 		$args = array_merge(
 			$args, array(
+			array(
+				'label'		 => array(
+					'text' => '',
+				),
+				'params'	 => array(
+					array(
+						'type'		 => 'checkbox',
+						'name'		 => $prefix2 . 'enable-navigation',
+						'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Enable navigation in lightbox', 'content-views-pro' ) ),
+						'std'		 => '',
+					),
+				),
+				'dependence' => array( $prefix . 'open-in', PT_CV_PREFIX . 'lightbox-image' ),
+			),
 			// Lightbox size
 			array(
 				'label'			 => array(
@@ -1787,24 +1950,6 @@ class PT_Content_Views_Pro_Admin {
 											'params'		 => array(
 												array(
 													'type'		 => 'checkbox',
-													'name'		 => $prefix . 'hide-prefix',
-													'options'	 => PT_CV_Values::yes_no( 'yes', sprintf( __( 'Remove prefix %s before author, term', 'content-views-pro' ), sprintf( '<code>%s, %s</code>', __( 'by', 'content-views-query-and-display-post-page' ), __( 'in', 'content-views-query-and-display-post-page' ) ) ) ),
-													'std'		 => '',
-												),
-											),
-										),
-										array(
-											'label'			 => array(
-												'text' => '',
-											),
-											'extra_setting'	 => array(
-												'params' => array(
-													'width' => 10,
-												),
-											),
-											'params'		 => array(
-												array(
-													'type'		 => 'checkbox',
 													'name'		 => $prefix . 'hide-slash',
 													'options'	 => PT_CV_Values::yes_no( 'yes', sprintf( __( 'Remove %s between fields', 'content-views-pro' ), '<code>/</code>' ) ),
 													'std'		 => '',
@@ -1812,15 +1957,10 @@ class PT_Content_Views_Pro_Admin {
 											),
 										),
 										array(
-											'label'			 => array(
+											'label'	 => array(
 												'text' => '',
 											),
-											'extra_setting'	 => array(
-												'params' => array(
-													'width' => 10,
-												),
-											),
-											'params'		 => array(
+											'params' => array(
 												array(
 													'type'		 => 'checkbox',
 													'name'		 => $prefix_taxonomy . 'use-icons',
@@ -1850,19 +1990,56 @@ class PT_Content_Views_Pro_Admin {
 									'params' => array(
 										array(
 											'label'			 => array(
-												'text' => __( 'Date' ),
+												'text' => '',
 											),
 											'extra_setting'	 => array(
 												'params' => array(
-													'wrap-class' => PT_CV_PREFIX . 'full-fields',
+													'width' => 12,
 												),
 											),
 											'params'		 => array(
 												array(
-													'type'		 => 'checkbox',
-													'name'		 => $prefix . 'date-' . 'human',
-													'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Show human readable format', 'content-views-pro' ) ),
-													'std'		 => '',
+													'type'	 => 'group',
+													'params' => array(
+														array(
+															'label'			 => array(
+																'text' => __( 'Date' ),
+															),
+															'extra_setting'	 => array(
+																'params' => array(
+																	'wrap-class' => PT_CV_PREFIX . 'w200',
+																),
+															),
+															'params'		 => array(
+																array(
+																	'type'		 => 'select',
+																	'name'		 => $prefix . 'date-format-setting',
+																	'options'	 => PT_CV_Values_Pro::mtf_date_formats(),
+																	'std'		 => '',
+																	'desc'		 => __( 'Date format', 'content-views-pro' ),
+																),
+															),
+														),
+														array(
+															'label'			 => array(
+																'text' => '',
+															),
+															'extra_setting'	 => array(
+																'params' => array(
+																	'wrap-class' => PT_CV_PREFIX . 'w200',
+																),
+															),
+															'params'		 => array(
+																array(
+																	'type'	 => 'text',
+																	'name'	 => $prefix . 'date-format-custom',
+																	'std'	 => get_option( 'date_format' ),
+																	'desc'	 => __( 'To define your format, please check', 'content-views-pro' ) . ' <a target="_blank" href="https://codex.wordpress.org/Formatting_Date_and_Time">https://codex.wordpress.org/Formatting_Date_and_Time</a>',
+																),
+															),
+															'dependence'	 => array( $prefix . 'date-format-setting', 'custom_format' ),
+														),
+													),
 												),
 											),
 											'dependence'	 => array( $prefix . 'date', 'yes' ),
@@ -1901,6 +2078,7 @@ class PT_Content_Views_Pro_Admin {
 													'name'		 => $prefix . 'author-settings',
 													'options'	 => PT_CV_Values_Pro::meta_field_author_settings(),
 													'std'		 => '',
+													'desc'		 => sprintf( '<a href="%s" target="_blank">%s</a>', 'https://codex.wordpress.org/How_to_Use_Gravatars_in_WordPress#Using_Gravatars_on_your_Site', __( 'To show avatar, you must enable it', 'content-views-pro' ) ),
 												),
 											),
 											'dependence'	 => array( $prefix . 'author', 'yes' ),
@@ -1957,7 +2135,7 @@ class PT_Content_Views_Pro_Admin {
 																	'popover'	 => sprintf( "<img src='%s'>", plugins_url( 'assets/images/popover/meta-special.png', __FILE__ ) ),
 																),
 															),
-															'dependence'	 => array( 'view-type', array( 'grid', 'pinterest', 'masonry', 'one_others' ) ),
+															'dependence'	 => array( 'view-type', PT_CV_Functions_Pro::check_dependences( 'special-field', true ), '!=' ),
 														),
 													),
 												),
@@ -2021,7 +2199,9 @@ class PT_Content_Views_Pro_Admin {
 																	'type'		 => 'select',
 																	'name'		 => $prefix_taxonomy . 'display-custom',
 																	'options'	 => PT_CV_Values::taxonomy_list(),
-																	'std'		 => '',
+																	'std'		 => PT_CV_Functions::array_get_first_key( PT_CV_Values::taxonomy_list() ),
+																	'class'		 => 'select2',
+																	'multiple'	 => '1',
 																),
 															),
 															'dependence'	 => array( $prefix_taxonomy . 'display-what', 'custom_taxo' ),
@@ -2052,7 +2232,6 @@ class PT_Content_Views_Pro_Admin {
 	 */
 	public function filter_excerpt_settings( $args, $prefix ) {
 
-		// Auto get manual excerpt if it is available
 		$args[] = array(
 			'label'	 => array(
 				'text' => '',
@@ -2080,24 +2259,37 @@ class PT_Content_Views_Pro_Admin {
 			),
 			'params' => array(
 				array(
+					'type'		 => 'checkbox',
+					'name'		 => $prefix . 'remove-tag',
+					'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Exclude content of these HTML tags', 'content-views-pro' ) ),
+					'std'		 => '',
+				),
+			),
+		);
+
+		$args[] = array(
+			'label'		 => array(
+				'text' => '',
+			),
+			'params'	 => array(
+				array(
+					'type'	 => 'text',
+					'name'	 => $prefix . 'tag-to-remove',
+					'std'	 => '',
+					'desc'	 => sprintf( __( 'Separate multi tags by comma, for example: %s', 'content-views-pro' ), '<code>h1,h2</code>' ),
+				),
+			),
+			'dependence' => array( $prefix . 'remove-tag', 'yes' ),
+		);
+
+		$args[] = array(
+			'label'	 => array(
+				'text' => '',
+			),
+			'params' => array(
+				array(
 					'type'	 => 'group',
 					'params' => array(
-						array(
-							'label'			 => array(
-								'text' => '',
-							),
-							'extra_setting'	 => array(
-								'params' => array(
-									'width' => 12,
-								),
-							),
-							'params'		 => array(
-								array(
-									'type'		 => 'html',
-									'content'	 => __( 'If manual excerpt existed', 'content-views-pro' ) . ':',
-								),
-							),
-						),
 						array(
 							'label'			 => array(
 								'text' => '',
@@ -2113,6 +2305,7 @@ class PT_Content_Views_Pro_Admin {
 									'name'		 => $prefix . 'manual',
 									'options'	 => PT_CV_Values_Pro::manual_excerpt_settings(),
 									'std'		 => 'yes',
+									'desc'		 => __( 'If manual excerpt existed', 'content-views-pro' ),
 								),
 							),
 						),
@@ -2162,7 +2355,7 @@ class PT_Content_Views_Pro_Admin {
 							'params'		 => array(
 								array(
 									'type'	 => 'text',
-									'name'	 => $prefix . 'readmore' . '-text',
+									'name'	 => $prefix . 'readmore-text',
 									'std'	 => ucwords( rtrim( __( 'Read more...' ), '.' ) ),
 									'desc'	 => __( 'Text for Read more', 'content-views-query-and-display-post-page' ),
 								),
@@ -2181,7 +2374,7 @@ class PT_Content_Views_Pro_Admin {
 							'params'		 => array(
 								array(
 									'type'		 => 'checkbox',
-									'name'		 => $prefix . 'readmore' . '-textlink',
+									'name'		 => $prefix . 'readmore-textlink',
 									'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Show as text link instead of button', 'content-views-pro' ) ),
 									'std'		 => '',
 								),
@@ -2204,7 +2397,6 @@ class PT_Content_Views_Pro_Admin {
 	 */
 	public function filter_settings_pagination( $args, $prefix ) {
 
-		// Load more text
 		$args[] = array(
 			'label'		 => array(
 				'text' => '',
@@ -2226,7 +2418,6 @@ class PT_Content_Views_Pro_Admin {
 								array(
 									'type'	 => 'group',
 									'params' => array(
-										// Load more text
 										array(
 											'label'			 => array(
 												'text' => __( 'Load more text', 'content-views-pro' ),
@@ -2473,6 +2664,20 @@ class PT_Content_Views_Pro_Admin {
 							),
 							'dependence'	 => array( $prefix . '-show-name', 'yes' ),
 						),
+						array(
+							'label'	 => array(
+								'text' => '',
+							),
+							'params' => array(
+								array(
+									'type'		 => 'checkbox',
+									'name'		 => $prefix . '-enable-oembed',
+									'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Fetch the embed HTML if field value is Youtube, Vimeo... url', 'content-views-pro' ) ),
+									'std'		 => '',
+									'desc'		 => sprintf( '<a href="%s" target="_blank">%s</a>', 'https://codex.wordpress.org/Embeds#Okay.2C_So_What_Sites_Can_I_Embed_From.3F', __( 'Click here to see all services which can be embed', 'content-views-pro' ) ),
+								),
+							),
+						),
 						// Custom date format
 						array(
 							'label'	 => array(
@@ -2482,7 +2687,7 @@ class PT_Content_Views_Pro_Admin {
 								array(
 									'type'		 => 'checkbox',
 									'name'		 => $prefix . '-date-custom-format',
-									'options'	 => PT_CV_Values::yes_no( 'yes', sprintf( __( 'Show Date in another format (only work if date value is in format %s)', 'content-views-pro' ), '<code>Y-m-d</code>, <code>Y-m-d H:i:s</code>, <code>Y/m/d</code>, <code>Y/m/d H:i:s</code>' ) ),
+									'options'	 => PT_CV_Values::yes_no( 'yes', sprintf( __( 'Show Date in another format', 'content-views-pro' ) ) ),
 									'std'		 => '',
 								),
 							),
@@ -2541,11 +2746,6 @@ class PT_Content_Views_Pro_Admin {
 		$membership_plugin = PT_CV_Functions_Pro::has_access_restriction_plugin();
 		if ( $membership_plugin ) {
 			$args[ 'check_access_restriction' ] = sprintf( __( 'Plugin %s: use access restriction for all posts in this View', 'content-views-pro' ), "<code>$membership_plugin</code>" );
-		}
-
-		$translation_plugin = PT_CV_Functions_Pro::has_translation_plugin();
-		if ( $translation_plugin ) {
-			$args[ 'hide_different_language' ] = sprintf( __( 'Plugin %s: hide posts which not in current language', 'content-views-pro' ), "<code>$translation_plugin</code>" );
 		}
 
 		return $args;
@@ -2642,9 +2842,8 @@ class PT_Content_Views_Pro_Admin {
 											),
 											'extra_setting'	 => array(
 												'params' => array(
-													'width'			 => 12,
-													'wrap-class'	 => PT_CV_PREFIX . 'w200',
-													'group-class'	 => PT_CV_PREFIX . 'postperterm',
+													'width'		 => 12,
+													'wrap-class' => PT_CV_PREFIX . 'w200',
 												),
 											),
 											'params'		 => array(
@@ -2720,78 +2919,12 @@ class PT_Content_Views_Pro_Admin {
 					'name'		 => $prefix . 'current-user',
 					'options'	 => array(
 						''			 => __( 'Default' ),
-						'include'	 => __( 'Include his/her posts', 'content-views-query-and-display-post-page' ),
-						'exclude'	 => __( 'Exclude his/her posts', 'content-views-query-and-display-post-page' ),
+						'include'	 => __( 'Show his/her posts', 'content-views-query-and-display-post-page' ),
+						'exclude'	 => __( 'Hide his/her posts', 'content-views-query-and-display-post-page' ),
 					),
 					'std'		 => '',
 				),
 			),
-		);
-
-		return $args;
-	}
-
-	/**
-	 * Responsive settings
-	 *
-	 * @param array $args
-	 * @return array
-	 */
-	public function filter_responsive_settings( $args ) {
-		$prefix = 'resp-';
-
-		$args = array(
-			'label'		 => array(
-				'text' => __( 'Responsive settings', 'content-views-query-and-display-post-page' ),
-			),
-			'params'	 => array(
-				array(
-					'type'	 => 'group',
-					'params' => apply_filters( PT_CV_PREFIX_ . 'more_responsive_settings', array(
-						// Items per row (Tablet)
-						array(
-							'label'			 => array(
-								'text' => sprintf( '%s (%s)', __( 'Items per row', 'content-views-query-and-display-post-page' ), __( 'Tablet', 'content-views-pro' ) ),
-							),
-							'extra_setting'	 => array(
-								'params' => array(
-									'group-class' => PT_CV_PREFIX . 'label-nrp',
-								),
-							),
-							'params'		 => array(
-								array(
-									'type'			 => 'number',
-									'name'			 => $prefix . 'tablet-number-columns',
-									'std'			 => '2',
-									'append_text'	 => '1 &rarr; 4',
-								),
-							),
-						),
-						// Items per row (Mobile)
-						array(
-							'label'			 => array(
-								'text' => sprintf( '%s (%s)', __( 'Items per row', 'content-views-query-and-display-post-page' ), __( 'Mobile', 'content-views-pro' ) ),
-							),
-							'extra_setting'	 => array(
-								'params' => array(
-									'group-class' => PT_CV_PREFIX . 'label-nrp',
-								),
-							),
-							'params'		 => array(
-								array(
-									'type'			 => 'number',
-									'name'			 => $prefix . 'number-columns',
-									'std'			 => '1',
-									'append_text'	 => '1 &rarr; 4',
-								),
-							),
-						),
-						PT_CV_Settings::setting_no_option() + array( 'dependence' => array( 'view-type', array( 'grid', 'scrollable', 'pinterest', 'glossary' ), '!=' ) ),
-						)
-					),
-				),
-			),
-			'dependence' => array( 'view-type', array( 'grid', 'scrollable', 'pinterest', 'glossary' ) ),
 		);
 
 		return $args;
@@ -2831,9 +2964,9 @@ class PT_Content_Views_Pro_Admin {
 	public function action_setting_tabs_header() {
 		$tabs = array(
 			array(
-				'id'	 => 'style-settings',
-				'icon'	 => 'pencil',
-				'text'	 => __( 'Style Settings', PT_CV_DOMAIN_PRO ),
+				'id'	 => 'animation-settings',
+				'icon'	 => 'flash',
+				'text'	 => __( 'Overlay & Animation', PT_CV_DOMAIN_PRO ),
 			),
 			array(
 				'id'	 => 'taxonomy-filter',
@@ -2841,19 +2974,16 @@ class PT_Content_Views_Pro_Admin {
 				'text'	 => __( 'Shuffle Filter', PT_CV_DOMAIN_PRO ),
 			),
 			array(
-				'id'	 => 'animation-settings',
-				'icon'	 => 'flash',
-				'text'	 => __( 'Animation', PT_CV_DOMAIN_PRO ),
-			),
-		);
-
-		if ( PT_CV_Functions::get_option_value( 'show_content_ads' ) ) {
-			$tabs[] = array(
 				'id'	 => 'content-ads',
 				'icon'	 => 'usd',
-				'text'	 => __( 'Content Ads', PT_CV_DOMAIN_PRO ),
-			);
-		}
+				'text'	 => __( 'Advertisement', PT_CV_DOMAIN_PRO ),
+			),
+			array(
+				'id'	 => 'style-settings',
+				'icon'	 => 'pencil',
+				'text'	 => __( 'Style Settings', PT_CV_DOMAIN_PRO ),
+			),
+		);
 
 		foreach ( $tabs as $tab ) {
 			printf( '<li><a href="#%s" data-toggle="tab"><span class="glyphicon glyphicon-%s"></span>%s</a></li>', PT_CV_PREFIX . $tab[ 'id' ], $tab[ 'icon' ], $tab[ 'text' ] );
@@ -2869,10 +2999,7 @@ class PT_Content_Views_Pro_Admin {
 		echo self::_tab_style_settings( $settings );
 		echo self::_tab_shuffle_filter( $settings );
 		echo self::_tab_animation_settings( $settings );
-
-		if ( PT_CV_Functions::get_option_value( 'show_content_ads' ) ) {
-			echo self::_tab_content_ads( $settings );
-		}
+		echo self::_tab_content_ads( $settings );
 	}
 
 	/**
@@ -2894,7 +3021,8 @@ class PT_Content_Views_Pro_Admin {
 		?>
 		<div class="tab-pane" id="<?php echo esc_attr( PT_CV_PREFIX ); ?>taxonomy-filter">
 			<?php
-			$prefix	 = 'taxonomy-filter';
+			$prefix = 'taxonomy-filter';
+
 			$options = array(
 				array(
 					'label'			 => array(
@@ -2911,7 +3039,7 @@ class PT_Content_Views_Pro_Admin {
 							'name'		 => 'enable-' . $prefix,
 							'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Filter posts by taxonomy terms with animation', 'content-views-pro' ) ),
 							'std'		 => '',
-							'desc'		 => sprintf( __( 'Only work with "%s" layout', 'content-views-pro' ), __( 'Grid', 'content-views-query-and-display-post-page' ) ),
+							'desc'		 => sprintf( __( 'Work with %s layout', 'content-views-pro' ), '<code>' . __( 'Grid', 'content-views-query-and-display-post-page' ) . ', ' . __( 'Pinterest', 'content-views-pro' ) . ', ' . __( 'Masonry', 'content-views-pro' ) . '</code>' ),
 						),
 					),
 				),
@@ -2936,11 +3064,122 @@ class PT_Content_Views_Pro_Admin {
 				),
 				array(
 					'label'			 => array(
+						'text' => '',
+					),
+					'extra_setting'	 => array(
+						'params' => array(
+							'width' => 12,
+						),
+					),
+					'params'		 => array(
+						array(
+							'type'	 => 'group',
+							'params' => array(
+								array(
+									'label'		 => array(
+										'text' => __( 'Operator inside taxonomy', 'content-views-pro' ),
+									),
+									'params'	 => array(
+										array(
+											'type'	 => 'group',
+											'params' => array(
+												array(
+													'label'			 => array(
+														'text' => '',
+													),
+													'extra_setting'	 => array(
+														'params' => array(
+															'wrap-class' => PT_CV_PREFIX . 'w200',
+															'width'		 => 12,
+														),
+													),
+													'params'		 => array(
+														array(
+															'type'	 => 'text',
+															'name'	 => $prefix . '-operator',
+															'std'	 => 'and',
+															'desc'	 => sprintf( __( '%s posts match all selected terms of taxonomy %s posts match at least one of selected terms of taxonomy', 'content-views-pro' ), '<code>and</code>:', ', <code>or</code>:' ) . '.<br>' . sprintf( __( 'Separate operator for each taxonomy by comma, for example: %s', 'content-views-pro' ), '<code>or, or</code>' ),
+														),
+													),
+												),
+												array(
+													'label'			 => array(
+														'text' => '',
+													),
+													'extra_setting'	 => array(
+														'params' => array(
+															'width' => 12,
+														),
+													),
+													'params'		 => array(
+														array(
+															'type'		 => 'checkbox',
+															'name'		 => 'taxonomy-show-operator',
+															'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Allow visitors to select this operator in View output', 'content-views-pro' ) ),
+															'std'		 => '',
+														),
+													),
+												),
+											),
+										),
+									),
+									'dependence' => array( $prefix . '-type', 'group_by_taxonomy' ),
+								),
+							),
+						),
+					),
+					'dependence'	 => array( 'enable-' . $prefix, 'yes' ),
+				),
+				array(
+					'label'			 => array(
+						'text' => __( 'Operator cross taxonomies', 'content-views-pro' ),
+					),
+					'extra_setting'	 => array(
+						'params' => array(
+							'group-class'	 => PT_CV_PREFIX . 'for-multi-taxo',
+							'wrap-class'	 => PT_CV_PREFIX . 'w200',
+						),
+					),
+					'params'		 => array(
+						array(
+							'type'		 => 'select',
+							'name'		 => $prefix . '-cross-operator',
+							'options'	 => array( 'and' => 'and', 'or' => 'or' ),
+							'std'		 => 'and',
+							'desc'		 => sprintf( __( '%s posts match terms of all taxonomies %s posts match terms of at least one of taxonomies', 'content-views-pro' ), '<code>and</code>:', ', <code>or</code>:' ),
+						),
+					),
+					'dependence'	 => array( 'enable-' . $prefix, 'yes' ),
+				),
+				array(
+					'label'			 => array(
+						'text' => __( 'Hide filters of taxonomies', 'content-views-pro' ),
+					),
+					'extra_setting'	 => array(
+						'params' => array(
+							'group-class'	 => PT_CV_PREFIX . 'for-multi-taxo',
+							'wrap-class'	 => PT_CV_PREFIX . 'w50',
+						),
+					),
+					'params'		 => array(
+						array(
+							'type'		 => 'select',
+							'name'		 => $prefix . '-to-hide',
+							'options'	 => PT_CV_Values::taxonomy_list(),
+							'std'		 => '',
+							'class'		 => 'select2',
+							'multiple'	 => '1',
+						),
+					),
+					'dependence'	 => array( 'enable-' . $prefix, 'yes' ),
+				),
+				array(
+					'label'			 => array(
 						'text' => __( 'Heading word', 'content-views-pro' ),
 					),
 					'extra_setting'	 => array(
 						'params' => array(
-							'wrap-class' => PT_CV_PREFIX . 'w200',
+							'wrap-class' => PT_CV_PREFIX . 'w50',
 						),
 					),
 					'params'		 => array(
@@ -2948,7 +3187,7 @@ class PT_Content_Views_Pro_Admin {
 							'type'	 => 'text',
 							'name'	 => $prefix . '-heading-word',
 							'std'	 => __( 'All' ),
-							'desc'	 => __( 'Separate multiple headings by comma, for example: <code>Custom Heading 1, Custom Heading 2</code>', 'content-views-pro' ),
+							'desc'	 => sprintf( __( 'Separate value for each taxonomy by comma, for example: %s', 'content-views-pro' ), '<code>Heading 1, Heading 2</code>' ),
 						),
 					),
 					'dependence'	 => array( 'enable-' . $prefix, 'yes' ),
@@ -2978,6 +3217,64 @@ class PT_Content_Views_Pro_Admin {
 											'std'		 => '',
 										),
 									),
+								),
+								array(
+									'label'			 => array(
+										'text' => '',
+									),
+									'extra_setting'	 => array(
+										'params' => array(
+											'width' => 12,
+										),
+									),
+									'params'		 => array(
+										array(
+											'type'		 => 'checkbox',
+											'name'		 => 'taxonomy-show-count',
+											'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Show posts count of each term', 'content-views-pro' ) ),
+											'std'		 => '',
+										),
+									),
+								),
+								array(
+									'label'			 => array(
+										'text' => '',
+									),
+									'extra_setting'	 => array(
+										'params' => array(
+											'width' => 12,
+										),
+									),
+									'params'		 => array(
+										array(
+											'type'		 => 'checkbox',
+											'name'		 => $prefix . '-trigger-pagination',
+											'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Load more posts automatically when click on term', 'content-views-pro' ) ),
+											'std'		 => 'yes',
+											'desc'		 => __( 'Recommended when using pagination', 'content-views-pro' ),
+										),
+									),
+									'dependence'	 => array( 'enable-pagination', 'yes' ),
+								),
+								array(
+									'label'			 => array(
+										'text' => '',
+									),
+									'extra_setting'	 => array(
+										'params' => array(
+											'width' => 12,
+										),
+									),
+									'params'		 => array(
+										array(
+											'type'		 => 'checkbox',
+											'name'		 => $prefix . '-show-all',
+											'options'	 => PT_CV_Values::yes_no( 'yes', __( 'Show all remain posts of term on pagination', 'content-views-pro' ) ),
+											'std'		 => '',
+											'desc'		 => sprintf( __( 'By default, it only shows limit posts on pagination (configured at %s)', 'content-views-pro' ), __( 'Pagination', 'content-views-query-and-display-post-page' ) . ' >> ' . __( 'Items per page', 'content-views-query-and-display-post-page' ) ),
+										),
+									),
+									'dependence'	 => array( 'enable-pagination', 'yes' ),
 								),
 								array(
 									'label'			 => array(
@@ -3071,9 +3368,9 @@ class PT_Content_Views_Pro_Admin {
 			$options[] = PT_CV_Settings_Pro::field_font_settings_group( 'show-field-' );
 
 			// View, Item, Button style
-			$options[]	 = PT_CV_Settings_Pro::view_style_settings( 'view' );
 			$options[]	 = PT_CV_Settings_Pro::view_style_settings( 'item' );
-			$options[]	 = PT_CV_Settings_Pro::view_style_settings( 'button' );
+			$options[]	 = PT_CV_Settings_Pro::view_style_settings( 'view' );
+			$options[]	 = PT_CV_Settings_Pro::view_style_settings( 'common' );
 
 			$options = apply_filters( PT_CV_PREFIX_ . 'style_settings', $options );
 			echo PT_Options_Framework::do_settings( $options, $settings );
@@ -3103,7 +3400,7 @@ class PT_Content_Views_Pro_Admin {
 	}
 
 	/**
-	 * Setting HTML of "Content Ads" tab
+	 * Setting HTML of "Advertisement" tab
 	 *
 	 * @return string
 	 */

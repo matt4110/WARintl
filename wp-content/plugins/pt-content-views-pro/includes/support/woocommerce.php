@@ -80,6 +80,20 @@ if ( !class_exists( 'PT_CV_WooCommerce' ) ) {
 
 					break;
 
+				// Out of stock
+				case 'out_of_stock':
+
+					$meta_query[] = array(
+						'key'	 => '_stock_status',
+						'value'	 => 'outofstock'
+					);
+
+					$parameters = array(
+						'meta_query' => $meta_query
+					);
+
+					break;
+
 				// On sale products
 				case 'sale_products':
 

@@ -1,7 +1,10 @@
+<div style="float:right">
+	<a class="cvpspeca" href="https://www.contentviewspro.com/forums/?utm_source=client&utm_medium=settings_page&utm_campaign=toplinks" target="_blank">Forums</a>
+	<a class="cvpspeca" href="https://www.contentviewspro.com/contact/?utm_source=client&utm_medium=settings_page&utm_campaign=toplinks">Contact us</a>
+	<a class="cvpspeca" href="https://docs.contentviewspro.com/?utm_source=client&utm_medium=settings_page&utm_campaign=toplinks" target="_blank">Documentation</a>
+</div>
+
 <style>
-	.wrap {
-		background: url(<?php echo esc_url( plugins_url( 'admin/assets/images/gold-medal.png', PT_CV_FILE_PRO ) ); ?>) right top no-repeat;
-	}
 	.wrap h3 {
 		font-size: 20px;
 	}
@@ -22,12 +25,17 @@
 		background-color:#FFFFDD;
 		resize:vertical;
 	}
+	.cvpspeca {
+		font-size: 1.3em;
+		font-weight: 600;
+		margin: 15px 30px 0 0;
+		display: inline-block;
+		color: #ff5a5f;
+	}
+	hr {
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
 	#custom_js {margin-left: 1%;}
 	#license_key[value=""] {border: 2px solid #ff5a5f;}
 </style>
-
-<h3>&DoubleRightArrow; <a style="font-size: 18px;" href="http://www.contentviewspro.com/docs/?utm_source=settings_page" target="_blank">Content Views Documentation</a></h3>
-
-<hr>
-
-<p>Thank you so much for using Content Views Pro. <a href="http://www.contentviewspro.com/contact/">Contact us!</a></p>

@@ -41,6 +41,8 @@ Text Domain: twentysixteen
  //   4.4 Post
  //   4.5 The Grid
  //   4.6 Homepage
+ //   4.7 FAQ
+ //   4.8 Programs
  //
  // 5.0 Helpers
  //   5.1 Margin
@@ -123,7 +125,7 @@ h4{
   font-weight: bold;
 }
 
-p{
+p, ul{
   @include font(1rem, $gray);
   line-height: 1.25em;
   letter-spacing: .06rem;
@@ -320,7 +322,10 @@ p img, .border, .entry-content img{
   &:last-child{
     border-right: none;
   }
+}
 
+@media screen and (max-width:1302px){
+	.horizontal-li--gold-border{margin-top: 75px;}
 }
 
 .horizontal-li--gold-border:hover,.horizontal-li--gold-border a:hover{
@@ -351,9 +356,7 @@ p img, .border, .entry-content img{
 
 .hamburger{
   background:none;
-  position:absolute;
-  top:200;
-  right:0;
+  float: right;
   line-height:45px;
   padding:5px 15px 0px 15px;
   color:#fff;
@@ -367,10 +370,8 @@ p img, .border, .entry-content img{
 
 .cross{
   background:none;
-  position:absolute;
-  top:200;
-  right:0;
-  padding:16px 15px 0px 15px;
+  float: right;
+  padding:6px 15px 0px 15px;
   color:#fff;
   border:0;
   font-size:3em;
@@ -544,7 +545,7 @@ p img, .border, .entry-content img{
 
   &--home{
     @include red-stripe-box(100%);
-    margin: 0 auto 20px auto;
+    margin: 0 auto 75px auto;
 
     p{
     color: $off-white;
@@ -829,8 +830,8 @@ p img, .border, .entry-content img{
 
 #footer{
   background-color: #eee;
-  padding: 25px 50px 50px 50px;
-  min-height: 50%;
+  padding: 25px 50px 25px 50px;
+  min-height: 10%;
 
   .info{
     color: $dark-gold;
@@ -854,12 +855,13 @@ p img, .border, .entry-content img{
 
 #ecfa{
   margin-top: 25px;
+  width: 70%;
 }
 
 #ecfa-icon{
   max-width: 60px;
   margin-right: 15px;
-  float: left
+  float: right;
 }
 
 #ecfa-text{
@@ -867,7 +869,7 @@ p img, .border, .entry-content img{
   color: $dark-gold;
   font-size: .75rem;
   line-height: .75rem;
-  float: left;
+  float: right;
   margin-top: 5px;
 }
 
@@ -1061,6 +1063,11 @@ div [class$="-12"], div [class$="-10"]{
 
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+// 4.8 Programs
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#programsBlock{margin-bottom:100px;}
 
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1182,7 +1189,6 @@ section #huge_it_videogallery{
 // 7.0 Media Queries /////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////*/
-@import 'media-1257';
 @import 'media-975';
 @import 'media-750';
 @import 'media-phone';

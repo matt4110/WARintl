@@ -2,8 +2,8 @@
 Author: PT Guy
 Website: http://www.contentviewspro.com/
 Requires at least: 3.3
-Tested up to: 4.5.2
-Stable tag: 3.7
+Tested up to: 4.7
+Stable tag: 4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,6 +46,164 @@ Please check here http://www.contentviewspro.com/faq/
 
 
 == Changelog ==
+
+= 4.2 =
+* New:
+- [Performance] Improve performance with lazy loading for image, iframe
+- [Style Settings] Add text-transform, line-height, letter-spacing settings. Improve UI for font-weight, font-style, text-decoration. Able to set custom font-family (besides Google fonts from previous versions).
+- [Shuffle Filter] Add style settings for active, heading element
+- [Filter by Custom Fields] Add DATETIME type to able to compare more precise by hour, minute, second
+- [Advertisement] Able to show Advertisement which is made by shortcode
+- [Sort by Custom Field] Able to specify date format for custom field to correct sorting result
+
+* Integrate with other plugins:
+- "The Events Calendar" plugin: correct output for venue, organizer of events
+- MemberMouse plugin: show content only if current visitor has access to
+- SearchWP plugin: retain SearchWP order for search results page when using Content Views Pro to replace layout
+
+= 4.1.1 =
+* Fix: Custom color of text (title, content) in Overlay doesn't work
+
+= 4.1 =
+* New:
+- [Meta fields] Able to set custom format for Date
+- [Shuffle Filter] Able to show posts count on each filter
+
+* Fix:
+- Compatibility issue with Relevanssi plugin: "No posts found" when use CVP to replace search results layout
+
+* Improve:
+- [Shuffle Filter] Prevent issues when 2 terms in different taxonomies but have same slug (by replacing term slug in data-value, data-groups attributes by taxonomy name & term ID)
+
+* Update:
+- [Shuffle Filter]: Enable "Load more posts automatically when click on term" by default
+- Remove restriction of Layout format in Timeline, Glossary layout
+- Update style for right to left text direction
+- And many small updates, improvements
+
+= 4.0 =
+* New:
+- Complete new solution to replace layout in Blog, Category, Search... page: without modifying file, works across themes
+- Date Settings: Able to show posts of specific Year
+
+* Improve:
+- Better support for custom field of Pods, Toolset Types plugin
+- Better support for Polylang plugin: easy to add translation of View
+
+* Update:
+- [Overlay & Animation] Update description of settings, enable 2 settings for "always" overlay
+
+* Fix:
+- [One & others layout] Fix output issues of thumbnail
+
+= 3.9.9 =
+* Update (View dashboard):
+- Merge "Put mask of fields in front of thumbnail", "Hover animation" to one setting "Overlay Thumbnail With Text". Rename tab "Animation" to "Overlay & Animation"
+- Add setting to set color of Overlay text, to set background color of Title
+- Replace "Top margin in hover box" by more versatile setting "Overlay position"
+- Remove setting "Remove space between posts"
+- Visual simulator for font style & font-weight
+- Add clear button for padding, margin settings
+
+* New & Improvement:
+- Able to overlay thumbnail with text always
+- Able to set position (top, middle, bottom) of overlay text
+- Rebuild padding & margin system, work more effectively with any layouts
+- Show alt tag of image inside post content (when no Featured image found)
+
+= 3.9.8.2 =
+* New: [One & Others layout] Able to show Taxonomy
+* Fix: Compatibility with QTranslate X plugin (posts which language was not set are not shown)
+* Update:
+- Use 'inherit' (instead of 'any') status when filtering Media (attachment)
+- Apply custom style settings of Content to all elements in content div, except Read more button
+- Set line height as 1.3 multiples of element's custom font size, to prevent text overlap each other
+
+= 3.9.8 =
+* New:
+- Hover Animation, Scrollable list: Able to show mask/caption directly on Mobile devices & small screens (<=480px)
+- Able to show navigation in Lightbox of thumbnail
+
+* Update:
+- Cache social share count of posts in 2 hours to prevent prohibition of access these APIs
+- Apply forced mask, post border for Grid layout only
+- Add explicit option for using current page as current/base page
+- Remove setting "Show only glossary index" of Glossary layout
+
+* Fix:
+- Reusing View with limit, offset parameters does not work with pagination
+
+= 3.9.7.1 =
+* Fix: No media found when querying media without specifying status
+* Improvement: Smooth initiation of Shuffle Filter layout in hidden area (tab, toggle) when it becomes visible
+
+= 3.9.7 =
+* Fix: Conflict with Elementor pagebuilder plugin
+* Improvement: [Line up fields across items] faster, better
+* Improvement: [Custom Fields] Support more date formats when customizing date output
+* Update: Restructure Content Views Settings page
+
+= 3.9.6 =
+* New: [Shuffle Filter] Able to set operator cross taxonomies, hide filter bar of any taxonomy
+* New: [For Woocommerce] One-Click to display "Out of stock products"
+* New: Able to show custom field when display taxonomy as output
+* New: Able to set manual positions for Advertisements
+* Update: Show tab "Advertisement" by default. Add option to display ads when replacing theme layout
+
+= 3.9.5.2 =
+* Fix: Facebook share count returns 0 (due to the recent changes in Facebook Graph API)
+* Fix: Some fields has no bottom margin in Grid layout
+* Fix: Notice undefined index in file wp-updates-plugin.php
+* Improvement: Cleanup some CSS code
+
+= 3.9.5 =
+* New: Cool Grid layout with mask of fields & without space between posts
+* New: Able to add border between posts for Grid layout
+* New: Add option to exclude content of any HTML tags in excerpt
+* New: Add option "Do not show default image"
+* New: [Hover animation] Make it clickable on hover
+* Update: Drop "View count" sorting option because of view counter is too simple and inaccurate
+* Update: Add "License Details" link to Content Views Settings page
+* Improvement: More friendly padding, margin settings
+* Improvement: More friendly settings for Scrollable list
+
+= 3.9.4 =
+* New: Add "Troubleshoot problems" section to Settings page, to fix Facebook share shows wrong image
+* Update: [Shuffle Filter] "Load more posts automatically when click on term" should be triggered one time
+* Fix: Shuffle Filter layout goes wrong in hidden container
+
+= 3.9.3 =
+* Fix: Conflict with plugin Relevanssi (filter by multiple keywords show no posts)
+* Fix: Broken View output when put View shortcode in Text element of Divi Builder plugin
+* Fix: [Glossary list] Invalid heading character for Arabic, Japanese, Chinese...
+* Fix: gzinflate() data error on update message
+* New: [Scrollable list] Support swipe action on mobile, tablet devices
+* New: Add filter to enable lazy loading for Youtube video
+* Update: Remove setting "Include current post" setting
+
+= 3.9.2 =
+* Fix: Shuffle Filter shows posts of not selected term
+* Fix: background color, padding setting are not updated for new Pinterest/Masonry layout
+* New: [Terms as output] Able to show Read more button
+* Tweak: Add filter hook to modify value of custom field before querying
+
+= 3.9.1 =
+* Fix: Conflict with CloudFlare Rocket Loader
+
+= 3.9 =
+* New: Able to use Pinterest, Masonry layout with Shuffle Filter
+* New: Able to use View pagination when replacing layout of page (Category, Blog, Archive...)
+* New: [One & others layout] Able to show custom field, able to show Read-more button independently (without showing Excerpt)
+* New: Able to reusing View by keyword, post ID
+* And many small improvements
+
+= 3.8 =
+* New: (Shuffle Filter - Group options by Taxonomy): Able to select AND/OR operator for each taxonomy
+* New: (Shuffle Filter) Able to show All/Limit posts of selected term on pagination
+* New: (Shuffle Filter) Able to load posts automatically when click on term
+* New: (Meta fields) Able to choose more than 1 taxonomy in "Let me choose" section
+* New: Able to force replacing featured image by image/audio/video in post content
+* New: Able to show Full Content of other posts in "One & others" layout
 
 = 3.7 =
 * New: Able to show ads (Google Adsense, banner...) randomly in View output with friendly settings
