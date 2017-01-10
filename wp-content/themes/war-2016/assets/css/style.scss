@@ -315,8 +315,8 @@ p img, .border, .entry-content img{
 .horizontal-li--gold-border{
   display: inline-block;
   padding: 0 15px 0 10px;
-  @include font(1rem, $dark-gold);
-  border-right: 2px solid $dark-gold;
+  @include font(1rem, $gold);
+  border-right: 2px solid $gold;
   margin-top: 175px;
 
   &:last-child{
