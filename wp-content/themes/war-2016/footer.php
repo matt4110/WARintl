@@ -43,13 +43,13 @@
 		</footer><!-- .site-footer -->
 	</div><!-- .site-inner -->
 </div><!-- .site -->
-<?php wp_footer(); ?>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.9/jquery.transit.min.js"></script>
 <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 <script type="text/javascript" src=<?php get_bloginfo( 'url' ); ?>"/wp-content/themes/war-2016/assets/js/slider.js"></script>
 <script type="text/javascript" src=<?php get_bloginfo( 'url' ); ?>"/wp-content/themes/war-2016/assets/js/scripts.js"></script>
-
+<?php wp_footer(); ?>
 </body>
 </html>

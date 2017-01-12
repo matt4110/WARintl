@@ -8,7 +8,7 @@
  * @subpackage Twenty_Sixteen
  * @since Twenty Sixteen 1.0
  */
-get_template_part( 'partials/bootstrap' );
+
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
 <head>
@@ -19,6 +19,7 @@ get_template_part( 'partials/bootstrap' );
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 	<?php endif; ?>
 	<?php wp_head(); ?>
+	<?php get_template_part( 'partials/bootstrap' ); ?>
 </head>
 
 <body <?php body_class(); ?>>
