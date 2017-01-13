@@ -41,12 +41,12 @@ get_header(); ?>
 
 				<div class="box-menu-item">
 					<div class="box-menu-image">
-						<a href=<?php get_bloginfo('url'); ?>"/programs/us-training-center/">
+						<a href=<?php get_bloginfo('url'); ?>"/program/us-training-center/">
 						<img src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/box-ustc.jpg">
 						</a>
 					</div>
 					<div class="box-menu-split-text">
-						<a href=<?php get_bloginfo('url'); ?>"/programs/us-training-center/">
+						<a href=<?php get_bloginfo('url'); ?>"/program/us-training-center/">
 						<h1>U.S.<br>Training<br>Center</h1>
 						<p>Healing Hearts in the Homeland</p>
 						</a>
@@ -88,12 +88,12 @@ get_header(); ?>
 			<div class="row">
 				<div class="box-menu-item">
 					<div class="box-menu-image">
-						<a href=<?php get_bloginfo('url'); ?>"/programs/civilian-first-responder-cfr/">
+						<a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder/">
 						<img src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/box-cfr.jpg">
 						</a>
 					</div>
 					<div style="padding:2%;" class="box-menu-split-text">
-						<a href=<?php get_bloginfo('url'); ?>"/programs/civilian-first-responder-cfr/">
+						<a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder/">
 						<h1 class="medium">Civilian<br>First<br>Responder</h1>
 						<p>Learn to notice the signs of trafficking within your scope of influence</p>
 						</a>
@@ -102,7 +102,9 @@ get_header(); ?>
 
 				<div class="box-menu-item">
 					<div class="box-menu-image">
+						<a href=<?php get_bloginfo('url'); ?>"/random-story/">
 						<img src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/box-stories.jpg">
+						</a>
 					</div>
 					<div class="box-menu-split-text">
 						<a href=<?php get_bloginfo('url'); ?>"/random-story/">

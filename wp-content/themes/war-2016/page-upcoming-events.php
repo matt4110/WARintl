@@ -29,7 +29,7 @@ get_header(); ?>
 					<div class="grid-1-3">
 					    <a href=<?php get_bloginfo('url'); ?>"/circle-tour/"><h2>Circle Tour</h2>
 					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/circle-tour.jpg"></a>
-					    <p>February 2017</p>
+					    <p>February 2018</p>
 					    <p>Thailand</p>
 					</div>
 				</div>
