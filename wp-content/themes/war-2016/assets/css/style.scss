@@ -114,18 +114,18 @@ html{
 }
 
 h1{
-  @include font(3em, $dark-gold);
+  @include font(2.5rem, $dark-gold);
   font-weight: bold;
   margin: 0;
 }
 
 h2{
-  @include font(2em, $dark-gold);
+  @include font(1.8rem, $dark-gold);
   font-weight: bold;
 }
 
 h3{
-  @include font(1.5em, $dark-gold);
+  @include font(1.5rem, $dark-gold);
   font-weight: bold;
 }
 
@@ -136,7 +136,7 @@ h4{
 
 p, ul{
   @include font(1rem, $gray);
-  line-height: 1.45em;
+  line-height: 1.45rem;
   letter-spacing: .07rem;
 }
 
@@ -179,13 +179,13 @@ p, ul{
 }
 
 .post-title{
-  @include font(3em, $dark-gold);
+  @include font(2.5rem, $dark-gold);
   text-shadow: 1px 1px 2px darken($dark-gold, 15%);
   font-weight: bold;
 }
 
 .post-nav-title{
-  @include font(1.2em, $dark-gold);
+  @include font(1.2rem, $dark-gold);
 }
 
 .column-heading{
