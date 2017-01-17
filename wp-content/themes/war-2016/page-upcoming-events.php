@@ -13,7 +13,7 @@ get_header(); ?>
 					<div class="grid-1-3">
 					    <a href=<?php get_bloginfo('url'); ?>"/high-tea/"><h2>High Tea</h2>
 					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/events/high-tea.jpg"></a>
-					    <p>Feb 16, 2017</p>
+					    <p>February 16, 2017</p>
 					    <p>Tea Trade Cafe<br>2790 44th St<br>Wyoming, MI 49519</p>
 					</div>
 
@@ -21,7 +21,7 @@ get_header(); ?>
 					<div class="grid-1-3">
 					    <a href=<?php get_bloginfo('url'); ?>"/teamwar"><h2>Gazelle Girl</h2>
 					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/events/teamwar-square.jpg"></a>
-					    <p>Feb 28, 2017</p>
+					    <p>April 23, 2017</p>
 					    <p>Calder Plaza<br>Grand Rapids, MI 49503</p>
 					</div>
 
