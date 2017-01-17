@@ -176,14 +176,11 @@ function pre_submission_handler($form){
     if($_POST["input_14"] == "program") {
         $designation = "Program-" . filter_var(trim($_POST["input_12"]), FILTER_SANITIZE_STRING); //Use Program Field if program is selected
     }
-	else if($_POST["input_14"] == "current") {
-        $designation = "Current-" . filter_var(trim($_POST["input_22"]), FILTER_SANITIZE_STRING); //Use Missionary Field if missionary is selected
-    }
 	else if($_POST["input_14"] == "missionary") {
         $designation = "Missionary-" . filter_var(trim($_POST["input_16"]), FILTER_SANITIZE_STRING); //Use Missionary Field if missionary is selected
     }
-	else if($_POST["input_14"] == "circle") {
-        $designation = "Circle Tour-" . filter_var(trim($_POST["input_23_3"]), FILTER_SANITIZE_STRING) . ' ' . filter_var(trim($_POST["input_23_6"]), FILTER_SANITIZE_STRING); //Use Missionary Field if missionary is selected
+	else if($_POST["input_14"] == "circle-tour") {
+        $designation = "Circle Tour-" . filter_var(trim($_POST["input_23_3"]), FILTER_SANITIZE_STRING) . ' ' . filter_var(trim($_POST["input_23_6"]), FILTER_SANITIZE_STRING); //Use Participant Name if Circle Tour is selected
     }
 	else if($_POST["input_14"] == "most-needed") {
         $designation = "Where Most Needed";
