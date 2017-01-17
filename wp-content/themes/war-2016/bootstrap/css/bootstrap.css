@@ -91,12 +91,7 @@ svg:not(:root) {
 figure {
   margin: 1em 40px;
 }
-hr {
-  -webkit-box-sizing: content-box;
-     -moz-box-sizing: content-box;
-          box-sizing: content-box;
-  height: 0;
-}
+
 pre {
   overflow: auto;
 }
@@ -237,12 +232,7 @@ img {
 .img-circle {
   border-radius: 50%;
 }
-hr {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border: 0;
-  border-top: 1px solid #eeeeee;
-}
+
 .sr-only {
   position: absolute;
   width: 1px;

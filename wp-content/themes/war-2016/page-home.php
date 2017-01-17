@@ -13,7 +13,7 @@ get_header(); ?>
 		<h1 class="gold-heading">Our Mission</h1>
 		<p>Women At Risk International unites and educates women to create circles of protection and hope around women at risk through culturally sensitive, value-added intervention projects.</p>
 	</div>
-
+	<hr>
 	<!-- Meta Slider -->
 	<?php 
     echo do_shortcode("[metaslider id=15187]"); ?>
