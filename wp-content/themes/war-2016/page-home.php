@@ -139,9 +139,7 @@ get_header(); ?>
 					Our programs and partnerships span the globe, reaching over 40 countries, including the United States. Each month, additional projects and partnerships are formed, increasing our ability to offer the rescued and at-risk a "hand-up" instead of a handout.</p>
 				</div>
 				<div class="clearfix"></div>
-			</div>
-			
-			
+			</div>	
 		</div><!-- /About WAR Int'l  -->
 
 	</div><!-- .content-area -->

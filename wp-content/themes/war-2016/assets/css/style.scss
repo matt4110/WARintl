@@ -150,7 +150,7 @@ p, ul{
 }
 
 .white-text{
-  @include font(1.15rem, $off-white);
+  @include font(.9rem, $off-white);
 }
 
 .small-white-text{
@@ -427,14 +427,18 @@ p img, .border, .entry-content img{
 
 
   &--left{
-    width:25%;
+    width:200px;
     float: left;
+    margin-right: auto;
+    margin-left: auto;
     padding: 125px 30px;
   }
 
   &--right{
-    width: 25%;
+    width: 200px;
     float: right;
+    margin-right: auto;
+    margin-left: auto;
     padding: 125px 30px;
   }
 
@@ -759,11 +763,10 @@ p img, .border, .entry-content img{
   p{
     color: $black;
     text-align: center;
-    width: 80%;
+    width: 50%;
     margin: 0 auto 10px;
-    font-size: 1rem;
-    line-height: .85rem;
-    letter-spacing: .07rem;
+    font-size: .85rem;
+    line-height: .95rem;
   }
 }
 
@@ -991,7 +994,7 @@ div [class$="-12"], div [class$="-10"]{
   margin: 50px auto 20px auto;
 
   p{
-    float: left;
+    margin: 25px auto 25px auto;
     width: 50%;
     text-align: justify;
   }
@@ -1111,6 +1114,14 @@ div [class$="-12"], div [class$="-10"]{
  .gform_wrapper ul.gfield_radio li label{
   font-size: 1.15rem;
  }
+
+body .gform_wrapper ul li.gfield{
+  margin-top: 50px !important;
+ }
+
+input [type='radio']{
+  transform: scale(1.2);
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 6.2 Content Views
