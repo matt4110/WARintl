@@ -29,7 +29,7 @@
 		<header role="banner">
 			<div id="header">
 				<a href=<?php get_bloginfo( 'url' ); ?>"/home" ><img id="seal" src="/wp-content/themes/war-2016/assets/images/war-seal.png" alt="women at risk seal"></a>
-				<img id="logo" src="/wp-content/themes/war-2016/assets/images/war-logo.png" alt="women at risk logo">
+				<a href=<?php get_bloginfo( 'url' ); ?>"/home" ><img id="logo" src="/wp-content/themes/war-2016/assets/images/war-logo.png" alt="women at risk logo"></a>
 				<div id="donate">
 					<a href=<?php get_bloginfo( 'url' ); ?>"/donate/"><h1 id="donate-header">DONATE</h1></a>
 				</div>
