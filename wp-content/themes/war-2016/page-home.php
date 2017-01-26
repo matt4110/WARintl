@@ -115,6 +115,22 @@ get_header(); ?>
 				</div>
 			</div>
 
+			<div class="row">
+				<div class="box-menu-item-centered">
+					<div class="box-menu-image">
+						<a href=<?php get_bloginfo('url'); ?>"/circle-tour/">
+						<img src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/box-circle-tour.jpg">
+						</a>
+					</div>
+					<div class="box-menu-split-text">
+						<a href=<?php get_bloginfo('url'); ?>"/random-story/">
+						<h1>Circle<br>Tour 2018</h1>
+						<p>"You are the light of the world."</p>
+						</a>
+					</div>
+				</div>
+			</div>
+
 		<!-- /Box Menu -->	
 		</div>
 		<div class="clearfix"></div>

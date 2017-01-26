@@ -158,6 +158,16 @@
     &:nth-child(even){
       margin-left: 0;
     }
+
+    &-item-centered{
+      display: flex;
+      float: none;
+      clear: none;
+      width: 49%;
+      margin:0 auto 20px auto;
+      padding: 3px;
+      border: 3px solid $black;
+    }
   }
 
   &-split-text{
