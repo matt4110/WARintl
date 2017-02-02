@@ -20,7 +20,7 @@ get_header(); ?>
 
 					<div class="grid-1-3">
 					    <a href=<?php get_bloginfo('url'); ?>"/teamwar"><h2>Gazelle Girl</h2>
-					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/events/teamwar-square.jpg"></a>
+					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/events/gazelle-girl.jpg"></a>
 					    <p>April 23, 2017</p>
 					    <p>Calder Plaza<br>Grand Rapids, MI 49503</p>
 					</div>
@@ -28,7 +28,7 @@ get_header(); ?>
 
 					<div class="grid-1-3">
 					    <a href=<?php get_bloginfo('url'); ?>"/circle-tour/"><h2>Circle Tour</h2>
-					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/events/circle-tour.jpg"></a>
+					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/events/circle-tour-2018.jpg"></a>
 					    <p>February 2018</p>
 					    <p>Thailand</p>
 					</div>
