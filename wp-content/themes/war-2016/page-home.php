@@ -109,7 +109,7 @@ get_header(); ?>
 					<div class="box-menu-split-text">
 						<a href=<?php get_bloginfo('url'); ?>"/random-story/">
 						<h1>Stories<br>of hope</h1>
-						<p>Learn how your purchase lifts lifes to dignity</p>
+						<p>Learn how your purchase lifts lives to dignity</p>
 						</a>
 					</div>
 				</div>
@@ -123,7 +123,7 @@ get_header(); ?>
 						</a>
 					</div>
 					<div class="box-menu-split-text">
-						<a href=<?php get_bloginfo('url'); ?>"/random-story/">
+						<a href=<?php get_bloginfo('url'); ?>"/circle-tour/">
 						<h1>Circle<br>Tour 2018</h1>
 						<p>"You are the light of the world."</p>
 						</a>
