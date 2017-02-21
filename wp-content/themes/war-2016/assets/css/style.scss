@@ -140,6 +140,13 @@ p, ul{
   letter-spacing: .07rem;
 }
 
+td p{
+  font-size: 17px;
+  line-height: 1.4;
+  margin: 0;
+  padding: 0 0 5px 0;
+}
+
 .garamond{
   font-family: $garamond;
 }
