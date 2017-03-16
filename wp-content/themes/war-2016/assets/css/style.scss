@@ -646,6 +646,8 @@ p img, .border, .entry-content img{
 .eleven-12{order:11;}
 .twelve-12{order:12;}
 
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 3.6 Slider
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -734,8 +736,6 @@ p img, .border, .entry-content img{
     }
   }
 }
-
-
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -991,7 +991,7 @@ div [class$="-12"], div [class$="-10"]{
   text-decoration: none;
 }
 
-//layout for take-action pages
+//layout for take-action pages - is this old? Are we using this?
 
 .ta-header{
   display: flex;
@@ -1010,6 +1010,68 @@ div [class$="-12"], div [class$="-10"]{
     width:110px;
     height:110px;
   }
+}
+
+//Upcoming CFRs 
+
+#upcoming-cfr, #cfr-resources{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.cfr-item{
+
+  flex-basis: 30%;
+  min-width: 180px;
+  margin: 12px 1.5%;
+
+
+  &-date, &-bar{
+    height:150px;
+    width: 50px; 
+    background-color: $red;
+    margin-right: 10px;
+    float: left;
+  }
+
+  &-month{
+    font-size: 16px; 
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 16px 0 0px 0;
+  }
+
+  &-day{
+    font-size: 36px; 
+    color: white;
+    margin: 2px; 
+    line-height: 25px;
+    text-align: center;
+  }
+
+  &-location, &-title{
+    font-size: .7rem;
+    line-height: 1rem;
+    letter-spacing: .02rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: $black;
+  }
+
+  &-sub-location, &-sub-title{
+    font-weight: lighter;
+    color: #777777;
+    font-size: .6rem;
+    letter-spacing: .02rem;
+    line-height: 1rem;
+  }
+
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -104,7 +104,7 @@
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/locations-hours/">Locations & Hours</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/contact-us/">Contact Us</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/faq/">FAQ</a></li>
-					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/news-media">NEWS & MEDIA</a></li>
+					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/news">NEWS & MEDIA</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/upcoming-events">Upcoming events</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/video-gallery">Video Gallery</a></li>
 					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/take-action">TAKE ACTION</a></li>
