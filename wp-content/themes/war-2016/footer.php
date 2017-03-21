@@ -50,6 +50,7 @@
 <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
 <script type="text/javascript" src=<?php get_bloginfo( 'url' ); ?>"/wp-content/themes/war-2016/assets/js/scripts.js"></script>
+<script type="text/javascript" src=<?php get_bloginfo( 'url' ); ?>"/wp-content/themes/war-2016/assets/js/lity.min.js"></script>
 <?php wp_footer(); ?>
 <!-- Google Analytics Tracking info -->
 <script>
