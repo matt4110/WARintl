@@ -31,7 +31,8 @@ get_header(); ?>
 						<p>2790 44th St SW<br>
 						Wyoming, MI 49519</p>
 						<p>Hours*:<br>
-						Mon-Sat: 10am-6pm<br>
+						<b>Mon-Sat:</b><br>
+						10am-6pm<br>
 						Closed Sunday<br>
 						</p>
 					</div>
@@ -44,9 +45,13 @@ get_header(); ?>
 						<p style="letter-spacing: .03rem;">25 Squires ST Square NE<br>
 						Rockford, MI 49341</p>
 						<p>Hours*:<br>
-						<span style="letter-spacing: .03rem;">Mon-Fri: 10:30am-7pm</span><br>
-						Saturday: 10am-6pm<br>
-						Sunday: 12pm-5pm</p>
+						<!--<span style="letter-spacing: .03rem;">-->
+						<b>Mon-Fri:</b><br>
+						10:30am-7pm<!--/span>--><br>
+						<b>Saturday:</b><br>
+						10am-6pm<br>
+						<b>Sunday:</b><br>
+						12pm-5pm</p>
 					</div>
 
 					<!--Naperville WARChest Boutique-->
@@ -58,8 +63,10 @@ get_header(); ?>
 						Naperville, IL 60540</p>
 						<p>Hours*:<br>
 						Closed Monday<br>
-						<span style="letter-spacing: .03rem;">Tues-Sat: 11am-6:30pm</span><br>
-						Sunday: 12pm-4pm</p>
+						<b>Tues-Sat:</b><br>
+						11am-6:30pm<br>
+						<b>Sunday:</b><br>
+						12pm-4pm</p>
 					</div>
 
 				</div>
