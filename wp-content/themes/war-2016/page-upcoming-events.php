@@ -12,19 +12,18 @@ get_header(); ?>
 				<div class="row">
 
 					<div class="grid-1-3">
-					    <a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder/"><h2>CFR</h2>
-					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-event.jpg"></a>
-					    <p>March 25, 2017</p>
-					    <p>Thornapple Covenant Church<br>6595 Cascade Rd SE<br>Grand Rapids, MI</p>
-					</div>
-
-					<div class="grid-1-3">
 					    <a href=<?php get_bloginfo('url'); ?>"/teamwar"><h2>Gazelle Girl</h2>
 					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/events/gazelle-girl.jpg"></a>
 					    <p>April 23, 2017</p>
 					    <p>Calder Plaza<br>Grand Rapids, MI 49503</p>
 					</div>
 
+					<div class="grid-1-3">
+					    <a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder/"><h2><span style="font-size:.7em;">Brunch with Becky</span></h2>
+					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-event.jpg"></a>
+					    <p>May 13, 2017</p>
+					    <p>Women At Risk, International<br>2790 44th ST SW<br>Wyoming, MI</p>
+					</div>
 
 					<div class="grid-1-3">
 					    <a href=<?php get_bloginfo('url'); ?>"/circle-tour/"><h2>Circle Tour</h2>
