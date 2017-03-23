@@ -67,7 +67,7 @@
 					</li>
 					<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"/programs/">Programs</a>
 						<ul class="sub-nav">
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/sweetie/">Sweetie Updates</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/sweetie-updates/">Sweetie Updates</a></li>
 							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/international-safehouses/">International Safehouses</a></li>
 							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/domestic-safehouses/">Domestic Safehouses</a></li>
 							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/vocational-training/">Vocational Training</a></li>
@@ -112,7 +112,7 @@
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/host-a-party/">Host a Party</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/circle-tour/">Circle Tour</a></li>
 					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/programs">PROGRAMS</a></li>
-						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/sweetie/">Sweetie Updates</a></li>
+						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/sweetie-updates/">Sweetie Updates</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/international-safehouses/">International Safehouses</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/domestic-safehouses/">Domestic Safehouses</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/vocational-training/">Vocational Training</a></li>
