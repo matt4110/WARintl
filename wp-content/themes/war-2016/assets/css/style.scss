@@ -817,6 +817,36 @@ p img, .border, .entry-content img{
   }
 }
 
+#cta-give{
+  display: none;
+  position: absolute;
+  margin-left: 13.45%;
+  width: 14vw;
+  height: 14vw;
+  border-radius:50%;
+  background-color: rgba(186,39,29,.98);
+  margin-top: -14px;
+}
+
+#cta-act{
+  display: none;
+  position: absolute;
+  margin-left: 41%;
+  width: 14vw;
+  height: 14vw;
+  border-radius:50%;
+  background-color: rgba(186,39,29,.98);
+  margin-top: -14px;
+}
+
+.cta-hover-title{
+ font-family: 'nexa';
+  color: white;
+  font-size: 1.25rem;
+  text-align: center;
+  margin-top: 42%;
+}
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 3.9 Mission Statement
