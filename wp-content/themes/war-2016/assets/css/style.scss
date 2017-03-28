@@ -779,6 +779,44 @@ p img, .border, .entry-content img{
 }
 
 
+//NEW CALL TO ACTION
+.cta-bar{
+  width: 100%;
+  background-image: url("http://warinternational.org/wp-content/themes/war-2016/assets/images/headerPattern.jpg");
+  background-repeat: repeat;
+  padding:25px;
+}
+
+.cta-title{
+  margin-top: 0;
+  font-size: 1.7rem;
+  clear: both;
+  color: $off-white;
+  font-weight: bold;
+  margin-bottom: 50px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.cta-item{
+  width: 15%; 
+  margin-left: 13.75%; 
+  float:left; 
+  clear:none;
+  color: $off-white;
+
+  &-img{
+    clear: both
+  }
+
+  &-label{
+    font-size: 1.2rem;
+    margin-top: 25px;
+    color: $off-white;
+    text-align: center;
+  }
+}
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 3.9 Mission Statement

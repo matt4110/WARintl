@@ -9,3 +9,11 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'nexa';
+    src: url('assets/css/fonts/nexa_light-webfont.woff2') format('woff2'),
+         url('assets/css/fonts/nexa_light-webfont.woff') format('woff');
+    font-weight: lighter;
+    font-style: normal;
+
+}

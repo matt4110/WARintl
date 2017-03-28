@@ -19,10 +19,10 @@ get_header(); ?>
 					</div>
 
 					<div class="grid-1-3">
-					    <a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder/"><h2><span style="font-size:.7em;">Brunch with Becky</span></h2>
-					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-event.jpg"></a>
+					    <a href=<?php get_bloginfo('url'); ?>"/brunch-with-becky/"><h2>Brunch</h2>
+					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/wp-content/uploads/2017/03/Brunch.png"></a>
 					    <p>May 13, 2017</p>
-					    <p>Women At Risk, International<br>2790 44th ST SW<br>Wyoming, MI</p>
+					    <p>WAR, Int'l HQ<br>2790 44th ST SW<br>Wyoming, MI</p>
 					</div>
 
 					<div class="grid-1-3">
