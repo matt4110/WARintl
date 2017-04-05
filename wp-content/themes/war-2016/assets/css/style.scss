@@ -43,6 +43,8 @@ Text Domain: twentysixteen
  //   4.6 Homepage
  //   4.7 FAQ
  //   4.8 Programs
+ //   4.9 Take Action Pages
+ //   4.10 CFR page
  //
  // 5.0 Helpers
  //   5.1 Margin
@@ -141,6 +143,10 @@ p, ul{
   letter-spacing: .07rem;
 }
 
+.small-p{
+  font-size: .9rem;
+}
+
 td p{
   font-size: 17px;
   line-height: 1.4;
@@ -208,6 +214,16 @@ td p{
   text-align: justify;
   padding:7px 100px 0 10px;
 }
+
+.red-blockquote{
+  font-size: 1.1rem;
+  color: $red;
+  font-family: nexa;
+}
+
+.parallax-window h1, .parallax-window h2, .parallax-window h3{
+  text-shadow: 0 0 2px #aaa;
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 2.3 Links
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -224,7 +240,7 @@ a{
   }
 }
 
-.type-post a{
+.type-post a, .text-link{
   color: $dark-gold;
   text-decoration: underline;
 
@@ -274,6 +290,14 @@ input[type="submit"]{
 
 button{
   border: none;
+}
+
+.main-button{
+  background-color: $dark-gold;
+  border-radius:4px;
+  padding: 15px;
+  color: white;
+  margin: 50px;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -652,8 +676,6 @@ p img, .border, .entry-content img{
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 3.6 Slider
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 
 .wrapper-carousel {
   max-width: 2000px;
@@ -1039,12 +1061,13 @@ div [class$="-12"], div [class$="-10"]{
   clear: none;
 }
 
-.grid-3-10{width: 30%;}
-
 .grid-3-10{
+  width: 30%;
   margin-right: 5%;
   margin-top: 50px;
   float: left;
+
+  & a{text-decoration: none;}
 }
 .grid-3-10:last-child{
   margin-right: 0;
@@ -1056,92 +1079,7 @@ div [class$="-12"], div [class$="-10"]{
   clear: none;
 }
 
-.grid-3-10 a{
-  text-decoration: none;
-}
 
-//layout for take-action pages - is this old? Are we using this?
-
-.ta-header{
-  display: flex;
-  justify-content: center;
-
-  h1{
-    //width:75%;
-    float: left;
-    text-align: left;
-    padding-top: 15px;
-  }
-
-  img{
-    float: left;
-    margin-left: 15px;
-    width:110px;
-    height:110px;
-  }
-}
-
-//Upcoming CFRs 
-
-#upcoming-cfr, #cfr-resources{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: stretch;
-  align-content: stretch;
-}
-
-.cfr-item{
-
-  flex-basis: 30%;
-  min-width: 180px;
-  margin: 12px 1.5%;
-
-
-  &-date, &-bar{
-    height:150px;
-    width: 50px; 
-    background-color: $red;
-    margin-right: 10px;
-    float: left;
-  }
-
-  &-month{
-    font-size: 16px; 
-    color: white;
-    text-transform: uppercase;
-    text-align: center;
-    margin: 16px 0 0px 0;
-  }
-
-  &-day{
-    font-size: 36px; 
-    color: white;
-    margin: 2px; 
-    line-height: 25px;
-    text-align: center;
-  }
-
-  &-location, &-title{
-    font-size: .7rem;
-    line-height: 1rem;
-    letter-spacing: .02rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: $black;
-  }
-
-  &-sub-location, &-sub-title{
-    font-weight: lighter;
-    color: #777777;
-    font-size: .6rem;
-    letter-spacing: .02rem;
-    line-height: 1rem;
-  }
-
-
-}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 4.6 Home
@@ -1239,6 +1177,101 @@ div [class$="-12"], div [class$="-10"]{
 
 #programsBlock{margin-bottom:100px;}
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+// 4.9 Take Action Pages
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//layout for take-action pages - is this old? Are we using this?
+
+.ta-header{
+  display: flex;
+  justify-content: center;
+
+  h1{
+    //width:75%;
+    float: left;
+    text-align: left;
+    padding-top: 15px;
+  }
+
+  img{
+    float: left;
+    margin-left: 15px;
+    width:110px;
+    height:110px;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+// 4.10 CFR Page
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Upcoming CFRs 
+
+#upcoming-cfr, #cfr-resources{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.cfr-item{
+
+  flex-basis: 30%;
+  min-width: 180px;
+  margin: 12px 1.5%;
+
+  &-date{
+    height:150px;
+    width: 50px; 
+    background-color: $red;
+    margin-right: 10px;
+    float: left;
+  }
+
+  &-month{
+    font-size: 16px; 
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 16px 0 0px 0;
+  }
+
+  &-day{
+    font-size: 36px; 
+    color: white;
+    margin: 2px; 
+    line-height: 25px;
+    text-align: center;
+  }
+
+  &-location, &-title{
+    font-size: .7rem;
+    line-height: 1rem;
+    letter-spacing: .02rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: $black;
+  }
+
+  &-sub-location, &-sub-title{
+    font-weight: lighter;
+    color: #777777;
+    font-size: .6rem;
+    letter-spacing: .02rem;
+    line-height: 1rem;
+  }
+}
+
+.cta-title-bar{
+  width: 100%;
+  background-color: $red;
+  color: white;
+  font-size: 1.1rem;
+  padding: 10px;
+}
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////

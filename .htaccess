@@ -10,3 +10,9 @@ RewriteRule . /index.php [L]
 order allow,deny
 deny from 201.27.166.122
 allow from all
+
+<IfModule mod_headers.c>
+Header set Cache-Control "no-cache, no-store, must-revalidate"
+Header set Pragma "no-cache"
+Header set Expires 0
+</IfModule>
