@@ -298,6 +298,11 @@ button{
   padding: 15px;
   color: white;
   margin: 50px;
+
+  &:hover{
+    background-color: darken($dark-gold, 15%);
+    transition: .5s;
+  }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1263,6 +1268,11 @@ div [class$="-12"], div [class$="-10"]{
     letter-spacing: .02rem;
     line-height: 1rem;
   }
+}
+
+.cfr-item:hover .cfr-item-date{
+  background-color: #761812;
+  transition: .5s;
 }
 
 .cta-title-bar{

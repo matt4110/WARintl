@@ -5,27 +5,26 @@
  */
 
 get_header(); ?>
-
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
-			<div class="standard-content">
-			<h1 style="text-align: center;">Civilian First Responder</h1>
-			&nbsp;
+			<div class="standard-content" style="margin-bottom: 20px;">
+				<h1 style="text-align: center;">Civilian First Responder</h1>
+				&nbsp;
 
-			<h3 style="text-align: center;margin-bottom: 0;margin-top: 50px; color:#a9231a"><i>"This is the reality of sex trafficking in our country"</i></h3>
-			&nbsp;
+				<h3 style="text-align: center;margin-bottom: 0;margin-top: 50px; color:#a9231a"><i>"This is the reality of sex trafficking in our country"</i></h3>
+				&nbsp;
 
-			<div class="row">
-				<div class="grid-1-3">
-					<p class="red-blockquote">100,000 - 300,00 U.S. kids at risk of trafficking<br><span class="small-text"><i>National Center for Missing & Exploited Children</i></span></p>
+				<div class="row">
+					<div class="grid-1-3">
+						<p class="red-blockquote">100,000 - 300,00 U.S. kids at risk of trafficking<br><span class="small-text"><i>National Center for Missing & Exploited Children</i></span></p>
+					</div>
+					<div class="grid-1-3">
+						<p class="red-blockquote">1/3 teens lured toward <span style="letter-spacing: 0.04rem;"> prostitution</span> within 48 hrs of leaving home<br><span class="small-text"><i>National Runaway Hotline</i></span></p>
+					</div>
+					<div class="grid-1-3">
+						<p class="red-blockquote">15 (average number of times a trafficked minor sold per day)<br><span class="small-text"><i>National Center for Missing & Exploited Children</i></span></p>	
+					</div>
 				</div>
-				<div class="grid-1-3">
-					<p class="red-blockquote">1/3 teens lured toward <span style="letter-spacing: 0.04rem;"> prostitution</span> within 48 hrs of leaving home<br><span class="small-text"><i>National Runaway Hotline</i></span></p>
-				</div>
-				<div class="grid-1-3">
-					<p class="red-blockquote">15 (average number of times a trafficked minor sold per day)<br><span class="small-text"><i>National Center for Missing & Exploited Children</i></span></p>	
-				</div>
-			</div>
 			</div>
 			<div class="parallax-window" data-parallax="scroll" data-image-src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/city-night-traffic.jpg" style="height:200px; width:100%;"></div>
 			<div class="standard-content">
@@ -43,7 +42,7 @@ get_header(); ?>
 			&nbsp;
 
 			<!-- UPCOMING CFR div -->
-			<h2 style="text-align: center;">Upcoming CFRs</h2>
+			<h2 style="text-align: center;margin: 60px 0 20px 0;">Upcoming CFRs</h2>
 			
 			&nbsp;
 			<div id="upcoming-cfr">
@@ -93,6 +92,8 @@ get_header(); ?>
 			</div>
 
 				<a href=<?php get_bloginfo('url') ;?>"/cfr-registration"><button class="main-button" style="margin-left: auto; margin-right: auto; display: block;">Register Now</button></a>
+				&nbsp;
+				<hr>
 
 				<p style="text-align: center;">For information on how to bring a CFR conference to your area, email us today at <a class="text-link" href="MAILTO:info@warinternational.org">info@warinternational.org</a></p>
 

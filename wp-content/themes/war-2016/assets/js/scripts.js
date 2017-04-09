@@ -25,7 +25,4 @@ $j( ".cross" ).click(function() {
 ////////////////// END OF MOBILE MENU
 
 
-
-
-
 });
