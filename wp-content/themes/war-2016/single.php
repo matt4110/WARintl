@@ -19,6 +19,17 @@ get_header(); ?>
 				// Include the single post content template.
 				get_template_part( 'template-parts/content', 'single' );
 
+				// End of the loop.
+			endwhile;
+			?>
+
+		</div>
+		<?php get_template_part( 'partials/take-action' );?> <!--#Call to Action Module-->
+		<div class="standard-content">
+
+			<?php
+			while ( have_posts() ) : the_post();
+
 				// If comments are open or we have at least one comment, load up the comment template.
 				if ( comments_open() || get_comments_number() ) {
 					comments_template();
@@ -51,5 +62,5 @@ get_header(); ?>
 
 
 </div><!-- .content-area -->
-<?php get_template_part( 'partials/take-action' );?> <!--#Call to Action Module-->
+
 <?php get_footer(); ?>

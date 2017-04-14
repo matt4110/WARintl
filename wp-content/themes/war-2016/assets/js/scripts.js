@@ -24,5 +24,69 @@ $j( ".cross" ).click(function() {
 //////////////////
 ////////////////// END OF MOBILE MENU
 
+/////////////////
+///////////////// CALL TO ACTION HOVER
+$j("#cta-donate").mouseenter(function() {
+   $j("#cta-give").css('transform', 'scale(1)')
+});
+$j("#cta-donate").mouseleave(function() {
+   $j("#cta-give").css('transform', 'scale(0)')
+});
+$j("#cta-give").mouseenter(function() {
+   $j("#cta-give").css('transform', 'scale(1)')
+});
+$j("#cta-give").mouseleave(function() {
+   $j("#cta-give").css('transform', 'scale(0)')
+});
+
+
+$j("#cta-volunteer").mouseenter(function() {
+   $j("#cta-act").css('transform', 'scale(1)')
+});
+$j("#cta-volunteer").mouseleave(function() {
+   $j("#cta-act").css('transform', 'scale(0)')
+});
+$j("#cta-act").mouseenter(function() {
+   $j("#cta-act").css('transform', 'scale(1)')
+});
+$j("#cta-act").mouseleave(function() {
+   $j("#cta-act").css('transform', 'scale(0)')
+});
+
+
+$j("#cta-shop").mouseenter(function() {
+   $j("#cta-buy").css('transform', 'scale(1)')
+});
+$j("#cta-shop").mouseleave(function() {
+   $j("#cta-buy").css('transform', 'scale(0)')
+});
+$j("#cta-buy").mouseenter(function() {
+   $j("#cta-buy").css('transform', 'scale(1)')
+});
+$j("#cta-buy").mouseleave(function() {
+   $j("#cta-buy").css('transform', 'scale(0)')
+});
+//////////////////
+////////////////// END OF CALL TO ACTION HOVER
+
+
+//////////////////
+////////////////// START OF AMBASADORS HOVER
+$j("#bennett-img").mouseenter(function() {
+   $j("#bennett-hover").css('display', 'block').fadeIn('400')
+});
+$j("#bennett-img").mouseleave(function() {
+   $j("#bennett-hover").css('display', 'hidden').fadeOut('400')
+});
+$j("#bennett-hover").mouseenter(function() {
+   $j("#bennett-hover").css('display', 'block').fadeIn('400')
+});
+$j("#bennett-hover").mouseleave(function() {
+   $j("#bennett-hover").css('display', 'hidden').fadeOut('400')
+});
+
+
+
+
 
 });

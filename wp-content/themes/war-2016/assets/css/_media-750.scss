@@ -7,7 +7,7 @@
 // Table of Contents
  //
  // 1.0 Normalize and imports
- // 2.0 Base Styles - basic styling (ie: removing borders, unstyling links, removing bullet point, etc.)
+ // 2.0 Base Styles
  // 3.0 Modules
  //   3.1 Navigation  3.2 Forms  3.3 Buttons  3.4 Lists  3.5 Boxes  3.6 Slider  3.7 Image Grid  3.8 Call to Action
  //
@@ -20,6 +20,9 @@
  //   4.6 Home
  //   4.7 FAQ
  //   4.8 Programs
+ //   4.9 Take Action pages
+ //   4.10 CFR page
+ //   4.11 Ambassadors page
  //
  // 5.0 Helpers
  //   5.1 Margin
@@ -68,6 +71,10 @@
 .take-action-desc, .get-involved-desc{
   text-align: justify;
   padding:7px 10px 0 10px;
+}
+
+.grid-1-3 h4{
+  font-size: 16pt;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -237,7 +244,7 @@
 
 
 .square-img{
-  width: 30vw;
+  width: 100%;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////

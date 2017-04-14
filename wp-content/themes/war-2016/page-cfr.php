@@ -41,7 +41,12 @@ get_header(); ?>
 			</div>
 			&nbsp;
 
-			<!-- UPCOMING CFR div -->
+			<!-- *********************
+			**************************
+			UPCOMING CFR
+			**************************
+			**************************
+			-->
 			<h2 style="text-align: center;margin: 60px 0 20px 0;">Upcoming CFRs</h2>
 			
 			&nbsp;
@@ -59,12 +64,15 @@ get_header(); ?>
 				</div>
 
 				<div class="cfr-item">
+					<a href="https://warinternational.org/cfr-registration/?event_name=rosemount">
 					<div class="cfr-item-date">
 						<p class="cfr-item-month">Aug</p>
 						<p class="cfr-item-day">12</p>
 					</div>
-					<p class="cfr-item-sub-location">Lakeville, MN<br>
-					(more info to come)</p>
+					<p class="cfr-item-location">Lighthouse<br>Christian Church</p>
+					<p class="cfr-item-sub-location">Rosemount, MN<br>
+					<a href="http://warinternational.org/images/cfr/8-12-17.pdf" data-lity>(more info)</a></p>
+					</a>
 				</div>
 
 				<div class="cfr-item">

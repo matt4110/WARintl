@@ -13,7 +13,7 @@ Text Domain: twentysixteen
  // Table of Contents
  //
  // 1.0 Normalize and imports
- // 2.0 Base Styles - basic styling (ie: removing borders, unstyling links, removing bullet point, etc.)
+ // 2.0 Base Styles
  //   2.1 Body
  //   2.2 Typography
  //   2.3 Links
@@ -45,6 +45,7 @@ Text Domain: twentysixteen
  //   4.8 Programs
  //   4.9 Take Action Pages
  //   4.10 CFR page
+ //   4.11 Ambassadors page
  //
  // 5.0 Helpers
  //   5.1 Margin
@@ -809,16 +810,22 @@ p img, .border, .entry-content img{
 //NEW CALL TO ACTION
 .cta-bar{
   width: 100%;
+  height:350px;
   background-image: url("http://warinternational.org/wp-content/themes/war-2016/assets/images/headerPattern.jpg");
   background-repeat: repeat;
-  padding:25px;
+  padding:25px 0 0 0;
+}
+
+.cta-container{
+  width: 1000px;
+  margin: 0 auto;
 }
 
 .cta-title{
   margin-top: 0;
   font-size: 1.7rem;
   clear: both;
-  color: $off-white;
+  color: white;
   font-weight: bold;
   margin-bottom: 50px;
   text-align: center;
@@ -826,9 +833,10 @@ p img, .border, .entry-content img{
 }
 
 .cta-item{
-  width: 15%; 
-  margin-left: 13.75%; 
-  float:left; 
+  width: 20%; 
+  margin-left: 20%; 
+  float: left; 
+  position:relative;
   clear:none;
   color: $off-white;
 
@@ -842,28 +850,10 @@ p img, .border, .entry-content img{
     color: $off-white;
     text-align: center;
   }
-}
 
-#cta-give{
-  display: none;
-  position: absolute;
-  margin-left: 13.45%;
-  width: 14vw;
-  height: 14vw;
-  border-radius:50%;
-  background-color: rgba(186,39,29,.98);
-  margin-top: -14px;
-}
-
-#cta-act{
-  display: none;
-  position: absolute;
-  margin-left: 41%;
-  width: 14vw;
-  height: 14vw;
-  border-radius:50%;
-  background-color: rgba(186,39,29,.98);
-  margin-top: -14px;
+  &:nth-child(3){
+    margin-left: 0;
+  }
 }
 
 .cta-hover-title{
@@ -874,6 +864,44 @@ p img, .border, .entry-content img{
   margin-top: 42%;
 }
 
+#cta-give{
+  position: absolute;
+  margin-left: .4%;
+  width: 190px;
+  height: 190px;
+  border-radius:50%;
+  background-color: rgba(186,39,29,.98);
+  margin-top: -12px;
+  transform: scale(0);
+  transition: .3s;
+  z-index: 99;
+}
+
+#cta-act{
+  position: absolute;
+  margin-left: 31.7%;
+  width: 190px;
+  height: 190px;
+  border-radius:50%;
+  background-color: rgba(186,39,29,.98);
+  margin-top: -12px;
+  transform: scale(0);
+  transition: .3s;
+  z-index: 99;
+}
+
+#cta-buy{
+  position: absolute;
+  margin-left: 63.05%;
+  width: 190px;
+  height: 190px;
+  border-radius:50%;
+  background-color: rgba(186,39,29,.98);
+  margin-top: -12px;
+  transform: scale(0);
+  transition: .3s;
+  z-index: 99;
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 3.9 Mission Statement
@@ -1403,6 +1431,67 @@ section #huge_it_videogallery{
   min-height: 0 !important;
   background-color: $off-white !important;
   box-shadow: none !important;
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// TESTING GROUNDS
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.lightbox{
+  display: none;
+
+  & h1{
+
+  }
+}
+
+.square-img-hover{
+  position: relative;
+  padding: 15px;
+  background-color: rgba(68,68,68,.8);
+  top: -253px;
+  height: 19.5vw;
+
+  p{
+    color: white;
+    font-size: .9rem;
+
+    span{
+      font-size: .7rem;
+    }
+  }
+
+  & button{
+    background-color: $red;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    transition: .5s;
+    margin: 10px auto;
+
+    &:hover{
+      background-color: $off-white;
+      color: $gray;
+      transition: .5s;
+    }
+  }
+
+}
+
+#bennet-img{
+  display: hidden;
+}
+
+#bennett-hover{
+  display: hidden;
+}
+
+#bennett-lb{
+
 }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////

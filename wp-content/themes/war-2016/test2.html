@@ -4,67 +4,107 @@
 	<title>CTA Test</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="./assets/js/scripts.js"></script>
 	<script>
-
+	/*
 	$(document).ready(function(){
-		$("#cta-give").hide();
 
-		/*$("#cta-donate").hover(function(){
-			$("#cta-give").fadeIn(400);
-		},function(){
-			$("#cta-give").fadeOut(400)
-		});*/
+		CTA Hover Function
+	    $("#cta-donate").mouseenter(
+	    function() {
+	       $("#cta-give").css('transform', 'scale(1)')
+	    });
+	    $("#cta-donate").mouseleave(
+	    function() {
+	       $("#cta-give").css('transform', 'scale(0)')
+	    });
+	    $("#cta-give").mouseenter(
+	    function() {
+	       $("#cta-give").css('transform', 'scale(1)')
+	    });
+	    $("#cta-give").mouseleave(
+	    function() {
+	       $("#cta-give").css('transform', 'scale(0)')
+	    });
 
-	    $("#cta-donate").mouseenter(function(){
-	       $("#cta-give").stop().fadeIn(400);
+
+		$("#cta-volunteer").mouseenter(
+	    function() {
+	       $("#cta-act").css('transform', 'scale(1)')
 	    });
-	    $("#cta-give").mouseleave(function(){
-	        $("#cta-give").stop().fadeOut(400);
+	    $("#cta-volunteer").mouseleave(
+	    function() {
+	       $("#cta-act").css('transform', 'scale(0)')
+	    });
+	    $("#cta-act").mouseenter(
+	    function() {
+	       $("#cta-act").css('transform', 'scale(1)')
+	    });
+	    $("#cta-act").mouseleave(
+	    function() {
+	       $("#cta-act").css('transform', 'scale(0)')
 	    });
 
 
-	    $("#cta-volunteer").mouseenter(function(){
-	       $("#cta-act").stop().fadeIn(400);
+	    $("#cta-shop").mouseenter(
+	    function() {
+	       $("#cta-buy").css('transform', 'scale(1)')
 	    });
-	    $("#cta-act").mouseleave(function(){
-	        $("#cta-act").stop().fadeOut(400);
+	    $("#cta-shop").mouseleave(
+	    function() {
+	       $("#cta-buy").css('transform', 'scale(0)')
 	    });
+	    $("#cta-buy").mouseenter(
+	    function() {
+	       $("#cta-buy").css('transform', 'scale(1)')
+	    });
+	    $("#cta-buy").mouseleave(
+	    function() {
+	       $("#cta-buy").css('transform', 'scale(0)')
+	    });
+
+
 	});
-
+*/
 
 
 	</script>
 </head>
 <body>
 	<div class="cta-bar">
-		<p class="cta-title">Become a Circle of Protection</p>
+		<div class="cta-container">
+			
+			<p class="cta-title">Become a Circle of Protection</p>
+			<!--Donate-->
+			<div id="cta-give">
+				<p class="cta-hover-title">give</p>
+			</div>
+			<div class="cta-item">
+				<img class="cta-item-img" id="cta-donate" src="assets/images/donate.png">
+				<p class="cta-item-label">Donate</p>
+			</div>
+
+			<!--Volunteer-->
+			<div id="cta-act">
+				<p class="cta-hover-title">act</p>
+			</div>
+			<div class="cta-item">
+				<img class="cta-item-img" id="cta-volunteer" src="assets/images/volunteer.png">
+				<p class="cta-item-label">Volunteer</p>
+			</div>
+
+			<!--Shop-->
+			<div id="cta-buy">
+				<p class="cta-hover-title">buy</p>
+			</div>
+			<div class="cta-item">
+				<img class="cta-item-img" id="cta-shop" src="assets/images/shop.png">
+				<p class="cta-item-label">Shop</p>
+			</div>
+			<div class="clearfix">&nbsp;</div>
+		</div>
+
 		
-		<!--Donate-->
-		<div id="cta-give">
-			<p class="cta-hover-title">give</p>
-		</div>
-		<div class="cta-item">
-			<img class="cta-item-img" id="cta-donate" src="assets/images/donate.png">
-			<p class="cta-item-label">Donate</p>
-		</div>
-
-		<!--Volunteer-->
-		<div id="cta-act">
-			<p class="cta-hover-title">act</p>
-		</div>
-		<div class="cta-item">
-			<img class="cta-item-img" id="cta-volunteer" src="assets/images/volunteer.png">
-			<p class="cta-item-label">Volunteer</p>
-		</div>
-
-		<!--Shop-->
-		<div class="cta-item">
-			<img class="cta-item-img" src="assets/images/shop.png">
-			<p class="cta-item-label">Shop</p>
-		</div>
-
-
-		<div class="clearfix">&nbsp;</div>
 	</div>
 
 </body>
