@@ -73,16 +73,16 @@ $j("#cta-buy").mouseleave(function() {
 //////////////////
 ////////////////// START OF AMBASADORS HOVER
 $j("#bennett-img").mouseenter(function() {
-   $j("#bennett-hover").css('display', 'block').fadeIn('400')
+   $j("#bennett-hover").css('visibility', 'visible').fadeIn('3000')
 });
 $j("#bennett-img").mouseleave(function() {
-   $j("#bennett-hover").css('display', 'hidden').fadeOut('400')
+   $j("#bennett-hover").css('visibility', 'hidden').fadeIn('3000')
 });
 $j("#bennett-hover").mouseenter(function() {
-   $j("#bennett-hover").css('display', 'block').fadeIn('400')
+   $j("#bennett-hover").css('visibility', 'visible').fadeIn('700')
 });
 $j("#bennett-hover").mouseleave(function() {
-   $j("#bennett-hover").css('display', 'hidden').fadeOut('400')
+   $j("#bennett-hover").css('visibility', 'hidden').fadeOut('700')
 });
 
 

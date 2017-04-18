@@ -1442,23 +1442,36 @@ section #huge_it_videogallery{
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 .lightbox{
-  display: none;
+  width: 90%;
+  margin: 25px auto;
+  overflow-x: scroll;
+  margin-bottom: 50px;
+  padding-bottom:50px;
 
   & h1{
 
   }
+
+  p{
+    color: white;
+    font-size: .7rem;
+    line-height: 1.4rem;
+  }
 }
 
 .square-img-hover{
+  visibility: hidden;
   position: relative;
   padding: 15px;
   background-color: rgba(68,68,68,.8);
-  top: -253px;
-  height: 19.5vw;
+  top: -19.8vw;
+  height: 19.8vw;
+
 
   p{
     color: white;
     font-size: .9rem;
+
 
     span{
       font-size: .7rem;
@@ -1482,17 +1495,14 @@ section #huge_it_videogallery{
 
 }
 
-#bennet-img{
-  display: hidden;
-}
-
-#bennett-hover{
-  display: hidden;
+#bennett-img, #dooley-img, #luedeman-img, #amo-img, #birt-img{
+  height: 19.8vw;
 }
 
 #bennett-lb{
 
 }
+
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
