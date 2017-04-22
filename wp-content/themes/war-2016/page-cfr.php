@@ -104,14 +104,15 @@ get_header(); ?>
 				<hr>
 
 				<p style="text-align: center;">For information on how to bring a CFR conference to your area, email us today at <a class="text-link" href="MAILTO:info@warinternational.org">info@warinternational.org</a></p>
+				<hr>
 
 
-			<!--<h2 style="text-align: center;">Other Educational Opportunities</h2>
+			<h2 style="text-align: center;margin-top: 75px;">Other Educational Opportunities</h2>
 			<div class="row">
 				<div class="grid-1-3">
 					<div class="cta-title-bar">WARNING LIGHTS</div>
-					<p class="small-p" style="letter-spacing: .04rem;">Teach the middle schoolers, high schoolers, and college students in your life about the dangers of human trafficking</p>
-					<a href="MAILTO:youth@warinternational.org">youth@warinternational.org</a>
+					<p class="small-p" style="letter-spacing: .04rem;">Teach the middle schoolers, high schoolers, and college students in your life about the dangers of human trafficking
+					<a href="MAILTO:youth@warinternational.org">youth@warinternational.org</a></p>
 				</div>
 
 				<div class="grid-1-3">

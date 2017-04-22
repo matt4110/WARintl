@@ -72,6 +72,22 @@ $j("#cta-buy").mouseleave(function() {
 
 //////////////////
 ////////////////// START OF AMBASADORS HOVER
+
+//AMO
+$j("#amo-img").mouseenter(function() {
+   $j("#amo-hover").css('visibility', 'visible').fadeIn('3000')
+});
+$j("#amo-img").mouseleave(function() {
+   $j("#amo-hover").css('visibility', 'hidden').fadeIn('3000')
+});
+$j("#amo-hover").mouseenter(function() {
+   $j("#amo-hover").css('visibility', 'visible').fadeIn('700')
+});
+$j("#amo-hover").mouseleave(function() {
+   $j("#amo-hover").css('visibility', 'hidden').fadeOut('700')
+});
+
+//BENNETT
 $j("#bennett-img").mouseenter(function() {
    $j("#bennett-hover").css('visibility', 'visible').fadeIn('3000')
 });
@@ -85,8 +101,47 @@ $j("#bennett-hover").mouseleave(function() {
    $j("#bennett-hover").css('visibility', 'hidden').fadeOut('700')
 });
 
+//BIRT
+$j("#birt-img").mouseenter(function() {
+   $j("#birt-hover").css('visibility', 'visible').fadeIn('3000')
+});
+$j("#birt-img").mouseleave(function() {
+   $j("#birt-hover").css('visibility', 'hidden').fadeIn('3000')
+});
+$j("#birt-hover").mouseenter(function() {
+   $j("#birt-hover").css('visibility', 'visible').fadeIn('700')
+});
+$j("#birt-hover").mouseleave(function() {
+   $j("#birt-hover").css('visibility', 'hidden').fadeOut('700')
+});
 
+//DOOLEY
+$j("#dooley-img").mouseenter(function() {
+   $j("#dooley-hover").css('visibility', 'visible').fadeIn('3000')
+});
+$j("#dooley-img").mouseleave(function() {
+   $j("#dooley-hover").css('visibility', 'hidden').fadeIn('3000')
+});
+$j("#dooley-hover").mouseenter(function() {
+   $j("#dooley-hover").css('visibility', 'visible').fadeIn('700')
+});
+$j("#dooley-hover").mouseleave(function() {
+   $j("#dooley-hover").css('visibility', 'hidden').fadeOut('700')
+});
 
+//LUEDEMAN
+$j("#luedeman-img").mouseenter(function() {
+   $j("#luedeman-hover").css('visibility', 'visible').fadeIn('3000')
+});
+$j("#luedeman-img").mouseleave(function() {
+   $j("#luedeman-hover").css('visibility', 'hidden').fadeIn('3000')
+});
+$j("#luedeman-hover").mouseenter(function() {
+   $j("#luedeman-hover").css('visibility', 'visible').fadeIn('700')
+});
+$j("#luedeman-hover").mouseleave(function() {
+   $j("#luedeman-hover").css('visibility', 'hidden').fadeOut('700')
+});
 
 
 });
