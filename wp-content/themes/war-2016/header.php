@@ -83,7 +83,6 @@
 					<li class="horizontal-li"><a href="http://store.warchestboutique.com">Store</a></li>
 					<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"/prayer/">Prayer</a>
 						<ul class="sub-nav">
-							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/prayer-calendar/">Prayer Calendar</a></li>
 							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/prayer-request/">Prayer Request Form</a></li>
 						</ul>
 					</li>
@@ -123,7 +122,6 @@
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/medical-aid/">Medical Aid</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/emergency-intervention/">Emergency Intervention</a></li>
 					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/prayer">PRAYER</a></li>
-						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/prayer-calendar">Prayer Calendar</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/prayer-request/">Prayer Request</a></li>
 				</ul>
 			</div>

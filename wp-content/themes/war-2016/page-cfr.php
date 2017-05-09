@@ -97,6 +97,18 @@ get_header(); ?>
 					<a href="">(more info to come)</a></p>
 					</a>
 				</div>
+
+				<div class="cfr-item">
+					<a href="https://warinternational.org/cfr-registration/?event_name=catharine">
+					<div class="cfr-item-date">
+						<p class="cfr-item-month">sep</p>
+						<p class="cfr-item-day">16</p>
+					</div>
+					<p class="cfr-item-location">Saint Catharine<br>School</p>
+					<p class="cfr-item-sub-location">Spring Lake, NJ<br>
+					<a href="http://warinternational.org/images/cfr/9-16-17.pdf" data-lity>(more info)</a></p>
+					</a>
+				</div>
 			</div>
 
 				<a href=<?php get_bloginfo('url') ;?>"/cfr-registration"><button class="main-button" style="margin-left: auto; margin-right: auto; display: block;">Register Now</button></a>
@@ -107,6 +119,38 @@ get_header(); ?>
 				<hr>
 
 
+			<!-- *********************
+			**************************
+			Continuing Ed
+			**************************
+			**************************
+			-->
+
+			<h2 style="text-align: center;margin: 60px 0 20px 0;">Continuing Education</h2>
+			<p class="small-text" style="text-align: center;">(only in Michigan)</p>
+			<p style="text-align: justify;">If you are interested in receiving continuing education credits for the event(s) below, preregistration is required. One credit hour equals one continuing education credit for social workers. If you have any additional questions about how to obtain credit for attending the course(s) below, please email our staff at <a href="MAILTO:info@warinternational.org">info@warinternational.org</a></p>
+
+			<div id="upcoming-cfr">
+
+				<div class="cfr-item">
+					<a href="https://warinternational.org/ce-registration">
+					<div class="cfr-item-date">
+						<p class="cfr-item-month">May</p>
+						<p class="cfr-item-day">05</p>
+					</div>	
+					<p class="cfr-item-location">Oak Pointe Church<p>
+					<p class="cfr-item-sub-location">Novi, MI</p></a>
+				</div>
+			</div>
+
+
+			<!-- *********************
+			**************************
+			Other educational opportunities
+			**************************
+			**************************
+			-->
+			<!--
 			<h2 style="text-align: center;margin-top: 75px;">Other Educational Opportunities</h2>
 			<div class="row">
 				<div class="grid-1-3">

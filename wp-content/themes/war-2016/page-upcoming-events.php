@@ -20,7 +20,7 @@ get_header(); ?>
 					</div>
 
 					<div class="grid-1-3">
-					    <a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder-cfr"><h2>CFR</h2>
+					    <a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder"><h2>CFR</h2>
 					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-event.jpg"></a>
 					    <p>July 08, 2017</p>
 					    <p>Calvary's Love Assembly of God<br>Johnson City, NY</p>
