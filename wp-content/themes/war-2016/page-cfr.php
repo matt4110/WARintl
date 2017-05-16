@@ -76,6 +76,18 @@ get_header(); ?>
 				</div>
 
 				<div class="cfr-item">
+					<a href="https://warinternational.org/cfr-registration/?event_name=catharine">
+					<div class="cfr-item-date">
+						<p class="cfr-item-month">sep</p>
+						<p class="cfr-item-day">16</p>
+					</div>
+					<p class="cfr-item-location">Saint Catharine<br>School</p>
+					<p class="cfr-item-sub-location">Spring Lake, NJ<br>
+					<a href="http://warinternational.org/images/cfr/9-16-17.pdf" data-lity>(more info)</a></p>
+					</a>
+				</div>
+
+				<div class="cfr-item">
 					<a href="https://warinternational.org/cfr-registration/?event_name=port-huron">
 					<div class="cfr-item-date">
 						<p class="cfr-item-month">Oct</p>
@@ -98,17 +110,6 @@ get_header(); ?>
 					</a>
 				</div>
 
-				<div class="cfr-item">
-					<a href="https://warinternational.org/cfr-registration/?event_name=catharine">
-					<div class="cfr-item-date">
-						<p class="cfr-item-month">sep</p>
-						<p class="cfr-item-day">16</p>
-					</div>
-					<p class="cfr-item-location">Saint Catharine<br>School</p>
-					<p class="cfr-item-sub-location">Spring Lake, NJ<br>
-					<a href="http://warinternational.org/images/cfr/9-16-17.pdf" data-lity>(more info)</a></p>
-					</a>
-				</div>
 			</div>
 
 				<a href=<?php get_bloginfo('url') ;?>"/cfr-registration"><button class="main-button" style="margin-left: auto; margin-right: auto; display: block;">Register Now</button></a>

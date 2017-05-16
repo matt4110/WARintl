@@ -4,25 +4,39 @@
 */
 //include bootstrap
 //get_template_part( 'partials/bootstrap' );?>
-<div class="filigree-white" style="margin-top:75px;">&nbsp;</div>
-<div class="white-stripe-box">
-	<div class="row">
-			<div class="cta-grid">
-				<a href="http://warinternational.org/donate"><img src="https://warinternational.org/wp-content/uploads/2016/09/take-action-donate.png"></a>
-				</br>
-				<a class="cta-link" href=<?php get_bloginfo('url'); ?>"/donate">Donate</a>
+
+<div class="parallax-window" data-parallax="scroll" data-image-src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/black-pattern.jpg" style="height:370px; width:100%;margin: 75px 0 0 0; padding: 30px 0 30px;">
+		<div class="cta-container">
+			
+			<p class="cta-title">Become a Circle of Protection</p>
+			<!--Donate-->
+			<div class="cta-item">
+				<img class="cta-item-img" id="cta-donate" src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/donate.png">
+				<p class="cta-item-label">Donate</p>
+				<div id="cta-give">
+					<p class="cta-hover-title">give</p>
+				</div>
 			</div>
-			<div class="cta-grid">
-				<a href="http://warinternational.org/take-action"><img src="https://warinternational.org/wp-content/uploads/2016/09/take-action-volunteer.png"></a>
-				</br>
-				<a class="cta-link" href=<?php get_bloginfo('url'); ?>"/take-action">Volunteer</a>
+
+			<!--Volunteer-->
+			<div class="cta-item">
+				<img class="cta-item-img" id="cta-volunteer" src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/volunteer.png">
+				<p class="cta-item-label">Volunteer</p>
+				<div id="cta-act">
+					<p class="cta-hover-title">act</p>
+				</div>
 			</div>
-			<div class="cta-grid" >
-				<a href="http://warchestboutique.com/"><img src="https://warinternational.org/wp-content/uploads/2016/09/take-action-shop.png"></a>
-				</br>
-				<a class="cta-link" href="http://warchestboutique.com/">Shop</a>
+
+			<!--Shop-->
+			<div class="cta-item">
+				<img class="cta-item-img" id="cta-shop" src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/shop.png">
+				<p class="cta-item-label">Shop</p>
+				<div id="cta-buy">
+					<p class="cta-hover-title">buy</p>
+				</div>
 			</div>
+
+			<div class="clearfix">&nbsp;</div>
+		</div>		
 	</div>
-	<div class="clearfix"></div>
-</div>
 <div class="filigree-white">&nbsp;</div>
