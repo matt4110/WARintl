@@ -808,10 +808,18 @@ p img, .border, .entry-content img{
 
 
 //NEW CALL TO ACTION
+#cta-parallax{
+  height:370px; 
+  width:100%;
+  margin: 75px 0 0 0; 
+  padding: 30px 0 30px;
+}
 
 .cta-container{
+  display: block;
   width: 1000px;
   margin: 0 auto;
+  padding: 0 50px;
 }
 
 .cta-title{
@@ -827,7 +835,7 @@ p img, .border, .entry-content img{
 
 .cta-item{
   width: 20%; 
-  margin-left: 15vw; 
+  margin-left: 20%; 
   float: left; 
   position:relative;
   clear:none;
@@ -857,58 +865,19 @@ p img, .border, .entry-content img{
   margin-top: 42%;
 }
 
-/*#cta-give, #cta-act, #cta-buy{
-  position: absolute;
-  margin-left: .4%;
-  width: 190px;
-  height: 190px;
-  border-radius:50%;
-  background-color: rgba(186,39,29,.98);
-  margin-top: -12px;
-  transform: scale(0);
-  transition: .3s;
-  z-index: 99;
-}
-
-#cta-act{
-  position: absolute;
-  margin-left: 31.7%;
-  width: 190px;
-  height: 190px;
-  border-radius:50%;
-  background-color: rgba(186,39,29,.98);
-  margin-top: -12px;
-  transform: scale(0);
-  transition: .3s;
-  z-index: 99;
-}
-*/
-
 #cta-give, #cta-act, #cta-buy{
   position: absolute;
-  top: -12px;
-  left: 4px;
-  width: 190px;
-  height: 190px;
+  top: -10px;
+  left: 2px;
+  width: 170px;
+  height: 170px;
   border-radius: 50%;
   background-color: rgba(186,39,29,.98);
   transform: scale(0);
   transition: .3s;
-}/*
-#cta-buy{
-  position: absolute;
-  margin-left: 63.05%;
-  width: 190px;
-  height: 190px;
-  border-radius:50%;
-  background-color: rgba(186,39,29,.98);
-  margin-top: -12px;
-  transform: scale(0);
-  transition: .3s;
-  z-index: 99;
 }
 
-*/
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 3.9 Mission Statement
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1346,8 +1315,12 @@ div [class$="-12"], div [class$="-10"]{
   font-size: 1.25rem;
 }
 
+.gform_wrapper label.gfield_label{
+  font-size: 1.2rem !important;
+}
+
  .gform_wrapper ul.gfield_radio li label{
-  font-size: 1.15rem;
+  font-size: 1rem;
  }
 
 body .gform_wrapper ul li.gfield{

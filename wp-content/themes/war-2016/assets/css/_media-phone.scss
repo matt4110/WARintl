@@ -225,6 +225,43 @@ h4{
   }
 }
 
+//New CTA
+#cta-parallax{
+  height:320px; 
+  margin: 75px 0 0 0; 
+  padding: 30px 0 30px;
+}
+.cta-container{
+  display: block;
+  width: 400px;
+  padding: 0 20px;
+}
+
+.cta-title{
+  margin-top: 0;
+  font-size: 1.4rem;
+}
+
+.cta-item{
+  width: 30%; 
+  margin-left: 5%; 
+
+  &-label{
+    font-size: .8rem;
+  }
+}
+
+.cta-hover-title{
+  font-size: 1rem;
+  margin-top: 35%;
+}
+
+#cta-give, #cta-act, #cta-buy{
+  top: -5px;
+  left: 5px;
+  width: 100px;
+  height: 100px;
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 3.9 Mission Statement
 //////////////////////////////////////////////////////////////////////////////////////////////////////
