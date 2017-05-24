@@ -12,20 +12,18 @@ get_header(); ?>
 				<div class="row">
 
 
-					
+					<div class="grid-1-3">
+					    <a href=<?php get_bloginfo('url'); ?>"/acoustic-mic-nights"><h2>Mic Nights</h2>
+					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/events/mic-night.png"></a>
+					    <p>Jun 08 - Aug 24</p>
+					    <p>Tea Trade Cafe<br>Wyoming, MI<br>Thursday nights</p>
+					</div>
 
 					<div class="grid-1-3">
 					    <a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder"><h2>CFR</h2>
 					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-event.jpg"></a>
 					    <p>July 08, 2017</p>
 					    <p>Calvary's Love Assembly of God<br>Johnson City, NY</p>
-					</div>
-
-					<div class="grid-1-3">
-					    <a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder"><h2>CFR</h2>
-					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-event.jpg"></a>
-					    <p>August 12, 2017</p>
-					    <p>Lighthouse Christian Church<br>Rosemount, MN</p>
 					</div>
 
 					<div class="grid-1-3">
