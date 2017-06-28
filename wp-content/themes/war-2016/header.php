@@ -34,7 +34,7 @@
 					<a href=<?php get_bloginfo( 'url' ); ?>"/donate/"><h1 id="donate-header">DONATE</h1></a>
 				</div>
 				<ul class="horizontal-list-right no-margin garamond">
-					<li class="horizontal-li--gold-border"><a href="http://store.warchestboutique.com">SHOP WITH A PURPOSE</a></li>
+					<li class="horizontal-li--gold-border"><a href="http://warchestboutique.com">SHOP WITH A PURPOSE</a></li>
 					<li class="horizontal-li--gold-border"><a href=<?php get_bloginfo( 'url' ); ?>"/take-action/host-a-party">HOST A PARTY</a></li>
 					<li class="horizontal-li--gold-border"><a href=<?php get_bloginfo( 'url' ); ?>"/upcoming-events">UPCOMING EVENTS</a></li>
 				</ul>
@@ -63,6 +63,7 @@
 							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/understand-the-risks/">Understand the Risks</a></li>
 							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/host-a-party/">Host A Party</a></li>
 							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/circle-tour/">Circle Tour</a></li>
+							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/soap/">SOAP</a></li>
 						</ul>
 					</li>
 					<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"/programs/">Programs</a>
@@ -80,7 +81,7 @@
 						</ul>
 					</li>
 					<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"/donate/">Donate</a></li>
-					<li class="horizontal-li"><a href="http://store.warchestboutique.com">Store</a></li>
+					<li class="horizontal-li"><a href="http://warchestboutique.com">Store</a></li>
 					<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"/prayer/">Prayer</a>
 						<ul class="sub-nav">
 							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/prayer-request/">Prayer Request Form</a></li>
@@ -110,6 +111,7 @@
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/understand-the-risks/">Understand the Risks</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/host-a-party/">Host a Party</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/circle-tour/">Circle Tour</a></li>
+						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/soap/">SOAP</a></li>
 					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/programs">PROGRAMS</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/sweetie-updates/">Sweetie Updates</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/international-safehouses/">International Safehouses</a></li>

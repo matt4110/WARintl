@@ -27,6 +27,30 @@ get_header(); ?>
 					</div>
 
 					<div class="grid-1-3">
+					    <a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder"><h2>CFR</h2>
+					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-event.jpg"></a>
+					    <p>August 12, 2017</p>
+					    <p>Lighthouse Christian Church<br>Rosemount, MN</p>
+					</div>
+				</div>
+
+				<div class="row">
+
+					<div class="grid-1-3">
+					    <a href=<?php get_bloginfo('url'); ?>"/soap"><h2>SOAP</h2>
+					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/events/soap.jpg"></a>
+					    <p>September 09, 2017</p>
+					    <p>WAR Int'l HQ<br>Wyoming, MI</p>
+					</div>
+
+					<div class="grid-1-3">
+					    <a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder"><h2>CFR</h2>
+					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-event.jpg"></a>
+					    <p>September 16, 2017</p>
+					    <p>Saint Catharine School<br>Spring Lake, NJ</p>
+					</div>
+
+					<div class="grid-1-3">
 					    <a href=<?php get_bloginfo('url'); ?>"/circle-tour/"><h2>Circle Tour</h2>
 					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/events/circle-tour-2018.jpg"></a>
 					    <p>February 2018</p>
