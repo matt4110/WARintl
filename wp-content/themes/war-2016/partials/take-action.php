@@ -4,7 +4,7 @@
 */
 //include bootstrap
 //get_template_part( 'partials/bootstrap' );?>
-
+<div class="clearfix">&nbsp;</div>
 <div id="cta-parallax" class="parallax-window" data-parallax="scroll" data-image-src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/black-pattern.jpg" >
 		<div class="cta-container">
 			
