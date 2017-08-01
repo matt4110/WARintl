@@ -47,8 +47,8 @@ get_header(); ?>
 					<div class="grid-1-3">
 					    <a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder"><h2>CFR</h2>
 					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-event.jpg"></a>
-					    <p>November 04, 2017</p>
-					    <p>Global Portal 4 Freedom<br>Witchita, KS</p>
+					    <p>October 07, 2017</p>
+					    <p>Colonial Woods<br>Missionary Church<br>Port Huron, MI</p>
 					</div>
 
 					<div class="grid-1-3">
