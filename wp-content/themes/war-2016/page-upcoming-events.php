@@ -22,19 +22,9 @@ get_header(); ?>
 					<div class="grid-1-3">
 					    <a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder"><h2>CFR</h2>
 					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-event.jpg"></a>
-					    <p>July 08, 2017</p>
-					    <p>Calvary's Love Assembly of God<br>Johnson City, NY</p>
-					</div>
-
-					<div class="grid-1-3">
-					    <a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder"><h2>CFR</h2>
-					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-event.jpg"></a>
 					    <p>August 12, 2017</p>
 					    <p>Lighthouse Christian Church<br>Rosemount, MN</p>
 					</div>
-				</div>
-
-				<div class="row">
 
 					<div class="grid-1-3">
 					    <a href=<?php get_bloginfo('url'); ?>"/soap"><h2>SOAP</h2>
@@ -43,11 +33,22 @@ get_header(); ?>
 					    <p>WAR Int'l HQ<br>Wyoming, MI</p>
 					</div>
 
+					</div>
+
+					<div class="row">
+
 					<div class="grid-1-3">
 					    <a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder"><h2>CFR</h2>
 					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-event.jpg"></a>
 					    <p>September 16, 2017</p>
 					    <p>Saint Catharine School<br>Spring Lake, NJ</p>
+					</div>
+
+					<div class="grid-1-3">
+					    <a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder"><h2>CFR</h2>
+					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-event.jpg"></a>
+					    <p>November 04, 2017</p>
+					    <p>Global Portal 4 Freedom<br>Witchita, KS</p>
 					</div>
 
 					<div class="grid-1-3">

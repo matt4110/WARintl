@@ -52,16 +52,6 @@ get_header(); ?>
 			&nbsp;
 			<div id="upcoming-cfr">
 
-				<div class="cfr-item">
-					<a href="https://warinternational.org/cfr-registration/?event_name=calvary">
-					<div class="cfr-item-date">
-						<p class="cfr-item-month">JUL</p>
-						<p class="cfr-item-day">08</p>
-					</div>	
-					<p class="cfr-item-location">Calvary's Love <br>Assembly of God</p>
-					<p class="cfr-item-sub-location">Johnson City, NY<br>
-					<a href="http://warinternational.org/images/cfr/7-8-17.pdf" data-lity>(more info)</a></p></a>
-				</div>
 
 				<div class="cfr-item">
 					<a href="https://warinternational.org/cfr-registration/?event_name=rosemount">
