@@ -39,6 +39,7 @@ get_header(); ?>
 					<li>How to share this information with your community members, no matter their age</li>
 				</ul>
 			</div>
+			<span id="upcoming-cfrs"></span>
 			&nbsp;
 
 			<!-- *********************
@@ -54,18 +55,6 @@ get_header(); ?>
 
 
 				<div class="cfr-item">
-					<a href="https://warinternational.org/cfr-registration/?event_name=rosemount">
-					<div class="cfr-item-date">
-						<p class="cfr-item-month">Aug</p>
-						<p class="cfr-item-day">12</p>
-					</div>
-					<p class="cfr-item-location">Lighthouse<br>Christian Church</p>
-					<p class="cfr-item-sub-location">Rosemount, MN<br>
-					<a href="http://warinternational.org/images/cfr/8-12-17.pdf" data-lity>(more info)</a></p>
-					</a>
-				</div>
-
-				<div class="cfr-item">
 					<a href="https://warinternational.org/cfr-registration/?event_name=catharine">
 					<div class="cfr-item-date">
 						<p class="cfr-item-month">sep</p>
@@ -73,7 +62,7 @@ get_header(); ?>
 					</div>
 					<p class="cfr-item-location">Saint Catharine<br>School</p>
 					<p class="cfr-item-sub-location">Spring Lake, NJ<br>
-					<a href="http://warinternational.org/images/cfr/9-16-17.pdf" data-lity>(more info)</a></p>
+					<a href="http://warinternational.org/images/cfr/8-12-17.pdf" data-lity>(more info)</a></p>
 					</a>
 				</div>
 
