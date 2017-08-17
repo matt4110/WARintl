@@ -54,20 +54,7 @@ get_header(); ?>
 						12pm-5pm</p>
 					</div>
 
-					<!--Naperville WARChest Boutique-->
-					<div class="grid-1-3">
-						<p><strong>Naperville, IL</strong><br>
-						(630)904-9200</p>
-						<img src="http://warinternational.org/wp-content/uploads/2014/03/warchestboutique-naperville-300x190.jpg">
-						<p>4 East Jefferson AVE<br>
-						Naperville, IL 60540</p>
-						<p>Hours*:<br>
-						Closed Monday<br>
-						<b>Tues-Sat:</b><br>
-						11am-6:30pm<br>
-						<b>Sunday:</b><br>
-						12pm-4pm</p>
-					</div>
+					
 
 				</div>
 				&nbsp;
