@@ -51,7 +51,7 @@ get_header(); ?>
 						<b>Saturday:</b><br>
 						10am-6pm<br>
 						<b>Sunday:</b><br>
-						12pm-5pm</p>
+						Closed</p>
 					</div>
 
 					
