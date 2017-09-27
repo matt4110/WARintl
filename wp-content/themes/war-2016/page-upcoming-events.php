@@ -19,19 +19,18 @@ get_header(); ?>
 					</div>
 
 					<div class="grid-1-3">
-					    <a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder"><h2>CFR</h2>
-					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-event.jpg"></a>
-					    <p>September 16, 2017</p>
-					    <p>Saint Catharine School<br>Spring Lake, NJ</p>
-					</div>
-
-					<div class="grid-1-3">
 					    <a href=<?php get_bloginfo('url'); ?>"/women-of-passion"><h2>Conference</h2>
 					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/events/women-of-passion.png"></a>
 					    <p>November 11, 2017</p>
 					    <p>Calvary CRC<br>Wyoming, MI</p>
 					</div>
 
+					<div class="grid-1-3">
+					    <a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder"><h2>CFR</h2>
+					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-event.jpg"></a>
+					    <p>October 07, 2017</p>
+					    <p>Colonial Woods<br>Missionary Church<br>Port Huron, MI</p>
+					</div>
 
 
 				</div>
@@ -43,12 +42,7 @@ get_header(); ?>
 
 					
 
-					<div class="grid-1-3">
-					    <a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder"><h2>CFR</h2>
-					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-event.jpg"></a>
-					    <p>October 07, 2017</p>
-					    <p>Colonial Woods<br>Missionary Church<br>Port Huron, MI</p>
-					</div>
+					
 					<div class="grid-1-3">
 					    <a href=<?php get_bloginfo('url'); ?>"/circle-tour/"><h2>Circle Tour</h2>
 					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/events/circle-tour-2018.jpg"></a>
