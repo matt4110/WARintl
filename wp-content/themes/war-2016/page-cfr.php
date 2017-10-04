@@ -64,18 +64,6 @@ get_header(); ?>
 					<a href="http://warinternational.org/images/cfr/10-7-17.pdf" data-lity>(more info)</a></p></a>
 				</div>
 
-				<div class="cfr-item">
-					<a href="https://warinternational.org/cfr-registration/?event_name=witchita">
-					<div class="cfr-item-date">
-						<p class="cfr-item-month">nov</p>
-						<p class="cfr-item-day">04</p>
-					</div>
-					<p class="cfr-item-location">Global Portal<br>4 Freedom<br>Hotel At Old Town</p>
-					<p class="cfr-item-sub-location">Witchita, KS<br>
-					<a href="">(more info to come)</a></p>
-					</a>
-				</div>
-
 			</div>
 
 				<a href=<?php get_bloginfo('url') ;?>"/cfr-registration"><button class="main-button" style="margin-left: auto; margin-right: auto; display: block;">Register Now</button></a>
