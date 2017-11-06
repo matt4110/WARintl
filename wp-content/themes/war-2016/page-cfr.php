@@ -30,13 +30,13 @@ get_header(); ?>
 			<div class="standard-content">
 			<!-- TEXT div -->
 			<div>
-				<p class="small-p" style="text-align: justify;">No longer do we have the luxury of deciding if whether or not we need to know about human trafficking. Learn how to become a circle of protection around the loved ones in your life and come to one of our Civilian First Responder (CFR) conferences. Here, you will learn what makes a community susceptible to trafficking, how to identify a victim, how to respond to and report suspicious activity, and more. Discover helpful tips, action plans, and ways to protect the innocent.</p>
+				<p class="small-p" style="text-align: justify;">No longer do we have the luxury of deciding whether or not we need to know about human trafficking. Learn how to become a circle of protection around the loved ones in your life by coming to one of our Civilian First Responder (CFR) conferences. Here, you will learn what makes a community susceptible to trafficking, how to identify a victim, how to respond to and report suspicious activity, and more. Discover helpful tips, action plans, and ways to protect the innocent.</p>
 				<p class="small-p" style="text-align: justify;">This highly sought-after conference brings the U.S. government, Homeland Security, law enforcement officers, human trafficking survivors, and the president of Women At Risk, International into one room to educate communities on this dangerous crime. </p>
 
 				<ul class="small-p" style="list-style: disc;"><b>Three Good Reasons to Host or Attend a CFR Event</b>
-					<li>Shows you the signs of trafficking in your community</li>
-					<li>Healthy ways to respond to crisis situations</li>
-					<li>How to share this information with your community members, no matter their age</li>
+					<li>You will learn to recognize the signs of trafficking in your community</li>
+					<li>You will learn healthy ways to respond to crisis situations</li>
+					<li>You will learn how to share this information with community members, of any age</li>
 				</ul>
 			</div>
 			<span id="upcoming-cfrs"></span>
@@ -54,15 +54,51 @@ get_header(); ?>
 			<div id="upcoming-cfr">
 
 				<div class="cfr-item">
-					<a href="https://warinternational.org/cfr-registration/?event_name=port-huron">
+					<a href="https://warinternational.org/cfr-registration/?event_name=traverse-city">
 					<div class="cfr-item-date">
-						<p class="cfr-item-month">Oct</p>
-						<p class="cfr-item-day">07</p>
+						<p class="cfr-item-month">Mar</p>
+						<p class="cfr-item-day">10</p>
 					</div>
-					<p class="cfr-item-location">Colonial Woods<br>Missionary Church</p>
-					<p class="cfr-item-sub-location">Port Huron, MI<br>
+					<p class="cfr-item-location">NMC<br>Milliken Auditorium</p>
+					<p class="cfr-item-sub-location">Traverse City, MI<br>
 					<a href="http://warinternational.org/images/cfr/10-7-17.pdf" data-lity>(more info)</a></p></a>
 				</div>
+
+				<div class="cfr-item">
+					<a href="https://warinternational.org/cfr-registration/?event_name=alpena">
+					<div class="cfr-item-date">
+						<p class="cfr-item-month">Apr</p>
+						<p class="cfr-item-day">14</p>
+					</div>
+					<p class="cfr-item-location"><br></p>
+					<p class="cfr-item-sub-location">Alpena, MI<br>
+					<a href="http://warinternational.org/images/cfr/10-7-17.pdf" data-lity>(more info)</a></p></a>
+				</div>
+
+				<div class="cfr-item">
+					<a href="https://warinternational.org/cfr-registration/?event_name=holland">
+					<div class="cfr-item-date">
+						<p class="cfr-item-month">Apr</p>
+						<p class="cfr-item-day">21</p>
+					</div>
+					<p class="cfr-item-location">Ridge Point<br>Community Church</p>
+					<p class="cfr-item-sub-location">Holland, MI<br>
+					<a href="http://warinternational.org/images/cfr/10-7-17.pdf" data-lity>(more info)</a></p></a>
+				</div>
+
+				<div class="cfr-item">
+					<a href="https://warinternational.org/cfr-registration/?event_name=baldwinsville">
+					<div class="cfr-item-date">
+						<p class="cfr-item-month">May</p>
+						<p class="cfr-item-day">26</p>
+					</div>
+					<p class="cfr-item-location"><br></p>
+					<p class="cfr-item-sub-location">Baldwinsville, NY<br>
+					<a href="http://warinternational.org/images/cfr/10-7-17.pdf" data-lity>(more info)</a></p></a>
+				</div>
+
+
+
 
 			</div>
 
@@ -73,34 +109,6 @@ get_header(); ?>
 				<p style="text-align: center;">For information on how to bring a CFR conference to your area, email us today at <a class="text-link" href="MAILTO:info@warinternational.org">info@warinternational.org</a></p>
 				<hr>
 
-
-			<!-- *********************
-			**************************
-			Continuing Ed
-			**************************
-			**************************
-			-->
-
-			<h2 style="text-align: center;margin: 60px 0 20px 0;">Continuing Education</h2>
-			<p class="small-text" style="text-align: center;">(only in Michigan)</p>
-			<p style="text-align: justify;">If you are interested in receiving continuing education credits for the event(s) below, preregistration is required. One credit hour equals one continuing education credit for social workers. If you have any additional questions about how to obtain credit for attending the course(s) below, please email our staff at <a href="MAILTO:info@warinternational.org">info@warinternational.org</a></p>
-
-
-			<div id="upcoming-cfr">
-
-			<p>Thank you for your interest in our CE opportunities. We currently do not have any upcoming events. Please continue to check this page for updates on events in your area.</p>
-<!--
-				<div class="cfr-item">
-					<a href="https://warinternational.org/ce-registration">
-					<div class="cfr-item-date">
-						<p class="cfr-item-month">May</p>
-						<p class="cfr-item-day">05</p>
-					</div>	
-					<p class="cfr-item-location">Oak Pointe Church<p>
-					<p class="cfr-item-sub-location">Novi, MI</p></a>
-				</div>
--->
-			</div>
 
 
 			<!-- *********************
