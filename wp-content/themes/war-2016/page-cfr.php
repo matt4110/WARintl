@@ -61,7 +61,7 @@ get_header(); ?>
 					</div>
 					<p class="cfr-item-location">NMC<br>Milliken Auditorium</p>
 					<p class="cfr-item-sub-location">Traverse City, MI<br>
-					<a href="http://warinternational.org/images/cfr/10-7-17.pdf" data-lity>(more info)</a></p></a>
+					<!--<a href="" data-lity>(more info)</a></p></a>-->
 				</div>
 
 				<div class="cfr-item">
@@ -72,7 +72,7 @@ get_header(); ?>
 					</div>
 					<p class="cfr-item-location"><br></p>
 					<p class="cfr-item-sub-location">Alpena, MI<br>
-					<a href="http://warinternational.org/images/cfr/10-7-17.pdf" data-lity>(more info)</a></p></a>
+					<!--<a href="" data-lity>(more info)</a></p></a>-->
 				</div>
 
 				<div class="cfr-item">
@@ -83,7 +83,7 @@ get_header(); ?>
 					</div>
 					<p class="cfr-item-location">Ridge Point<br>Community Church</p>
 					<p class="cfr-item-sub-location">Holland, MI<br>
-					<a href="http://warinternational.org/images/cfr/10-7-17.pdf" data-lity>(more info)</a></p></a>
+					<!--<a href="" data-lity>(more info)</a></p></a>-->
 				</div>
 
 				<div class="cfr-item">
@@ -94,7 +94,7 @@ get_header(); ?>
 					</div>
 					<p class="cfr-item-location"><br></p>
 					<p class="cfr-item-sub-location">Baldwinsville, NY<br>
-					<a href="http://warinternational.org/images/cfr/10-7-17.pdf" data-lity>(more info)</a></p></a>
+					<!--<a href="" data-lity>(more info)</a></p></a>-->
 				</div>
 
 
