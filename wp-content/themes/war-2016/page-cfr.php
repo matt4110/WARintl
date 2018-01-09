@@ -61,7 +61,7 @@ get_header(); ?>
 					</div>
 					<p class="cfr-item-location">NMC<br>Milliken Auditorium</p>
 					<p class="cfr-item-sub-location">Traverse City, MI<br>
-					<!--<a href="" data-lity>(more info)</a></p></a>-->
+					<a href="http://warinternational.org/images/cfr/2018-3-10.pdf" data-lity>(more info)</a></p></a>
 				</div>
 
 				<div class="cfr-item">
@@ -70,9 +70,9 @@ get_header(); ?>
 						<p class="cfr-item-month">Apr</p>
 						<p class="cfr-item-day">14</p>
 					</div>
-					<p class="cfr-item-location"><br></p>
+					<p class="cfr-item-location">New Life<br>Christian Fellowship</p>
 					<p class="cfr-item-sub-location">Alpena, MI<br>
-					<!--<a href="" data-lity>(more info)</a></p></a>-->
+					<a href="http://warinternational.org/images/cfr/2018-4-14.pdf" data-lity>(more info)</a></p></a>
 				</div>
 
 				<div class="cfr-item">
@@ -83,7 +83,7 @@ get_header(); ?>
 					</div>
 					<p class="cfr-item-location">Ridge Point<br>Community Church</p>
 					<p class="cfr-item-sub-location">Holland, MI<br>
-					<!--<a href="" data-lity>(more info)</a></p></a>-->
+					<a href="http://warinternational.org/images/cfr/2018-4-21.pdf" data-lity>(more info)</a></p></a>
 				</div>
 
 				<div class="cfr-item">

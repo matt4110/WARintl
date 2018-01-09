@@ -80,7 +80,7 @@
 						</ul>
 					</li>
 					<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"/donate/">Donate</a></li>
-					<li class="horizontal-li"><a href="http://warchestboutique.com">Store</a></li>
+					<li class="horizontal-li"><a href="http://warchestboutique.com">Shop</a></li>
 					<li class="horizontal-li"><a href=<?php get_bloginfo( 'url' ); ?>"/prayer/">Prayer</a>
 						<ul class="sub-nav">
 							<li class="sub-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/prayer-request/">Prayer Request Form</a></li>
@@ -112,15 +112,6 @@
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/circle-tour/">Circle Tour</a></li>
 					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/programs">PROGRAMS</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/sweetie-updates/">Sweetie Updates</a></li>
-						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/international-safehouses/">International Safehouses</a></li>
-						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/domestic-safehouses/">Domestic Safehouses</a></li>
-						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/vocational-training/">Vocational Training</a></li>
-						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/micro-enterprises/">Micro Enterprises</a></li>
-						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/education/">Education</a></li>
-						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/orphanages/">Orphanages</a></li>
-						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/outreach/">Outreach</a></li>
-						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/medical-aid/">Medical Aid</a></li>
-						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/emergency-intervention/">Emergency Intervention</a></li>
 					<li class="mobile-nav-li"><a href=<?php get_bloginfo( 'url' ); ?>"/prayer">PRAYER</a></li>
 						<li class="mobile-nav-li-sub"><a href=<?php get_bloginfo( 'url' ); ?>"/prayer-request/">Prayer Request</a></li>
 				</ul>
