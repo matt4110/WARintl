@@ -53,15 +53,15 @@ get_header(); ?>
 			&nbsp;
 			<div id="upcoming-cfr">
 
+
 				<div class="cfr-item">
-					<a href="https://warinternational.org/cfr-registration/?event_name=traverse-city">
+					<a href="https://public.serviceu.com/Ticketing/Event/9856842?OrgKey=aa3c7ff0-84de-4b47-ba76-b45bff42f0bb" target="_blank">
 					<div class="cfr-item-date">
 						<p class="cfr-item-month">Mar</p>
-						<p class="cfr-item-day">10</p>
+						<p class="cfr-item-day">24</p>
 					</div>
-					<p class="cfr-item-location">NMC<br>Milliken Auditorium</p>
-					<p class="cfr-item-sub-location">Traverse City, MI<br>
-					<a href="http://warinternational.org/images/cfr/2018-3-10.pdf" data-lity>(more info)</a></p></a>
+					<p class="cfr-item-location">Family Life</p>
+					<p class="cfr-item-sub-location">Bath, NY<br>(registration is off-site)</p></a>
 				</div>
 
 				<div class="cfr-item">
@@ -85,18 +85,6 @@ get_header(); ?>
 					<p class="cfr-item-sub-location">Holland, MI<br>
 					<a href="http://warinternational.org/images/cfr/2018-4-21.pdf" data-lity>(more info)</a></p></a>
 				</div>
-
-				<div class="cfr-item">
-					<a href="https://warinternational.org/cfr-registration/?event_name=baldwinsville">
-					<div class="cfr-item-date">
-						<p class="cfr-item-month">May</p>
-						<p class="cfr-item-day">26</p>
-					</div>
-					<p class="cfr-item-location"><br></p>
-					<p class="cfr-item-sub-location">Baldwinsville, NY<br>
-					<!--<a href="" data-lity>(more info)</a></p></a>-->
-				</div>
-
 
 
 

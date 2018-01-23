@@ -21,15 +21,15 @@ get_header(); ?>
 					<div class="grid-1-3">
 					    <a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder"><h2>CFR</h2>
 					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-event.jpg"></a>
-					    <p>March 10, 2018</p>
-					    <p>Northwestern Michigan College<br>1701 E. Front St<br>Traverse City, MI</p>
+					    <p>April 14, 2018</p>
+					    <p>New Life Christian Fellowship<br>317 S. Ripley Blvd<br>Alpena, MI</p>
 					</div>
 
 					<div class="grid-1-3">
 					    <a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder"><h2>CFR</h2>
 					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-event.jpg"></a>
-					    <p>April 14, 2018</p>
-					    <p>New Life Christian Fellowship<br>317 S. Ripley Blvd<br>Alpena, MI</p>
+					    <p>April 21, 2018</p>
+					    <p>Ridge Point Community Church<br>340 104th Ave<br>Holland, MI</p>
 					</div>
 
 				</div>
