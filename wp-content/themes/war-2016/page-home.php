@@ -63,7 +63,7 @@ get_header(); ?>
 					</div>
 					<div class="box-menu-split-text">
 						<a href=<?php get_bloginfo('url'); ?>"/host-a-party/">
-						<h1>Host A<br>Party</h1>
+						<h1>Host An<br>Event</h1>
 						<img style="max-width: 100%; margin-bottom:0;" src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/icon-host-a-party.png">
 						<p style="text-align: center;">SAVE A LIFE</p>
 						</a>
