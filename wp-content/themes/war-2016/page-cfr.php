@@ -53,7 +53,6 @@ get_header(); ?>
 			&nbsp;
 			<div id="upcoming-cfr">
 
-
 				<div class="cfr-item">
 					<a href="https://public.serviceu.com/Ticketing/Event/9856842?OrgKey=aa3c7ff0-84de-4b47-ba76-b45bff42f0bb" target="_blank">
 					<div class="cfr-item-date">
@@ -63,7 +62,7 @@ get_header(); ?>
 					<p class="cfr-item-location">Family Life</p>
 					<p class="cfr-item-sub-location">Bath, NY<br>(registration is off-site)</p></a>
 				</div>
-
+				
 				<div class="cfr-item">
 					<a href="https://warinternational.org/cfr-registration/?event_name=alpena">
 					<div class="cfr-item-date">
