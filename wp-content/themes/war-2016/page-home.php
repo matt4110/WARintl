@@ -41,14 +41,14 @@ get_header(); ?>
 
 				<div class="box-menu-item">
 					<div class="box-menu-image">
-						<a href=<?php get_bloginfo('url'); ?>"/program/us-training-center/">
+						<a href="http://teatradecafe.com" target="_blank">
 						<img src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/box-ustc.jpg">
 						</a>
 					</div>
 					<div class="box-menu-split-text">
-						<a href=<?php get_bloginfo('url'); ?>"/program/us-training-center/">
-						<h1>U.S.<br>Training<br>Center</h1>
-						<p>Healing Hearts in the Homeland</p>
+						<a href="http://teatradecafe.com">
+						<h1>Tea<br>Trade<br>Cafe</h1>
+						<p>Coffee with a Cause</p>
 						</a>
 					</div>
 				</div>
@@ -110,22 +110,6 @@ get_header(); ?>
 						<a href=<?php get_bloginfo('url'); ?>"/random-story/">
 						<h1>Stories<br>of hope</h1>
 						<p>Learn how your purchase lifts lives to dignity</p>
-						</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="box-menu-item-centered">
-					<div class="box-menu-image">
-						<a href=<?php get_bloginfo('url'); ?>"/circle-tour/">
-						<img src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/box-circle-tour.jpg">
-						</a>
-					</div>
-					<div class="box-menu-split-text">
-						<a href=<?php get_bloginfo('url'); ?>"/circle-tour/">
-						<h1>Circle<br>Tour 2018</h1>
-						<p>"You are the light of the world."</p>
 						</a>
 					</div>
 				</div>

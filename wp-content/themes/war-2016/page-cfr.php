@@ -95,7 +95,32 @@ get_header(); ?>
 
 				<p style="text-align: center;">For information on how to bring a CFR conference to your area, email us today at <a class="text-link" href="MAILTO:info@warinternational.org">info@warinternational.org</a></p>
 				<hr>
+			
+			<!-- *********************
+			**************************
+			Continuing Ed
+			**************************
+			**************************
+			-->
 
+			<h2 style="text-align: center;margin: 60px 0 20px 0;">Continuing Education</h2>
+			<p class="small-text" style="text-align: center;">(only in Michigan)</p>
+			<p style="text-align: justify;">If you are interested in receiving continuing education credits for the event(s) below, preregistration is required. One credit hour equals one continuing education credit for social workers. If you have any additional questions about how to obtain credit for attending the course(s) below, please email our staff at <a href="MAILTO:info@warinternational.org">info@warinternational.org</a></p>
+
+			<div id="upcoming-cfr">
+
+				<div class="cfr-item">
+					<a href="https://warinternational.org/ce-registration">
+					<div class="cfr-item-date">
+						<p class="cfr-item-month">May</p>
+						<p class="cfr-item-day">05</p>
+					</div>	
+					<p class="cfr-item-location">Oak Pointe Church<p>
+					<p class="cfr-item-sub-location">Novi, MI</p></a>
+					<a href="#CEU-P" data-lity>(more info)</a>
+				</div>
+			</div>
+			<p id="CEU-P" class="lity-hide"></p>
 
 
 			<!-- *********************
