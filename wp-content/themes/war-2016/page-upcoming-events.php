@@ -12,17 +12,17 @@ get_header(); ?>
 				<div class="row">
 					
 					<div class="grid-1-3">
-					    <a href=<?php get_bloginfo('url'); ?>"/circle-tour/"><h2>Circle Tour</h2>
-					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/events/circle-tour-2018.jpg"></a>
-					    <p>February 2018</p>
-					    <p>Thailand</p>
-					</div>
-
-					<div class="grid-1-3">
 					    <a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder"><h2>CFR</h2>
 					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-event.jpg"></a>
 					    <p>April 14, 2018</p>
 					    <p>New Life Christian Fellowship<br>317 S. Ripley Blvd<br>Alpena, MI</p>
+					</div>
+					
+					<div class="grid-1-3">
+					    <a href=<?php get_bloginfo('url'); ?>"/teamwar/"><h2>Team WAR</h2>
+					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/events/teamwar-square.jpg"></a>
+					    <p>April 22, 2018</p>
+					    <p>Downtown<br>Grand Rapids, MI</p>
 					</div>
 
 					<div class="grid-1-3">

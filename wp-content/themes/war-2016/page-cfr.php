@@ -52,16 +52,6 @@ get_header(); ?>
 			
 			&nbsp;
 			<div id="upcoming-cfr">
-
-				<div class="cfr-item">
-					<a href="https://public.serviceu.com/Ticketing/Event/9856842?OrgKey=aa3c7ff0-84de-4b47-ba76-b45bff42f0bb" target="_blank">
-					<div class="cfr-item-date">
-						<p class="cfr-item-month">Mar</p>
-						<p class="cfr-item-day">24</p>
-					</div>
-					<p class="cfr-item-location">Family Life</p>
-					<p class="cfr-item-sub-location">Bath, NY<br>(registration is off-site)</p></a>
-				</div>
 				
 				<div class="cfr-item">
 					<a href="https://warinternational.org/cfr-registration/?event_name=alpena">
@@ -103,7 +93,7 @@ get_header(); ?>
 			**************************
 			-->
 
-			<h2 style="text-align: center;margin: 60px 0 20px 0;">Continuing Education</h2>
+			<!--<h2 style="text-align: center;margin: 60px 0 20px 0;">Continuing Education</h2>
 			<p class="small-text" style="text-align: center;">(only in Michigan)</p>
 			<p style="text-align: justify;">If you are interested in receiving continuing education credits for the event(s) below, preregistration is required. One credit hour equals one continuing education credit for social workers. If you have any additional questions about how to obtain credit for attending the course(s) below, please email our staff at <a href="MAILTO:info@warinternational.org">info@warinternational.org</a></p>
 
@@ -120,7 +110,7 @@ get_header(); ?>
 					<a href="#CEU-P" data-lity>(more info)</a>
 				</div>
 			</div>
-			<p id="CEU-P" class="lity-hide"></p>
+			<p id="CEU-P" class="lity-hide"></p>-->
 
 
 			<!-- *********************
