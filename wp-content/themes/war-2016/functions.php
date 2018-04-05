@@ -379,7 +379,7 @@ function pre_submission_handler($form){
         $designation = "Program-" . filter_var(trim($_POST["input_12"]), FILTER_SANITIZE_STRING); //Use Program Field if program is selected
       }
     }
-	else if($_POST["input_14"] == "missionary") {
+	else if($_POST["input_14"] == "ambassador") {
         $designation = "Missionary-" . filter_var(trim($_POST["input_16"]), FILTER_SANITIZE_STRING); //Use Missionary Field if missionary is selected
     }
 	else if($_POST["input_14"] == "circle-tour") {
