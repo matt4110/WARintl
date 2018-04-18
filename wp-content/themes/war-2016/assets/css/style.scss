@@ -307,6 +307,14 @@ button{
   }
 }
 
+.war-red-button{
+  background-color: $red;
+  padding: 10px 15px;
+  color: white;
+  margin: 20px 10px 40px;
+  border-radius: 2px;
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // 2.7 Media
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1053,15 +1061,11 @@ a img.aligncenter {display: block; margin-left: auto; margin-right: auto}
   h2{
     font-size: 3vw;
   }
-
 }
+
 .grid-1-3:first-child{margin-left:0;}
 
-
-
-.row{
-  clear: both;
-}
+.row{clear: both;}
 
 .programs-container{clear:both; width:50%; margin-left:auto; margin-right:auto;}
 
@@ -1078,6 +1082,7 @@ div [class$="-12"], div [class$="-10"]{
 
   & a{text-decoration: none;}
 }
+
 .grid-3-10:last-child{
   margin-right: 0;
 }

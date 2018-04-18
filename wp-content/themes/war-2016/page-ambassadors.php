@@ -13,22 +13,14 @@ get_header(); ?>
 				<p>An Ambassador of Women At Risk, International (WAR, Int’l) has a passion for providing circles of protection and hope for women and children at-risk, advocates for the wounded and vulnerable in our world, and desires to make Christ known to set the captives free.</p>
 				<p>These brave men and women below have stepped out of their comfort zones, raising their own salaries and support, to give a voice to the voiceless. Click on any of the photos to learn more about their individual ministries, and how you can get involved.</p>
 				&nbsp;
-			</div>
-				<div class="parallax-window" data-parallax="scroll" data-image-src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/black-pattern.jpg" style="height:200px; width:100%;"></div>
-			
-			<div class="standard-content">
 
 				<div class="row">
-
 
 					<div class="grid-1-3">
 						<h4>Bill & Sandy Bennett</h4>
 						<img id="bennett-img" class="square-img" src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/ambassadors/bennett.jpg">
-						<!-- Hover info -->
-						<div id="bennett-hover" class="square-img-hover">
-							<p><b>Bill & Sandy<br>Bennett</b><br><i>Ambassadors</i></p>
-							<a href="#bennett-lb" data-lity><button>Read More</button></a>
-						</div>
+						<a href="#bennett-lb" data-lity><button class="war-red-button">Learn More</button></a>
+
 						<!-- Lightbox info -->
 						<div id="bennett-lb" class="lightbox lity-hide">
 							<h1>Bill & Sandy Bennett</h1>
@@ -43,11 +35,8 @@ get_header(); ?>
 					<div class="grid-1-3">
 						<h4>Melody Dooley</h4>
 						<img id="dooley-img" class="square-img" src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/ambassadors/dooley.jpg">
-						<!-- Hover info -->
-						<div id="dooley-hover" class="square-img-hover">
-							<p><b>Melody<br>Dooley</b><br><i>Ambassador</i></p>
-							<a href="#dooley-lb" data-lity><button>Read More</button></a>
-						</div>
+						<a href="#dooley-lb" data-lity><button class="war-red-button">Learn More</button></a>
+
 						<!-- Lightbox info -->
 						<div id="dooley-lb" class="lightbox lity-hide">
 							<h1>Melody Dooley</h1>
@@ -61,11 +50,8 @@ get_header(); ?>
 					<div class="grid-1-3">
 						<h4>Linda Luedeman</h4>
 						<img id="luedeman-img" class="square-img" src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/ambassadors/luedeman.jpg">
-						<!-- Hover info -->
-						<div id="luedeman-hover" class="square-img-hover">
-							<p><b>Linda<br>Luedeman</b><br><i>Ambassador</i></p>
-							<a href="#luedeman-lb" data-lity><button>Read More</button></a>
-						</div>
+						<a href="#luedeman-lb" data-lity><button class="war-red-button">Learn More</button></a>
+
 						<!-- Lightbox info -->
 						<div id="luedeman-lb" class="lightbox lity-hide">
 							<h1>Linda Luedeman</h1>
@@ -78,19 +64,15 @@ get_header(); ?>
 
 				</div>
 
-				<!--
+				
 				<div class="row">
 
 
 					<div class="grid-1-3">
 						<h4>Jenn Amo</h4>
-						<img id="amo-img" class="square-img" src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/ambassadors/amo.jpg">
-						<!-- Hover info - ->
-						<div id="amo-hover" class="square-img-hover">
-							<p><b>Jenn<br>Amo</b><br><i>Ambassador</i></p>
-							<a href="#amo-lb" data-lity><button>Read More</button></a>
-						</div>
-						<!-- Lightbox info - ->
+						<img id="amo-img" class="square-img" src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/ambassadors/dooley.jpg">
+						<a href="#amo-lb" data-lity><button class="war-red-button">Read More</button></a>
+						<!-- Lightbox info -->
 						<div id="amo-lb" class="lightbox lity-hide">
 							<h1>Jenn Amo</h1>
 							<p style="text-align: justify;">Warning Lights, a program designed by WAR, Int’l to educate youth and young adults about the dangers of human trafficking, is taught by Jenn Amo, the Youth Ambassador for Women At Risk, International.</p>
@@ -110,12 +92,8 @@ get_header(); ?>
 					<div class="grid-1-3">
 						<h4>Laura Birt</h4>
 						<img id="birt-img" class="square-img" src=<?php get_bloginfo('url'); ?>"/wp-content/themes/war-2016/assets/images/ambassadors/birt.jpg">
-						<!-- Hover info - ->
-						<div id="amo-hover" class="square-img-hover">
-							<p><b>Laura<br>Birt</b><br><i>Ambassador</i></p>
-							<a href="#birt-lb" data-lity><button>Read More</button></a>
-						</div>
-						<!-- Lightbox info - ->
+						<a href="#birt-lb" data-lity><button class="war-red-button">Read More</button></a>
+						<!-- Lightbox info -->
 						<div id="birt-lb" class="lightbox lity-hide">
 							<h1>Laura Birt</h1>
 							<p style="text-align:justify;">For 10 years, WAR, Int’l president Becky McDonald lived next to the Birt family. She had the precious privilege of leading Laura’s oldest son to Christ. This decades-old friendship has led to Becky taking several international trips with Laura, who has taught dozens of women to make jewelry in India, Bangladesh, and Thailand. During these trips, she also oversaw the handling of multiple currencies and finances. Not only has she become a trainer overseas, but she’s also worked with rescued women from right here in the U.S., as well, through WAR, Int’l’s U.S. Training Center program. </p>
@@ -127,7 +105,7 @@ get_header(); ?>
 
 
 
-				</div> -->
+				</div> 
 					
 
 			
