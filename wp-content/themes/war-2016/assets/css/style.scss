@@ -1270,6 +1270,26 @@ div [class$="-12"], div [class$="-10"]{
     color: $black;
   }
 
+  &-dcfr{
+    height: 170px;
+    width: 20px;
+    background-color: $red;
+    margin-right: 15px;
+    float: left;
+
+    &-more{
+      font-size: .7rem;
+      line-height: 1rem;
+      letter-spacing: .02rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: $black;
+      text-decoration: underline;
+      text-decoration-color: $red;
+
+    }
+  }
+
   &-sub-location, &-sub-title{
     font-weight: lighter;
     color: #777777;

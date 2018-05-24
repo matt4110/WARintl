@@ -52,18 +52,6 @@ get_header(); ?>
 			&nbsp;
 			<div id="upcoming-cfr">
 				
-				<div class="cfr-item">
-<<<<<<< HEAD
-					<a href="https://warinternational.org/cfr-registration/?event_name=holland">
-					<div class="cfr-item-date">
-						<p class="cfr-item-month">Apr</p>
-						<p class="cfr-item-day">21</p>
-					</div>
-					<p class="cfr-item-location">Ridge Point<br>Community Church</p>
-					<p class="cfr-item-sub-location">Holland, MI<br>
-					<p class="cfr-item-sub-location">9am - 4:30pm<br>
-					<a href=<?php get_bloginfo( 'url' ); ?>"/2018-cfr-holland/" target="_blank">(more info)</a></p></a>
-				</div>
 
 				<div class="cfr-item">
 					<a href="https://warinternational.org/cfr-registration/?event_name=alpena">
@@ -71,45 +59,33 @@ get_header(); ?>
 						<p class="cfr-item-month">Jun</p>
 						<p class="cfr-item-day">16</p>
 					</div>
-					<p class="cfr-item-location">New Life<br>Christian Fellowship</p>
+					<p class="cfr-item-location">Word of Life<br>Baptist Church</p>
 					<p class="cfr-item-sub-location">Alpena, MI<br>
 					<p class="cfr-item-sub-location">9am - 4:30pm<br>
 					<a href=<?php get_bloginfo( 'url' ); ?>"/2018-cfr-alpena/" target="_blank">(more info)</a></p></a>
 				</div>
 
-=======
-					<a href="https://warinternational.org/cfr-registration/?event_name=alpena">
-					<div class="cfr-item-date">
-						<p class="cfr-item-month">Apr</p>
-						<p class="cfr-item-day">14</p>
-					</div>
-					<p class="cfr-item-location">New Life<br>Christian Fellowship</p>
-					<p class="cfr-item-sub-location">Alpena, MI<br>
-					<a href="http://warinternational.org/images/cfr/2018-4-14.pdf" data-lity>(more info)</a></p></a>
-				</div>
-
 				<div class="cfr-item">
-					<a href="https://warinternational.org/cfr-registration/?event_name=holland">
-					<div class="cfr-item-date">
-						<p class="cfr-item-month">Apr</p>
-						<p class="cfr-item-day">21</p>
+					<a href=<?php get_bloginfo( 'url' ); ?>"/digitalcfr/" target="_blank">
+					<div class="cfr-item-dcfr">
+						<p class="cfr-item-month">&nbsp;</p>
+						<p class="cfr-item-day">&nbsp;</p>
 					</div>
-					<p class="cfr-item-location">Ridge Point<br>Community Church</p>
-					<p class="cfr-item-sub-location">Holland, MI<br>
-					<a href="http://warinternational.org/images/cfr/2018-4-21.pdf" data-lity>(more info)</a></p></a>
+					<p class="cfr-item-location">Don't See an Event in Your Area?</p>
+					<p class="cfr-item-sub-location">Attend a virtual CFR training from anywhere.</p>
+					<p class="cfr-item-dcfr-more">LEARN MORE &gt;</p></a>
 				</div>
-
-
->>>>>>> ab4633c2c0447dcebbe1071102612518c1e41291
 
 			</div>
-
+			<div class="clearfix">&nbsp;</div>
+			<div class="row">
 				<a href=<?php get_bloginfo('url') ;?>"/cfr-registration"><button class="main-button" style="margin-left: auto; margin-right: auto; display: block;">Register Now</button></a>
 				&nbsp;
 				<hr>
 
 				<p style="text-align: center;">For information on how to bring a CFR conference to your area, email us today at <a class="text-link" href="MAILTO:info@warinternational.org">info@warinternational.org</a></p>
 				<hr>
+			</div>
 			
 			<!-- *********************
 			**************************
@@ -118,7 +94,7 @@ get_header(); ?>
 			**************************
 			-->
 
-			<!--<h2 style="text-align: center;margin: 60px 0 20px 0;">Continuing Education</h2>
+			<h2 style="text-align: center;margin: 60px 0 20px 0;">Continuing Education</h2>
 			<p class="small-text" style="text-align: center;">(only in Michigan)</p>
 			<p style="text-align: justify;">If you are interested in receiving continuing education credits for the event(s) below, preregistration is required. One credit hour equals one continuing education credit for social workers. If you have any additional questions about how to obtain credit for attending the course(s) below, please email our staff at <a href="MAILTO:info@warinternational.org">info@warinternational.org</a></p>
 
@@ -130,21 +106,14 @@ get_header(); ?>
 						<p class="cfr-item-month">Jun</p>
 						<p class="cfr-item-day">15</p>
 					</div>	
-<<<<<<< HEAD
+
 					<p class="cfr-item-location">New Life Christian Fellowship<p>
 					<p class="cfr-item-sub-location">Alpena, MI</p></a>
 					<a href="#CEU-P" class="cfr-item-sub-location" data-lity>(more info)</a>
 				</div>
 			</div>
 			<p id="CEU-P" class="lity-hide" style="padding:30px;">This seminar, for medical professionals, mental health/substance use disorder treatment therapists, case managers, and others in healthcare/social service settings, will shed light on a subject so dark that many do not know it exists. Through case histories and statistics, those in helping professions will be equipped to heal brokenness by being able to identify notable indicators of 5 categories of health concerns and symptoms, identify 3 sets of players in trafficking scenarios in the healthcare environment, and to develop an appropriate assistance plan for victims. *CEU credits are only available for social workers and substance abuse professionals.</p>
-=======
-					<p class="cfr-item-location">Oak Pointe Church<p>
-					<p class="cfr-item-sub-location">Novi, MI</p></a>
-					<a href="#CEU-P" data-lity>(more info)</a>
-				</div>
-			</div>
-			<p id="CEU-P" class="lity-hide"></p>-->
->>>>>>> ab4633c2c0447dcebbe1071102612518c1e41291
+
 
 
 			<!-- *********************
