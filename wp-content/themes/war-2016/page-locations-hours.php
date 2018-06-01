@@ -80,8 +80,8 @@ get_header(); ?>
 				<p><a title="Tea Trade Cafe (Google Maps)" href="https://www.google.com/maps/place/Tea+Trade+Cafe/@42.8841846,-85.7355349,17z/data=!3m1!4b1!4m5!3m4!1s0x8819b0e7aa9cebf1:0xdd3fcd7eb5fabba3!8m2!3d42.8841846!4d-85.7333462?hl=en-US" target="_blank" rel="noopener"><small>Click here for directions.</small></a></p>
 				&nbsp;
 				<p>Hours*:<br>
-				<b>Monday - Friday:</b><br>8am - 5pm<br>
-				<b>Saturday &amp; Evenings:</b><br>open for events<br>
+				<b>Monday - Friday:</b><br>7am - 6pm<br>
+				<b>Saturday:</b><br>Open for Events Only<br>
 				<b>Sunday:</b><br>Closed<br>
 				*Please call to inquire about private in-store parties after hours.</p>
 

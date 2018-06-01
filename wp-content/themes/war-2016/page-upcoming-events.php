@@ -17,6 +17,13 @@ get_header(); ?>
 					    <p>June 16, 2018</p>
 					    <p>Word of Life Baptist Church<br>317 S. Ripley Blvd<br>Alpena, MI</p>
 					</div>
+
+					<div class="grid-1-3">
+					    <a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder"><h2>CFR</h2>
+					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-event.jpg"></a>
+					    <p>November 30, 2018</p>
+					    <p>Living Word Fellowship Church<br>1285 Charleston Rd<br>WEllsboro, PA</p>
+					</div>
 					
 
 				</div>
@@ -25,7 +32,7 @@ get_header(); ?>
 				<div class="clearfix">&nbsp;</div>
 				<br>
 				<hr>
-				<h3 style="text-align: center;"><a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder?#upcoming-cfrs">To see all of our upcoming CFR's click here</a></h3>
+				<h3 style="text-align: center;"><a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder?#upcoming-cfrs">To see all of our upcoming CFRs, click here</a></h3>
 				<hr>
 				<br>
 

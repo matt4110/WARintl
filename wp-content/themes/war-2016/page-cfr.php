@@ -66,6 +66,18 @@ get_header(); ?>
 				</div>
 
 				<div class="cfr-item">
+					<a href="https://warinternational.org/cfr-registration/?event_name=wellsboro">
+					<div class="cfr-item-date">
+						<p class="cfr-item-month">Nov</p>
+						<p class="cfr-item-day">30</p>
+					</div>
+					<p class="cfr-item-location">Living Word<br>Fellowship Church</p>
+					<p class="cfr-item-sub-location">Wellsboro, PA<br>
+					<p class="cfr-item-sub-location">9am - 4:30pm<br>
+					<a href=<?php get_bloginfo( 'url' ); ?>"/2018-cfr-wellsboro/" target="_blank">(more info)</a></p></a>
+				</div>
+
+				<div class="cfr-item">
 					<a href=<?php get_bloginfo( 'url' ); ?>"/digitalcfr/" target="_blank">
 					<div class="cfr-item-dcfr">
 						<p class="cfr-item-month">&nbsp;</p>

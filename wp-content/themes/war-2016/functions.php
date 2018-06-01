@@ -370,24 +370,27 @@ function pre_submission_handler($form){
 		$donationAmtType = 1; //Custom Value 
     }
     
-    //Determine Donation Amount
+    //Determine Donation Designation
     if($_POST["input_14"] == "program") {
       if($_POST["input_12"] == "amo") {
-        $designation = "Missionary-amo"; //Warning Lights program
-      }
+          $designation = "Missionary-amo"; //Warning Lights program
+        }
       else{
-        $designation = "Program-" . filter_var(trim($_POST["input_12"]), FILTER_SANITIZE_STRING); //Use Program Field if program is selected
+          $designation = "Program-" . filter_var(trim($_POST["input_12"]), FILTER_SANITIZE_STRING); //Use Program Field if program is selected
+            }
       }
-    }
-	else if($_POST["input_14"] == "ambassador") {
-        $designation = "Missionary-" . filter_var(trim($_POST["input_16"]), FILTER_SANITIZE_STRING); //Use Missionary Field if missionary is selected
-    }
-	else if($_POST["input_14"] == "circle-tour") {
-        $designation = "Circle Tour-" . filter_var(trim($_POST["input_23_3"]), FILTER_SANITIZE_STRING) . ' ' . filter_var(trim($_POST["input_23_6"]), FILTER_SANITIZE_STRING); //Use Participant Name if Circle Tour is selected
-    }
-	else if($_POST["input_14"] == "most-needed") {
-        $designation = "Where Most Needed";
-    }
+  	else if($_POST["input_14"] == "ambassador") {
+          $designation = "Missionary-" . filter_var(trim($_POST["input_16"]), FILTER_SANITIZE_STRING); //Use Missionary Field if missionary is selected
+      }
+  	else if($_POST["input_14"] == "circle-tour") {
+          $designation = "Circle Tour-" . filter_var(trim($_POST["input_23_3"]), FILTER_SANITIZE_STRING) . ' ' . filter_var(trim($_POST["input_23_6"]), FILTER_SANITIZE_STRING); //Use Participant Name if Circle Tour is selected
+      }
+  	else if($_POST["input_14"] == "most-needed") {
+          $designation = "Where Most Needed";
+      }
+    else if($_POST["input_14"] == "emergency-shelter") {
+          $designation = "Emergency Shelter";
+    }    
     else {
         $designation = "Other-". filter_var(trim($_POST["input_14_other"]), FILTER_SANITIZE_STRING); //Use Other Field if selected
     }
