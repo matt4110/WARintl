@@ -22,7 +22,7 @@ get_header(); ?>
 					    <a href=<?php get_bloginfo('url'); ?>"/civilian-first-responder"><h2>CFR</h2>
 					    <img class="square-img border" src=<?php get_bloginfo('url'); ?>"/images/cfr/cfr-event.jpg"></a>
 					    <p>November 30, 2018</p>
-					    <p>Living Word Fellowship Church<br>1285 Charleston Rd<br>WEllsboro, PA</p>
+					    <p>Living Word Fellowship Church<br>1285 Charleston Rd<br>Wellsboro, PA</p>
 					</div>
 					
 
