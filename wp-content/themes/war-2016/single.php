@@ -11,7 +11,7 @@ get_header(); ?>
 
 <div id="primary" class="post-content">
 	<main id="main-taco" class="site-main" role="main">
-		<div class="standard-content">
+		<div class="standard-content-post">
 			<?php
 			// Start the loop.
 			while ( have_posts() ) : the_post();
